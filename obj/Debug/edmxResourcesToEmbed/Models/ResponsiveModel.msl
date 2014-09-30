@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ResponsiveContext">
+    <EntitySetMapping Name="Article">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Article)">
+        <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article_Content">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Article_Content)">
+        <MappingFragment StoreEntitySet="Article_Content">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Navigation">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Navigation)">
+        <MappingFragment StoreEntitySet="Navigation">
+          <ScalarProperty Name="NavigationId" ColumnName="NavigationId" />
+          <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="On_Click" ColumnName="On_Click" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Navigation_ChangeLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Navigation_ChangeLogs)">
+        <MappingFragment StoreEntitySet="Navigation_ChangeLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Navigation_Id" ColumnName="Navigation_Id" />
+          <ScalarProperty Name="Changed_By" ColumnName="Changed_By" />
+          <ScalarProperty Name="Changed_Date" ColumnName="Changed_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Navigation_PublishLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Navigation_PublishLogs)">
+        <MappingFragment StoreEntitySet="Navigation_PublishLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Navigation_Id" ColumnName="Navigation_Id" />
+          <ScalarProperty Name="Published_By" ColumnName="Published_By" />
+          <ScalarProperty Name="Published_Date" ColumnName="Published_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article_ChangeLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Article_ChangeLogs)">
+        <MappingFragment StoreEntitySet="Article_ChangeLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Changed_By" ColumnName="Changed_By" />
+          <ScalarProperty Name="Changed_Date" ColumnName="Changed_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article_PublishLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Article_PublishLogs)">
+        <MappingFragment StoreEntitySet="Article_PublishLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Published_By" ColumnName="Published_By" />
+          <ScalarProperty Name="Published_Date" ColumnName="Published_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article_Metadata">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Article_Metadata)">
+        <MappingFragment StoreEntitySet="Article_Metadata">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Meta_Title" ColumnName="Meta_Title" />
+          <ScalarProperty Name="Meta_Keywords" ColumnName="Meta_Keywords" />
+          <ScalarProperty Name="Meta_Description" ColumnName="Meta_Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

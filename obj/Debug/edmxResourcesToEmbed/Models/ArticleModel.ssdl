@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArticlesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="Article_Id" />
+    </Key>
+    <Property Name="Article_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Active" Type="tinyint" Nullable="false" />
+    <Property Name="Created_By" Type="int" Nullable="false" />
+    <Property Name="Creation_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Article_Content">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Article_Id" Type="int" />
+    <Property Name="Title" Type="varchar" MaxLength="250" />
+    <Property Name="Text" Type="text" />
+    <Property Name="Meta_Title" Type="varchar" MaxLength="250" />
+    <Property Name="Meta_Keywords" Type="varchar" MaxLength="250" />
+    <Property Name="Meta_Description" Type="text" />
+    <Property Name="Active" Type="tinyint" Nullable="false" />
+    <Property Name="Created_By" Type="int" Nullable="false" />
+    <Property Name="Creation_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Article_Content_ToTable">
+    <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+    <End Role="Article_Content" Type="Self.Article_Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="Article_Id" />
+      </Principal>
+      <Dependent Role="Article_Content">
+        <PropertyRef Name="Article_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ArticlesModelStoreContainer">
+    <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Article_Content" EntityType="Self.Article_Content" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Article_Content_ToTable" Association="Self.FK_Article_Content_ToTable">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Article_Content" EntitySet="Article_Content" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
