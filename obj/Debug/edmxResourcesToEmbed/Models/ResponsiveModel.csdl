@@ -35,7 +35,7 @@
     <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="On_Click" Type="String" Nullable="false" />
     <Property Name="Level" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Priority" Type="Double" Nullable="true" DefaultValue="0.5">
+    <Property Name="Priority" Type="Double" Nullable="false" DefaultValue="0.5">
       <Documentation>
         <LongDescription>Google uses this to define what the priority of an Url is within the sitemap.xml</LongDescription>
       </Documentation>

@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/25/2014 21:12:39
--- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Solutions\Responsive\Models\ResponsiveModel.edmx
+-- Date Created: 10/01/2014 17:15:46
+-- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Models\ResponsiveModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -32,6 +32,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ArticleArticle_PublishLogs]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Article_PublishLogs] DROP CONSTRAINT [FK_ArticleArticle_PublishLogs];
 GO
+IF OBJECT_ID(N'[dbo].[FK_ArticleArticle_Metadata]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Article_Metadata] DROP CONSTRAINT [FK_ArticleArticle_Metadata];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -57,6 +60,9 @@ IF OBJECT_ID(N'[dbo].[Article_ChangeLogs]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Article_PublishLogs]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Article_PublishLogs];
+GO
+IF OBJECT_ID(N'[dbo].[Article_Metadata]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Article_Metadata];
 GO
 
 -- --------------------------------------------------
@@ -91,7 +97,7 @@ CREATE TABLE [dbo].[Navigation] (
     [Url] varchar(500)  NOT NULL  ,
     [On_Click] nvarchar(max)  NOT NULL  ,
     [Level] varchar(11)  NOT NULL  ,
-    [Priority] float  NULL DEFAULT 0.5 ,
+    [Priority] float  NOT NULL DEFAULT 0.5 ,
     [Active] tinyint  NOT NULL  ,
     [Created_By] int  NOT NULL  ,
     [Creation_Date] datetime  NOT NULL  

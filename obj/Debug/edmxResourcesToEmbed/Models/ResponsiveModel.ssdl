@@ -64,7 +64,7 @@
     <Property Name="Url" Type="varchar" Nullable="false" MaxLength="500" />
     <Property Name="On_Click" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Level" Type="varchar" Nullable="false" MaxLength="11" />
-    <Property Name="Priority" Type="float" Nullable="true" DefaultValue="0.5" />
+    <Property Name="Priority" Type="float" Nullable="false" DefaultValue="0.5" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
     <Property Name="Created_By" Type="int" Nullable="false" />
     <Property Name="Creation_Date" Type="datetime" Nullable="false" />

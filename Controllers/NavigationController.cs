@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -29,21 +30,43 @@ namespace Responsive.Controllers
             Response.ContentType = "application/xml";
 
             List<Navigation> xNewItems = null;
+            List<tUrl> SitemapUrls = new List<tUrl>();
+
             using(var db = new ResponsiveContext()){
                 xNewItems = db.Navigation.Where(x => x.Active == 1).OrderBy(x => x.Level).ToList();
-
             }
 
+            string currentDomain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host;
+
+            foreach (Navigation item in xNewItems) {
+                //var publishLogs = item.Navigation_PublishLogs;
 
 
-            var data = new tUrl {  };
-            var serializer = new XmlSerializer(typeof(MyClass));
+                SitemapUrls.Add( new tUrl{
+                        loc = currentDomain + "/" + item.Url,                       
+                        lastmod = item.Creation_Date.ToShortDateString(),
+                        changefreq = tChangeFreq.monthly,
+                        priority = (decimal)item.Priority,
+                        prioritySpecified = (item.Priority > 0),
+                        changefreqSpecified = true
+                    }
+                );
+                 
+            }
             
-            //using (var stream = new StreamWriter("C:\\test.xml"))
-                serializer.Serialize(stream, data);
 
-           // XmlSerializer XmlS = new XmlSerializer(.GetType());
+           // var data = new tUrl { loc = "test", priority = 0.5M };
 
+            //tUrl[] SitemapUrls = new tUrl[] { data };
+
+            var xmlx = new urlset { url = SitemapUrls };
+           
+            
+            var serializer = new XmlSerializer(typeof(urlset));
+
+            StringWriter textWriter = new StringWriter();
+            serializer.Serialize(textWriter, xmlx);
+                ViewBag.XmlData = textWriter;  
             return View();
         }
 
