@@ -32,28 +32,38 @@ namespace Responsive.Controllers
             List<Navigation> xNewItems = null;
             List<tUrl> SitemapUrls = new List<tUrl>();
 
-            using(var db = new ResponsiveContext()){
+            using (var db = new ResponsiveContext())
+            {
                 xNewItems = db.Navigation.Where(x => x.Active == 1).OrderBy(x => x.Level).ToList();
-            }
-
-            string currentDomain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host;
-
-            foreach (Navigation item in xNewItems) {
-                //var publishLogs = item.Navigation_PublishLogs;
 
 
-                SitemapUrls.Add( new tUrl{
-                        loc = currentDomain + "/" + item.Url,                       
+                string currentDomain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host;
+
+                foreach (Navigation item in xNewItems)
+                {
+                    if (item.Navigation_PublishLogs.Count() > 0)
+                    {
+                        var publishLogs = item.Navigation_PublishLogs.Reverse();
+                        //publishLogs.
+                    }
+
+
+
+                    SitemapUrls.Add(new tUrl
+                    {
+                        loc = currentDomain + "/" + item.Url,
                         lastmod = item.Creation_Date.ToShortDateString(),
                         changefreq = tChangeFreq.monthly,
                         priority = (decimal)item.Priority,
                         prioritySpecified = (item.Priority > 0),
                         changefreqSpecified = true
                     }
-                );
-                 
+                    );
+
+                }
+
+
             }
-            
 
            // var data = new tUrl { loc = "test", priority = 0.5M };
 
