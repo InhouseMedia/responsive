@@ -36,47 +36,59 @@ namespace Responsive.Controllers
             {
                 xNewItems = db.Navigation.Where(x => x.Active == 1).OrderBy(x => x.Level).ToList();
 
-
                 string currentDomain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host;
 
                 foreach (Navigation item in xNewItems)
                 {
+                    tChangeFreq changefreq = tChangeFreq.monthly;
+
                     if (item.Navigation_PublishLogs.Count() > 0)
                     {
-                        var publishLogs = item.Navigation_PublishLogs.Reverse();
-                        //publishLogs.
+                        // Define the what the frequency is of changing de navigation structure
+                        // (should be article lateron)
+                        var allPublishDate = item.Navigation_PublishLogs.ToArray();
+                        Array.Reverse(allPublishDate);
+                        
+                        var lastPublishDate = allPublishDate.First().Published_Date;
+                        var prevPublishDate = allPublishDate[1].Published_Date;
+
+                        var averageTime = (lastPublishDate - prevPublishDate).TotalDays;
+
+                        if(averageTime < 1) {
+                            changefreq = tChangeFreq.always;
+                        }else if (averageTime == 1 && averageTime < 3) {
+                            changefreq = tChangeFreq.daily;
+                        }else if (averageTime > 3 && averageTime < 15) {
+                            changefreq = tChangeFreq.weekly;
+                        }else if (averageTime > 29 && averageTime < 59) {
+                            changefreq = tChangeFreq.monthly;
+                        }else if (averageTime > 59) {
+                            changefreq = tChangeFreq.yearly;
+                        }
                     }
 
-
-
+                    // Create the a new Url within the sitemap
                     SitemapUrls.Add(new tUrl
-                    {
-                        loc = currentDomain + "/" + item.Url,
-                        lastmod = item.Creation_Date.ToShortDateString(),
-                        changefreq = tChangeFreq.monthly,
-                        priority = (decimal)item.Priority,
-                        prioritySpecified = (item.Priority > 0),
-                        changefreqSpecified = true
-                    }
+                        {
+                            loc = currentDomain + "/" + item.Url,
+                            lastmod = item.Creation_Date.ToShortDateString(),
+                            changefreq = changefreq,
+                            priority = (decimal)item.Priority,
+                            prioritySpecified = (item.Priority > 0),
+                            changefreqSpecified = (item.Navigation_PublishLogs.Count() > 0)
+                        }
                     );
-
                 }
-
-
             }
-
-           // var data = new tUrl { loc = "test", priority = 0.5M };
-
-            //tUrl[] SitemapUrls = new tUrl[] { data };
 
             var xmlx = new urlset { url = SitemapUrls };
            
-            
             var serializer = new XmlSerializer(typeof(urlset));
 
             StringWriter textWriter = new StringWriter();
             serializer.Serialize(textWriter, xmlx);
-                ViewBag.XmlData = textWriter;  
+            
+            ViewBag.XmlData = textWriter;  
             return View();
         }
 
