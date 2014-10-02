@@ -34,8 +34,11 @@ namespace Responsive.Controllers
 
             using (var db = new ResponsiveContext())
             {
+                // Get data from database
+                // TODO: should be cached
                 xNewItems = db.Navigation.Where(x => x.Active == 1).OrderBy(x => x.Level).ToList();
 
+                // Define domain of the website
                 string currentDomain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host;
 
                 foreach (Navigation item in xNewItems)
@@ -45,7 +48,9 @@ namespace Responsive.Controllers
                     if (item.Navigation_PublishLogs.Count() > 0)
                     {
                         // Define the what the frequency is of changing de navigation structure
-                        // (should be article lateron)
+                        // TODO:
+                        // The change frequency should be determent by average of the publish date
+                        // The change frequency should be determent of the article itself instead of the navigation publish date
                         var allPublishDate = item.Navigation_PublishLogs.ToArray();
                         Array.Reverse(allPublishDate);
                         
