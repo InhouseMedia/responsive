@@ -18,6 +18,8 @@ namespace Responsive.Controllers
     {
         private ResponsiveContext db = new ResponsiveContext();
 
+        
+
         // GET: Navigation
         public ActionResult Index()
         {
@@ -29,58 +31,59 @@ namespace Responsive.Controllers
         {
             Response.ContentType = "application/xml";
 
-            List<Navigation> xNewItems = null;
+            List<Navigation> allNavItems = null;
             List<tUrl> SitemapUrls = new List<tUrl>();
 
             using (var db = new ResponsiveContext())
             {
                 // Get data from database
                 // TODO: should be cached
-                xNewItems = db.Navigation.Where(x => x.Active == 1).OrderBy(x => x.Level).ToList();
+                allNavItems = db.Navigation.Where(x => x.Active == 1).OrderBy(x => x.Level).ToList();
 
                 // Define domain of the website
                 string currentDomain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host;
 
-                foreach (Navigation item in xNewItems)
+                foreach (Navigation navItem in allNavItems)
                 {
+                    // Initialize variables
+                    int averageTime = 0;
                     tChangeFreq changefreq = tChangeFreq.monthly;
+                    var changeFreqList = new List<double>();
+                    var navLogs = navItem.Navigation_PublishLogs.ToArray();
 
-                    if (item.Navigation_PublishLogs.Count() > 0)
-                    {
-                        // Define the what the frequency is of changing de navigation structure
-                        // TODO:
-                        // The change frequency should be determent by average of the publish date
-                        // The change frequency should be determent of the article itself instead of the navigation publish date
-                        var allPublishDate = item.Navigation_PublishLogs.ToArray();
-                        Array.Reverse(allPublishDate);
-                        
-                        var lastPublishDate = allPublishDate.First().Published_Date;
-                        var prevPublishDate = allPublishDate[1].Published_Date;
+                    // Define the what the frequency is of changing de navigation structure by
+                    // determen the average of all publish dates
+                    // TODO:
+                    // The change frequency should be determent of the article itself instead of the navigation publish date
+                    for (var i = 0; navLogs.Length > i; i++) {
+                        changeFreqList.Add((navLogs[i].Published_Date-navLogs[i++].Published_Date).TotalDays);
+                    }
 
-                        var averageTime = (lastPublishDate - prevPublishDate).TotalDays;
-
-                        if(averageTime < 1) {
-                            changefreq = tChangeFreq.always;
-                        }else if (averageTime == 1 && averageTime < 3) {
-                            changefreq = tChangeFreq.daily;
-                        }else if (averageTime > 3 && averageTime < 15) {
-                            changefreq = tChangeFreq.weekly;
-                        }else if (averageTime > 29 && averageTime < 59) {
-                            changefreq = tChangeFreq.monthly;
-                        }else if (averageTime > 59) {
-                            changefreq = tChangeFreq.yearly;
-                        }
+                    if(changeFreqList.Count > 0)
+                         averageTime = (int)Math.Round(changeFreqList.Average());
+                    
+                    // Determen the changefrequency
+                    if(averageTime > 0 && averageTime < 1) {
+                        changefreq = tChangeFreq.always;
+                    }else if (averageTime >= 1 && averageTime < 3) {
+                        changefreq = tChangeFreq.daily;
+                    }else if (averageTime >= 3 && averageTime < 15) {
+                        changefreq = tChangeFreq.weekly;
+                    }else if (averageTime >= 15 && averageTime < 59) {
+                        changefreq = tChangeFreq.monthly;
+                    }else if (averageTime >= 59) {
+                        changefreq = tChangeFreq.yearly;
                     }
 
                     // Create the a new Url within the sitemap
                     SitemapUrls.Add(new tUrl
                         {
-                            loc = currentDomain + "/" + item.Url,
-                            lastmod = item.Creation_Date.ToShortDateString(),
+                            loc = currentDomain + "/" + navItem.Url,
+                            lastmod = navItem.Creation_Date.ToShortDateString(),
                             changefreq = changefreq,
-                            priority = (decimal)item.Priority,
-                            prioritySpecified = (item.Priority > 0),
-                            changefreqSpecified = (item.Navigation_PublishLogs.Count() > 0)
+                            priority = (decimal)navItem.Priority,
+                            prioritySpecified = (navItem.Priority > 0),
+                            changefreqSpecified = (changeFreqList.Count() > 0)
                         }
                     );
                 }
