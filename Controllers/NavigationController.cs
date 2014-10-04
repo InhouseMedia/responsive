@@ -17,28 +17,60 @@ namespace Responsive.Controllers
     public class NavigationController : Controller
     {
         private ResponsiveContext db = new ResponsiveContext();
-        /*
-        public class TreeViewLocation
+        
+        public class NavigationItem
         {
-            public TreeViewLocation()
+            public NavigationItem()
             {
-                ChildLocations = new HashSet<TreeViewLocation>();
-            }
+                ChildLocations = new HashSet<NavigationItem>();
+            } 
 
             public int Id { get; set; }
-            public string Name { get; set; }
-            public ICollection<TreeViewLocation> ChildLocations { get; set; }
+            public string Title { get; set; }
+			public string Url { get; set; }
+			public string OnClick { get; set; }
+            public ICollection<NavigationItem> ChildLocations { get; set; }
         }
-        */
+        
         // GET: Navigation
         public ActionResult Index()
         {
-            List<Navigation> navigation = db.Navigation.ToList();
+            List<Navigation> navigation = db.Navigation.Where(x => x.Active == 1).OrderBy(x => x.Level).ToList();
 
-           // List<TreeViewLocation> test = navigation.Select(x => new TreeViewLocation { Id = x.Navigation_Id, Name = x.Url}).ToList();
-
-            return View(navigation);
+			List<NavigationItem> test = getNaviationItems(navigation);
+			/*
+			List<NavigationItem> test = navigation.Select(
+				x => new NavigationItem {
+					Id = x.Navigation_Id,
+					Title = x.Url,
+					Url = x.Url,
+					OnClick = x.On_Click,
+					ChildLocations = { }
+				}
+			).ToList();
+*/
+            return View(test);
         }
+
+		private List<NavigationItem> getNaviationItems(List<Navigation> navigation) {
+			List<NavigationItem> navItem = new List<NavigationItem>();
+			foreach (Navigation item in navigation) {
+
+				 //string[] level = item.Level.Split('.');
+
+
+				navItem.Add(new NavigationItem
+				{
+					Id = item.Navigation_Id,
+					Title = item.Url,
+					Url = item.Url,
+					OnClick = item.On_Click,
+					ChildLocations = { }
+				})
+				;
+			}
+			return navItem;
+		}
 
         // GET: Navigation/Sitemap
         public ActionResult Sitemap()
