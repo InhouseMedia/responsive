@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/01/2014 17:15:46
+-- Date Created: 10/04/2014 14:31:10
 -- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Models\ResponsiveModel.edmx
 -- --------------------------------------------------
 
@@ -92,7 +92,7 @@ GO
 
 -- Creating table 'Navigation'
 CREATE TABLE [dbo].[Navigation] (
-    [NavigationId] int IDENTITY(1,1) NOT NULL  ,
+    [Navigation_Id] int IDENTITY(1,1) NOT NULL  ,
     [Article_Id] int  NOT NULL  ,
     [Url] varchar(500)  NOT NULL  ,
     [On_Click] nvarchar(max)  NOT NULL  ,
@@ -166,10 +166,10 @@ ADD CONSTRAINT [PK_Article_Content]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [NavigationId] in table 'Navigation'
+-- Creating primary key on [Navigation_Id] in table 'Navigation'
 ALTER TABLE [dbo].[Navigation]
 ADD CONSTRAINT [PK_Navigation]
-    PRIMARY KEY CLUSTERED ([NavigationId] ASC);
+    PRIMARY KEY CLUSTERED ([Navigation_Id] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'Navigation_ChangeLogs'
@@ -226,7 +226,7 @@ ALTER TABLE [dbo].[Navigation_ChangeLogs]
 ADD CONSTRAINT [FK_Navigation_ChangeLogs]
     FOREIGN KEY ([Navigation_Id])
     REFERENCES [dbo].[Navigation]
-        ([NavigationId])
+        ([Navigation_Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
@@ -241,7 +241,7 @@ ALTER TABLE [dbo].[Navigation_PublishLogs]
 ADD CONSTRAINT [FK_Navigation_PublishLogs]
     FOREIGN KEY ([Navigation_Id])
     REFERENCES [dbo].[Navigation]
-        ([NavigationId])
+        ([Navigation_Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 

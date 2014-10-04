@@ -57,9 +57,9 @@
   </EntityType>
   <EntityType Name="Navigation">
     <Key>
-      <PropertyRef Name="NavigationId" />
+      <PropertyRef Name="Navigation_Id" />
     </Key>
-    <Property Name="NavigationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Navigation_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Article_Id" Type="int" Nullable="false" />
     <Property Name="Url" Type="varchar" Nullable="false" MaxLength="500" />
     <Property Name="On_Click" Type="nvarchar(max)" Nullable="false" />
@@ -132,7 +132,7 @@
     <End Role="Navigation_ChangeLogs" Type="Model.Store.Navigation_ChangeLogs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Navigation">
-        <PropertyRef Name="NavigationId" />
+        <PropertyRef Name="Navigation_Id" />
       </Principal>
       <Dependent Role="Navigation_ChangeLogs">
         <PropertyRef Name="Navigation_Id" />
@@ -144,7 +144,7 @@
     <End Role="Navigation_PublishLogs" Type="Model.Store.Navigation_PublishLogs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Navigation">
-        <PropertyRef Name="NavigationId" />
+        <PropertyRef Name="Navigation_Id" />
       </Principal>
       <Dependent Role="Navigation_PublishLogs">
         <PropertyRef Name="Navigation_Id" />

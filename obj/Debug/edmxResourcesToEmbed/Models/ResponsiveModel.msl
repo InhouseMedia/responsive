@@ -27,7 +27,7 @@
     <EntitySetMapping Name="Navigation">
       <EntityTypeMapping TypeName="IsTypeOf(Model.Navigation)">
         <MappingFragment StoreEntitySet="Navigation">
-          <ScalarProperty Name="NavigationId" ColumnName="NavigationId" />
+          <ScalarProperty Name="Navigation_Id" ColumnName="Navigation_Id" />
           <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
           <ScalarProperty Name="Url" ColumnName="Url" />
           <ScalarProperty Name="On_Click" ColumnName="On_Click" />

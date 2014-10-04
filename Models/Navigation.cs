@@ -21,7 +21,7 @@ namespace Responsive.Models
             this.Navigation_PublishLogs = new HashSet<Navigation_PublishLogs>();
         }
     
-        public int NavigationId { get; set; }
+        public int Navigation_Id { get; set; }
         public int Article_Id { get; set; }
         public string Url { get; set; }
         public string On_Click { get; set; }

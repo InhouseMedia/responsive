@@ -25,15 +25,15 @@ namespace Responsive
                url: "sitemap.xml",
                defaults: new { controller = "Navigation", action = "Sitemap" }
            );
-        
+ /*       
             // Custom MVC route
             routes.MapRoute(
                 name: "Custom",
                 url: "{*path}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             ).RouteHandler = new ApplicationRouteHandler();
+            */
 
-           
 
             /*
             routes.MapRoute(
@@ -42,12 +42,12 @@ namespace Responsive
                 defaults: new { controller = "Default", action = "Index" },
                 constraints: new { lang = @"fr|en" }
             ).RouteHandler = new ApplicationRouteHandler();
-                   
+              */
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );*/
+            );
 
         }
 
@@ -80,7 +80,7 @@ namespace Responsive
 
             requestContext.RouteData.Values["controller"] = "Home";//page.Controller;
             requestContext.RouteData.Values["action"] = "About";//page.Action;
-            requestContext.RouteData.Values["id"] = page.NavigationId;
+            requestContext.RouteData.Values["id"] = page.Navigation_Id;
 
             /*
             // attempt to retrieve controller and action for current path

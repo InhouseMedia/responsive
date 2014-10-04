@@ -28,9 +28,9 @@
   </EntityType>
   <EntityType Name="Navigation">
     <Key>
-      <PropertyRef Name="NavigationId" />
+      <PropertyRef Name="Navigation_Id" />
     </Key>
-    <Property Name="NavigationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Navigation_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Article_Id" Type="Int32" Nullable="false" />
     <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="On_Click" Type="String" Nullable="false" />
@@ -83,7 +83,7 @@
     <End Role="Navigation_ChangeLogs" Type="Self.Navigation_ChangeLogs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Navigation">
-        <PropertyRef Name="NavigationId" />
+        <PropertyRef Name="Navigation_Id" />
       </Principal>
       <Dependent Role="Navigation_ChangeLogs">
         <PropertyRef Name="Navigation_Id" />
@@ -95,7 +95,7 @@
     <End Role="Navigation_PublishLogs" Type="Self.Navigation_PublishLogs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Navigation">
-        <PropertyRef Name="NavigationId" />
+        <PropertyRef Name="Navigation_Id" />
       </Principal>
       <Dependent Role="Navigation_PublishLogs">
         <PropertyRef Name="Navigation_Id" />

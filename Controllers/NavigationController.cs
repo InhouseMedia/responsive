@@ -17,13 +17,27 @@ namespace Responsive.Controllers
     public class NavigationController : Controller
     {
         private ResponsiveContext db = new ResponsiveContext();
+        /*
+        public class TreeViewLocation
+        {
+            public TreeViewLocation()
+            {
+                ChildLocations = new HashSet<TreeViewLocation>();
+            }
 
-        
-
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public ICollection<TreeViewLocation> ChildLocations { get; set; }
+        }
+        */
         // GET: Navigation
         public ActionResult Index()
         {
-            return View(db.Navigation.ToList());
+            List<Navigation> navigation = db.Navigation.ToList();
+
+           // List<TreeViewLocation> test = navigation.Select(x => new TreeViewLocation { Id = x.Navigation_Id, Name = x.Url}).ToList();
+
+            return View(navigation);
         }
 
         // GET: Navigation/Sitemap
