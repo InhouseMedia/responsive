@@ -5,20 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="94472cd08a7b4abea1cbdfe7d8a1b830" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.Article" Width="1.5" PointX="7.5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Article" Width="1.5" PointX="7.5" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Article_Content" Width="1.5" PointX="7.5" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Navigation" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" FillColor="Gray" />
-        <EntityTypeShape EntityType="Model.Navigation_ChangeLogs" Width="1.875" PointX="0.5" PointY="0.75" IsExpanded="true" FillColor="Gray" />
-        <EntityTypeShape EntityType="Model.Navigation_PublishLogs" Width="1.875" PointX="0.5" PointY="3" IsExpanded="true" FillColor="Gray" />
+        <EntityTypeShape EntityType="Model.Navigation" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" FillColor="Gray" />
+        <EntityTypeShape EntityType="Model.Navigation_ChangeLogs" Width="1.875" PointX="0.5" PointY="0.875" IsExpanded="true" FillColor="Gray" />
+        <EntityTypeShape EntityType="Model.Navigation_PublishLogs" Width="1.875" PointX="0.5" PointY="3.125" IsExpanded="true" FillColor="Gray" />
         <AssociationConnector Association="Model.FK_Article_Content" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Navigation_ChangeLogs" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Navigation_PublishLogs" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model.Article_ChangeLogs" Width="1.5" PointX="5" PointY="0.875" FillColor="0, 122, 204" />
-        <AssociationConnector Association="Model.ArticleArticle_ChangeLogs" />
-        <EntityTypeShape EntityType="Model.Article_PublishLogs" Width="1.5" PointX="5.125" PointY="3.125" FillColor="0, 122, 204" />
-        <AssociationConnector Association="Model.ArticleArticle_PublishLogs" />
+        <EntityTypeShape EntityType="Model.Article_ChangeLogs" Width="1.5" PointX="5" PointY="1" FillColor="0, 122, 204" />
+        <AssociationConnector Association="Model.FK_Article_ChangeLogs" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.Article_PublishLogs" Width="1.5" PointX="5" PointY="3.125" FillColor="0, 122, 204" />
+        <AssociationConnector Association="Model.FK_Article_PublishLogs" />
         <EntityTypeShape EntityType="Model.Article_Metadata" Width="1.75" PointX="9.375" PointY="5.5" IsExpanded="true" />
-        <AssociationConnector Association="Model.ArticleArticle_Metadata" />
+        <AssociationConnector Association="Model.FK_Article_Metadata" />
+        <EntityTypeShape EntityType="Model.Navigation_Content" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" FillColor="Gray" />
+        <AssociationConnector Association="Model.NavigationNavigation_Content" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

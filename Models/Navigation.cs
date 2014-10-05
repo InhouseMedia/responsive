@@ -19,13 +19,13 @@ namespace Responsive.Models
             this.Priority = 0.5D;
             this.Navigation_ChangeLogs = new HashSet<Navigation_ChangeLogs>();
             this.Navigation_PublishLogs = new HashSet<Navigation_PublishLogs>();
+            this.Navigation_Content = new HashSet<Navigation_Content>();
         }
     
         public int Navigation_Id { get; set; }
         public int Article_Id { get; set; }
-        public string Url { get; set; }
-        public string On_Click { get; set; }
-        public string Level { get; set; }
+        public Nullable<int> Parent_Id { get; set; }
+        public int Level { get; set; }
         public double Priority { get; set; }
         public byte Active { get; set; }
         public int Created_By { get; set; }
@@ -33,5 +33,6 @@ namespace Responsive.Models
     
         public virtual ICollection<Navigation_ChangeLogs> Navigation_ChangeLogs { get; set; }
         public virtual ICollection<Navigation_PublishLogs> Navigation_PublishLogs { get; set; }
+        public virtual ICollection<Navigation_Content> Navigation_Content { get; set; }
     }
 }

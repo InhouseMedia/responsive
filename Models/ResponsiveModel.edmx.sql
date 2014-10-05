@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/04/2014 14:31:10
+-- Date Created: 10/05/2014 11:35:22
 -- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Models\ResponsiveModel.edmx
 -- --------------------------------------------------
 
@@ -94,9 +94,8 @@ GO
 CREATE TABLE [dbo].[Navigation] (
     [Navigation_Id] int IDENTITY(1,1) NOT NULL  ,
     [Article_Id] int  NOT NULL  ,
-    [Url] varchar(500)  NOT NULL  ,
-    [On_Click] nvarchar(max)  NOT NULL  ,
-    [Level] varchar(11)  NOT NULL  ,
+    [Parent_Id] int  NULL  ,
+    [Level] int  NOT NULL  ,
     [Priority] float  NOT NULL DEFAULT 0.5 ,
     [Active] tinyint  NOT NULL  ,
     [Created_By] int  NOT NULL  ,
@@ -147,6 +146,15 @@ CREATE TABLE [dbo].[Article_Metadata] (
     [Meta_Title] varchar(250)  NULL  ,
     [Meta_Keywords] varchar(250)  NULL  ,
     [Meta_Description] varchar(max)  NULL  
+);
+GO
+
+-- Creating table 'Navigation_Content'
+CREATE TABLE [dbo].[Navigation_Content] (
+    [Id] int IDENTITY(1,1) NOT NULL  ,
+    [Navigation_Id] int  NULL  ,
+    [Url] nvarchar(max)  NULL  ,
+    [On_Click] nvarchar(max)  NOT NULL  
 );
 GO
 
@@ -202,6 +210,12 @@ ADD CONSTRAINT [PK_Article_Metadata]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'Navigation_Content'
+ALTER TABLE [dbo].[Navigation_Content]
+ADD CONSTRAINT [PK_Navigation_Content]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
@@ -253,47 +267,62 @@ GO
 
 -- Creating foreign key on [Article_Id] in table 'Article_ChangeLogs'
 ALTER TABLE [dbo].[Article_ChangeLogs]
-ADD CONSTRAINT [FK_ArticleArticle_ChangeLogs]
+ADD CONSTRAINT [FK_Article_ChangeLogs]
     FOREIGN KEY ([Article_Id])
     REFERENCES [dbo].[Article]
         ([Article_Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_ArticleArticle_ChangeLogs'
-CREATE INDEX [IX_FK_ArticleArticle_ChangeLogs]
+-- Creating non-clustered index for FOREIGN KEY 'FK_Article_ChangeLogs'
+CREATE INDEX [IX_FK_Article_ChangeLogs]
 ON [dbo].[Article_ChangeLogs]
     ([Article_Id]);
 GO
 
 -- Creating foreign key on [Article_Id] in table 'Article_PublishLogs'
 ALTER TABLE [dbo].[Article_PublishLogs]
-ADD CONSTRAINT [FK_ArticleArticle_PublishLogs]
+ADD CONSTRAINT [FK_Article_PublishLogs]
     FOREIGN KEY ([Article_Id])
     REFERENCES [dbo].[Article]
         ([Article_Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_ArticleArticle_PublishLogs'
-CREATE INDEX [IX_FK_ArticleArticle_PublishLogs]
+-- Creating non-clustered index for FOREIGN KEY 'FK_Article_PublishLogs'
+CREATE INDEX [IX_FK_Article_PublishLogs]
 ON [dbo].[Article_PublishLogs]
     ([Article_Id]);
 GO
 
 -- Creating foreign key on [Article_Id] in table 'Article_Metadata'
 ALTER TABLE [dbo].[Article_Metadata]
-ADD CONSTRAINT [FK_ArticleArticle_Metadata]
+ADD CONSTRAINT [FK_Article_Metadata]
     FOREIGN KEY ([Article_Id])
     REFERENCES [dbo].[Article]
         ([Article_Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_ArticleArticle_Metadata'
-CREATE INDEX [IX_FK_ArticleArticle_Metadata]
+-- Creating non-clustered index for FOREIGN KEY 'FK_Article_Metadata'
+CREATE INDEX [IX_FK_Article_Metadata]
 ON [dbo].[Article_Metadata]
     ([Article_Id]);
+GO
+
+-- Creating foreign key on [Navigation_Id] in table 'Navigation_Content'
+ALTER TABLE [dbo].[Navigation_Content]
+ADD CONSTRAINT [FK_NavigationNavigation_Content]
+    FOREIGN KEY ([Navigation_Id])
+    REFERENCES [dbo].[Navigation]
+        ([Navigation_Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_NavigationNavigation_Content'
+CREATE INDEX [IX_FK_NavigationNavigation_Content]
+ON [dbo].[Navigation_Content]
+    ([Navigation_Id]);
 GO
 
 -- --------------------------------------------------

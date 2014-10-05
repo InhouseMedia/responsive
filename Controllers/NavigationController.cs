@@ -17,7 +17,9 @@ namespace Responsive.Controllers
     public class NavigationController : Controller
     {
         private ResponsiveContext db = new ResponsiveContext();
-        
+
+		private string[] previousLevel = new string[0];
+ 
         public class NavigationItem
         {
             public NavigationItem()
@@ -35,41 +37,36 @@ namespace Responsive.Controllers
         // GET: Navigation
         public ActionResult Index()
         {
-            List<Navigation> navigation = db.Navigation.Where(x => x.Active == 1).OrderBy(x => x.Level).ToList();
-
-			List<NavigationItem> test = getNaviationItems(navigation);
-			/*
-			List<NavigationItem> test = navigation.Select(
-				x => new NavigationItem {
-					Id = x.Navigation_Id,
-					Title = x.Url,
-					Url = x.Url,
-					OnClick = x.On_Click,
-					ChildLocations = { }
-				}
-			).ToList();
-*/
+			List<Navigation> navigation = db.Navigation.Where(x => x.Active == 1 && x.Parent_Id == null).OrderBy(x => x.Level).ToList();
+			
+			List<NavigationItem> test = getNavigationItems(navigation);
+			
             return View(test);
         }
 
-		private List<NavigationItem> getNaviationItems(List<Navigation> navigation) {
-			List<NavigationItem> navItem = new List<NavigationItem>();
-			foreach (Navigation item in navigation) {
-
-				 //string[] level = item.Level.Split('.');
-
-
-				navItem.Add(new NavigationItem
-				{
-					Id = item.Navigation_Id,
-					Title = item.Url,
-					Url = item.Url,
-					OnClick = item.On_Click,
-					ChildLocations = { }
-				})
-				;
+		private List<NavigationItem> getNavigationItems(List<Navigation> navigation) {
+			List<NavigationItem> result = new List<NavigationItem>();
+			foreach (var item in navigation)
+			{
+				NavigationItem tempNav = getNavigationItem(item);
+				 List<Navigation> tempSub = db.Navigation.Where(e => e.Parent_Id == item.Navigation_Id).OrderBy(x => x.Level).ToList();
+				 tempNav.ChildLocations = getNavigationItems(tempSub);
+				result.Add(tempNav);
 			}
-			return navItem;
+
+			return result;
+		}
+
+		private NavigationItem getNavigationItem(Navigation item) {
+			
+			return new NavigationItem
+			{
+				Id = item.Navigation_Id,
+				Title = item.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == item.Navigation_Id).Url,
+				Url = item.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == item.Navigation_Id).Url,
+				OnClick = item.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == item.Navigation_Id).On_Click,
+				ChildLocations = {  }
+			};
 		}
 
         // GET: Navigation/Sitemap
@@ -77,14 +74,18 @@ namespace Responsive.Controllers
         {
             Response.ContentType = "application/xml";
 
-            List<Navigation> allNavItems = null;
+           // List<Navigation> navigation = null;
+			List<Navigation> allNavItems = null;
             List<tUrl> SitemapUrls = new List<tUrl>();
 
             using (var db = new ResponsiveContext())
             {
                 // Get data from database
                 // TODO: should be cached
-                allNavItems = db.Navigation.Where(x => x.Active == 1).OrderBy(x => x.Level).ToList();
+                allNavItems = db.Navigation.Where(x => x.Active == 1).OrderBy(x => new {x.Parent_Id, x.Level}).ToList();
+				//navigation = db.Navigation.Where(x => x.Active == 1 && x.Parent_Id == null).OrderBy(x => x.Level).ToList();
+			
+				//allNavItems = getNavigationItems(navigation);
 
                 // Define domain of the website
                 string currentDomain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host;
@@ -124,7 +125,7 @@ namespace Responsive.Controllers
                     // Create the a new Url within the sitemap
                     SitemapUrls.Add(new tUrl
                         {
-                            loc = currentDomain + "/" + navItem.Url,
+                            loc = currentDomain + "/" + navItem.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == navItem.Navigation_Id).Url,
                             lastmod = navItem.Creation_Date.ToShortDateString(),
                             changefreq = changefreq,
                             priority = (decimal)navItem.Priority,

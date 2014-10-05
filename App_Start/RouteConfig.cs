@@ -70,7 +70,8 @@ namespace Responsive
             Navigation page = null;
          
             using(var db = new ResponsiveContext()) {
-                page = db.Navigation.FirstOrDefault(x => x.Url == path);
+                //page = db.Navigation.FirstOrDefault(x => x.Url == path);
+				page = db.Navigation.FirstOrDefault(x => x.Navigation_Content.FirstOrDefault().Url == path);
 
             }
            
