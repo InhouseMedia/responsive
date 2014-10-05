@@ -17,7 +17,7 @@ namespace Responsive.Controllers
     public class NavigationController : Controller
     {
         private ResponsiveContext db = new ResponsiveContext();
-
+ 
         
 
         // GET: Navigation
