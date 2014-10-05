@@ -16,7 +16,7 @@ model List<Responsive.Models.Navigation>
     .ItemText(m => m.Url)
     .ItemTemplate(
         @<text>
-            <a href="#@item.Url">@item.Id @item.Url</a>
+            <a href="@item.Url">@item.Title</a>
         </text>)
 )
 

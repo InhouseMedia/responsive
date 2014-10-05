@@ -38,19 +38,20 @@ namespace Responsive.Controllers
         public ActionResult Index()
         {
 			List<Navigation> navigation = db.Navigation.Where(x => x.Active == 1 && x.Parent_Id == null).OrderBy(x => x.Level).ToList();
-			
-			List<NavigationItem> test = getNavigationItems(navigation);
-			
-            return View(test);
+			List<NavigationItem> allNavItems = getNavigationItems(navigation);
+
+			return View(allNavItems);
         }
 
-		private List<NavigationItem> getNavigationItems(List<Navigation> navigation) {
+		private List<NavigationItem> getNavigationItems(List<Navigation> navigation, string parentUrl = "/") {
 			List<NavigationItem> result = new List<NavigationItem>();
 			foreach (var item in navigation)
 			{
 				NavigationItem tempNav = getNavigationItem(item);
-				 List<Navigation> tempSub = db.Navigation.Where(e => e.Parent_Id == item.Navigation_Id).OrderBy(x => x.Level).ToList();
-				 tempNav.ChildLocations = getNavigationItems(tempSub);
+				List<Navigation> tempSub = db.Navigation.Where(e => e.Parent_Id == item.Navigation_Id).OrderBy(x => x.Level).ToList();
+				string tempExtra = (parentUrl == "/") ? "" : "/";
+				tempNav.Url =  parentUrl + tempExtra + tempNav.Url;
+				tempNav.ChildLocations = getNavigationItems(tempSub, tempNav.Url);
 				result.Add(tempNav);
 			}
 
@@ -62,7 +63,7 @@ namespace Responsive.Controllers
 			return new NavigationItem
 			{
 				Id = item.Navigation_Id,
-				Title = item.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == item.Navigation_Id).Url,
+				Title = item.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == item.Navigation_Id).Title,
 				Url = item.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == item.Navigation_Id).Url,
 				OnClick = item.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == item.Navigation_Id).On_Click,
 				ChildLocations = {  }
@@ -74,7 +75,6 @@ namespace Responsive.Controllers
         {
             Response.ContentType = "application/xml";
 
-           // List<Navigation> navigation = null;
 			List<Navigation> allNavItems = null;
             List<tUrl> SitemapUrls = new List<tUrl>();
 
@@ -83,9 +83,6 @@ namespace Responsive.Controllers
                 // Get data from database
                 // TODO: should be cached
                 allNavItems = db.Navigation.Where(x => x.Active == 1).OrderBy(x => new {x.Parent_Id, x.Level}).ToList();
-				//navigation = db.Navigation.Where(x => x.Active == 1 && x.Parent_Id == null).OrderBy(x => x.Level).ToList();
-			
-				//allNavItems = getNavigationItems(navigation);
 
                 // Define domain of the website
                 string currentDomain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host;

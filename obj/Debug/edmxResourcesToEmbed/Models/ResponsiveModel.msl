@@ -94,6 +94,7 @@
         <MappingFragment StoreEntitySet="Navigation_Content">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Navigation_Id" ColumnName="Navigation_Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Url" ColumnName="Url" />
           <ScalarProperty Name="On_Click" ColumnName="On_Click" />
         </MappingFragment>

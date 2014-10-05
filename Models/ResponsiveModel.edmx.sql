@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/05/2014 11:35:22
+-- Date Created: 10/05/2014 22:55:45
 -- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Models\ResponsiveModel.edmx
 -- --------------------------------------------------
 
@@ -26,14 +26,17 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_Navigation_PublishLogs]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Navigation_PublishLogs] DROP CONSTRAINT [FK_Navigation_PublishLogs];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ArticleArticle_ChangeLogs]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Article_ChangeLogs] DROP CONSTRAINT [FK_ArticleArticle_ChangeLogs];
+IF OBJECT_ID(N'[dbo].[FK_Article_ChangeLogs]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Article_ChangeLogs] DROP CONSTRAINT [FK_Article_ChangeLogs];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ArticleArticle_PublishLogs]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Article_PublishLogs] DROP CONSTRAINT [FK_ArticleArticle_PublishLogs];
+IF OBJECT_ID(N'[dbo].[FK_Article_PublishLogs]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Article_PublishLogs] DROP CONSTRAINT [FK_Article_PublishLogs];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ArticleArticle_Metadata]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Article_Metadata] DROP CONSTRAINT [FK_ArticleArticle_Metadata];
+IF OBJECT_ID(N'[dbo].[FK_Article_Metadata]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Article_Metadata] DROP CONSTRAINT [FK_Article_Metadata];
+GO
+IF OBJECT_ID(N'[dbo].[FK_NavigationNavigation_Content]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Navigation_Content] DROP CONSTRAINT [FK_NavigationNavigation_Content];
 GO
 
 -- --------------------------------------------------
@@ -63,6 +66,9 @@ IF OBJECT_ID(N'[dbo].[Article_PublishLogs]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Article_Metadata]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Article_Metadata];
+GO
+IF OBJECT_ID(N'[dbo].[Navigation_Content]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Navigation_Content];
 GO
 
 -- --------------------------------------------------
@@ -153,6 +159,7 @@ GO
 CREATE TABLE [dbo].[Navigation_Content] (
     [Id] int IDENTITY(1,1) NOT NULL  ,
     [Navigation_Id] int  NULL  ,
+    [Title] nvarchar(max)  NOT NULL  ,
     [Url] nvarchar(max)  NULL  ,
     [On_Click] nvarchar(max)  NOT NULL  
 );

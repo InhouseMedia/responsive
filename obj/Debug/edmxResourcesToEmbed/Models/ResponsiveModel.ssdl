@@ -125,6 +125,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Navigation_Id" Type="int" Nullable="true" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Url" Type="nvarchar(max)" Nullable="true" />
     <Property Name="On_Click" Type="nvarchar(max)" Nullable="false" />
   </EntityType>

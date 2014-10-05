@@ -214,6 +214,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Navigation_Id" Type="Int32" Nullable="true" />
+    <Property Name="Title" Type="String" Nullable="false" />
     <Property Name="Url" Type="String" />
     <Property Name="On_Click" Type="String" Nullable="false" />
     <NavigationProperty Name="Navigation" Relationship="Model.NavigationNavigation_Content" FromRole="Navigation_Content" ToRole="Navigation" />

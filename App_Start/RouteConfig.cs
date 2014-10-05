@@ -23,33 +23,33 @@ namespace Responsive
             routes.MapRoute(
                name: "Sitemap",
                url: "sitemap.xml",
-               defaults: new { controller = "Navigation", action = "Sitemap" }
+               defaults: new { controller = "Navigation", action = "Index" }
            );
- /*       
+        
             // Custom MVC route
             routes.MapRoute(
                 name: "Custom",
                 url: "{*path}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             ).RouteHandler = new ApplicationRouteHandler();
-            */
 
+			// For all @Html.Action boxes
+			routes.MapRoute(
+				name: "Default",
+				url: "{controller}/{action}/{id}",
+				defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+			);
 
-            /*
-            routes.MapRoute(
-                name: "Custom",
-                url: "{lang}/{*path}",
-                defaults: new { controller = "Default", action = "Index" },
-                constraints: new { lang = @"fr|en" }
-            ).RouteHandler = new ApplicationRouteHandler();
-              */
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+			/*
+			routes.MapRoute(
+				name: "Custom",
+				url: "{lang}/{*path}",
+				defaults: new { controller = "Default", action = "Index" },
+				constraints: new { lang = @"fr|en" }
+			).RouteHandler = new ApplicationRouteHandler();
+			*/
 
-        }
+		}
 
     }
 
@@ -70,9 +70,7 @@ namespace Responsive
             Navigation page = null;
          
             using(var db = new ResponsiveContext()) {
-                //page = db.Navigation.FirstOrDefault(x => x.Url == path);
 				page = db.Navigation.FirstOrDefault(x => x.Navigation_Content.FirstOrDefault().Url == path);
-
             }
            
            if (page == null)
@@ -83,18 +81,6 @@ namespace Responsive
             requestContext.RouteData.Values["action"] = "About";//page.Action;
             requestContext.RouteData.Values["id"] = page.Navigation_Id;
 
-            /*
-            // attempt to retrieve controller and action for current path
-            Page page = GetPageData(path);
-
-            // Method that returns a 404 error
-            if (page == null)
-                return SetupErrorHandler(requestContext, "ApplicationRouteHandler");
-            
-            // Assign route values to current requestContext
-            requestContext.RouteData.Values["controller"] = page.Controller;
-            requestContext.RouteData.Values["action"] = page.Action;
-            */
             return new MvcHandler(requestContext);
         }
     }

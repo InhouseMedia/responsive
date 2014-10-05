@@ -16,6 +16,7 @@ namespace Responsive.Models
     {
         public int Id { get; set; }
         public Nullable<int> Navigation_Id { get; set; }
+        public string Title { get; set; }
         public string Url { get; set; }
         public string On_Click { get; set; }
     

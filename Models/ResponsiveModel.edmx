@@ -130,6 +130,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Navigation_Id" Type="int" Nullable="true" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Url" Type="nvarchar(max)" Nullable="true" />
     <Property Name="On_Click" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
@@ -435,6 +436,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Navigation_Id" Type="Int32" Nullable="true" />
+          <Property Name="Title" Type="String" Nullable="false" />
           <Property Name="Url" Type="String" />
           <Property Name="On_Click" Type="String" Nullable="false" />
           <NavigationProperty Name="Navigation" Relationship="Model.NavigationNavigation_Content" FromRole="Navigation_Content" ToRole="Navigation" />
@@ -550,6 +552,7 @@
         <MappingFragment StoreEntitySet="Navigation_Content">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Navigation_Id" ColumnName="Navigation_Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Url" ColumnName="Url" />
           <ScalarProperty Name="On_Click" ColumnName="On_Click" />
         </MappingFragment>
