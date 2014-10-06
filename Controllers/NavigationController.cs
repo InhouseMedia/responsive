@@ -139,7 +139,7 @@ namespace Responsive.Controllers
                     SitemapUrls.Add(new tUrl
                         {
                             loc = currentDomain + navItem.Url,
-							lastmod = navItem.PublishLogs.FirstOrDefault().Published_Date.ToShortDateString(), //.OrderByDescending(x => x.Published_Date).ToShortDateString(),
+							lastmod = navItem.PublishLogs.OrderByDescending(x => x.Published_Date).FirstOrDefault().Published_Date.ToShortDateString(), //.OrderByDescending(x => x.Published_Date).ToShortDateString(),
                             changefreq = changefreq,
                             priority = (decimal)navItem.Priority,
                             prioritySpecified = (navItem.Priority > 0),
