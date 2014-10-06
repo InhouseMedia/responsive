@@ -23,7 +23,7 @@ namespace Responsive
             routes.MapRoute(
                name: "Sitemap",
                url: "sitemap.xml",
-               defaults: new { controller = "Navigation", action = "Index" }
+               defaults: new { controller = "Navigation", action = "Sitemap", id = UrlParameter.Optional }
            );
         
             // Custom MVC route

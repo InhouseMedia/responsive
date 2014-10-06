@@ -17,8 +17,6 @@ namespace Responsive.Controllers
     public class NavigationController : Controller
     {
         private ResponsiveContext db = new ResponsiveContext();
-
-		private string[] previousLevel = new string[0];
  
         public class NavigationItem
         {
