@@ -29,13 +29,21 @@ namespace Responsive.Controllers
             public string Title { get; set; }
 			public string Url { get; set; }
 			public string OnClick { get; set; }
-            public ICollection<NavigationItem> ChildLocations { get; set; }
+
+			public double Priority { get; set; }
+			public ICollection<Navigation_PublishLogs> PublishLogs { get; set; }
+
+			public ICollection<NavigationItem> ChildLocations { get; set; }
         }
         
         // GET: Navigation
         public ActionResult Index()
         {
-			List<Navigation> navigation = db.Navigation.Where(x => x.Active == 1 && x.Parent_Id == null).OrderBy(x => x.Level).ToList();
+			List<Navigation> navigation = db.Navigation.Where(x =>	x.Active == 1 && 
+																	x.Parent_Id == null && 
+																	x.Navigation_PublishLogs.Count > 0 &&
+																	x.Active == 1
+																	).OrderBy(x => x.Level).ToList();
 			List<NavigationItem> allNavItems = getNavigationItems(navigation);
 
 			return View(allNavItems);
@@ -46,7 +54,10 @@ namespace Responsive.Controllers
 			foreach (var item in navigation)
 			{
 				NavigationItem tempNav = getNavigationItem(item);
-				List<Navigation> tempSub = db.Navigation.Where(e => e.Parent_Id == item.Navigation_Id).OrderBy(x => x.Level).ToList();
+				List<Navigation> tempSub = db.Navigation.Where(x => x.Parent_Id == item.Navigation_Id && 
+																	x.Navigation_PublishLogs.Count > 0 &&
+																	x.Active == 1
+																	).OrderBy(x => x.Level).ToList();
 				string tempExtra = (parentUrl == "/") ? "" : "/";
 				tempNav.Url =  parentUrl + tempExtra + tempNav.Url;
 				tempNav.ChildLocations = getNavigationItems(tempSub, tempNav.Url);
@@ -61,9 +72,11 @@ namespace Responsive.Controllers
 			return new NavigationItem
 			{
 				Id = item.Navigation_Id,
+				Priority = item.Priority,
 				Title = item.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == item.Navigation_Id).Title,
 				Url = item.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == item.Navigation_Id).Url,
 				OnClick = item.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == item.Navigation_Id).On_Click,
+				PublishLogs = item.Navigation_PublishLogs,
 				ChildLocations = {  }
 			};
 		}
@@ -73,32 +86,37 @@ namespace Responsive.Controllers
         {
             Response.ContentType = "application/xml";
 
-			List<Navigation> allNavItems = null;
+			List<NavigationItem> allNavItems = null;
             List<tUrl> SitemapUrls = new List<tUrl>();
 
             using (var db = new ResponsiveContext())
             {
                 // Get data from database
                 // TODO: should be cached
-                allNavItems = db.Navigation.Where(x => x.Active == 1).OrderBy(x => new {x.Parent_Id, x.Level}).ToList();
+				List<Navigation> navigation = db.Navigation.Where(x => x.Active == 1 && x.Navigation_PublishLogs.Count > 0 ).OrderBy(x => x.Level).ToList();
+				allNavItems = getNavigationItems(navigation);
 
                 // Define domain of the website
                 string currentDomain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host;
 
-                foreach (Navigation navItem in allNavItems)
+                foreach (NavigationItem navItem in allNavItems)
                 {
                     // Initialize variables
                     int averageTime = 0;
                     tChangeFreq changefreq = tChangeFreq.monthly;
                     var changeFreqList = new List<double>();
-                    var navLogs = navItem.Navigation_PublishLogs.ToArray();
+					var navLogs = navItem.PublishLogs.ToArray();
 
                     // Define the what the frequency is of changing de navigation structure by
                     // determen the average of all publish dates
                     // TODO:
                     // The change frequency should be determent of the article itself instead of the navigation publish date
-                    for (var i = 0; navLogs.Length > i; i++) {
-                        changeFreqList.Add((navLogs[i].Published_Date-navLogs[i++].Published_Date).TotalDays);
+                    for (int i = 0; navLogs.Length > i; i++) {
+						int y = i;
+						y++;
+						var oldDate = navLogs[i].Published_Date;
+						var newDate = (y < navLogs.Length)? navLogs[y].Published_Date : DateTime.Today;
+						changeFreqList.Add((newDate.Subtract(oldDate)).TotalDays);
                     }
 
                     if(changeFreqList.Count > 0)
@@ -120,8 +138,8 @@ namespace Responsive.Controllers
                     // Create the a new Url within the sitemap
                     SitemapUrls.Add(new tUrl
                         {
-                            loc = currentDomain + "/" + navItem.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == navItem.Navigation_Id).Url,
-                            lastmod = navItem.Creation_Date.ToShortDateString(),
+                            loc = currentDomain + navItem.Url,
+							lastmod = navItem.PublishLogs.FirstOrDefault().Published_Date.ToShortDateString(), //.OrderByDescending(x => x.Published_Date).ToShortDateString(),
                             changefreq = changefreq,
                             priority = (decimal)navItem.Priority,
                             prioritySpecified = (navItem.Priority > 0),
