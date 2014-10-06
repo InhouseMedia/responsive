@@ -33,5 +33,6 @@ namespace Responsive.Models
         public virtual DbSet<Article_ChangeLogs> Article_ChangeLogs { get; set; }
         public virtual DbSet<Article_PublishLogs> Article_PublishLogs { get; set; }
         public virtual DbSet<Article_Metadata> Article_Metadata { get; set; }
+        public virtual DbSet<Navigation_Content> Navigation_Content { get; set; }
     }
 }

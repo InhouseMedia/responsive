@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/01/2014 17:15:46
+-- Date Created: 10/06/2014 12:45:46
 -- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Models\ResponsiveModel.edmx
 -- --------------------------------------------------
 
@@ -26,14 +26,17 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_Navigation_PublishLogs]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Navigation_PublishLogs] DROP CONSTRAINT [FK_Navigation_PublishLogs];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ArticleArticle_ChangeLogs]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Article_ChangeLogs] DROP CONSTRAINT [FK_ArticleArticle_ChangeLogs];
+IF OBJECT_ID(N'[dbo].[FK_Article_ChangeLogs]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Article_ChangeLogs] DROP CONSTRAINT [FK_Article_ChangeLogs];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ArticleArticle_PublishLogs]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Article_PublishLogs] DROP CONSTRAINT [FK_ArticleArticle_PublishLogs];
+IF OBJECT_ID(N'[dbo].[FK_Article_PublishLogs]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Article_PublishLogs] DROP CONSTRAINT [FK_Article_PublishLogs];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ArticleArticle_Metadata]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Article_Metadata] DROP CONSTRAINT [FK_ArticleArticle_Metadata];
+IF OBJECT_ID(N'[dbo].[FK_Article_Metadata]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Article_Metadata] DROP CONSTRAINT [FK_Article_Metadata];
+GO
+IF OBJECT_ID(N'[dbo].[FK_NavigationNavigation_Content]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Navigation_Content] DROP CONSTRAINT [FK_NavigationNavigation_Content];
 GO
 
 -- --------------------------------------------------
@@ -64,6 +67,9 @@ GO
 IF OBJECT_ID(N'[dbo].[Article_Metadata]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Article_Metadata];
 GO
+IF OBJECT_ID(N'[dbo].[Navigation_Content]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Navigation_Content];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -92,11 +98,10 @@ GO
 
 -- Creating table 'Navigation'
 CREATE TABLE [dbo].[Navigation] (
-    [NavigationId] int IDENTITY(1,1) NOT NULL  ,
+    [Navigation_Id] int IDENTITY(1,1) NOT NULL  ,
     [Article_Id] int  NOT NULL  ,
-    [Url] varchar(500)  NOT NULL  ,
-    [On_Click] nvarchar(max)  NOT NULL  ,
-    [Level] varchar(11)  NOT NULL  ,
+    [Parent_Id] int  NULL  ,
+    [Level] int  NOT NULL  ,
     [Priority] float  NOT NULL DEFAULT 0.5 ,
     [Active] tinyint  NOT NULL  ,
     [Created_By] int  NOT NULL  ,
@@ -150,6 +155,16 @@ CREATE TABLE [dbo].[Article_Metadata] (
 );
 GO
 
+-- Creating table 'Navigation_Content'
+CREATE TABLE [dbo].[Navigation_Content] (
+    [Id] int IDENTITY(1,1) NOT NULL  ,
+    [Navigation_Id] int  NULL  ,
+    [Title] nvarchar(max)  NOT NULL  ,
+    [Url] nvarchar(max)  NULL  ,
+    [On_Click] nvarchar(max)  NOT NULL  
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -166,10 +181,10 @@ ADD CONSTRAINT [PK_Article_Content]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [NavigationId] in table 'Navigation'
+-- Creating primary key on [Navigation_Id] in table 'Navigation'
 ALTER TABLE [dbo].[Navigation]
 ADD CONSTRAINT [PK_Navigation]
-    PRIMARY KEY CLUSTERED ([NavigationId] ASC);
+    PRIMARY KEY CLUSTERED ([Navigation_Id] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'Navigation_ChangeLogs'
@@ -202,6 +217,12 @@ ADD CONSTRAINT [PK_Article_Metadata]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'Navigation_Content'
+ALTER TABLE [dbo].[Navigation_Content]
+ADD CONSTRAINT [PK_Navigation_Content]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
@@ -226,7 +247,7 @@ ALTER TABLE [dbo].[Navigation_ChangeLogs]
 ADD CONSTRAINT [FK_Navigation_ChangeLogs]
     FOREIGN KEY ([Navigation_Id])
     REFERENCES [dbo].[Navigation]
-        ([NavigationId])
+        ([Navigation_Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
@@ -241,7 +262,7 @@ ALTER TABLE [dbo].[Navigation_PublishLogs]
 ADD CONSTRAINT [FK_Navigation_PublishLogs]
     FOREIGN KEY ([Navigation_Id])
     REFERENCES [dbo].[Navigation]
-        ([NavigationId])
+        ([Navigation_Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
@@ -253,47 +274,62 @@ GO
 
 -- Creating foreign key on [Article_Id] in table 'Article_ChangeLogs'
 ALTER TABLE [dbo].[Article_ChangeLogs]
-ADD CONSTRAINT [FK_ArticleArticle_ChangeLogs]
+ADD CONSTRAINT [FK_Article_ChangeLogs]
     FOREIGN KEY ([Article_Id])
     REFERENCES [dbo].[Article]
         ([Article_Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_ArticleArticle_ChangeLogs'
-CREATE INDEX [IX_FK_ArticleArticle_ChangeLogs]
+-- Creating non-clustered index for FOREIGN KEY 'FK_Article_ChangeLogs'
+CREATE INDEX [IX_FK_Article_ChangeLogs]
 ON [dbo].[Article_ChangeLogs]
     ([Article_Id]);
 GO
 
 -- Creating foreign key on [Article_Id] in table 'Article_PublishLogs'
 ALTER TABLE [dbo].[Article_PublishLogs]
-ADD CONSTRAINT [FK_ArticleArticle_PublishLogs]
+ADD CONSTRAINT [FK_Article_PublishLogs]
     FOREIGN KEY ([Article_Id])
     REFERENCES [dbo].[Article]
         ([Article_Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_ArticleArticle_PublishLogs'
-CREATE INDEX [IX_FK_ArticleArticle_PublishLogs]
+-- Creating non-clustered index for FOREIGN KEY 'FK_Article_PublishLogs'
+CREATE INDEX [IX_FK_Article_PublishLogs]
 ON [dbo].[Article_PublishLogs]
     ([Article_Id]);
 GO
 
 -- Creating foreign key on [Article_Id] in table 'Article_Metadata'
 ALTER TABLE [dbo].[Article_Metadata]
-ADD CONSTRAINT [FK_ArticleArticle_Metadata]
+ADD CONSTRAINT [FK_Article_Metadata]
     FOREIGN KEY ([Article_Id])
     REFERENCES [dbo].[Article]
         ([Article_Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_ArticleArticle_Metadata'
-CREATE INDEX [IX_FK_ArticleArticle_Metadata]
+-- Creating non-clustered index for FOREIGN KEY 'FK_Article_Metadata'
+CREATE INDEX [IX_FK_Article_Metadata]
 ON [dbo].[Article_Metadata]
     ([Article_Id]);
+GO
+
+-- Creating foreign key on [Navigation_Id] in table 'Navigation_Content'
+ALTER TABLE [dbo].[Navigation_Content]
+ADD CONSTRAINT [FK_NavigationNavigation_Content]
+    FOREIGN KEY ([Navigation_Id])
+    REFERENCES [dbo].[Navigation]
+        ([Navigation_Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_NavigationNavigation_Content'
+CREATE INDEX [IX_FK_NavigationNavigation_Content]
+ON [dbo].[Navigation_Content]
+    ([Navigation_Id]);
 GO
 
 -- --------------------------------------------------

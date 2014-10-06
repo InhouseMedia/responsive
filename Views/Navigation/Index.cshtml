@@ -1,0 +1,22 @@
+@using Responsive.Helpers
+<!--
+model List<Responsive.Models.Navigation>	
+-->
+
+@model List<Responsive.Controllers.NavigationController.NavigationItem>
+
+
+@{Layout = null;}
+
+@(Html.TreeView(Model)
+    .EmptyContent("No locations have been defined yet!")
+    .Children(m => m.ChildLocations)
+    .HtmlAttributes(new { id = "menu" })
+    .ChildrenHtmlAttributes(new { @class = "subItem" })
+    .ItemText(m => m.Url)
+    .ItemTemplate(
+        @<text>
+            <a href="@item.Url">@item.Title</a>
+        </text>)
+)
+

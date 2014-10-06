@@ -27,10 +27,9 @@
     <EntitySetMapping Name="Navigation">
       <EntityTypeMapping TypeName="IsTypeOf(Model.Navigation)">
         <MappingFragment StoreEntitySet="Navigation">
-          <ScalarProperty Name="NavigationId" ColumnName="NavigationId" />
+          <ScalarProperty Name="Navigation_Id" ColumnName="Navigation_Id" />
           <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
-          <ScalarProperty Name="Url" ColumnName="Url" />
-          <ScalarProperty Name="On_Click" ColumnName="On_Click" />
+          <ScalarProperty Name="Parent_Id" ColumnName="Parent_Id" />
           <ScalarProperty Name="Level" ColumnName="Level" />
           <ScalarProperty Name="Priority" ColumnName="Priority" />
           <ScalarProperty Name="Active" ColumnName="Active" />
@@ -87,6 +86,17 @@
           <ScalarProperty Name="Meta_Title" ColumnName="Meta_Title" />
           <ScalarProperty Name="Meta_Keywords" ColumnName="Meta_Keywords" />
           <ScalarProperty Name="Meta_Description" ColumnName="Meta_Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Navigation_Content">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Navigation_Content)">
+        <MappingFragment StoreEntitySet="Navigation_Content">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Navigation_Id" ColumnName="Navigation_Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="On_Click" ColumnName="On_Click" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

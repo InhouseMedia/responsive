@@ -9,6 +9,7 @@
     <EntitySet Name="Article_ChangeLogs" EntityType="Model.Store.Article_ChangeLogs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Article_PublishLogs" EntityType="Model.Store.Article_PublishLogs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Article_Metadata" EntityType="Model.Store.Article_Metadata" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Navigation_Content" EntityType="Model.Store.Navigation_Content" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Article_Content" Association="Model.Store.FK_Article_Content">
       <End Role="Article" EntitySet="Article" />
       <End Role="Article_Content" EntitySet="Article_Content" />
@@ -21,17 +22,21 @@
       <End Role="Navigation" EntitySet="Navigation" />
       <End Role="Navigation_PublishLogs" EntitySet="Navigation_PublishLogs" />
     </AssociationSet>
-    <AssociationSet Name="ArticleArticle_ChangeLogs" Association="Model.Store.ArticleArticle_ChangeLogs">
+    <AssociationSet Name="FK_Article_ChangeLogs" Association="Model.Store.FK_Article_ChangeLogs">
       <End Role="Article" EntitySet="Article" />
       <End Role="Article_ChangeLogs" EntitySet="Article_ChangeLogs" />
     </AssociationSet>
-    <AssociationSet Name="ArticleArticle_PublishLogs" Association="Model.Store.ArticleArticle_PublishLogs">
+    <AssociationSet Name="FK_Article_PublishLogs" Association="Model.Store.FK_Article_PublishLogs">
       <End Role="Article" EntitySet="Article" />
       <End Role="Article_PublishLogs" EntitySet="Article_PublishLogs" />
     </AssociationSet>
-    <AssociationSet Name="ArticleArticle_Metadata" Association="Model.Store.ArticleArticle_Metadata">
+    <AssociationSet Name="FK_Article_Metadata" Association="Model.Store.FK_Article_Metadata">
       <End Role="Article" EntitySet="Article" />
       <End Role="Article_Metadata" EntitySet="Article_Metadata" />
+    </AssociationSet>
+    <AssociationSet Name="NavigationNavigation_Content" Association="Model.Store.NavigationNavigation_Content">
+      <End Role="Navigation" EntitySet="Navigation" />
+      <End Role="Navigation_Content" EntitySet="Navigation_Content" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Article">
@@ -57,13 +62,12 @@
   </EntityType>
   <EntityType Name="Navigation">
     <Key>
-      <PropertyRef Name="NavigationId" />
+      <PropertyRef Name="Navigation_Id" />
     </Key>
-    <Property Name="NavigationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Navigation_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Article_Id" Type="int" Nullable="false" />
-    <Property Name="Url" Type="varchar" Nullable="false" MaxLength="500" />
-    <Property Name="On_Click" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Level" Type="varchar" Nullable="false" MaxLength="11" />
+    <Property Name="Parent_Id" Type="int" Nullable="true" />
+    <Property Name="Level" Type="int" Nullable="false" />
     <Property Name="Priority" Type="float" Nullable="false" DefaultValue="0.5" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
     <Property Name="Created_By" Type="int" Nullable="false" />
@@ -115,6 +119,16 @@
     <Property Name="Meta_Keywords" Type="varchar" Nullable="true" MaxLength="250" />
     <Property Name="Meta_Description" Type="varchar(max)" Nullable="true" />
   </EntityType>
+  <EntityType Name="Navigation_Content">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Navigation_Id" Type="int" Nullable="true" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="On_Click" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
   <Association Name="FK_Article_Content">
     <End Role="Article" Type="Model.Store.Article" Multiplicity="0..1" />
     <End Role="Article_Content" Type="Model.Store.Article_Content" Multiplicity="*" />
@@ -132,7 +146,7 @@
     <End Role="Navigation_ChangeLogs" Type="Model.Store.Navigation_ChangeLogs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Navigation">
-        <PropertyRef Name="NavigationId" />
+        <PropertyRef Name="Navigation_Id" />
       </Principal>
       <Dependent Role="Navigation_ChangeLogs">
         <PropertyRef Name="Navigation_Id" />
@@ -144,14 +158,14 @@
     <End Role="Navigation_PublishLogs" Type="Model.Store.Navigation_PublishLogs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Navigation">
-        <PropertyRef Name="NavigationId" />
+        <PropertyRef Name="Navigation_Id" />
       </Principal>
       <Dependent Role="Navigation_PublishLogs">
         <PropertyRef Name="Navigation_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="ArticleArticle_ChangeLogs">
+  <Association Name="FK_Article_ChangeLogs">
     <End Role="Article" Type="Model.Store.Article" Multiplicity="0..1" />
     <End Role="Article_ChangeLogs" Type="Model.Store.Article_ChangeLogs" Multiplicity="*" />
     <ReferentialConstraint>
@@ -163,7 +177,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="ArticleArticle_PublishLogs">
+  <Association Name="FK_Article_PublishLogs">
     <End Role="Article" Type="Model.Store.Article" Multiplicity="0..1" />
     <End Role="Article_PublishLogs" Type="Model.Store.Article_PublishLogs" Multiplicity="*" />
     <ReferentialConstraint>
@@ -175,7 +189,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="ArticleArticle_Metadata">
+  <Association Name="FK_Article_Metadata">
     <End Role="Article" Type="Model.Store.Article" Multiplicity="0..1" />
     <End Role="Article_Metadata" Type="Model.Store.Article_Metadata" Multiplicity="*" />
     <ReferentialConstraint>
@@ -184,6 +198,18 @@
       </Principal>
       <Dependent Role="Article_Metadata">
         <PropertyRef Name="Article_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NavigationNavigation_Content">
+    <End Role="Navigation" Type="Model.Store.Navigation" Multiplicity="0..1" />
+    <End Role="Navigation_Content" Type="Model.Store.Navigation_Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Navigation">
+        <PropertyRef Name="Navigation_Id" />
+      </Principal>
+      <Dependent Role="Navigation_Content">
+        <PropertyRef Name="Navigation_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
