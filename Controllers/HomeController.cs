@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 using Responsive.Filters;
 using Responsive.Models;
+using Responsive.Helpers;
 
 namespace Responsive.Controllers
 {
@@ -13,7 +14,9 @@ namespace Responsive.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+			AutoFillDatabaseClass.GetScripts();
+
+			ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
             return View();
         }

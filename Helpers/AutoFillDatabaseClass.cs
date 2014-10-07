@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Data.SqlClient;
 using System.IO;
 
@@ -9,8 +10,12 @@ namespace Responsive.Helpers
 {
 	public class AutoFillDatabaseClass
 	{
-		public void AutoFillDatabaseClass() {
+		public static void GetScripts() {
 
+			DirectoryInfo directory = new DirectoryInfo(HostingEnvironment.MapPath(@"~\Content\default_data"));
+			var files = directory.GetFiles().ToList();
+			var test = "test";
+			//qry = open('create_table_user.sql', 'r').read();
 
 			//ExecuteScript();
 		
