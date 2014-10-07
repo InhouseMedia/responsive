@@ -17,7 +17,7 @@
 
 	public class NavigationController : Controller
     {
-		ResponsiveContext db = new ResponsiveContext();
+		private ResponsiveContext db = new ResponsiveContext();
 
         // GET: Navigation
         public ActionResult Index()
