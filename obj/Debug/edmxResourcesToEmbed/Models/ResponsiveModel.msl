@@ -18,6 +18,8 @@
           <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Created_By" ColumnName="Created_By" />
           <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />

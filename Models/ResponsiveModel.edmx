@@ -61,6 +61,8 @@
     <Property Name="Article_Id" Type="int" Nullable="true" />
     <Property Name="Title" Type="varchar" Nullable="true" MaxLength="250" />
     <Property Name="Text" Type="varchar(max)" Nullable="true" />
+    <Property Name="Controller" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Action" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
     <Property Name="Created_By" Type="int" Nullable="false" />
     <Property Name="Creation_Date" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
@@ -241,8 +243,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Article_Id" Type="Int32" Nullable="true" />
-          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Controller" Type="String" Nullable="false" />
+          <Property Name="Action" Type="String" Nullable="false" />
           <Property Name="Active" Type="Byte" Nullable="false" />
           <Property Name="Created_By" Type="Int32" Nullable="false" />
           <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
@@ -476,6 +480,8 @@
           <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Created_By" ColumnName="Created_By" />
           <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />

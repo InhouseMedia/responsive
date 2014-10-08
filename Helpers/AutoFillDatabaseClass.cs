@@ -6,6 +6,8 @@ using System.Web.Hosting;
 using System.Data.SqlClient;
 using System.IO;
 
+using Responsive.Models;
+
 namespace Responsive.Helpers
 {
 	public class AutoFillDatabaseClass
@@ -13,15 +15,29 @@ namespace Responsive.Helpers
 		public static void GetScripts() {
 
 			DirectoryInfo directory = new DirectoryInfo(HostingEnvironment.MapPath(@"~\Content\default_data"));
-			var files = directory.GetFiles().ToList();
-			var test = "test";
+			List<FileInfo> files = directory.GetFiles().ToList();
+
+			ResponsiveContext test = new ResponsiveContext();
+			var conn = new SqlConnection(test.Database.Connection.ConnectionString);
+				
+
+			foreach (FileInfo item in files) {
+				var script = File.ReadAllText(item.FullName);
+
+				ExecuteScript(conn,script);
+				/*
+				var command = new SqlCommand(script, conn);
+				command.ExecuteNonQuery();
+				*/
+			}
+			//files.ForEach();
 			//qry = open('create_table_user.sql', 'r').read();
 
 			//ExecuteScript();
 		
 		}
 
-		protected virtual void ExecuteScript(SqlConnection connection, string script)
+		private static void ExecuteScript(SqlConnection connection, string script)
 		{
 			//string[] commandTextArray = script.Split(new string[] { "GO" }, StringSplitOptions.RemoveEmptyEntries); // See EDIT below!
 			string[] commandTextArray = System.Text.RegularExpressions.Regex.Split(script, "\r\n[\t ]*GO");

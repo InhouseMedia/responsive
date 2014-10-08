@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/06/2014 12:45:46
+-- Date Created: 10/08/2014 12:34:13
 -- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Models\ResponsiveModel.edmx
 -- --------------------------------------------------
 
@@ -90,6 +90,8 @@ CREATE TABLE [dbo].[Article_Content] (
     [Article_Id] int  NULL  ,
     [Title] varchar(250)  NULL  ,
     [Text] varchar(max)  NULL  ,
+    [Controller] nvarchar(max)  NULL  ,
+    [Action] nvarchar(max)  NULL  ,
     [Active] tinyint  NOT NULL  ,
     [Created_By] int  NOT NULL  ,
     [Creation_Date] datetime  NOT NULL  

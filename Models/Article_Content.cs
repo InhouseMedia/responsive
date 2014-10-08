@@ -18,6 +18,8 @@ namespace Responsive.Models
         public Nullable<int> Article_Id { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
+        public string Controller { get; set; }
+        public string Action { get; set; }
         public byte Active { get; set; }
         public int Created_By { get; set; }
         public System.DateTime Creation_Date { get; set; }
