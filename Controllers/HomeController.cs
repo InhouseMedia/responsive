@@ -14,8 +14,9 @@ namespace Responsive.Controllers
     {
         public ActionResult Index()
         {
-			AutoFillDatabaseClass.GetScripts();
+			//AutoFillDatabaseClass.GetScripts();
 
+			
 			ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
             return View();
@@ -23,9 +24,17 @@ namespace Responsive.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+			int ArticleId = NavigationClass.currentNavigationItem.ArticleId;
+			ArticleItem ArticleItem = ArticleClass.getArticle(ArticleId);
 
-            
+			ViewBag.MetaTitle = ArticleItem.Metadata.Select(x => x.Meta_Title).FirstOrDefault();
+			ViewBag.MetaDescription = ArticleItem.Metadata.Select(x => x.Meta_Description).FirstOrDefault();
+			ViewBag.MetaKeywords = ArticleItem.Metadata.Select(x => x.Meta_Keywords).FirstOrDefault();
+
+			ViewBag.Title = ArticleItem.Content.Select(x => x.Title).FirstOrDefault();
+			ViewBag.Message = ArticleItem.Content.Select(x => x.Text).FirstOrDefault();
+
+			ViewBag.NavigationUrl = "";
 
             return View();
            

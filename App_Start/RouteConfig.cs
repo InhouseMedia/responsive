@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
-using Responsive.Filters;
-using Responsive.Models;
-using System.Web.UI;
-
-namespace Responsive
+﻿namespace Responsive
 {
-    public class RouteConfig
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Web;
+	using System.Web.Mvc;
+	using System.Web.Routing;
+	using System.Web.UI;
+
+	using Responsive.Filters;
+	using Responsive.Models;
+	using Responsive.Helpers;
+
+	public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
@@ -48,9 +49,7 @@ namespace Responsive
 				constraints: new { lang = @"fr|en" }
 			).RouteHandler = new ApplicationRouteHandler();
 			*/
-
 		}
-
     }
 
     public class ApplicationRouteHandler : IRouteHandler
@@ -62,18 +61,23 @@ namespace Responsive
         /// <returns>
         /// An object that processes the request.
         /// </returns>
+		private Navigation previousPage { get; set; }
+
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-            string path = requestContext.RouteData.Values["path"] as string;
+			Navigation page = null;
+			string path = requestContext.RouteData.Values["path"] as string;
                    path = (path == null)? "" : path;
-
-            Navigation page = null;
-         
-            using(var db = new ResponsiveContext()) {
+	
+            using(var db = new ResponsiveContext())
 				page = db.Navigation.FirstOrDefault(x => x.Navigation_Content.FirstOrDefault().Url == path);
-            }
-           
-           if (page == null)
+
+			// Generate navigation List
+			NavigationClass.getNavigation((page!=previousPage));
+
+			previousPage = page;
+			
+			if (NavigationClass.currentNavigationItem == null)
                 return new MvcHandler(requestContext);
                 //return ParserError(requestContext);
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
 using Responsive.Models;
 using Responsive.Controllers;
 
@@ -15,6 +16,7 @@ namespace Responsive.Helpers
 		}
 
 		public int Id { get; set; }
+		public int ArticleId { get; set; }
 		public string Title { get; set; }
 		public string Url { get; set; }
 		public string OnClick { get; set; }
@@ -26,23 +28,35 @@ namespace Responsive.Helpers
 
 	public static class NavigationClass
 	{
+		public static NavigationItem currentNavigationItem { get; set; }
+		public static List<NavigationItem> allNavigationItems { get; set; }
+
 		private static List<NavigationItem> getNavigationItems(List<Navigation> navigation, string parentUrl = "/")
 		{
 			List<NavigationItem> result = new List<NavigationItem>();
+
+			//var path = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+			string path = HttpContext.Current.Request.Url.AbsolutePath;
 
 			using (ResponsiveContext db = new ResponsiveContext())
 			{
 				foreach (var item in navigation)
 				{
 					NavigationItem tempNav = getNavigationItem(item);
-					List<Navigation> tempSub = db.Navigation.Where(x => x.Parent_Id == item.Navigation_Id &&
-																		x.Navigation_PublishLogs.Count > 0 &&
-																		x.Active == 1
-																		).OrderBy(x => x.Level).ToList();
+					List<Navigation> tempSub = db.Navigation.Where(
+						x => 
+						x.Parent_Id == item.Navigation_Id &&
+						x.Navigation_PublishLogs.Count > 0 &&
+						x.Active == 1
+					).OrderBy(x => x.Level).ToList();
+
 					string tempExtra = (parentUrl == "/") ? "" : "/";
 					tempNav.Url = parentUrl + tempExtra + tempNav.Url;
 					tempNav.ChildLocations = getNavigationItems(tempSub, tempNav.Url);
 					result.Add(tempNav);
+
+					if (tempNav.Url == path )
+						currentNavigationItem = tempNav;
 				}
 			}
 
@@ -54,6 +68,7 @@ namespace Responsive.Helpers
 			return new NavigationItem
 			{
 				Id = item.Navigation_Id,
+				ArticleId = item.Article_Id,
 				Priority = item.Priority,
 				Title = item.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == item.Navigation_Id).Title,
 				Url = item.Navigation_Content.FirstOrDefault(x => x.Navigation_Id == item.Navigation_Id).Url,
@@ -63,18 +78,25 @@ namespace Responsive.Helpers
 			};
 		}
 
-		public static List<NavigationItem> getNavigation() {
-			List<NavigationItem> allNavItems = null;
+		public static List<NavigationItem> getNavigation(bool refresh = false) {
+
+			if (allNavigationItems != null && !refresh)
+				return allNavigationItems;
+
+			allNavigationItems = null;
 
 			using(ResponsiveContext db = new ResponsiveContext()){
-				List<Navigation> navigation = db.Navigation.Where(x =>	x.Active == 1 && 
-																		x.Parent_Id == null && 
-																		x.Navigation_PublishLogs.Count > 0 &&
-																		x.Active == 1
-																		).OrderBy(x => x.Level).ToList();
-				allNavItems = getNavigationItems(navigation);
+				List<Navigation> navItems = db.Navigation.Where(
+					x => 
+					x.Active == 1 && 
+					x.Parent_Id == null && 
+					x.Navigation_PublishLogs.Count > 0 &&
+					x.Active == 1
+				).OrderBy(x => x.Level).ToList();
+
+				allNavigationItems = getNavigationItems(navItems);
 			}
-			return allNavItems;
+			return allNavigationItems;
 		}
 
 		public static List<tUrl> getSitemap(HttpRequestBase Request)

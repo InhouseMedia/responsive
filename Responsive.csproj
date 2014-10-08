@@ -197,6 +197,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ArticleClass.cs" />
     <Compile Include="Helpers\AutoFillDatabaseClass.cs" />
     <Compile Include="Helpers\NavigationClass.cs" />
     <Compile Include="Helpers\TreeView.cs" />
@@ -279,7 +280,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="favicon.ico" />
+    <Content Include="myicon.ico" />
     <Content Include="Global.asax" />
     <EntityDeploy Include="Models\ResponsiveModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

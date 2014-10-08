@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Hosting;
-using System.Data.SqlClient;
-using System.IO;
-
-using Responsive.Models;
-
-namespace Responsive.Helpers
+﻿namespace Responsive.Helpers
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Web;
+	using System.Web.Hosting;
+	using System.Data.SqlClient;
+	using System.IO;
+
+	using Responsive.Models;
+
 	public class AutoFillDatabaseClass
 	{
 		public static void GetScripts() {
@@ -19,27 +19,15 @@ namespace Responsive.Helpers
 
 			ResponsiveContext test = new ResponsiveContext();
 			var conn = new SqlConnection(test.Database.Connection.ConnectionString);
-				
-
+			
 			foreach (FileInfo item in files) {
 				var script = File.ReadAllText(item.FullName);
-
 				ExecuteScript(conn,script);
-				/*
-				var command = new SqlCommand(script, conn);
-				command.ExecuteNonQuery();
-				*/
 			}
-			//files.ForEach();
-			//qry = open('create_table_user.sql', 'r').read();
-
-			//ExecuteScript();
-		
 		}
 
 		private static void ExecuteScript(SqlConnection connection, string script)
 		{
-			//string[] commandTextArray = script.Split(new string[] { "GO" }, StringSplitOptions.RemoveEmptyEntries); // See EDIT below!
 			string[] commandTextArray = System.Text.RegularExpressions.Regex.Split(script, "\r\n[\t ]*GO");
 
 			connection.Open();
