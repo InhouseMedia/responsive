@@ -61,21 +61,21 @@
         /// <returns>
         /// An object that processes the request.
         /// </returns>
-		private Navigation previousPage { get; set; }
+		private string previousPath { get; set; }
 
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-			Navigation page = null;
+			NavigationItem page = null;
 			string path = requestContext.RouteData.Values["path"] as string;
-                   path = (path == null)? "" : path;
-	
-            using(var db = new ResponsiveContext())
-				page = db.Navigation.FirstOrDefault(x => x.Navigation_Content.FirstOrDefault().Url == path);
+                   path = (path == null)? "/" : "/" + path;
 
+			bool caching = (path == previousPath);		
+			previousPath = path;
+			
 			// Generate navigation List
-			NavigationClass.getNavigation((page!=previousPage));
+			NavigationClass.getNavigation(caching);
 
-			previousPage = page;
+			page = NavigationClass.urlNavigationItems.FirstOrDefault(x => x.Url == path);
 			
 			if (NavigationClass.currentNavigationItem == null)
                 return new MvcHandler(requestContext);
@@ -83,7 +83,7 @@
 
             requestContext.RouteData.Values["controller"] = "Home";//page.Controller;
             requestContext.RouteData.Values["action"] = "About";//page.Action;
-            requestContext.RouteData.Values["id"] = page.Navigation_Id;
+            requestContext.RouteData.Values["id"] = page.ArticleId;
 
             return new MvcHandler(requestContext);
         }

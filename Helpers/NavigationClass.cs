@@ -30,6 +30,8 @@ namespace Responsive.Helpers
 	{
 		public static NavigationItem currentNavigationItem { get; set; }
 		public static List<NavigationItem> allNavigationItems { get; set; }
+		public static List<NavigationItem> urlNavigationItems { get; set; }
+
 
 		private static List<NavigationItem> getNavigationItems(List<Navigation> navigation, string parentUrl = "/")
 		{
@@ -54,6 +56,7 @@ namespace Responsive.Helpers
 					tempNav.Url = parentUrl + tempExtra + tempNav.Url;
 					tempNav.ChildLocations = getNavigationItems(tempSub, tempNav.Url);
 					result.Add(tempNav);
+					urlNavigationItems.Add(tempNav); // Flat List of all active menuitems (RouteConfig)
 
 					if (tempNav.Url == path )
 						currentNavigationItem = tempNav;
@@ -78,10 +81,12 @@ namespace Responsive.Helpers
 			};
 		}
 
-		public static List<NavigationItem> getNavigation(bool refresh = false) {
+		public static List<NavigationItem> getNavigation(bool caching = true) {
 
-			if (allNavigationItems != null && !refresh)
+			if (allNavigationItems != null && caching)
 				return allNavigationItems;
+
+			urlNavigationItems = new List<NavigationItem>();
 
 			allNavigationItems = null;
 
