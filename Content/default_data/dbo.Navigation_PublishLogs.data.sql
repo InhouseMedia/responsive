@@ -9,4 +9,5 @@ INSERT INTO [dbo].[Navigation_PublishLogs] ([Id], [Navigation_Id], [Published_By
 INSERT INTO [dbo].[Navigation_PublishLogs] ([Id], [Navigation_Id], [Published_By], [Published_Date]) VALUES (11, 4, 1, N'2014-10-06 13:24:12')
 INSERT INTO [dbo].[Navigation_PublishLogs] ([Id], [Navigation_Id], [Published_By], [Published_Date]) VALUES (12, 5, 1, N'2014-08-13 22:12:12')
 INSERT INTO [dbo].[Navigation_PublishLogs] ([Id], [Navigation_Id], [Published_By], [Published_Date]) VALUES (13, 6, 1, N'2014-01-14 10:00:00')
+INSERT INTO [dbo].[Navigation_PublishLogs] ([Id], [Navigation_Id], [Published_By], [Published_Date]) VALUES (14, 7, 1, N'2014-10-09 22:00:00')
 SET IDENTITY_INSERT [dbo].[Navigation_PublishLogs] OFF
