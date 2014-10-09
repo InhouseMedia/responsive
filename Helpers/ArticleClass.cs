@@ -28,7 +28,7 @@ namespace Responsive.Helpers
 				List<Article> tempArticle = db.Article.Where(
 					x => 
 					(x.Article_Id == Article_Id || x.Article_Id == 10) && 
-					x.Active == 1
+					x.Active != 0
 				).OrderByDescending(x => x.Article_Id).ToList();
 
 

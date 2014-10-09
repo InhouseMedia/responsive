@@ -47,7 +47,7 @@ namespace Responsive.Helpers
 						x => 
 						x.Parent_Id == item.Navigation_Id &&
 						x.Navigation_PublishLogs.Count > 0 &&
-						x.Active == 1
+						x.Active != 0
 					).OrderBy(x => x.Level).ToList();
 
 					string tempExtra = (parentUrl == "/") ? "" : "/";
@@ -87,11 +87,10 @@ namespace Responsive.Helpers
 
 			using(ResponsiveContext db = new ResponsiveContext()){
 				List<Navigation> navItems = db.Navigation.Where(
-					x => 
-					x.Active == 1 && 
+					x =>  
 					x.Parent_Id == null && 
 					x.Navigation_PublishLogs.Count > 0 &&
-					x.Active == 1
+					x.Active != 0
 				).OrderBy(x => x.Level).ToList();
 
 				allNavigationItems = getNavigationItems(navItems);
@@ -108,7 +107,7 @@ namespace Responsive.Helpers
 			{
 				// Get data from database
 				// TODO: should be cached
-				List<Navigation> navigation = db.Navigation.Where(x => x.Active == 1 && x.Navigation_PublishLogs.Count > 0).OrderBy(x => x.Level).ToList();
+				List<Navigation> navigation = db.Navigation.Where(x => x.Active != 0 && x.Navigation_PublishLogs.Count > 0).OrderBy(x => x.Level).ToList();
 				allNavItems = getNavigationItems(navigation);
 
 				// Define domain of the website
