@@ -82,8 +82,8 @@
                 return new MvcHandler(requestContext);
                 //return ParserError(requestContext);
 
-            requestContext.RouteData.Values["controller"] = "Home";//page.Controller;
-            requestContext.RouteData.Values["action"] = "About";//page.Action;
+            requestContext.RouteData.Values["controller"] = "Article";//page.Controller;
+            requestContext.RouteData.Values["action"] = "Index";//page.Action;
             requestContext.RouteData.Values["id"] = page.ArticleId;
 
             return new MvcHandler(requestContext);

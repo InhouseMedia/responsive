@@ -19,9 +19,11 @@ namespace Responsive.Helpers
 
 	public class ArticleClass
 	{
+		public static ArticleItem currentArticleItem { get; set; }
+
 		public static ArticleItem getArticle(int Article_Id) {
 
-			ArticleItem ArticleItem = null;
+			//ArticleItem ArticleItem = null;
 
 			using (ResponsiveContext db = new ResponsiveContext())
 			{
@@ -32,9 +34,9 @@ namespace Responsive.Helpers
 				).OrderByDescending(x => x.Article_Id).ToList();
 
 
-					ArticleItem = getArticleItem(tempArticle.First());
+				currentArticleItem = getArticleItem(tempArticle.First());
 			}
-			return ArticleItem;
+			return currentArticleItem;
 		}
 
 		private static ArticleItem getArticleItem(Article item)

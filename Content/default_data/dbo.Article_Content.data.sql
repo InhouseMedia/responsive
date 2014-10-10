@@ -1,7 +1,5 @@
 SET IDENTITY_INSERT [dbo].[Article_Content] ON
-INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Controller], [Action], [Active], [Created_By], [Creation_Date]) VALUES (1, 1, N'', N'', N'File', N'File', 1, 1, N'2014-01-01 00:00:00')
-INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Controller], [Action], [Active], [Created_By], [Creation_Date]) VALUES (2, 10, N'Oeps!', N'<p>Deze pagina is helaas niet meer beschikbaar</p>', N'Error', N'404', 1, 1, N'2014-01-01 00:00:00')
-INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Controller], [Action], [Active], [Created_By], [Creation_Date]) VALUES (3, 100, N'Uw specialist in kunststof kozijnen', N'
+INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Controller], [Action], [Active], [Created_By], [Creation_Date]) VALUES (1, 100, N'Uw specialist in kunststof kozijnen', N'
 <p>
 	Comfortabel wonen in een onderhoudsvriendelijk huis, wie wilt dat nou niet?
 </p>
@@ -30,5 +28,8 @@ INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Contr
 	Geldig voor de maanden Juli - Augustus - September.
 </p>
 ', N'Article', N'Text', 1, 1, N'2014-10-06 21:30:00')
-INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Controller], [Action], [Active], [Created_By], [Creation_Date]) VALUES (4, 106, N'test', N'test', N'Article', N'Text', 1, 1, N'2014-10-09 18:00:00')
+INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Controller], [Action], [Active], [Created_By], [Creation_Date]) VALUES (2, 1, N'', N'', N'File', N'File', 1, 1, N'2014-01-01 00:00:00')
+INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Controller], [Action], [Active], [Created_By], [Creation_Date]) VALUES (3, 10, N'Oeps!', N'<p>Deze pagina is helaas niet meer beschikbaar</p>', N'Error', N'E404', 1, 1, N'2014-01-01 00:00:00')
+INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Controller], [Action], [Active], [Created_By], [Creation_Date]) VALUES (4, 106, N'Text', N'<p>Hier <i>kan</i> een hele mooie <b>tekst</b> geplaatst worden </p>', N'Article', N'Text', 1, 1, N'2014-10-09 18:00:00')
+INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Controller], [Action], [Active], [Created_By], [Creation_Date]) VALUES (6, 106, N'Video', N'<p>Hier kan een video toegevoegd worden</p>', N'Article', N'Video', 1, 1, N'2014-10-11 01:00:00')
 SET IDENTITY_INSERT [dbo].[Article_Content] OFF

@@ -32,7 +32,6 @@ namespace Responsive.Helpers
 		public static List<NavigationItem> allNavigationItems { get; set; }
 		public static List<NavigationItem> urlNavigationItems { get; set; }
 
-
 		private static List<NavigationItem> getNavigationItems(List<Navigation> navigation, string parentUrl = "/")
 		{
 			List<NavigationItem> result = new List<NavigationItem>();
