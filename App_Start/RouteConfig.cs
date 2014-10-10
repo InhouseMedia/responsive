@@ -69,6 +69,7 @@
 			string path = requestContext.RouteData.Values["path"] as string;
                    path = (path == null)? "/" : "/" + path;
 
+			// Check if page is already visited (F5)
 			bool caching = (path == previousPath);		
 			previousPath = path;
 			
