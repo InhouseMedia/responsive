@@ -49,5 +49,13 @@ namespace Responsive.Controllers
 			return View(content);
 		}
 
+
+		// GET: Article - Generate default data
+		public ActionResult Generate(Article_Content content)
+		{
+			AutoFillDatabaseClass.GetScripts();
+
+			return View(content);
+		}
 	}
 }

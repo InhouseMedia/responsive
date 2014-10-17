@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/08/2014 12:34:13
+-- Date Created: 10/13/2014 00:27:44
 -- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Models\ResponsiveModel.edmx
 -- --------------------------------------------------
 
@@ -70,6 +70,9 @@ GO
 IF OBJECT_ID(N'[dbo].[Navigation_Content]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Navigation_Content];
 GO
+IF OBJECT_ID(N'[dbo].[Configs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Configs];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -90,8 +93,8 @@ CREATE TABLE [dbo].[Article_Content] (
     [Article_Id] int  NULL  ,
     [Title] varchar(250)  NULL  ,
     [Text] varchar(max)  NULL  ,
-    [Controller] nvarchar(max)  NULL  ,
-    [Action] nvarchar(max)  NULL  ,
+    [Controller] nvarchar(max)  NOT NULL  ,
+    [Action] nvarchar(max)  NOT NULL  ,
     [Active] tinyint  NOT NULL  ,
     [Created_By] int  NOT NULL  ,
     [Creation_Date] datetime  NOT NULL  
@@ -167,6 +170,13 @@ CREATE TABLE [dbo].[Navigation_Content] (
 );
 GO
 
+-- Creating table 'Config'
+CREATE TABLE [dbo].[Config] (
+    [Config_Id] int IDENTITY(1,1) NOT NULL  ,
+    [Data] nvarchar(max)  NOT NULL  
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -223,6 +233,12 @@ GO
 ALTER TABLE [dbo].[Navigation_Content]
 ADD CONSTRAINT [PK_Navigation_Content]
     PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Config_Id] in table 'Config'
+ALTER TABLE [dbo].[Config]
+ADD CONSTRAINT [PK_Config]
+    PRIMARY KEY CLUSTERED ([Config_Id] ASC);
 GO
 
 -- --------------------------------------------------

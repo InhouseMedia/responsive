@@ -22,6 +22,7 @@
         <AssociationConnector Association="Model.FK_Article_Metadata" />
         <EntityTypeShape EntityType="Model.Navigation_Content" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" FillColor="Gray" />
         <AssociationConnector Association="Model.NavigationNavigation_Content" />
+        <EntityTypeShape EntityType="Model.Config" Width="1.5" PointX="9.5" PointY="0.875" FillColor="Crimson" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

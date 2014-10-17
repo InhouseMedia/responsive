@@ -26,19 +26,25 @@
                url: "sitemap.xml",
                defaults: new { controller = "Navigation", action = "Sitemap", id = UrlParameter.Optional }
            );
-        
+
+			routes.MapRoute(
+			   name: "Generate database",
+			   url: "Article/Generate",
+			   defaults: new { controller = "Article", action = "Generate", id = UrlParameter.Optional }
+		   );
+
             // Custom MVC route
             routes.MapRoute(
                 name: "Custom",
                 url: "{*path}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Article", action = "Index", id = UrlParameter.Optional }
             ).RouteHandler = new ApplicationRouteHandler();
 
 			// For all @Html.Action boxes
 			routes.MapRoute(
 				name: "Default",
 				url: "{controller}/{action}/{id}",
-				defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+				defaults: new { controller = "Article", action = "Index", id = UrlParameter.Optional }
 			);
 
 			/*

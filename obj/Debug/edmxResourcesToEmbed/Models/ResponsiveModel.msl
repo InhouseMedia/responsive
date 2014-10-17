@@ -102,5 +102,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Config">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Config)">
+        <MappingFragment StoreEntitySet="Config">
+          <ScalarProperty Name="Config_Id" ColumnName="Config_Id" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

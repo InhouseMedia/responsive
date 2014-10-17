@@ -142,6 +142,7 @@
       <End Role="Navigation" EntitySet="Navigation" />
       <End Role="Navigation_Content" EntitySet="Navigation_Content" />
     </AssociationSet>
+    <EntitySet Name="Config" EntityType="Model.Config" />
   </EntityContainer>
   <EntityType Name="Article_ChangeLogs">
     <Key>
@@ -233,4 +234,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Config">
+    <Key>
+      <PropertyRef Name="Config_Id" />
+    </Key>
+    <Property Name="Config_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Data" Type="String" Nullable="false" />
+  </EntityType>
 </Schema>

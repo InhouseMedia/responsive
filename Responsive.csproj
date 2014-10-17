@@ -44,6 +44,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -63,6 +69,9 @@
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Omu.ValueInjecter">
+      <HintPath>packages\valueinjecter.2.3.3\lib\net35\Omu.ValueInjecter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -200,7 +209,9 @@
     </Compile>
     <Compile Include="Helpers\ArticleClass.cs" />
     <Compile Include="Helpers\AutoFillDatabaseClass.cs" />
+    <Compile Include="Helpers\ConfigClass.cs" />
     <Compile Include="Helpers\NavigationClass.cs" />
+    <Compile Include="Helpers\ParseHelper.cs" />
     <Compile Include="Helpers\TreeView.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Article.cs">
@@ -216,6 +227,9 @@
       <DependentUpon>ResponsiveModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Article_PublishLogs.cs">
+      <DependentUpon>ResponsiveModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Config.cs">
       <DependentUpon>ResponsiveModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Navigation.cs">
@@ -301,6 +315,7 @@
       <DependentUpon>ResponsiveModel.edmx</DependentUpon>
       <LastGenOutput>ResponsiveModel.cs</LastGenOutput>
     </Content>
+    <Content Include="App_Data\Config.json" />
     <None Include="App_Data\sitemap.xsd" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -362,6 +377,7 @@
     <Content Include="Views\Article\Video.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Error\E404.cshtml" />
+    <Content Include="Views\Article\Generate.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -401,6 +417,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
