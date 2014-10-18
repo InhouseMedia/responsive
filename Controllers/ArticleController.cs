@@ -12,7 +12,7 @@ using Responsive.Helpers;
 
 namespace Responsive.Controllers
 {
-	public class ArticleController : BaseController
+	public class ArticleController : Controller
 	{
 
 		public ActionResult Index()
