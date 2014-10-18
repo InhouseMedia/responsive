@@ -14,7 +14,6 @@
 
 	public class ConfigClass
 	{
-
 		private const string JsonConfigFile = "~/App_Data/Config.json";
 		public static ConfigObject Settings { get; set; }
 
@@ -39,7 +38,7 @@
 			Merge(defaultJsonObject, siteJsonObject);
 
 			// Place Merged Json object into Config Class
-			ConfigObject Settings = defaultJsonObject.ToObject<ConfigObject>();
+			Settings = defaultJsonObject.ToObject<ConfigObject>();
 		}
 
 		private static void Merge(JObject receiver, JObject donor)

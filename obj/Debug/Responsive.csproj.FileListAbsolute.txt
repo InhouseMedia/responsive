@@ -338,9 +338,3 @@ C:\Users\rklank65\Documents\Solutions\Responsive\bin\zh-Hant\System.Spatial.reso
 C:\Users\rklank65\Documents\Solutions\Responsive\obj\Debug\Responsive.csprojResolveAssemblyReference.cache
 C:\Users\rklank65\Documents\Solutions\Responsive\obj\Debug\Responsive.dll
 C:\Users\rklank65\Documents\Solutions\Responsive\obj\Debug\Responsive.pdb
-C:\Users\rklank65\Documents\Solutions\Responsive\bin\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll
-C:\Users\rklank65\Documents\Solutions\Responsive\bin\AutoMapper.dll
-C:\Users\rklank65\Documents\Solutions\Responsive\bin\AutoMapper.Net4.dll
-C:\Users\rklank65\Documents\Solutions\Responsive\bin\Omu.ValueInjecter.dll
-C:\Users\rklank65\Documents\Solutions\Responsive\bin\AutoMapper.xml
-C:\Users\rklank65\Documents\Solutions\Responsive\bin\Omu.ValueInjecter.xml
