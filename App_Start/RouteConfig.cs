@@ -90,7 +90,7 @@
 
             requestContext.RouteData.Values["controller"] = "Article";//page.Controller;
             requestContext.RouteData.Values["action"] = "Index";//page.Action;
-            requestContext.RouteData.Values["id"] = page.ArticleId;
+			requestContext.RouteData.Values["id"] = "";//page.ArticleId;
 
             return new MvcHandler(requestContext);
         }

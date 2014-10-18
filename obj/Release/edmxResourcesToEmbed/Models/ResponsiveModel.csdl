@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="Article_Id" />
+    </Key>
+    <Property Name="Article_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Active" Type="Byte" Nullable="false" />
+    <Property Name="Created_By" Type="Int32" Nullable="false" />
+    <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Article_Content" Relationship="Model.FK_Article_Content" FromRole="Article" ToRole="Article_Content" />
+    <NavigationProperty Name="Article_ChangeLogs" Relationship="Model.FK_Article_ChangeLogs" FromRole="Article" ToRole="Article_ChangeLogs" />
+    <NavigationProperty Name="Article_PublishLogs" Relationship="Model.FK_Article_PublishLogs" FromRole="Article" ToRole="Article_PublishLogs" />
+    <NavigationProperty Name="Article_Metadata" Relationship="Model.FK_Article_Metadata" FromRole="Article" ToRole="Article_Metadata" />
+  </EntityType>
+  <EntityType Name="Article_Content">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Article_Id" Type="Int32" Nullable="true" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="true" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="true" />
+    <Property Name="Controller" Type="String" Nullable="false" />
+    <Property Name="Action" Type="String" Nullable="false" />
+    <Property Name="Active" Type="Byte" Nullable="false" />
+    <Property Name="Created_By" Type="Int32" Nullable="false" />
+    <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Article" Relationship="Model.FK_Article_Content" FromRole="Article_Content" ToRole="Article" />
+  </EntityType>
+  <EntityType Name="Navigation">
+    <Key>
+      <PropertyRef Name="Navigation_Id" />
+    </Key>
+    <Property Name="Navigation_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Article_Id" Type="Int32" Nullable="false" />
+    <Property Name="Parent_Id" Type="Int32" Nullable="true" />
+    <Property Name="Level" Type="Int32" Nullable="false" />
+    <Property Name="Priority" Type="Double" Nullable="false" DefaultValue="0.5">
+      <Documentation>
+        <LongDescription>Google uses this to define what the priority of an Url is within the sitemap.xml</LongDescription>
+      </Documentation>
+    </Property>
+    <Property Name="Active" Type="Byte" Nullable="false" />
+    <Property Name="Created_By" Type="Int32" Nullable="false" />
+    <Property Name="Creation_Date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="None" Precision="3" />
+    <NavigationProperty Name="Navigation_ChangeLogs" Relationship="Model.FK_Navigation_ChangeLogs" FromRole="Navigation" ToRole="Navigation_ChangeLogs" />
+    <NavigationProperty Name="Navigation_PublishLogs" Relationship="Model.FK_Navigation_PublishLogs" FromRole="Navigation" ToRole="Navigation_PublishLogs" />
+    <NavigationProperty Name="Navigation_Content" Relationship="Model.NavigationNavigation_Content" FromRole="Navigation" ToRole="Navigation_Content" />
+  </EntityType>
+  <EntityType Name="Navigation_ChangeLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Navigation_Id" Type="Int32" Nullable="true" />
+    <Property Name="Changed_By" Type="Int32" Nullable="false" />
+    <Property Name="Changed_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Navigation" Relationship="Model.FK_Navigation_ChangeLogs" FromRole="Navigation_ChangeLogs" ToRole="Navigation" />
+  </EntityType>
+  <EntityType Name="Navigation_PublishLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Navigation_Id" Type="Int32" Nullable="true" />
+    <Property Name="Published_By" Type="Int32" Nullable="false" />
+    <Property Name="Published_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Navigation" Relationship="Model.FK_Navigation_PublishLogs" FromRole="Navigation_PublishLogs" ToRole="Navigation" />
+  </EntityType>
+  <Association Name="FK_Article_Content">
+    <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+    <End Role="Article_Content" Type="Self.Article_Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="Article_Id" />
+      </Principal>
+      <Dependent Role="Article_Content">
+        <PropertyRef Name="Article_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Navigation_ChangeLogs">
+    <End Role="Navigation" Type="Self.Navigation" Multiplicity="0..1" />
+    <End Role="Navigation_ChangeLogs" Type="Self.Navigation_ChangeLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Navigation">
+        <PropertyRef Name="Navigation_Id" />
+      </Principal>
+      <Dependent Role="Navigation_ChangeLogs">
+        <PropertyRef Name="Navigation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Navigation_PublishLogs">
+    <End Role="Navigation" Type="Self.Navigation" Multiplicity="0..1" />
+    <End Role="Navigation_PublishLogs" Type="Self.Navigation_PublishLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Navigation">
+        <PropertyRef Name="Navigation_Id" />
+      </Principal>
+      <Dependent Role="Navigation_PublishLogs">
+        <PropertyRef Name="Navigation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ResponsiveContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Article" EntityType="Self.Article" />
+    <EntitySet Name="Article_Content" EntityType="Self.Article_Content" />
+    <EntitySet Name="Navigation" EntityType="Self.Navigation" />
+    <EntitySet Name="Navigation_ChangeLogs" EntityType="Self.Navigation_ChangeLogs" />
+    <EntitySet Name="Navigation_PublishLogs" EntityType="Self.Navigation_PublishLogs" />
+    <AssociationSet Name="FK_Article_Content" Association="Model.FK_Article_Content">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Article_Content" EntitySet="Article_Content" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Navigation_ChangeLogs" Association="Model.FK_Navigation_ChangeLogs">
+      <End Role="Navigation" EntitySet="Navigation" />
+      <End Role="Navigation_ChangeLogs" EntitySet="Navigation_ChangeLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Navigation_PublishLogs" Association="Model.FK_Navigation_PublishLogs">
+      <End Role="Navigation" EntitySet="Navigation" />
+      <End Role="Navigation_PublishLogs" EntitySet="Navigation_PublishLogs" />
+    </AssociationSet>
+    <EntitySet Name="Article_ChangeLogs" EntityType="Model.Article_ChangeLogs" />
+    <AssociationSet Name="FK_Article_ChangeLogs" Association="Model.FK_Article_ChangeLogs">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Article_ChangeLogs" EntitySet="Article_ChangeLogs" />
+    </AssociationSet>
+    <EntitySet Name="Article_PublishLogs" EntityType="Model.Article_PublishLogs" />
+    <AssociationSet Name="FK_Article_PublishLogs" Association="Model.FK_Article_PublishLogs">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Article_PublishLogs" EntitySet="Article_PublishLogs" />
+    </AssociationSet>
+    <EntitySet Name="Article_Metadata" EntityType="Model.Article_Metadata" />
+    <AssociationSet Name="FK_Article_Metadata" Association="Model.FK_Article_Metadata">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Article_Metadata" EntitySet="Article_Metadata" />
+    </AssociationSet>
+    <EntitySet Name="Navigation_Content" EntityType="Model.Navigation_Content" />
+    <AssociationSet Name="NavigationNavigation_Content" Association="Model.NavigationNavigation_Content">
+      <End Role="Navigation" EntitySet="Navigation" />
+      <End Role="Navigation_Content" EntitySet="Navigation_Content" />
+    </AssociationSet>
+    <EntitySet Name="Config" EntityType="Model.Config" />
+  </EntityContainer>
+  <EntityType Name="Article_ChangeLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Article_Id" Type="Int32" Nullable="true" />
+    <Property Name="Changed_By" Type="Int32" Nullable="false" />
+    <Property Name="Changed_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Article" Relationship="Model.FK_Article_ChangeLogs" FromRole="Article_ChangeLogs" ToRole="Article" />
+  </EntityType>
+  <Association Name="FK_Article_ChangeLogs">
+    <End Type="Model.Article" Role="Article" Multiplicity="0..1" />
+    <End Type="Model.Article_ChangeLogs" Role="Article_ChangeLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="Article_Id" />
+      </Principal>
+      <Dependent Role="Article_ChangeLogs">
+        <PropertyRef Name="Article_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Article_PublishLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Article_Id" Type="Int32" Nullable="true" />
+    <Property Name="Published_By" Type="Int32" Nullable="false" />
+    <Property Name="Published_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Article" Relationship="Model.FK_Article_PublishLogs" FromRole="Article_PublishLogs" ToRole="Article" />
+  </EntityType>
+  <Association Name="FK_Article_PublishLogs">
+    <End Type="Model.Article" Role="Article" Multiplicity="0..1" />
+    <End Type="Model.Article_PublishLogs" Role="Article_PublishLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="Article_Id" />
+      </Principal>
+      <Dependent Role="Article_PublishLogs">
+        <PropertyRef Name="Article_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Article_Metadata">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Article_Id" Type="Int32" Nullable="true" />
+    <Property Name="Meta_Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Meta_Keywords" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Meta_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Article" Relationship="Model.FK_Article_Metadata" FromRole="Article_Metadata" ToRole="Article" />
+  </EntityType>
+  <Association Name="FK_Article_Metadata">
+    <End Type="Model.Article" Role="Article" Multiplicity="0..1" />
+    <End Type="Model.Article_Metadata" Role="Article_Metadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="Article_Id" />
+      </Principal>
+      <Dependent Role="Article_Metadata">
+        <PropertyRef Name="Article_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Navigation_Content">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Navigation_Id" Type="Int32" Nullable="true" />
+    <Property Name="Title" Type="String" Nullable="false" />
+    <Property Name="Url" Type="String" />
+    <Property Name="On_Click" Type="String" Nullable="false" />
+    <NavigationProperty Name="Navigation" Relationship="Model.NavigationNavigation_Content" FromRole="Navigation_Content" ToRole="Navigation" />
+  </EntityType>
+  <Association Name="NavigationNavigation_Content">
+    <End Type="Model.Navigation" Role="Navigation" Multiplicity="0..1" />
+    <End Type="Model.Navigation_Content" Role="Navigation_Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Navigation">
+        <PropertyRef Name="Navigation_Id" />
+      </Principal>
+      <Dependent Role="Navigation_Content">
+        <PropertyRef Name="Navigation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Config">
+    <Key>
+      <PropertyRef Name="Config_Id" />
+    </Key>
+    <Property Name="Config_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Data" Type="String" Nullable="false" />
+  </EntityType>
+</Schema>
