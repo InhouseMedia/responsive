@@ -5,9 +5,19 @@
 	"searchEngines": {
 		"googleverification": "",
 		"googleTranslation": false,
-		"socialMediaTags": false,
 		"websiteType": "company",
 		"author": "Inhouse Webdesign"
+	},
+	"socialMedia": {
+		"socialMediaTags": false,
+		"media": {
+			"facebook": "",
+			"twitter": "",
+			"googleplus" : "",
+			"linkedin": "",
+			"youtube": "",
+			"pinterest":  ""
+		}
 	},
 	"controllers": {
 		"standard": {
@@ -16,7 +26,7 @@
 		"article": {
 			"active": true,
 			"superAdmin": false,
-			"actions": [ "text", "video", "image", "caroussel", "contact" ]
+			"actions": [ "text", "video", "image", "caroussel", "contact",	"socialmedia", "socailshare" ]
 		},
 		"navigation": {
 			"active": true,

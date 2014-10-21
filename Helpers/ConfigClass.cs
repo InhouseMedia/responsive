@@ -59,6 +59,7 @@
 		{
 			public Language language { get; set; }
 			public Searchengines searchEngines { get; set; }
+			public Socialmedia socialMedia { get; set; }
 			public Controllers controllers { get; set; }
 		}
 
@@ -71,9 +72,24 @@
 		{
 			public string googleverification { get; set; }
 			public bool googleTranslation { get; set; }
-			public bool socialMediaTags { get; set; }
 			public string websiteType { get; set; }
 			public string author { get; set; }
+		}
+
+		public class Socialmedia
+		{
+			public bool socialMediaTags { get; set; }
+			public Media media { get; set; }
+		}
+
+		public class Media
+		{
+			public string facebook { get; set; }
+			public string twitter { get; set; }
+			public string googleplus { get; set; }
+			public string linkedin { get; set; }
+			public string youtube { get; set; }
+			public string pinterest { get; set; }
 		}
 
 		public class Controllers
@@ -117,7 +133,7 @@
 	}
 
 
-	
-	
+
+
 
 }
