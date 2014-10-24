@@ -202,6 +202,7 @@
     <Compile Include="Helpers\ArticleClass.cs" />
     <Compile Include="Helpers\AutoFillDatabaseClass.cs" />
     <Compile Include="Helpers\ConfigClass.cs" />
+    <Compile Include="Helpers\ExtensionClass.cs" />
     <Compile Include="Helpers\NavigationClass.cs" />
     <Compile Include="Helpers\TreeView.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -223,6 +224,12 @@
     <Compile Include="Models\Config.cs">
       <DependentUpon>ResponsiveModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DocumentsView.cs">
+      <DependentUpon>ResponsiveDocumentsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Documents_Add_Result.cs">
+      <DependentUpon>ResponsiveDocumentsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Navigation.cs">
       <DependentUpon>ResponsiveModel.tt</DependentUpon>
     </Compile>
@@ -234,6 +241,21 @@
     </Compile>
     <Compile Include="Models\Navigation_PublishLogs.cs">
       <DependentUpon>ResponsiveModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ResponsiveDocumentsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResponsiveDocumentsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ResponsiveDocumentsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResponsiveDocumentsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ResponsiveDocumentsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResponsiveDocumentsModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ResponsiveModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -308,6 +330,23 @@
     </Content>
     <Content Include="App_Data\Config.json" />
     <None Include="App_Data\sitemap.xsd" />
+    <EntityDeploy Include="Models\ResponsiveDocumentsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ResponsiveDocumentsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ResponsiveDocumentsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ResponsiveDocumentsModel.edmx</DependentUpon>
+      <LastGenOutput>ResponsiveDocumentsModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ResponsiveDocumentsModel.edmx.diagram">
+      <DependentUpon>ResponsiveDocumentsModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ResponsiveDocumentsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ResponsiveDocumentsModel.edmx</DependentUpon>
+      <LastGenOutput>ResponsiveDocumentsModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />

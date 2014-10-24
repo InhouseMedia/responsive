@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using Responsive.Models;
-using Responsive.Helpers;
-
-
-namespace Responsive.Controllers
+﻿namespace Responsive.Controllers
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Data;
+	using System.Data.Entity;
+	using System.Dynamic;
+	using System.IO;
+	using System.Linq;
+	using System.Net;
+	using System.Web;
+	using System.Web.Mvc;
+	using Responsive.Models;
+	using Responsive.Helpers;
+
 	public class ArticleController : Controller
 	{
 
@@ -45,8 +46,26 @@ namespace Responsive.Controllers
 		// GET: Article - Video
 		public ActionResult Video(Article_Content content)
 		{
+			
+			/*
+			var newDocument = new DocumentsView();
+				newDocument.file_stream = System.IO.File.ReadAllBytes("C:\\Temp\\IMG_3401.JPG");
+				newDocument.name = Path.GetFileName("somefile.txt");
 
-			return View(content);
+				var ctx1 = new ResponsiveDocuments();
+					ctx1.DocumentsView.Add(newDocument);
+					ctx1.SaveChanges();
+			*/
+			var ctx = new ResponsiveDocuments();
+			
+				ctx.DocumentsView.Load();
+			
+			dynamic mymodel = new ExpandoObject();
+			mymodel.Content = content;
+			mymodel.Data = ctx.DocumentsView.Local;
+			return View(mymodel);
+
+			//return View(content);
 		}
 
 
