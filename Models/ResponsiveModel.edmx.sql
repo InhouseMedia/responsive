@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/13/2014 00:27:44
+-- Date Created: 10/24/2014 14:13:08
 -- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Models\ResponsiveModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [aspnet-Responsive-20140904142246];
+USE [Responsive];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -70,8 +70,8 @@ GO
 IF OBJECT_ID(N'[dbo].[Navigation_Content]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Navigation_Content];
 GO
-IF OBJECT_ID(N'[dbo].[Configs]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Configs];
+IF OBJECT_ID(N'[dbo].[Config]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Config];
 GO
 
 -- --------------------------------------------------

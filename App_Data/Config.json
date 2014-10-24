@@ -6,7 +6,8 @@
 		"googleverification": "",
 		"googleTranslation": false,
 		"websiteType": "company",
-		"author": "Inhouse Webdesign"
+		"author": "Inhouse Webdesign",
+		"generator":  "Inhouse Webdesign"
 	},
 	"socialMedia": {
 		"socialMediaTags": false,

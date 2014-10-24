@@ -22,12 +22,13 @@
 			// Get default settings from JSON file
 			string jsonDefaultConfig = File.ReadAllText(HostingEnvironment.MapPath(JsonConfigFile));
 
-			string jsonSiteConfig = "";
+			string jsonSiteConfig = "{}";
 
 			// Get website specific Config
 			using (ResponsiveContext db = new ResponsiveContext())
 			{
-				jsonSiteConfig = db.Config.Select(x => x.Data).FirstOrDefault().ToString();
+				var tempConfig = db.Config.Select(x => x.Data).FirstOrDefault();
+				jsonSiteConfig = (tempConfig ?? null).ToString();
 			}
 
 			// Parse Json file into JObject to prepare for mergin
@@ -74,6 +75,7 @@
 			public bool googleTranslation { get; set; }
 			public string websiteType { get; set; }
 			public string author { get; set; }
+			public string generator { get; set; }
 		}
 
 		public class Socialmedia
