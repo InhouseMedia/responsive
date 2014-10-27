@@ -1,0 +1,47 @@
+﻿{
+	"language": {
+		"locale": [ "nl-NL" ]
+	},
+	"searchEngines": {
+		"googleverification": "",
+		"googleTranslation": false,
+		"websiteType": "company",
+		"author": "Inhouse Webdesign",
+		"generator":  "Inhouse Webdesign"
+	},
+	"socialMedia": {
+		"socialMediaTags": false,
+		"media": {
+			"facebook": "",
+			"twitter": "",
+			"googleplus" : "",
+			"linkedin": "",
+			"youtube": "",
+			"pinterest":  ""
+		}
+	},
+	"controllers": {
+		"standard": {
+			"maintenance": false
+		},
+		"article": {
+			"active": true,
+			"superAdmin": false,
+			"actions": [ "text", "video", "image", "caroussel", "contact",	"socialmedia", "socailshare" ]
+		},
+		"navigation": {
+			"active": true,
+			"superAdmin": false,
+			"maxLength": 250,
+			"placement": {
+				"Disabled": 0,
+				"All navigations": 1,
+				"Top navigation only": 2,
+				"Left navigation only": 3,
+				"Bottom navigation only": 4,
+				"All except top navigation": 5,
+				"301 Redirect": 301
+			}
+		}
+	}
+}

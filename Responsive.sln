@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Responsive", "Website\Respo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{73F495AA-A5FD-462D-8BB4-7E176B51C187}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cms", "Cms\Cms.csproj", "{3A64ECCA-369F-465B-9C6C-68924021FDB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{73F495AA-A5FD-462D-8BB4-7E176B51C187}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73F495AA-A5FD-462D-8BB4-7E176B51C187}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73F495AA-A5FD-462D-8BB4-7E176B51C187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A64ECCA-369F-465B-9C6C-68924021FDB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A64ECCA-369F-465B-9C6C-68924021FDB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A64ECCA-369F-465B-9C6C-68924021FDB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A64ECCA-369F-465B-9C6C-68924021FDB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

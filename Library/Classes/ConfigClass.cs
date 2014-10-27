@@ -13,13 +13,15 @@
 
 	public class ConfigClass
 	{
-		private const string JsonConfigFile = "~/App_Data/Config.json";
+		//private const string JsonConfigFile = "~/App_Data/Config.json";
+		private const string JsonConfigFile = "Library\\Config\\Config.json";
 		public static ConfigObject Settings { get; set; }
 
 		public static void setConfig()
 		{
 			// Get default settings from JSON file
-			string jsonDefaultConfig = File.ReadAllText(HostingEnvironment.MapPath(JsonConfigFile));
+			string path = Path.Combine(new DirectoryInfo(HostingEnvironment.MapPath("~/")).Parent.FullName, @JsonConfigFile);
+			string jsonDefaultConfig = File.ReadAllText(path);
 
 			string jsonSiteConfig = "{}";
 
