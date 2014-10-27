@@ -1,0 +1,32 @@
+﻿@using Library.Helpers
+@model dynamic
+
+@{
+    Layout = null;
+	var viewModelTitle = @Model.Content.Title;
+}
+
+
+<h1>@Html.DisplayFor(model => viewModelTitle)</h1>
+@Html.Raw(Model.Content.Text)
+
+@{
+	var grid = new WebGrid(source: Model.Data, rowsPerPage: 200,
+	canPage: false, canSort: true, defaultSort: "Absentee");
+}
+<p>
+	<h2>Absentee List</h2>
+	<div id="grid">
+		@grid.GetHtml(
+				tableStyle: "grid",
+				headerStyle: "head",
+				alternatingRowStyle: "alt",
+				columns: grid.Columns(
+				grid.Column(format: (item) => Html.ActionLink("Edit", "Edit",
+				new { id = item.stream_id })),
+				grid.Column("stream_id", "Absentee", canSort: true),
+				grid.Column(format: (item) => Html.Image((byte[])item.file_stream)),
+				grid.Column("name", "AbsStartDate")
+			))
+	</div>
+</p>

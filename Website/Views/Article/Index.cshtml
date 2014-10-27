@@ -1,0 +1,12 @@
+﻿@model List<Library.Models.Article_Content>
+<!--
+<hgroup class="title">
+	<h1>@ViewBag.Title</h1>
+</hgroup>
+-->
+<article>
+	@foreach (var item in Model)
+	{
+		@Html.Action(item.Action, item.Controller, item)
+	}
+</article>
