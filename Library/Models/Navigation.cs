@@ -28,7 +28,7 @@ namespace Library.Models
         public int Level { get; set; }
         public double Priority { get; set; }
         public byte Active { get; set; }
-        public int Created_By { get; set; }
+        public string Created_By { get; set; }
         public System.DateTime Creation_Date { get; set; }
     
         public virtual ICollection<Navigation_ChangeLogs> Navigation_ChangeLogs { get; set; }

@@ -13,9 +13,14 @@
 		<meta name="description" content="@ViewBag.MetaDescription" />
 		<meta name="robots" content="all" />
 		<meta name="googlebot" content="all" />
-		<meta name="google" content="@ConfigClass.Settings.searchEngines.googleTranslation">
+		@if (!@ConfigClass.Settings.searchEngines.googleTranslation)
+		{
+		<meta name="google" content="notranslate">
+		}
+		@if (@ConfigClass.Settings.searchEngines.googleverification != "")
+		{
 		<meta name="google-site-verification" content="@ConfigClass.Settings.searchEngines.googleverification" />
-
+		}
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
 		@if (ConfigClass.Settings.socialMedia.socialMediaTags) { 

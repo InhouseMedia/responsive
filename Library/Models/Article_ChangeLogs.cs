@@ -16,7 +16,7 @@ namespace Library.Models
     {
         public int Id { get; set; }
         public Nullable<int> Article_Id { get; set; }
-        public int Changed_By { get; set; }
+        public string Changed_By { get; set; }
         public System.DateTime Changed_Date { get; set; }
     
         public virtual Article Article { get; set; }

@@ -51,7 +51,7 @@
     </Key>
     <Property Name="Article_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
-    <Property Name="Created_By" Type="int" Nullable="false" />
+    <Property Name="Created_By" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Creation_Date" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
   </EntityType>
   <EntityType Name="Article_Content">
@@ -65,7 +65,7 @@
     <Property Name="Controller" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Action" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
-    <Property Name="Created_By" Type="int" Nullable="false" />
+    <Property Name="Created_By" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Creation_Date" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
   </EntityType>
   <EntityType Name="Navigation">
@@ -78,7 +78,7 @@
     <Property Name="Level" Type="int" Nullable="false" />
     <Property Name="Priority" Type="float" Nullable="false" DefaultValue="0.5" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
-    <Property Name="Created_By" Type="int" Nullable="false" />
+    <Property Name="Created_By" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Creation_Date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Navigation_ChangeLogs">
@@ -87,7 +87,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Navigation_Id" Type="int" Nullable="true" />
-    <Property Name="Changed_By" Type="int" Nullable="false" />
+    <Property Name="Changed_By" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Changed_Date" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
   </EntityType>
   <EntityType Name="Navigation_PublishLogs">
@@ -96,7 +96,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Navigation_Id" Type="int" Nullable="true" />
-    <Property Name="Published_By" Type="int" Nullable="false" />
+    <Property Name="Published_By" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Published_Date" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
   </EntityType>
   <EntityType Name="Article_ChangeLogs">
@@ -105,7 +105,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Article_Id" Type="int" Nullable="true" />
-    <Property Name="Changed_By" Type="int" Nullable="false" />
+    <Property Name="Changed_By" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Changed_Date" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
   </EntityType>
   <EntityType Name="Article_PublishLogs">
@@ -114,7 +114,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Article_Id" Type="int" Nullable="true" />
-    <Property Name="Published_By" Type="int" Nullable="false" />
+    <Property Name="Published_By" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Published_Date" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
   </EntityType>
   <EntityType Name="Article_Metadata">
@@ -238,7 +238,7 @@
           </Key>
           <Property Name="Article_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Active" Type="Byte" Nullable="false" />
-          <Property Name="Created_By" Type="Int32" Nullable="false" />
+          <Property Name="Created_By" Type="String" Nullable="false" />
           <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Article_Content" Relationship="Model.FK_Article_Content" FromRole="Article" ToRole="Article_Content" />
           <NavigationProperty Name="Article_ChangeLogs" Relationship="Model.FK_Article_ChangeLogs" FromRole="Article" ToRole="Article_ChangeLogs" />
@@ -256,7 +256,7 @@
           <Property Name="Controller" Type="String" Nullable="false" />
           <Property Name="Action" Type="String" Nullable="false" />
           <Property Name="Active" Type="Byte" Nullable="false" />
-          <Property Name="Created_By" Type="Int32" Nullable="false" />
+          <Property Name="Created_By" Type="String" Nullable="false" />
           <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Article" Relationship="Model.FK_Article_Content" FromRole="Article_Content" ToRole="Article" />
         </EntityType>
@@ -274,7 +274,7 @@
             </Documentation>
           </Property>
           <Property Name="Active" Type="Byte" Nullable="false" />
-          <Property Name="Created_By" Type="Int32" Nullable="false" />
+          <Property Name="Created_By" Type="String" Nullable="false" />
           <Property Name="Creation_Date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="None" Precision="3" />
           <NavigationProperty Name="Navigation_ChangeLogs" Relationship="Model.FK_Navigation_ChangeLogs" FromRole="Navigation" ToRole="Navigation_ChangeLogs" />
           <NavigationProperty Name="Navigation_PublishLogs" Relationship="Model.FK_Navigation_PublishLogs" FromRole="Navigation" ToRole="Navigation_PublishLogs" />
@@ -286,7 +286,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Navigation_Id" Type="Int32" Nullable="true" />
-          <Property Name="Changed_By" Type="Int32" Nullable="false" />
+          <Property Name="Changed_By" Type="String" Nullable="false" />
           <Property Name="Changed_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Navigation" Relationship="Model.FK_Navigation_ChangeLogs" FromRole="Navigation_ChangeLogs" ToRole="Navigation" />
         </EntityType>
@@ -296,7 +296,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Navigation_Id" Type="Int32" Nullable="true" />
-          <Property Name="Published_By" Type="Int32" Nullable="false" />
+          <Property Name="Published_By" Type="String" Nullable="false" />
           <Property Name="Published_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Navigation" Relationship="Model.FK_Navigation_PublishLogs" FromRole="Navigation_PublishLogs" ToRole="Navigation" />
         </EntityType>
@@ -382,7 +382,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Article_Id" Type="Int32" Nullable="true" />
-          <Property Name="Changed_By" Type="Int32" Nullable="false" />
+          <Property Name="Changed_By" Type="String" Nullable="false" />
           <Property Name="Changed_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Article" Relationship="Model.FK_Article_ChangeLogs" FromRole="Article_ChangeLogs" ToRole="Article" />
         </EntityType>
@@ -404,7 +404,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Article_Id" Type="Int32" Nullable="true" />
-          <Property Name="Published_By" Type="Int32" Nullable="false" />
+          <Property Name="Published_By" Type="String" Nullable="false" />
           <Property Name="Published_Date" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Article" Relationship="Model.FK_Article_PublishLogs" FromRole="Article_PublishLogs" ToRole="Article" />
         </EntityType>

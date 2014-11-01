@@ -1,0 +1,54 @@
+﻿// Core variables and mixins
+@import "bootstrap/bootstrap.less";
+
+.border-radius(@radius) {
+     border-radius: @radius;
+}
+
+@bgColor : #ffffff;
+@boxShadow : 0px 2px 2px 2px rga(0,0,0,0.2);
+
+.text-danger {
+	cursor:pointer;
+	pointer-events:all;
+	span{
+		display:block!important;
+		position:absolute;
+		margin-left:3em;
+		width:0em;
+		opacity:0;
+		color:@text-color;
+		text-align:left;
+		padding:@alert-padding;
+		background: @bgColor;
+		.border-radius(@alert-border-radius);
+		.box-shadow(~"0 3px 9px rgba(0,0,0,.5)");
+		.transition(~"all 0.2s ease-in-out 0.3s");
+	}
+	&:hover{
+		span{
+			width:20em;
+			opacity:1;
+		}
+	}
+	&:before{}
+}
+/*
+.form-control{}
+.text-danger{
+	display:inline-block;
+	vertical-align:top;
+	margin-left:-@input-height-base;
+	height: @input-height-base;
+	width: @input-height-base;
+
+	padding: @padding-base-vertical @padding-base-horizontal;
+    line-height: @line-height-base;
+  
+  border-left: 1px solid @input-border;
+  border-radius: @input-border-radius;
+
+}
+&:hover{
+	
+}*/

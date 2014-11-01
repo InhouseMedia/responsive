@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/24/2014 14:13:08
--- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Models\ResponsiveModel.edmx
+-- Date Created: 10/28/2014 18:00:30
+-- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Library\Models\ResponsiveModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -82,7 +82,7 @@ GO
 CREATE TABLE [dbo].[Article] (
     [Article_Id] int IDENTITY(1,1) NOT NULL  ,
     [Active] tinyint  NOT NULL  ,
-    [Created_By] int  NOT NULL  ,
+    [Created_By] nvarchar(max)  NOT NULL  ,
     [Creation_Date] datetime  NOT NULL  
 );
 GO
@@ -96,7 +96,7 @@ CREATE TABLE [dbo].[Article_Content] (
     [Controller] nvarchar(max)  NOT NULL  ,
     [Action] nvarchar(max)  NOT NULL  ,
     [Active] tinyint  NOT NULL  ,
-    [Created_By] int  NOT NULL  ,
+    [Created_By] nvarchar(max)  NOT NULL  ,
     [Creation_Date] datetime  NOT NULL  
 );
 GO
@@ -109,7 +109,7 @@ CREATE TABLE [dbo].[Navigation] (
     [Level] int  NOT NULL  ,
     [Priority] float  NOT NULL DEFAULT 0.5 ,
     [Active] tinyint  NOT NULL  ,
-    [Created_By] int  NOT NULL  ,
+    [Created_By] nvarchar(max)  NOT NULL  ,
     [Creation_Date] datetime  NOT NULL  
 );
 GO
@@ -118,7 +118,7 @@ GO
 CREATE TABLE [dbo].[Navigation_ChangeLogs] (
     [Id] int IDENTITY(1,1) NOT NULL  ,
     [Navigation_Id] int  NULL  ,
-    [Changed_By] int  NOT NULL  ,
+    [Changed_By] nvarchar(max)  NOT NULL  ,
     [Changed_Date] datetime  NOT NULL  
 );
 GO
@@ -127,7 +127,7 @@ GO
 CREATE TABLE [dbo].[Navigation_PublishLogs] (
     [Id] int IDENTITY(1,1) NOT NULL  ,
     [Navigation_Id] int  NULL  ,
-    [Published_By] int  NOT NULL  ,
+    [Published_By] nvarchar(max)  NOT NULL  ,
     [Published_Date] datetime  NOT NULL  
 );
 GO
@@ -136,7 +136,7 @@ GO
 CREATE TABLE [dbo].[Article_ChangeLogs] (
     [Id] int IDENTITY(1,1) NOT NULL  ,
     [Article_Id] int  NULL  ,
-    [Changed_By] int  NOT NULL  ,
+    [Changed_By] nvarchar(max)  NOT NULL  ,
     [Changed_Date] datetime  NOT NULL  
 );
 GO
@@ -145,7 +145,7 @@ GO
 CREATE TABLE [dbo].[Article_PublishLogs] (
     [Id] int IDENTITY(1,1) NOT NULL  ,
     [Article_Id] int  NULL  ,
-    [Published_By] int  NOT NULL  ,
+    [Published_By] nvarchar(max)  NOT NULL  ,
     [Published_Date] datetime  NOT NULL  
 );
 GO

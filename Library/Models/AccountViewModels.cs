@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Library.Models
@@ -49,16 +50,17 @@ namespace Library.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+		[DataType(DataType.EmailAddress)]
+        [Display(Name = "Email", Prompt = "Email")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Password", Prompt = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+		[DisplayName("Remember me?")]
         public bool RememberMe { get; set; }
     }
 

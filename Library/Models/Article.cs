@@ -24,7 +24,7 @@ namespace Library.Models
     
         public int Article_Id { get; set; }
         public byte Active { get; set; }
-        public int Created_By { get; set; }
+        public string Created_By { get; set; }
         public System.DateTime Creation_Date { get; set; }
     
         public virtual ICollection<Article_Content> Article_Content { get; set; }
