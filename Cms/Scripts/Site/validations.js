@@ -10,3 +10,14 @@
 		e.next(".text-danger").removeClass("glyphicon glyphicon-remove form-control-feedback");
 	}
 });
+
+$(window).load(function () {
+	//Show Model (lightbox)
+	$('[data-toggle=modal]').click(function (e) {
+		e.preventDefault();
+		$.get(this.href, function (data) {
+			$(data).modal({ show: true, keyboard: true, modal: true, backdrop: true });
+		});
+		return false;
+	});
+});

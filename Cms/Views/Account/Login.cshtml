@@ -2,7 +2,7 @@
 @using Library.Helpers
 @model LoginViewModel
 @{
-	Layout = "~/Views/Shared/_Empty.cshtml";
+	Layout = "~/Views/Shared/_Clean.cshtml";
     ViewBag.Title = "Log in";
 }
 
@@ -38,18 +38,21 @@
                         </div>
                     </div>
 					<div class="col-md-4">
-						<input type="submit" value="Log in" class="btn	btn-primary btn-block" />
+						<input type="submit" value="Log in" class="btn btn-primary btn-block" />
 					</div>
                 </div>
                 @* Enable this once you have account confirmation enabled for password reset functionality *@
                 <p>
-                    @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                </p>
+                    @Html.ActionLink("Forgot your password?", "ForgotPassword", "", null, new { @data_toggle = "modal", @data_target = "#myModal" })
+					
+				</p>
             }
         </section>
     </div>
 	<div class="col-md-8"></div>
 </div>
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

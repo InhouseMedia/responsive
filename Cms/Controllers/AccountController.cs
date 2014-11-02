@@ -396,8 +396,9 @@ namespace Cms.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
-        }
+            //return RedirectToAction("Index", "Home");
+			return Redirect(Url.Content("~/"));
+		}
 
         //
         // GET: /Account/ExternalLoginFailure
