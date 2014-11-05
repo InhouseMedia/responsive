@@ -25,6 +25,18 @@
 	}
 
 	$.validator.unobtrusive.addValidation($("form").get(-1));
+
+
+
+
+	// Set popovers for input validation
+	$('[data-toggle=popover]').popover({
+		trigger: 'hover',
+		html: false,
+		placement: 'right',
+		container: 'body'
+	});
+
 });
 
 $(window).load(function () {
@@ -42,18 +54,14 @@ $(window).load(function () {
 			$(modalName)	
 				.on('hidden.bs.modal', function () { $(this).remove(); })
 				.on('show.bs.modal', function () { if (smallModal) $(this).find('.modal-dialog').addClass('modal-sm'); })
-				.on('shown.bs.modal', function () { $(this).find('[autofocus]').focus();}) // Set Autofocus to inputfield in modals
+				.on('shown.bs.modal', function () {
+					// Set Autofocus to inputfield in modals
+					$(this).find('[autofocus]').focus();
+				}) 
 				.modal({ show: true, keyboard: true, backdrop: true })
 		});
 		$(this)
 		return false;
 	});
 
-	// Set popovers for input validation
-	$('[data-toggle=popover]').popover({
- 		trigger: 'hover',
- 		html: false,
- 		placement: 'right',
-		container: 'body'
-	});
 });
