@@ -6,8 +6,11 @@ namespace Library.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
-        [Display(Name = "Email")]
+		[Required]
+		[DataType(DataType.EmailAddress)]
+		[Display(Name = "Email", Prompt = "Email")]
+		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessage = "Email is not a valid e-mail address.")]
+		[EmailAddress]
         public string Email { get; set; }
     }
 
@@ -42,8 +45,11 @@ namespace Library.Models
 
     public class ForgotViewModel
     {
-        [Required]
-        [Display(Name = "Email")]
+		[Required]
+		[DataType(DataType.EmailAddress)]
+		[Display(Name = "Email", Prompt = "Email")]
+		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessage = "Email is not a valid e-mail address.")]
+		[EmailAddress]
         public string Email { get; set; }
     }
 
@@ -52,6 +58,7 @@ namespace Library.Models
         [Required]
 		[DataType(DataType.EmailAddress)]
         [Display(Name = "Email", Prompt = "Email")]
+		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessage = "Email is not a valid e-mail address.")]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -66,9 +73,11 @@ namespace Library.Models
 
     public class RegisterViewModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+		[Required]
+		[DataType(DataType.EmailAddress)]
+		[Display(Name = "Email", Prompt = "Email")]
+		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessage = "Email is not a valid e-mail address.")]
+		[EmailAddress]
         public string Email { get; set; }
 
         [Required]
@@ -85,9 +94,11 @@ namespace Library.Models
 
     public class ResetPasswordViewModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+		[Required]
+		[DataType(DataType.EmailAddress)]
+		[Display(Name = "Email", Prompt = "Email")]
+		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessage = "Email is not a valid e-mail address.")]
+		[EmailAddress]
         public string Email { get; set; }
 
         [Required]
@@ -109,6 +120,7 @@ namespace Library.Models
 		[Required]
 		[DataType(DataType.EmailAddress)]
 		[Display(Name = "Email", Prompt = "Email")]
+		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessage = "Email is not a valid e-mail address.")]
 		[EmailAddress]
 		public string Email { get; set; }
     }

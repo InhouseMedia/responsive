@@ -6,3 +6,4 @@
 /// <reference path="modernizr-2.8.3.js" />
 /// <reference path="respond.js" />
 /// <reference path="site/validations.js" />
+/// <reference path="jquery.unobtrusive-ajax.min.js" />
