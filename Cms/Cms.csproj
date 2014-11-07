@@ -199,6 +199,7 @@
   <ItemGroup>
     <None Include="BundleTransformer.Configuration.xsd" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\loader.svg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />

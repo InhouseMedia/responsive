@@ -26,9 +26,6 @@
 
 	$.validator.unobtrusive.addValidation($("form").get(-1));
 
-
-
-
 	// Set popovers for input validation
 	$('[data-toggle=popover]').popover({
 		trigger: 'hover',
@@ -36,7 +33,16 @@
 		placement: 'right',
 		container: 'body'
 	});
-
+	
+	// Change submit button style
+	$("form").submit(function (e) {
+		var form = $(e.target);
+		console.log("test", form.find(".has-error").length);
+		if (form.find(".has-error").length == 0){
+			form.find("button[type=submit]").addClass("submit");
+		}
+	});
+	console.log("ready");
 });
 
 $(window).load(function () {
@@ -54,14 +60,10 @@ $(window).load(function () {
 			$(modalName)	
 				.on('hidden.bs.modal', function () { $(this).remove(); })
 				.on('show.bs.modal', function () { if (smallModal) $(this).find('.modal-dialog').addClass('modal-sm'); })
-				.on('shown.bs.modal', function () {
-					// Set Autofocus to inputfield in modals
-					$(this).find('[autofocus]').focus();
-				}) 
+				.on('shown.bs.modal', function () { $(this).find('[autofocus]').focus(); }) // Set Autofocus to inputfield in modals 
 				.modal({ show: true, keyboard: true, backdrop: true })
 		});
-		$(this)
 		return false;
 	});
-
+	console.log("load");
 });
