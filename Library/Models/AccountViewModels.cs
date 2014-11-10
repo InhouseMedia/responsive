@@ -124,4 +124,13 @@ namespace Library.Models
 		[EmailAddress]
 		public string Email { get; set; }
     }
+	/*
+	public class RoleViewModel
+	{
+		[Required]
+		[DataType(DataType.Text)]
+		[Display(Name = "Email", Prompt = "Email")]
+		[RegularExpression("^[a-zA-Z][^\\s\\W\\d]+$", ErrorMessage = "Role should not contain spaces.")]
+		public string Name { get; set; }
+	}*/
 }
