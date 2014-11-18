@@ -6,12 +6,15 @@
 	using Microsoft.Owin.Security;
 	using System;
 	using System.Collections.Generic;
+	using System.Dynamic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Web;
+	using System.Web.Helpers;
 	using System.Web.Mvc;
 
 	using Library.Models;
+	using Library.Helpers;
 
 	[Authorize]
     public class RolesController : Controller
@@ -44,7 +47,64 @@
         }
 
 
+		// GET: Users
+		[Authorize(Roles = "Admin")]
+		public ActionResult Users()
+		{
+			var roles = context.Roles;
+			var users = context.Users;
 
+			IdentityRole AdminRole = roles.FirstOrDefault(r => r.Name == "Admin");
+			IdentityRole AuthorRole = roles.FirstOrDefault(r => r.Name == "Author");
+			IdentityRole ContributorsRole = roles.FirstOrDefault(r => r.Name == "Contributors");
+			IdentityRole EditorRole = roles.FirstOrDefault(r => r.Name == "Editor");
+			IdentityRole ManagerRole = roles.FirstOrDefault(r => r.Name == "Manager");
+			IdentityRole ModeratorRole = roles.FirstOrDefault(r => r.Name == "Moderator");
+			IdentityRole ViewerRole = roles.FirstOrDefault(r => r.Name == "Viewer");
+
+			List<UserRoles> data = new List<UserRoles>();
+			
+			foreach (ApplicationUser user in users)
+			{
+				List<IdentityUserRole> userRoles = user.Roles.ToList();
+				
+
+				data.Add(
+					new UserRoles(){
+						Id = user.Id,
+						UserName = user.UserName,
+						Admin = (userRoles.Any(r => r.RoleId == AdminRole.Id)),
+						Author = (userRoles.Any(r => r.RoleId == AuthorRole.Id)),
+						Contributors = (userRoles.Any(r => r.RoleId == ContributorsRole.Id)),
+						Editor = (userRoles.Any(r => r.RoleId == EditorRole.Id)),
+						Manager = (userRoles.Any(r => r.RoleId == ManagerRole.Id)),
+						Moderator = (userRoles.Any(r => r.RoleId == ModeratorRole.Id)),
+						Viewer = (userRoles.Any(r => r.RoleId == ViewerRole.Id))
+					}
+				);
+			}
+
+
+			List<WebGridColumn> columns = new List<WebGridColumn>();
+			//columns.Add(new WebGridColumn() { ColumnName = "Id", Header = "Id", CanSort = true });
+			columns.Add(new WebGridColumn() { ColumnName = "UserName", Header = "Name", CanSort = true });
+			foreach (var role in roles) {
+				columns.Add(new WebGridColumn()
+				{
+					ColumnName = role.Name,
+					Header = role.Name,
+					CanSort = true,
+					Style = "text-center",
+					Format = (item) =>
+					{
+						return new HtmlString("<input type='checkbox' value=''"+(item[role.Name]? "checked" : "") +"/>");
+					}
+				});
+			}
+			ViewBag.Columns = columns;
+
+			return View(data);
+		}
 
         // GET: Role
 		//[RoleAuthorization(Roles = "Admin")]

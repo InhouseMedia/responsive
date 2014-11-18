@@ -6,6 +6,7 @@
 	using System.Linq.Expressions;
 	using System.Reflection.Emit;
 	using System.Web;
+	using System.Web.Helpers;
 	using System.Web.Mvc;
 	using System.Web.Mvc.Html;
 	using System.Text;
@@ -154,5 +155,25 @@
 		}
 	}
 
-	 
+
+	//Not yet used
+	public static class GridExtensions
+	{
+		public static WebGridColumn[] RoleBasedColumns(this HtmlHelper htmlHelper,WebGrid grid)
+		{
+			var user = htmlHelper.ViewContext.HttpContext.User;
+			var columns = new List<WebGridColumn>();
+
+			// The Prop1 column would be visible to all users
+			columns.Add(grid.Column("Prop1"));
+
+			if (user.IsInRole("Admin"))
+			{
+				// The Prop2 column would be visible only to users
+				// in the foo role
+				columns.Add(grid.Column("Admin"));
+			}
+			return columns.ToArray();
+		}
+	}	 
 }

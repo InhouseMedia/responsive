@@ -9,7 +9,10 @@
 		form.removeData("unobtrusiveValidation");
 		$.validator.unobtrusive.parse(form);
 
-		var validator = $.data(form.get(0), 'validator').settings;
+		var validator = $.data(form.get(0), 'validator');
+		
+		if (validator) {
+			validator = validator.settings;
 			validator.errorPlacement = function (error, element) {
 				$(element).next(".field-validation-error").attr('data-content', error.get(0).innerText);
 			};
@@ -19,12 +22,13 @@
 			validator.unhighlight = function (element) {
 				$(element).closest(".form-group").removeClass("has-error");
 			};
-			validator.success = function (element,error) {
+			validator.success = function (element, error) {
 				$(element).next(".field-validation-error").removeAttr('data-content');
 			};
+		}
 	}
 
-	$.validator.unobtrusive.addValidation($("form").get(-1));
+	$.validator.unobtrusive.addValidation($("form").last());
 
 	// Set popovers for input validation
 	$('[data-toggle=popover]').popover({

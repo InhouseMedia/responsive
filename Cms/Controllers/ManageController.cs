@@ -1,17 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-
-using Library.Models;
-
-namespace Cms.Controllers
+﻿namespace Cms.Controllers
 {
-    [Authorize]
+	using System;
+	using System.Linq;
+	using System.Threading.Tasks;
+	using System.Web;
+	using System.Web.Mvc;
+	using Microsoft.AspNet.Identity;
+	using Microsoft.AspNet.Identity.Owin;
+	using Microsoft.Owin.Security;
+
+	using Library.Models;
+
+	[Authorize]
     public class ManageController : Controller
     {
         public ManageController()

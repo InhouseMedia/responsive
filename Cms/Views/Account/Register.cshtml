@@ -1,41 +1,37 @@
-﻿@model Library.Models.RegisterViewModel
+﻿@using Library.Models
+@using Library.Helpers
+@model RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+
+	//Layout = "~/Views/Shared/_Modal.cshtml";
+	Layout = ViewBag.Layout;
+	ViewBag.Title = "Create new account";
+	ViewBag.ModalName = "registerModalSmall";
 }
 
-<h2>@ViewBag.Title.</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
+@using (Ajax.BeginForm("Register", "Account", FormMethod.Post,
+					new AjaxOptions
+					{
+						InsertionMode = InsertionMode.Replace,
+						HttpMethod = "POST",
+						UpdateTargetId = (ViewBag.ModalName) + "Body"
+						
+					},
+					new { @class = "form-horizontal", role = "form", id = "registerForm" }))
+{										
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>
-    <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
+	@Html.BootstrapEditorFor(m => m.Email, new { @autoFocus = true })
+	@Html.BootstrapEditorFor(m => m.Password)
+	@Html.BootstrapEditorFor(m => m.ConfirmPassword)
+	<div class="form-group">
+		<div class="col-md-12">
+			<button type="submit" class="btn btn-primary btn-block">Create account</button>
+		</div>
+	</div>
 }
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jqueryval")
 }
