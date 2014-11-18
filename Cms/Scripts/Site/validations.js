@@ -41,7 +41,7 @@
 	// Change submit button style
 	$("form").submit(function (e) {
 		var form = $(e.target);
-		console.log("test", form.find(".has-error").length);
+
 		if (form.find(".has-error").length == 0){
 			form.find("button[type=submit]").addClass("submit");
 		}
@@ -55,12 +55,16 @@ $(window).load(function () {
 		e.preventDefault();
 		e.stopPropagation();
 		// Check if modal should be large or small
-
-		var modalName = $(this).attr('data-target');
+		var btn = $(this);
+		var modalName = btn.attr('data-target');
 		var smallModal = (modalName.search('Small') != -1);
+
+		// Show loading icon in button
+		btn.addClass("submit");
+
 		$.get(this.href, function (data) {
 			$('body').append(data);
-			
+			btn.removeClass('submit');
 			$(modalName)	
 				.on('hidden.bs.modal', function () { $(this).remove(); })
 				.on('show.bs.modal', function () { if (smallModal) $(this).find('.modal-dialog').addClass('modal-sm'); })

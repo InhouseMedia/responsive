@@ -54,29 +54,28 @@ table.table thead tr.head th:first-child{text-align:left;}
 
 
 .btn{
-	.transition(~"all 0.2s");
+	.transition(~"padding-left 0.2s ease-in-out");
 	 transform-style: preserve-3d;
 
 	&:after{
 		background: transparent url('../Content/img/loader.svg') no-repeat center right;
 		background-size:20px 20px;
 		content:"";
-		display:none;
+		display:block;
 		width:0px;
-		height:0px;
-		.transition(~"all 0.2s");
+		height:20px;
+		opacity:0;
+		float: right;
+		vertical-align: middle;
+		text-align: center;
+		.transition(~"width 0.2s ease-in-out 0.3s, opacity 0.5s ease-in-out");
 	}
-
 	&.submit{
 		padding-left:@padding-base-horizontal;
 
 		&:after{
-			float: right;
-			vertical-align: middle;
-			text-align: center;
-			display:block;
+			opacity:1;
 			width:20px;
-			height:20px;
 		}
 	}
 }
