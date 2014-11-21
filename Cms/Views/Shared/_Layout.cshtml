@@ -12,7 +12,6 @@
 		<meta name="keywords" content="CMS, @ConfigClass.Settings.searchEngines.generator" />
 		<meta name="description" content="CMS made by @ConfigClass.Settings.searchEngines.generator" />
 		<meta name="robots" content="noindex,nofollow" />
-		<meta name="googlebot" content="noindex,nofollow" />
 		@if (!@ConfigClass.Settings.searchEngines.googleTranslation)
 		{
 			<meta name="google" content="notranslate">
@@ -31,7 +30,7 @@
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="cnotainer">
+			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="icon-bar"></span>
@@ -49,7 +48,11 @@
 					@Html.Partial("_LoginPartial")
 				</div>
 			</div>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
 		</div>
+		
 		<div class="container body-content">
 			@RenderBody()
 			<hr />

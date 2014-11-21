@@ -15,6 +15,39 @@ table.table tbody td.text-center{text-align:center;}
 
 table.table thead tr.head th:first-child{text-align:left;}
 
+.navbar{
+	border-bottom:0px;
+
+	.progress{
+		height:3px;
+		border-radius:0px;
+		margin-bottom:0px;
+	}
+
+	.progress-bar{
+		opacity:0;
+		width:100%;
+		.transition(~"width 0s linear, opacity 1s ease-in 0.5s");
+
+		&.countDown{
+			opacity:1;
+			width:0%;
+			.transition(~"width 4s linear");
+		}
+
+		&.loading{
+			opacity:1;
+			width:75%;
+			.transition(~"width 5s ease-in");
+		}
+		&.loaded{
+			opacity:1;
+			width:100%;
+			.transition(~"width 0.5s ease-in");
+		}
+	}
+}
+
 .form-control-feedback {
 
 	&.text-danger {
@@ -23,26 +56,7 @@ table.table thead tr.head th:first-child{text-align:left;}
 		pointer-events:all;
 		text-indent: -999px;
 		overflow:hidden;
-	/*	span{
-			display:block!important;
-			position:absolute;
-			margin-left:3em;
-			width:0em;
-			opacity:0;
-			color:@text-color;
-			text-align:left;
-			padding:@alert-padding;
-			background: @bgColor;
-			.border-radius(@alert-border-radius);
-			.box-shadow(~"0 3px 9px rgba(0,0,0,.5)");
-			.transition(~"all 0.2s ease-in-out 0.3s");
-		}
-		&:hover{
-			span{
-				width:20em;
-				opacity:1;
-			}
-		}*/
+	
 		&:before{
 			display: block;
 			text-indent: 0px;
@@ -54,7 +68,7 @@ table.table thead tr.head th:first-child{text-align:left;}
 
 
 .btn{
-	.transition(~"padding-left 0.2s ease-in-out");
+	.transition(~"padding-right 0.2s ease-in-out 0.3s");
 	 transform-style: preserve-3d;
 
 	&:after{
@@ -68,11 +82,19 @@ table.table thead tr.head th:first-child{text-align:left;}
 		float: right;
 		vertical-align: middle;
 		text-align: center;
-		.transition(~"width 0.2s ease-in-out 0.3s, opacity 0.5s ease-in-out");
+		margin:0px;	
+		.transition(~"width 0.2s ease-in-out 0.3s, opacity 0.5s ease-in-out, margin 0.2s ease-in-out 0.3s");
 	}
+	
 	&.submit{
-		padding-left:@padding-base-horizontal;
+		&:not(.btn-block){
+			padding-right: 0px;
 
+			&:after{
+				margin:0px 3px;
+			}
+		}
+		
 		&:after{
 			opacity:1;
 			width:20px;
@@ -84,6 +106,7 @@ table.table thead tr.head th:first-child{text-align:left;}
   from {-webkit-transform:rotate(0deg);}
   to {-webkit-transform:rotate(360deg);}
 }
+
 @keyframes spin {
   from {transform:rotate(0deg);}
   to {transform:rotate(360deg);}

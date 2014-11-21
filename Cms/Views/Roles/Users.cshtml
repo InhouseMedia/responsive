@@ -14,9 +14,9 @@
 @using (Ajax.BeginForm("Change", "Roles", FormMethod.Post,
 					new AjaxOptions
 					{
-						/*InsertionMode = InsertionMode.Replace,*/
-						HttpMethod = "POST"/*,
-						UpdateTargetId = (ViewBag.ModalName) + "Body"*/
+						HttpMethod = "POST",
+						OnSuccess = "onSuccess",
+						OnFailure = "onFailure"
 					},
 					new { @class = "form-horizontal", role = "form", id = "userForm" }))
 {
@@ -38,4 +38,5 @@
 
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/roles");
 }

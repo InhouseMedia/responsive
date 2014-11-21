@@ -48,7 +48,7 @@
 
 
 		// GET: Users
-		[Authorize(Roles = "Admin")]
+		[Authorize(Roles = "Admin,Manager")]
 		public ActionResult Users()
 		{
 			var roles = context.Roles;
@@ -84,7 +84,6 @@
 				);
 			}
 
-
 			List<WebGridColumn> columns = new List<WebGridColumn>();
 			//columns.Add(new WebGridColumn() { ColumnName = "Id", Header = "Id", CanSort = true });
 			columns.Add(new WebGridColumn() { ColumnName = "UserName", Header = "Name", CanSort = true });
@@ -97,13 +96,45 @@
 					Style = "text-center",
 					Format = (item) =>
 					{
-						return new HtmlString("<input type='checkbox' value=''"+(item[role.Name]? "checked" : "") +"/>");
+						return new HtmlString("<input type='checkbox' name='" + item.Id + "' value='" + role.Name  + "' " + (item[role.Name] ? "checked" : "") + "/>");
 					}
 				});
 			}
 			ViewBag.Columns = columns;
 
 			return View(data);
+		}
+
+		[HttpPost]
+		[Authorize(Roles = "Admin,Manager")]
+		[ValidateAntiForgeryToken]
+		public void Change(FormCollection model)
+		{
+			IValueProvider valueProvider = model.ToValueProvider();
+			List<IdentityRole> roles = getRoles();
+			
+			foreach (string key in model.Keys)
+			{
+				ValueProviderResult result = valueProvider.GetValue(key);
+				string[] selectedRoles = result.AttemptedValue.Split(',');
+
+				ApplicationUser user = context.Users.Where(u => u.Id.Equals(key)).FirstOrDefault();
+
+				if (user != null)
+				{
+					var currentRoles = roles.Where(r => user.Roles.Any(x => x.RoleId.Contains(r.Id))).Select(s => s.Name).ToList();
+					var changedRoles = roles.Where(r => selectedRoles.Any(x => x.Contains(r.Name))).Select(s => s.Name).ToList();
+
+					string[] removeRoles = currentRoles.Except(changedRoles).ToArray();
+					string[] addRoles = changedRoles.Except(currentRoles).ToArray();
+
+					if (removeRoles.Length > 0)
+						UserManager.RemoveFromRoles(user.Id, removeRoles);
+
+					if(addRoles.Length > 0)
+						UserManager.AddToRoles(user.Id, addRoles);
+				}				
+			}
 		}
 
         // GET: Role
@@ -260,5 +291,10 @@
 
             return View("ManageUserRoles");
         }
+
+		private List<IdentityRole> getRoles() {
+			
+			return context.Roles.ToList();
+		}
     }
 }
