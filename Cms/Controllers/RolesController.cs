@@ -62,6 +62,8 @@
 			IdentityRole ModeratorRole = roles.FirstOrDefault(r => r.Name == "Moderator");
 			IdentityRole ViewerRole = roles.FirstOrDefault(r => r.Name == "Viewer");
 
+			var currentUserRole = User.IsInRole(AdminRole.Name);
+
 			List<UserRoles> data = new List<UserRoles>();
 			
 			foreach (ApplicationUser user in users)
@@ -88,6 +90,9 @@
 			//columns.Add(new WebGridColumn() { ColumnName = "Id", Header = "Id", CanSort = true });
 			columns.Add(new WebGridColumn() { ColumnName = "UserName", Header = "Name", CanSort = true });
 			foreach (var role in roles) {
+
+				var disableCheckBox = (role.Name == AdminRole.Name && !currentUserRole);
+
 				columns.Add(new WebGridColumn()
 				{
 					ColumnName = role.Name,
@@ -96,7 +101,7 @@
 					Style = "text-center",
 					Format = (item) =>
 					{
-						return new HtmlString("<input type='checkbox' name='" + item.Id + "' value='" + role.Name  + "' " + (item[role.Name] ? "checked" : "") + "/>");
+						return new HtmlString("<input type='checkbox' name='" + item.Id + "' value='" + role.Name + "' " + (item[role.Name] ? "checked" : "") + (disableCheckBox ? " disabled": "") + "/>");
 					}
 				});
 			}
@@ -108,7 +113,7 @@
 		[HttpPost]
 		[Authorize(Roles = "Admin,Manager")]
 		[ValidateAntiForgeryToken]
-		public void Change(FormCollection model)
+		public JsonResult Change(FormCollection model)
 		{
 			IValueProvider valueProvider = model.ToValueProvider();
 			List<IdentityRole> roles = getRoles();
@@ -128,13 +133,36 @@
 					string[] removeRoles = currentRoles.Except(changedRoles).ToArray();
 					string[] addRoles = changedRoles.Except(currentRoles).ToArray();
 
-					if (removeRoles.Length > 0)
-						UserManager.RemoveFromRoles(user.Id, removeRoles);
+					// Filter admin roles when user isn't authorized for it.
+					// (they could enable/disable Admin checkboxes by using developer tools)
+					if (!User.IsInRole("Admin"))
+					{
+						int foundRemoveId = Array.IndexOf(removeRoles, "Admin");
+						int foundAddId = Array.IndexOf(addRoles, "Admin");
 
-					if(addRoles.Length > 0)
-						UserManager.AddToRoles(user.Id, addRoles);
+						if (foundRemoveId > -1 || foundAddId > -1)
+						{
+							ModelState.AddModelError("", "You don't have rights to add or remove Admin roles to a specific user.");
+							Response.StatusCode = 400;
+							Response.TrySkipIisCustomErrors = true;
+						}
+
+						//removeRoles = removeRoles.Where((val, idx) => idx != foundRemoveId).ToArray();
+						//addRoles = addRoles.Where((val, idx) => idx != foundAddId).ToArray();						
+					}
+
+					if (ModelState.IsValid) {
+						if (removeRoles.Length > 0)
+							UserManager.RemoveFromRoles(user.Id, removeRoles);
+
+						if (addRoles.Length > 0)
+							UserManager.AddToRoles(user.Id, addRoles);
+					}
+					
 				}				
 			}
+
+			return Json(ModelState.Values.SelectMany(x => x.Errors));
 		}
 
         // GET: Role

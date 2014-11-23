@@ -73,5 +73,17 @@ $(window).load(function () {
 		});
 		return false;
 	});
+
+
+	// Show tooltips
+	$('[data-toggle="tooltip"]').tooltip(
+		{
+			'trigger' : 'hover',
+			'animation': true,
+			'delay': {'show':500, 'hide': 1000}
+		}
+	);
+	
+
 	console.log("load");
 });
