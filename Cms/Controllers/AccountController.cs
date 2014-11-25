@@ -12,6 +12,7 @@
 	using Microsoft.AspNet.Identity.Owin;
 	using Microsoft.Owin.Security;
 
+	using Cms.Filters;
 	using Library.Models;
 
 	[Authorize]
@@ -44,6 +45,7 @@
         //
         // GET: /Account/Login
         [AllowAnonymous]
+		[RedirectAuthenticatedRequests]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
