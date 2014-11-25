@@ -5,9 +5,11 @@
 	var grid = new WebGrid(
 			source: Model, 
 			rowsPerPage: 200,
-			canPage: false, 
+			canPage: true, 
 			canSort: true, 
-			defaultSort: "Name"
+			defaultSort: "UserName",
+			sortFieldName: "UserName",
+			sortDirectionFieldName: "DESC"
 		);
 }
 <h2>User List</h2>

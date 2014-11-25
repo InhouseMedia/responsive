@@ -66,41 +66,44 @@ table.table thead tr.head th:first-child{text-align:left;}
 
 .has-error .form-control-feedback.text-danger{display:block;}
 
-
 .btn{
-	.transition(~"padding-right 0.2s ease-in-out 0.3s");
-	 transform-style: preserve-3d;
+	&.btn-primary{
+		.transition(~"padding-right 0.2s ease-in-out 0.3s");
+		 transform-style: preserve-3d;
 
-	&:after{
-		background: transparent url('../Content/img/loader.svg') no-repeat center right;
-		background-size:20px 20px;
-		content:"";
-		display:block;
-		width:0px;
-		height:20px;
-		opacity:0;
-		float: right;
-		vertical-align: middle;
-		text-align: center;
-		margin:0px;	
-		.transition(~"width 0.2s ease-in-out 0.3s, opacity 0.5s ease-in-out, margin 0.2s ease-in-out 0.3s");
-	}
-	
-	&.submit{
-		&:not(.btn-block){
-			padding-right: 0px;
-
-			&:after{
-				margin:0px 3px;
-			}
-		}
-		
 		&:after{
-			opacity:1;
-			width:20px;
+			background: transparent url('../Content/img/loader.svg') no-repeat center right;
+			background-size:20px 20px;
+			content:"";
+			display:block;
+			width:0px;
+			height:20px;
+			opacity:0;
+			float: right;
+			vertical-align: middle;
+			text-align: center;
+			margin:0px;	
+			.transition(~"width 0.2s ease-in-out 0.3s, opacity 0.5s ease-in-out, margin 0.2s ease-in-out 0.3s");
+		}
+	
+		&.submit{
+			&:not(.btn-block){
+				padding-right: 0px;
+
+				&:after{
+					margin:0px 3px;
+				}
+			}
+		
+			&:after{
+				opacity:1;
+				width:20px;
+			}
 		}
 	}
 }
+
+.modal-body{position:static;}
 
 @-webkit-keyframes spin {
   from {-webkit-transform:rotate(0deg);}

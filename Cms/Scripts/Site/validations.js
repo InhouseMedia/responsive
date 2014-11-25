@@ -35,21 +35,31 @@
 		trigger: 'hover',
 		html: false,
 		placement: 'right',
-		container: 'body'
+		container: 'body',
+		delay: {'hide': 1000 }
 	});
 	
 	// Change submit button style
 	$("form").submit(function (e) {
 		var form = $(e.target);
 
-		if (form.find(".has-error").length == 0){
-			form.find("button[type=submit]").addClass("submit");
+		if (form.find(".has-error").length == 0) {
+			// Use parent for standard modal buttons that are outside the form.
+			form.offsetParent().find("button[type=submit]").addClass("submit");
 		}
 	});
+
+	// Trigger standard Save button in modal boxes
+	$(".modal button[type=submit]").click(function (item) {
+		console.log('click',this,item);
+		$(this).offsetParent().find('form').submit();
+	});
+
 	console.log("ready");
 });
 
 $(window).load(function () {
+
 	// Show Model (lightbox)
 	$('[data-toggle=modal]').click(function (e) {
 		e.preventDefault();
@@ -58,7 +68,6 @@ $(window).load(function () {
 		var btn = $(this);
 		var modalName = btn.attr('data-target');
 		var smallModal = (modalName.search('Small') != -1);
-
 		// Show loading icon in button
 		btn.addClass("submit");
 
@@ -74,7 +83,6 @@ $(window).load(function () {
 		return false;
 	});
 
-
 	// Show tooltips
 	$('[data-toggle="tooltip"]').tooltip(
 		{
@@ -83,7 +91,6 @@ $(window).load(function () {
 			'delay': {'show':500, 'hide': 1000}
 		}
 	);
-	
 
 	console.log("load");
 });

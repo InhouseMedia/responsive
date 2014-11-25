@@ -2,6 +2,7 @@
 var progressBar = $(".navbar .progress .progress-bar");
 var tooltip = progressBar.parent();
 
+// Trigger a countdown / submit on checkbox change
 $("#userForm input[type=checkbox]").change(
 	function (item) {
 		clearTimeout(timeoutObj);
@@ -24,6 +25,7 @@ function timeout() {
 	$('#userForm').submit();
 }
 
+// Remove the error tooltip and errorbar on mouseleave
 tooltip.on('hidden.bs.tooltip', function (e) {
 	console.log('hidden');
 	progressBar.removeClass("loaded");
@@ -33,6 +35,7 @@ tooltip.on('hidden.bs.tooltip', function (e) {
 	}, 1500);
 });
 
+// Change the save bar on success
 function onSuccess(ajaxContext) {
 	progressBar.attr("title", "");
 	progressBar.removeClass("progress-bar-striped")
@@ -42,6 +45,7 @@ function onSuccess(ajaxContext) {
 	setTimeout(function () { progressBar.removeClass("loaded") }, 300);
 }
 
+// Change the save bar into an error bar showing a tooltip with the error in it
 function onFailure(ajaxContext) {
 	var errorMessage = $(ajaxContext.responseJSON).get(0).ErrorMessage;
 

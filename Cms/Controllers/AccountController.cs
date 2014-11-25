@@ -8,6 +8,7 @@
 	using System.Web;
 	using System.Web.Mvc;
 	using Microsoft.AspNet.Identity;
+	using Microsoft.AspNet.Identity.EntityFramework;
 	using Microsoft.AspNet.Identity.Owin;
 	using Microsoft.Owin.Security;
 
@@ -140,7 +141,6 @@
 
         //
         // GET: /Account/Register
-		[Authorize]
         [Authorize(Roles = "Admin,Manager")]
         public ActionResult Register()
         {
@@ -182,12 +182,77 @@
         }
 
 		// GET: /Account/Register
-		[Authorize]
 		[Authorize(Roles = "Admin,Manager")]
 		public ActionResult RegisterConfirmation()
 		{
 			return View();
 		}
+		
+		// GET: /Account/Delete/UserId
+		[Authorize(Roles = "Admin,Manager")]
+		public async Task<ActionResult> Delete(string id)
+		{
+			ApplicationUser user = await UserManager.FindByIdAsync(id);
+			if (user == null)
+				return View("Error");
+
+			ViewBag.Layout = "~/Views/Shared/_Modal.cshtml";
+			return View(user);
+		}
+
+		// POST: /Account/Delete
+		[HttpPost]
+		[Authorize(Roles = "Admin,Manager")]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> Delete(ApplicationUser model)
+		{
+			var user = await UserManager.FindByIdAsync(model.Id);
+			var currentAdminRole = User.IsInRole("Admin");
+
+			var logins = user.Logins;
+
+			if (user.Id == User.Identity.GetUserId())
+			{
+				ModelState.AddModelError("", "You don't have rights to delete your own account");
+			}
+
+			// On error show
+			if (!ModelState.IsValid)
+				return View(model);
+
+			foreach (IdentityUserLogin login in logins)
+			{
+				await UserManager.RemoveLoginAsync(user.Id, new UserLoginInfo(login.LoginProvider, login.ProviderKey));
+			}
+
+			var rolesForUser = await UserManager.GetRolesAsync(user.Id);
+
+			if (rolesForUser.Count() > 0)
+			{
+			  foreach (var item in rolesForUser)
+			  {
+				// item should be the name of the role
+				await UserManager.RemoveFromRoleAsync(user.Id, item);
+			  }
+			}
+
+			await UserManager.DeleteAsync(user);
+			// If we got this far, something failed, redisplay form
+			return RedirectToAction("DeleteConfirmation", "Account");
+		}
+
+		// GET: /Account/ForgotPassword
+		[AllowAnonymous]
+		[Authorize(Roles = "Admin,Manager")]
+		public ActionResult DeleteConfirmation()
+		{
+			ViewBag.Layout = "~/Views/Shared/_Empty.cshtml";
+			ViewBag.Title = "Delete account successful";
+			ViewBag.Text = "Account is successful deleted";
+
+			return View();
+		}
+
 
         //
         // GET: /Account/ConfirmEmail

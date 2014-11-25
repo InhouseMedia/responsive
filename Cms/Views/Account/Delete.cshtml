@@ -1,0 +1,32 @@
+﻿@using Library.Models
+@using Library.Helpers
+@model ApplicationUser
+@{
+	Layout = ViewBag.Layout;
+	ViewBag.Title = "Delete account?";
+	ViewBag.ModalName = "deleteModalSmall";
+	ViewBag.StandardButtons = true;
+}
+
+@using (Ajax.BeginForm("Delete", "Account", FormMethod.Post,
+					new AjaxOptions
+					{
+						InsertionMode = InsertionMode.Replace,
+						HttpMethod = "POST",
+						UpdateTargetId = (ViewBag.ModalName) + "Body"
+					},
+					new { @class = "form-horizontal", role = "form", id = "deleteForm" }))
+					
+//@using (Html.BeginForm("Delete", "Account"))
+{
+	@Html.AntiForgeryToken()
+	<p>
+		Are you sure you want to delete account: 
+		<b style="text-align:center">@Model.Email</b>
+	</p>
+	@Html.ValidationSummary("", new { @class = "text-danger" })
+}
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

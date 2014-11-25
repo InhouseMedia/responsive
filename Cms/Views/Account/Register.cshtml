@@ -7,6 +7,7 @@
 	Layout = ViewBag.Layout;
 	ViewBag.Title = "Create new account";
 	ViewBag.ModalName = "registerModalSmall";
+	ViewBag.StandardButtons = false;
 }
 
 @using (Ajax.BeginForm("Register", "Account", FormMethod.Post,

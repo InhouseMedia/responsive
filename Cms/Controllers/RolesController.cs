@@ -62,14 +62,14 @@
 			IdentityRole ModeratorRole = roles.FirstOrDefault(r => r.Name == "Moderator");
 			IdentityRole ViewerRole = roles.FirstOrDefault(r => r.Name == "Viewer");
 
-			var currentUserRole = User.IsInRole(AdminRole.Name);
+			var currentAdminRole = User.IsInRole(AdminRole.Name);
+			var currentManagerRole = User.IsInRole(ManagerRole.Name);
 
 			List<UserRoles> data = new List<UserRoles>();
 			
 			foreach (ApplicationUser user in users)
 			{
 				List<IdentityUserRole> userRoles = user.Roles.ToList();
-				
 
 				data.Add(
 					new UserRoles(){
@@ -87,11 +87,9 @@
 			}
 
 			List<WebGridColumn> columns = new List<WebGridColumn>();
-			//columns.Add(new WebGridColumn() { ColumnName = "Id", Header = "Id", CanSort = true });
 			columns.Add(new WebGridColumn() { ColumnName = "UserName", Header = "Name", CanSort = true });
 			foreach (var role in roles) {
-
-				var disableCheckBox = (role.Name == AdminRole.Name && !currentUserRole);
+				var disableCheckBox1 = (role.Name == AdminRole.Name && !currentAdminRole);
 
 				columns.Add(new WebGridColumn()
 				{
@@ -101,10 +99,24 @@
 					Style = "text-center",
 					Format = (item) =>
 					{
+						//Managers should not be able to add or remove Admin rights
+						bool disableCheckBox = (!currentAdminRole && item["Admin"] == true)? true :disableCheckBox1;
 						return new HtmlString("<input type='checkbox' name='" + item.Id + "' value='" + role.Name + "' " + (item[role.Name] ? "checked" : "") + (disableCheckBox ? " disabled": "") + "/>");
 					}
 				});
 			}
+			columns.Add(new WebGridColumn() 
+			{ 
+				ColumnName = "Delete", 
+				Header = "Delete", 
+				Style = "text-center", 
+				Format = (item) => 
+				{
+					//Managers should not be able to add or remove Admin rights (or remove their own account)
+					bool disableCheckBox = ((!currentAdminRole && !currentManagerRole) || (!currentAdminRole && item["Admin"] == true) || item.Id == User.Identity.GetUserId());
+					return new HtmlString("<a href='/Account/Delete/" + item.Id + "' class='btn btn-default btn-xs" + (disableCheckBox ? " disabled" : "") + "' data-toggle='modal' data-target='#deleteModalSmall'><i class='glyphicon glyphicon-trash'></i></a>"); 
+				} 
+			});
 			ViewBag.Columns = columns;
 
 			return View(data);

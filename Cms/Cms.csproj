@@ -345,7 +345,8 @@
     <Content Include="Views\Roles\ManageUserRoles.cshtml" />
     <Content Include="Views\Roles\Users.cshtml" />
     <Content Include="Views\Account\RegisterConfirmation.cshtml" />
-    <Content Include="Views\Roles\Change.cshtml" />
+    <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\Account\DeleteConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
