@@ -18,6 +18,7 @@ namespace Library.Models
         public Nullable<int> Article_Id { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
+        public int Level { get; set; }
         public string Controller { get; set; }
         public string Action { get; set; }
         public byte Active { get; set; }

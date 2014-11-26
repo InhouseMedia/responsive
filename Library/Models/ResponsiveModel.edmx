@@ -62,6 +62,7 @@
     <Property Name="Article_Id" Type="int" Nullable="true" />
     <Property Name="Title" Type="varchar" Nullable="true" MaxLength="250" />
     <Property Name="Text" Type="varchar(max)" Nullable="true" />
+    <Property Name="Level" Type="int" Nullable="false" />
     <Property Name="Controller" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Action" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
@@ -253,6 +254,7 @@
           <Property Name="Article_Id" Type="Int32" Nullable="true" />
           <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="true" />
           <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
           <Property Name="Controller" Type="String" Nullable="false" />
           <Property Name="Action" Type="String" Nullable="false" />
           <Property Name="Active" Type="Byte" Nullable="false" />
@@ -496,6 +498,7 @@
           <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
           <ScalarProperty Name="Controller" ColumnName="Controller" />
           <ScalarProperty Name="Action" ColumnName="Action" />
           <ScalarProperty Name="Active" ColumnName="Active" />

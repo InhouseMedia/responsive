@@ -21,6 +21,7 @@
     <Property Name="Article_Id" Type="Int32" Nullable="true" />
     <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="true" />
     <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="true" />
+    <Property Name="Level" Type="Int32" Nullable="false" />
     <Property Name="Controller" Type="String" Nullable="false" />
     <Property Name="Action" Type="String" Nullable="false" />
     <Property Name="Active" Type="Byte" Nullable="false" />

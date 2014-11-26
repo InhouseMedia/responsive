@@ -57,6 +57,7 @@
     <Property Name="Article_Id" Type="int" Nullable="true" />
     <Property Name="Title" Type="varchar" Nullable="true" MaxLength="250" />
     <Property Name="Text" Type="varchar(max)" Nullable="true" />
+    <Property Name="Level" Type="int" Nullable="false" />
     <Property Name="Controller" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Action" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
