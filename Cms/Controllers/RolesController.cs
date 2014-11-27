@@ -3,12 +3,9 @@
 	using Microsoft.AspNet.Identity;
 	using Microsoft.AspNet.Identity.EntityFramework;
 	using Microsoft.AspNet.Identity.Owin;
-	using Microsoft.Owin.Security;
 	using System;
 	using System.Collections.Generic;
-	using System.Dynamic;
 	using System.Linq;
-	using System.Threading.Tasks;
 	using System.Web;
 	using System.Web.Helpers;
 	using System.Web.Mvc;

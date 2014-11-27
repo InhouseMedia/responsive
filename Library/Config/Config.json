@@ -6,28 +6,30 @@
 		"googleverification": "",
 		"googleTranslation": false,
 		"websiteType": "company",
-		"author": "Inhouse Webdesign",
-		"generator":  "Inhouse Webdesign"
+		"author": "Inhouse Media",
+		"generator": "Inhouse Media"
 	},
 	"socialMedia": {
 		"socialMediaTags": false,
 		"media": {
 			"facebook": "",
 			"twitter": "",
-			"googleplus" : "",
+			"googleplus": "",
 			"linkedin": "",
 			"youtube": "",
-			"pinterest":  ""
+			"pinterest": ""
 		}
 	},
 	"controllers": {
 		"standard": {
+			"active": true,
+			"admin": true,
 			"maintenance": false
 		},
 		"article": {
 			"active": true,
 			"admin": false,
-			"actions": [ "text", "video", "image", "caroussel", "contact",	"socialmedia", "socailshare" ]
+			"actions": [ "text", "video", "image", "caroussel", "contact", "socialmedia", "socailshare" ]
 		},
 		"navigation": {
 			"active": true,

@@ -1,12 +1,7 @@
 ﻿namespace Library.Classes
 {
-	using System;
-	//using System.Collections;
-	//using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
-	//using System.Text.RegularExpressions;
-	//using System.Web;
 	using System.Web.Hosting;
 	using Newtonsoft.Json.Linq;
 	using Library.Models;
@@ -104,20 +99,22 @@
 
 		public class Standard
 		{
+			public bool active { get; set; }
+			public bool admin { get; set; }
 			public bool maintenance { get; set; }
 		}
 
 		public class Article
 		{
 			public bool active { get; set; }
-			public bool superAdmin { get; set; }
+			public bool admin { get; set; }
 			public string[] actions { get; set; }
 		}
 
 		public class Navigation
 		{
 			public bool active { get; set; }
-			public bool superAdmin { get; set; }
+			public bool admin { get; set; }
 			public int maxLength { get; set; }
 			public Placement placement { get; set; }
 		}

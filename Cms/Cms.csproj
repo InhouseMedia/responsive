@@ -189,6 +189,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\BoxController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -353,6 +354,10 @@
     <Content Include="Views\Error\Authorize.cshtml" />
     <Content Include="Views\Article\List.cshtml" />
     <Content Include="Views\Article\Create.cshtml" />
+    <Content Include="Views\Box\Navigation.cshtml" />
+    <Content Include="Views\Box\LoginPartial.cshtml">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
