@@ -77,7 +77,7 @@
 				Id = item.Article_Id,
 				Active = item.Active,
 				CreationDate = item.Creation_Date,
-				Content = item.Article_Content.ToList(),
+				Content = item.Article_Content.OrderBy(x => x.Level).ToList(),
 				Metadata = item.Article_Metadata,
 				PublishLogs = item.Article_PublishLogs,
 				ChangeLogs = item.Article_ChangeLogs

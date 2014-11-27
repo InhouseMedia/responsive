@@ -26,12 +26,12 @@
 		},
 		"article": {
 			"active": true,
-			"superAdmin": false,
+			"admin": false,
 			"actions": [ "text", "video", "image", "caroussel", "contact",	"socialmedia", "socailshare" ]
 		},
 		"navigation": {
 			"active": true,
-			"superAdmin": false,
+			"admin": false,
 			"maxLength": 250,
 			"placement": {
 				"Disabled": 0,

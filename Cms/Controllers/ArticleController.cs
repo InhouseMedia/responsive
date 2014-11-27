@@ -74,5 +74,10 @@
 			return View(articleList);
 		}
 
+		// GET: Article/Create
+		public ActionResult Create()
+		{
+			return View();
+		}
     }
 }
