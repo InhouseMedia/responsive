@@ -23,7 +23,7 @@
 	"controllers": {
 		"standard": {
 			"active": true,
-			"admin": true,
+			"admin": true,	
 			"maintenance": false
 		},
 		"article": {
