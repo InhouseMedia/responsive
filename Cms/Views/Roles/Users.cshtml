@@ -1,6 +1,7 @@
 ﻿@using Library.Helpers
+@using Library.Resources
 @{
-    ViewBag.Title = "Users";
+    ViewBag.Title = Translate.AccountName +" "+ Translate.ListName;
 
 	var grid = new WebGrid(
 			source: Model, 
@@ -12,7 +13,7 @@
 			sortDirectionFieldName: "DESC"
 		);
 }
-<h2>User List</h2>
+<h2>@ViewBag.Title</h2>
 @using (Ajax.BeginForm("Change", "Roles", FormMethod.Post,
 					new AjaxOptions
 					{
@@ -35,7 +36,7 @@
 	
 }
 <p>
-	@Html.ActionLink("Create a new account", "Register", "", null, new { @data_toggle = "modal", @data_target = "#registerModalSmall", @class = "btn btn-primary" })
+	@Html.ActionLink(String.Format(Translate.CreateButton, Translate.AccountName), "Register", "", null, new { @data_toggle = "modal", @data_target = "#registerModalSmall", @class = "btn btn-primary" })
 </p>
 
 @section Scripts {

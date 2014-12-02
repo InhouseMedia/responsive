@@ -1,16 +1,18 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-
-namespace Library.Models
+﻿namespace Library.Models
 {
-    public class ExternalLoginConfirmationViewModel
+	using System.Collections.Generic;
+	using System.ComponentModel;
+	using System.ComponentModel.DataAnnotations;
+
+	using Library.Resources;
+
+	public class ExternalLoginConfirmationViewModel
     {
-		[Required]
-		[DataType(DataType.EmailAddress)]
-		[Display(Name = "Email", Prompt = "Email")]
-		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessage = "Email is not a valid e-mail address.")]
-		[EmailAddress]
+		[Required(ErrorMessageResourceName = "EmailRequired", ErrorMessageResourceType = typeof(Translate))]
+		[DataType(DataType.EmailAddress, ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate))]
+		[Display(Name = "Email", Prompt = "Email", ResourceType = typeof(Translate))]
+		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate))]
+		[EmailAddress(ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate), ErrorMessage = null)]
         public string Email { get; set; }
     }
 
@@ -45,71 +47,72 @@ namespace Library.Models
 
     public class ForgotViewModel
     {
-		[Required]
-		[DataType(DataType.EmailAddress)]
-		[Display(Name = "Email", Prompt = "Email")]
-		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessage = "Email is not a valid e-mail address.")]
-		[EmailAddress]
+		[Required(ErrorMessageResourceName = "EmailRequired", ErrorMessageResourceType = typeof(Translate))]
+		[DataType(DataType.EmailAddress, ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate))]
+		[Display(Name = "Email", Prompt = "Email", ResourceType = typeof(Translate))]
+		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate))]
+		[EmailAddress(ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate), ErrorMessage = null)]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
-        [Required]
-		[DataType(DataType.EmailAddress)]
-        [Display(Name = "Email", Prompt = "Email")]
-		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessage = "Email is not a valid e-mail address.")]
-        [EmailAddress]
+		[Required(ErrorMessageResourceName = "EmailRequired", ErrorMessageResourceType = typeof(Translate))]
+		[DataType(DataType.EmailAddress, ErrorMessageResourceName="EmailError", ErrorMessageResourceType = typeof(Translate))]
+        [Display(Name = "Email", Prompt = "Email", ResourceType = typeof(Translate))]
+		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate))]
+		[EmailAddress(ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate), ErrorMessage = null)]
         public string Email { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password", Prompt = "Password")]
+		[Required(ErrorMessageResourceName = "PasswordRequired", ErrorMessageResourceType = typeof(Translate))]
+        [DataType(DataType.Password, ErrorMessageResourceName="PasswordError", ErrorMessageResourceType = typeof(Translate))]
+        [Display(Name = "Password", Prompt = "Password", ResourceType = typeof(Translate))]
         public string Password { get; set; }
 
-		[DisplayName("Remember me?")]
+		//[DisplayName("Remember me?")]
+		[Display(Name = "RememberMe", ResourceType = typeof(Translate))]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
-		[Required]
-		[DataType(DataType.EmailAddress)]
-		[Display(Name = "Email", Prompt = "Email")]
-		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessage = "Email is not a valid e-mail address.")]
-		[EmailAddress]
+		[Required(ErrorMessageResourceName = "EmailRequired", ErrorMessageResourceType = typeof(Translate))]
+		[DataType(DataType.EmailAddress, ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate))]
+		[Display(Name = "Email", Prompt = "Email", ResourceType = typeof(Translate))]
+		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessageResourceName = "LoginError", ErrorMessageResourceType = typeof(Translate))]
+		[EmailAddress(ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate), ErrorMessage = null)]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password", Prompt = "Password")]
+        [Required(ErrorMessageResourceName = "PasswordRequired", ErrorMessageResourceType = typeof(Translate))]
+		[StringLength(100, MinimumLength = 6, ErrorMessageResourceName = "PasswordError", ErrorMessageResourceType = typeof(Translate))]
+		[DataType(DataType.Password, ErrorMessageResourceName = "PasswordError", ErrorMessageResourceType = typeof(Translate))]
+		[Display(Name = "Password", Prompt = "Password", ResourceType = typeof(Translate))]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password", Prompt = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+		[DataType(DataType.Password, ErrorMessageResourceName = "PasswordError", ErrorMessageResourceType = typeof(Translate))]
+		[Display(Name = "ConfirmPassword", Prompt = "ConfirmPassword", ResourceType = typeof(Translate))]
+		[Compare("Password", ErrorMessageResourceName = "ConfirmPasswordError", ErrorMessageResourceType = typeof(Translate))]
         public string ConfirmPassword { get; set; }
     }
 
     public class ResetPasswordViewModel
     {
-		[Required]
-		[DataType(DataType.EmailAddress)]
-		[Display(Name = "Email", Prompt = "Email")]
-		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessage = "Email is not a valid e-mail address.")]
-		[EmailAddress]
+		[Required(ErrorMessageResourceName = "EmailRequired", ErrorMessageResourceType = typeof(Translate))]
+		[DataType(DataType.EmailAddress, ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate))]
+		[Display(Name = "Email", Prompt = "Email", ResourceType = typeof(Translate))]
+		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate))]
+		[EmailAddress(ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate), ErrorMessage = null)]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+		[Required(ErrorMessageResourceName = "PasswordRequired", ErrorMessageResourceType = typeof(Translate))]			
+		[StringLength(100, MinimumLength = 6, ErrorMessageResourceName = "PasswordError", ErrorMessageResourceType = typeof(Translate))]
+		[DataType(DataType.Password, ErrorMessageResourceName = "PasswordError", ErrorMessageResourceType = typeof(Translate))]
+		[Display(Name = "Password", Prompt = "Password", ResourceType = typeof(Translate))]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+		[DataType(DataType.Password, ErrorMessageResourceName = "PasswordError", ErrorMessageResourceType = typeof(Translate))]
+		[Display(Name = "ConfirmPassword", Prompt = "ConfirmPassword", ResourceType = typeof(Translate))]
+		[Compare("Password", ErrorMessageResourceName = "ConfirmPasswordError", ErrorMessageResourceType = typeof(Translate))]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -117,11 +120,11 @@ namespace Library.Models
 
     public class ForgotPasswordViewModel
     {
-		[Required]
-		[DataType(DataType.EmailAddress)]
-		[Display(Name = "Email", Prompt = "Email")]
-		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessage = "Email is not a valid e-mail address.")]
-		[EmailAddress]
+		[Required(ErrorMessageResourceName = "EmailRequired", ErrorMessageResourceType = typeof(Translate))]
+		[DataType(DataType.EmailAddress, ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate))]
+		[Display(Name = "Email", Prompt = "Email", ResourceType = typeof(Translate))]
+		[RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate))]
+		[EmailAddress(ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate), ErrorMessage = null)]
 		public string Email { get; set; }
     }
 	/*

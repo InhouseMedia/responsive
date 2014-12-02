@@ -1,6 +1,7 @@
 ﻿namespace Cms.Controllers
 {
 	using System;
+	using System.ComponentModel.DataAnnotations;
 	using System.Globalization;
 	using System.Linq;
 	using System.Security.Claims;
@@ -14,6 +15,7 @@
 
 	using Cms.Filters;
 	using Library.Models;
+	using Library.Resources;
 
 	[Authorize]
     public class AccountController : Controller
@@ -88,7 +90,7 @@
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", Translate.LoginError);
                     return View(model);
             }
         }
@@ -136,7 +138,7 @@
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid code.");
+                    ModelState.AddModelError("", Translate.VerifyCodeError);
                     return View(model);
             }
         }
@@ -215,7 +217,7 @@
 
 			if (user.Id == User.Identity.GetUserId())
 			{
-				ModelState.AddModelError("", "You don't have rights to delete your own account");
+				ModelState.AddModelError("", Translate.DeleteAccountError);
 			}
 
 			// On error show
@@ -249,8 +251,8 @@
 		public ActionResult DeleteConfirmation()
 		{
 			ViewBag.Layout = "~/Views/Shared/_Empty.cshtml";
-			ViewBag.Title = "Delete account successful";
-			ViewBag.Text = "Account is successful deleted";
+			ViewBag.Title = Translate.DeleteAccountSuccesTitle;
+			ViewBag.Text = Translate.DeleteAccountSuccesText;
 
 			return View();
 		}

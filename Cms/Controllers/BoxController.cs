@@ -10,6 +10,7 @@
 	using System.Web.Mvc;
 
 	using Library.Classes;
+	using Library.Resources;
 	using Library.Setup;
 	 
 	public class BoxController : Controller
@@ -25,19 +26,18 @@
 			foreach (PropertyInfo control in controllers)
 			{
 				var property = control.GetValue(config, null);
-				/*
-				foreach (PropertyInfo property in control.GetType().GetProperties()) { 
-					if(property.Name == "Active" &&)
-				
-				}*/
+				var propertyType = property.GetType();
+				var propertyName = propertyType.Name;
 
-				bool isActive = (bool)property.GetType().GetProperty("active").GetValue(property, null);
-				bool isAdmin = (bool)property.GetType().GetProperty("admin").GetValue(property, null);
+				bool isActive = (bool)propertyType.GetProperty("active").GetValue(property, null);
+				bool isAdmin = (bool)propertyType.GetProperty("admin").GetValue(property, null);
 
 				if(isActive && (isAdmin && User.IsInRole("Admin") || !isAdmin)){
+					string title = Translate.ResourceManager.GetString(propertyName + "Name");
+
 					navigation.Add(new NavigationItem() { 
-						Title = property.GetType().Name,
-						Url = "/" + property.GetType().Name + "/List"
+						Title = title,
+						Url = "/" + propertyName + "/List"
 					});
 				}
 			}

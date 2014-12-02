@@ -12,6 +12,7 @@
 
 	using Library.Models;
 	using Library.Helpers;
+	using Library.Resources;
 
 	[Authorize]
     public class RolesController : Controller
@@ -84,7 +85,7 @@
 			}
 
 			List<WebGridColumn> columns = new List<WebGridColumn>();
-			columns.Add(new WebGridColumn() { ColumnName = "UserName", Header = "Name", CanSort = true });
+			columns.Add(new WebGridColumn() { ColumnName = "UserName", Header = Translate.WebgridName, CanSort = true });
 			foreach (var role in roles) {
 				var disableCheckBox1 = (role.Name == AdminRole.Name && !currentAdminRole);
 
@@ -105,7 +106,7 @@
 			columns.Add(new WebGridColumn() 
 			{ 
 				ColumnName = "Delete", 
-				Header = "Delete", 
+				Header = "", 
 				Style = "text-center", 
 				Format = (item) => 
 				{

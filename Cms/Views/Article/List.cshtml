@@ -1,6 +1,7 @@
 ﻿@using Library.Helpers
+@using Library.Resources
 @{
-	ViewBag.Title = "Articles";
+	ViewBag.Title = Translate.ArticleName + " " + Translate.ListName;
 
 	var grid = new WebGrid(
 			source: Model,
@@ -12,7 +13,7 @@
 			sortDirectionFieldName: "DESC"
 		);
 }
-<h2>User List</h2>
+<h2>@ViewBag.Title</h2>
 @using (Ajax.BeginForm("Change", "Article", FormMethod.Post,
 					new AjaxOptions
 					{
@@ -32,10 +33,9 @@
 				columns: ViewBag.Columns
 			)
 	</div>
-
 }
 <p>
-	@Html.ActionLink("Create a new article", "Create", "", null, new { @data_toggle = "modal", @data_target = "#createModalSmall", @class = "btn btn-primary" })
+	@Html.ActionLink(@String.Format(Translate.CreateButton, Translate.ArticleName), "Create", "", null, new { @data_toggle = "modal", @data_target = "#createModalSmall", @class = "btn btn-primary" })
 </p>
 
 @section Scripts {

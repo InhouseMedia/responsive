@@ -64,3 +64,6 @@ C:\Users\rklank65\Documents\Solutions\Responsive\Cms\obj\Debug\Cms.csproj.App.co
 C:\Users\rklank65\Documents\Solutions\Responsive\Cms\obj\Debug\Cms.csprojResolveAssemblyReference.cache
 C:\Users\rklank65\Documents\Solutions\Responsive\Cms\obj\Debug\Cms.dll
 C:\Users\rklank65\Documents\Solutions\Responsive\Cms\obj\Debug\Cms.pdb
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\nl-NL\Library.resources.dll
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ExtensionMethods.dll
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ExtensionMethods.xml
