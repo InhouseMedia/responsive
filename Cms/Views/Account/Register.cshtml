@@ -1,11 +1,12 @@
 ﻿@using Library.Models
 @using Library.Helpers
+@using Library.Resources
 @model RegisterViewModel
 @{
 
 	//Layout = "~/Views/Shared/_Modal.cshtml";
 	Layout = ViewBag.Layout;
-	ViewBag.Title = "Create new account";
+	ViewBag.Title = String.Format(Translate.CreateButton, Translate.AccountName);
 	ViewBag.ModalName = "registerModalSmall";
 	ViewBag.StandardButtons = false;
 }
@@ -21,18 +22,17 @@
 					new { @class = "form-horizontal", role = "form", id = "registerForm" }))
 {										
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
     @Html.ValidationSummary("", new { @class = "text-danger" })
 	@Html.BootstrapEditorFor(m => m.Email, new { @autoFocus = true })
 	@Html.BootstrapEditorFor(m => m.Password)
 	@Html.BootstrapEditorFor(m => m.ConfirmPassword)
 	<div class="form-group">
 		<div class="col-md-12">
-			<button type="submit" class="btn btn-primary btn-block">Create account</button>
+			<button type="submit" class="btn btn-primary btn-block">@Translate.Save</button>
 		</div>
 	</div>
 }
 
 @section Scripts {
-	@Scripts.Render("~/bundles/jqueryval")
+	<script type="text/javascript">documentReady()</script>
 }

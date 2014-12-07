@@ -72,17 +72,15 @@
 			object standardObj = new
 			{
 				@class = "form-control",
-				@placeholder = htmlHelper.WatermarkFor(expression),
-				//@autoFocus = false,
+				@placeholder = htmlHelper.WatermarkFor(expression)
 			};
 
 			var standardAttributes = HtmlHelper.AnonymousObjectToHtmlAttributes(standardObj) as IDictionary<string, object>;
 			var pushedAttributes = HtmlHelper.AnonymousObjectToHtmlAttributes(attributes) as IDictionary<string, object>;
 
-			//totalAttributes = standardAttributes.Union(errorAttributes).ToDictionary(k => k.Key, v => v.Value)
-			//var htmlAttributes = HtmlAttributesForBootstrap(totalAttributes, pushedAttributes);
 			var htmlAttributes = HtmlAttributesForBootstrap(standardAttributes, pushedAttributes);
 
+			string label = htmlHelper.LabelFor(expression).ToString();
 			string original = htmlHelper.EditorFor(expression, new { htmlAttributes }).ToString();
 			string errorLabel = htmlHelper.BootstrapValidationMessageFor(expression).ToString();
 			
@@ -94,9 +92,11 @@
 			TagBuilder col = new TagBuilder("div");
 			col.AddCssClass("col-md-12");
 
+			col.InnerHtml += (label != "" && htmlAttributes.ContainsKey("Label")) ? label : "";
+			
 			col.InnerHtml += original + errorLabel;
-			group.InnerHtml+= col;
-
+			group.InnerHtml += col;
+			
 			return MvcHtmlString.Create(group.ToString());
 		}
 

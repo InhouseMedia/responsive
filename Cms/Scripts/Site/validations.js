@@ -1,4 +1,7 @@
-﻿$(document).ready(function () {
+﻿$(document).ready(documentReady);
+$(window).load(windowLoad);
+
+function documentReady () {
 	/* //TODO: Something for later 
 	$.extend($.validator.messages, {
 		required: "Dieses Feld ist ein Pflichtfeld.",
@@ -69,9 +72,9 @@
 	});
 
 	console.log("ready");
-});
+}
 
-$(window).load(function () {
+function windowLoad() {
 
 	// Show Model (lightbox)
 	$('[data-toggle=modal]').click(function (e) {
@@ -89,7 +92,7 @@ $(window).load(function () {
 			btn.removeClass('submit');
 			$(modalName)	
 				.on('hidden.bs.modal', function () { $(this).remove(); })
-				.on('show.bs.modal', function () { if (smallModal) $(this).find('.modal-dialog').addClass('modal-sm'); })
+				.on('show.bs.modal', function () { if (smallModal) $(this).find('.modal-dialog').addClass('modal-sm');	})
 				.on('shown.bs.modal', function () { $(this).find('[autofocus]').focus(); }) // Set Autofocus to inputfield in modals 
 				.modal({ show: true, keyboard: true, backdrop: true })
 		});
@@ -108,4 +111,4 @@ $(window).load(function () {
 	console.log("load");
 
 	
-});
+}

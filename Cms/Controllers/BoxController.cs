@@ -42,6 +42,32 @@
 				}
 			}
             return View(navigation);
-        }
+		}
+
+		// GET: Box/General
+		public ActionResult General()
+		{
+			return View();
+		}
+
+		// GET: Box/Metadata
+		public ActionResult Metadata()
+		{
+			return View();
+		}
+
+
+		// GET: Box/Publishdata
+		public ActionResult Publishdata()
+		{
+			return View();
+		}
+
+		// GET: Box/Actions
+		public ActionResult Actions()
+		{
+			return View();
+		}
+
     }
 }

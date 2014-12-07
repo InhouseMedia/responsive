@@ -35,7 +35,8 @@
 	</div>
 }
 <p>
-	@Html.ActionLink(@String.Format(Translate.CreateButton, Translate.ArticleName), "Create", "", null, new { @data_toggle = "modal", @data_target = "#createModalSmall", @class = "btn btn-primary" })
+	@*Html.ActionLink(@String.Format(Translate.CreateButton, Translate.ArticleName), "CreateStep", "Article", routeValues: null, htmlAttributes: new { @data_toggle = "modal", @data_target = "#createModalSmall", @class = "btn btn-primary" })*@
+	@Html.ActionLink(@String.Format(Translate.CreateButton, Translate.ArticleName), "Create", "Article", routeValues: null, htmlAttributes: new { @class = "btn btn-primary" })
 </p>
 
 @section Scripts {

@@ -169,6 +169,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset password.
+        /// </summary>
+        public static string ForgotPasswordSend {
+            get {
+                return ResourceManager.GetString("ForgotPasswordSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your email address and you will receive an email with instructions on how to reset your password..
+        /// </summary>
+        public static string ForgotPasswordText {
+            get {
+                return ResourceManager.GetString("ForgotPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello.
         /// </summary>
         public static string Hello {
@@ -268,6 +286,51 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset your password.
+        /// </summary>
+        public static string ResetPassword {
+            get {
+                return ResourceManager.GetString("ResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset your password.
+        /// </summary>
+        public static string ResetPasswordText {
+            get {
+                return ResourceManager.GetString("ResetPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Engine Optimization.
+        /// </summary>
+        public static string SearchEngineOptimization {
+            get {
+                return ResourceManager.GetString("SearchEngineOptimization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid code..
         /// </summary>
         public static string VerifyCodeError {
@@ -295,6 +358,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created by.
+        /// </summary>
+        public static string WebgridCreatedBy {
+            get {
+                return ResourceManager.GetString("WebgridCreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created on.
         /// </summary>
         public static string WebgridCreationDate {
@@ -313,11 +385,56 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SEO tags. Seperated by comma..
+        /// </summary>
+        public static string WebgridKeywordsInfo {
+            get {
+                return ResourceManager.GetString("WebgridKeywordsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Metadata.
         /// </summary>
         public static string WebgridMetaData {
             get {
                 return ResourceManager.GetString("WebgridMetaData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meta Description.
+        /// </summary>
+        public static string WebgridMetaDescription {
+            get {
+                return ResourceManager.GetString("WebgridMetaDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEO description. Only visible for search engines..
+        /// </summary>
+        public static string WebgridMetaDescriptionInfo {
+            get {
+                return ResourceManager.GetString("WebgridMetaDescriptionInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meta Title.
+        /// </summary>
+        public static string WebgridMetaTitle {
+            get {
+                return ResourceManager.GetString("WebgridMetaTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEO title. Only visible for search engines..
+        /// </summary>
+        public static string WebgridMetaTitleInfo {
+            get {
+                return ResourceManager.GetString("WebgridMetaTitleInfo", resourceCulture);
             }
         }
         

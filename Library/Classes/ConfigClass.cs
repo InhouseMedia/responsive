@@ -108,6 +108,7 @@
 		{
 			public bool active { get; set; }
 			public bool admin { get; set; }
+			public string[] tools { get; set; }
 			public string[] actions { get; set; }
 		}
 

@@ -1,8 +1,22 @@
-﻿
+﻿@using Library.Resources
+@using Library.Classes
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = String.Format(Translate.CreateButton, Translate.ArticleName);
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>@ViewBag.Title</h2>
 
+<div class="row">
+	<div class="col-md-8"></div>
+	<div class="col-md-4">
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+			@foreach (string item in ConfigClass.Settings.controllers.article.tools)
+			{
+				Html.RenderAction(item, "Box", new {item = Model});
+			}
+		</div>
+	</div>
+</div>
+	

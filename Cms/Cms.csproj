@@ -361,10 +361,13 @@
     <Content Include="Views\Box\LoginPartial.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Box\General.cshtml" />
+    <Content Include="Views\Box\Metadata.cshtml" />
+    <Content Include="Views\Box\Actions.cshtml" />
+    <Content Include="Views\Box\Publishdata.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Resource\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

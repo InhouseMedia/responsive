@@ -23,12 +23,13 @@
 	"controllers": {
 		"standard": {
 			"active": true,
-			"admin": true,	
+			"admin": true,
 			"maintenance": false
 		},
 		"article": {
 			"active": true,
 			"admin": false,
+			"tools": [ "General", "Metadata", "Publishdata", "Actions"],
 			"actions": [ "text", "video", "image", "caroussel", "contact", "socialmedia", "socailshare" ]
 		},
 		"navigation": {

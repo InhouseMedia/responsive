@@ -153,6 +153,12 @@
   <data name="ForgotPassword" xml:space="preserve">
     <value>Wachtwoord vergeten?</value>
   </data>
+  <data name="ForgotPasswordSend" xml:space="preserve">
+    <value>Wachtwoord aanpassen</value>
+  </data>
+  <data name="ForgotPasswordText" xml:space="preserve">
+    <value>Vul uw e-mail adres in. U ontvangt een link, waarmee het wachtwoord opnieuw ingesteld kan worden.</value>
+  </data>
   <data name="Hello" xml:space="preserve">
     <value>Hallo</value>
   </data>
@@ -186,6 +192,21 @@
   <data name="RememberMe" xml:space="preserve">
     <value>Ingelogd blijven?</value>
   </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Stel een nieuw wachtwoord in</value>
+  </data>
+  <data name="ResetPasswordText" xml:space="preserve">
+    <value>Setl een nieuw wachtwoord in</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Zoeken</value>
+  </data>
+  <data name="SearchEngineOptimization" xml:space="preserve">
+    <value>Zoekmachine optimalisatie</value>
+  </data>
   <data name="VerifyCodeError" xml:space="preserve">
     <value>Ongeldige verificatie code.</value>
   </data>
@@ -195,14 +216,20 @@
   <data name="WebgridChangedDate" xml:space="preserve">
     <value>Aangepast op</value>
   </data>
+  <data name="WebgridCreatedBy" xml:space="preserve">
+    <value>Gecreëerd door</value>
+  </data>
   <data name="WebgridCreationDate" xml:space="preserve">
     <value>Gecreëerd op</value>
   </data>
-  <data name="WebgridKeywords" xml:space="preserve">
-    <value>Keywords</value>
+  <data name="WebgridKeywordsInfo" xml:space="preserve">
+    <value>SEO labes. Gescheiden door komma. (product, actie)</value>
   </data>
-  <data name="WebgridMetaData" xml:space="preserve">
-    <value>Metadata</value>
+  <data name="WebgridMetaDescriptionInfo" xml:space="preserve">
+    <value>SEO samenvatting. Speciaal voor zoekmachines.</value>
+  </data>
+  <data name="WebgridMetaTitleInfo" xml:space="preserve">
+    <value>SEO titel. Speciaal voor zoekmachines.</value>
   </data>
   <data name="WebgridName" xml:space="preserve">
     <value>Gebruiker</value>

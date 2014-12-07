@@ -153,6 +153,12 @@
   <data name="ForgotPassword" xml:space="preserve">
     <value>Forgot your password?</value>
   </data>
+  <data name="ForgotPasswordSend" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="ForgotPasswordText" xml:space="preserve">
+    <value>Enter your email address and you will receive an email with instructions on how to reset your password.</value>
+  </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>
   </data>
@@ -186,6 +192,21 @@
   <data name="RememberMe" xml:space="preserve">
     <value>Remember me?</value>
   </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset your password</value>
+  </data>
+  <data name="ResetPasswordText" xml:space="preserve">
+    <value>Reset your password</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchEngineOptimization" xml:space="preserve">
+    <value>Search Engine Optimization</value>
+  </data>
   <data name="VerifyCodeError" xml:space="preserve">
     <value>Invalid code.</value>
   </data>
@@ -195,14 +216,32 @@
   <data name="WebgridChangedDate" xml:space="preserve">
     <value>Changed on</value>
   </data>
+  <data name="WebgridCreatedBy" xml:space="preserve">
+    <value>Created by</value>
+  </data>
   <data name="WebgridCreationDate" xml:space="preserve">
     <value>Created on</value>
   </data>
   <data name="WebgridKeywords" xml:space="preserve">
     <value>Keywords</value>
   </data>
+  <data name="WebgridKeywordsInfo" xml:space="preserve">
+    <value>SEO tags. Seperated by comma.</value>
+  </data>
   <data name="WebgridMetaData" xml:space="preserve">
     <value>Metadata</value>
+  </data>
+  <data name="WebgridMetaDescription" xml:space="preserve">
+    <value>Meta Description</value>
+  </data>
+  <data name="WebgridMetaDescriptionInfo" xml:space="preserve">
+    <value>SEO description. Only visible for search engines.</value>
+  </data>
+  <data name="WebgridMetaTitle" xml:space="preserve">
+    <value>Meta Title</value>
+  </data>
+  <data name="WebgridMetaTitleInfo" xml:space="preserve">
+    <value>SEO title. Only visible for search engines.</value>
   </data>
   <data name="WebgridName" xml:space="preserve">
     <value>Account</value>

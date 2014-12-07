@@ -74,7 +74,7 @@
 			
 			bundles.Add(new LessBundle("~/bundles/css")
 				.Include("~/Content/bootstrap/bootstrap.less")
-				.Include("~/Content/Index.less")
+				//.Include("~/Content/Index.less")
 			);
 			
 		}
