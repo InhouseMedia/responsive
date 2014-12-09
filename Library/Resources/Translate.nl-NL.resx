@@ -240,4 +240,10 @@
   <data name="WebgridTitle" xml:space="preserve">
     <value>Titel</value>
   </data>
+  <data name="ChangeButton" xml:space="preserve">
+    <value>Wijzig het {0}</value>
+  </data>
+  <data name="PublishInformation" xml:space="preserve">
+    <value>Publicatie informatie</value>
+  </data>
 </root>

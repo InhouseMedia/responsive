@@ -76,9 +76,21 @@
 		}
 
 		// GET: Article/Create
+		[Authorize(Roles = "Admin,Editor,Manager,Moderator")]
 		public ActionResult Create()
 		{
+			ViewBag.Title = String.Format(Translate.CreateButton, Translate.ArticleName);
 			return View();
+		}
+
+		[Authorize(Roles = "Admin,Editor,Manager,Moderator,Contributors")]
+		public ActionResult Change(int id)
+		{
+			ViewBag.Title = String.Format(Translate.ChangeButton, Translate.ArticleName);
+
+			ArticleItem ArticleItem = ArticleClass.getArticle(id);
+
+			return View("Create", ArticleItem);
 		}
     }
 }

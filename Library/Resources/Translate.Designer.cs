@@ -79,6 +79,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change the {0}.
+        /// </summary>
+        public static string ChangeButton {
+            get {
+                return ResourceManager.GetString("ChangeButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm password.
         /// </summary>
         public static string ConfirmPassword {
@@ -273,6 +282,15 @@ namespace Library.Resources {
         public static string PasswordRequired {
             get {
                 return ResourceManager.GetString("PasswordRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publish information.
+        /// </summary>
+        public static string PublishInformation {
+            get {
+                return ResourceManager.GetString("PublishInformation", resourceCulture);
             }
         }
         

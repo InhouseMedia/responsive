@@ -1,12 +1,11 @@
 ﻿@using Library.Resources
 @using Library.Classes
 @{
-    ViewBag.Title = String.Format(Translate.CreateButton, Translate.ArticleName);
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
-
+@model Library.Models.Article
 <div class="row">
 	<div class="col-md-8"></div>
 	<div class="col-md-4">

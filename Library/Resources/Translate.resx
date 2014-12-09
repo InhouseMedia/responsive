@@ -252,4 +252,10 @@
   <data name="WebgridTitle" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="ChangeButton" xml:space="preserve">
+    <value>Change the {0}</value>
+  </data>
+  <data name="PublishInformation" xml:space="preserve">
+    <value>Publish information</value>
+  </data>
 </root>
