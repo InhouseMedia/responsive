@@ -5,7 +5,7 @@
 }
 
 <h2>@ViewBag.Title</h2>
-@model Library.Models.Article
+@model Library.Classes.ArticleItem
 <div class="row">
 	<div class="col-md-8"></div>
 	<div class="col-md-4">
@@ -13,9 +13,12 @@
 
 			@foreach (string item in ConfigClass.Settings.controllers.article.tools)
 			{
-				Html.RenderAction(item, "Box", new {item = Model});
+				Html.RenderAction(item, "Box", new { model = Model});
 			}
 		</div>
 	</div>
 </div>
-	
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}	

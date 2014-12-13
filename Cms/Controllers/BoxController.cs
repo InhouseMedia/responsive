@@ -1,18 +1,15 @@
 ﻿namespace Cms.Controllers
 {
-	using System.IO;
 	using System;
 	using System.Collections.Generic;
 	using System.Reflection;
 	using System.Linq;
-	using System.Web;
-	using System.Web.Hosting;
+	using System.Web.Helpers;
 	using System.Web.Mvc;
 
 	using Library.Classes;
 	using Library.Resources;
-	using Library.Setup;
-	 
+
 	public class BoxController : Controller
     {
 		List<NavigationItem> navigation = new List<NavigationItem>();
@@ -45,22 +42,27 @@
 		}
 
 		// GET: Box/General
-		public ActionResult General()
+		public ActionResult General(ArticleItem model)
 		{
-			return View();
+			return View(model);
 		}
 
 		// GET: Box/Metadata
-		public ActionResult Metadata()
+		public ActionResult Metadata(ArticleItem model)
 		{
-			return View();
+			return View(model.Metadata.FirstOrDefault());
 		}
 
-
 		// GET: Box/Publishdata
-		public ActionResult Publishdata()
+		public ActionResult Publishdata(ArticleItem model)
 		{
-			return View();
+			List<WebGridColumn> columns = new List<WebGridColumn>();
+			columns.Add(new WebGridColumn() { Header = Translate.WebgridPublishedDate, ColumnName = "Published_Date", CanSort = true, Format = item => String.Format("{0:g}",item["Published_Date"]) });
+			columns.Add(new WebGridColumn() { Header = Translate.WebgridPublishedBy, ColumnName = "Published_By", CanSort = true });
+
+			ViewBag.Columns = columns;
+
+			return View(model.PublishLogs);
 		}
 
 		// GET: Box/Actions

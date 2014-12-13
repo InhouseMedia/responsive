@@ -1,18 +1,11 @@
 ﻿namespace Responsive.Controllers
 {
-	//using System;
-	//using System.Collections.Generic;
-	//using System.Data;
 	using System.Data.Entity;
 	using System.Dynamic;
-	//using System.IO;
 	using System.Linq;
-	using System.Net;
-	//using System.Web;
 	using System.Web.Mvc;
 
 	using Library.Classes;
-	using Library.Helpers;
 	using Library.Models;
 	using Library.Setup;
 
@@ -22,7 +15,7 @@
 		public ActionResult Index()
 		{
 			int ArticleId = NavigationClass.currentNavigationItem.ArticleId;
-			ArticleItem ArticleItem = ArticleClass.getArticle(ArticleId);
+			ArticleItem ArticleItem = ArticleClass.getArticle(ArticleId, true);
 
 			ViewBag.MetaTitle = ArticleItem.Metadata.Select(x => x.Meta_Title).FirstOrDefault();
 			ViewBag.MetaDescription = ArticleItem.Metadata.Select(x => x.Meta_Description).FirstOrDefault();

@@ -258,4 +258,10 @@
   <data name="PublishInformation" xml:space="preserve">
     <value>Publish information</value>
   </data>
+  <data name="WebgridPublishedBy" xml:space="preserve">
+    <value>Published by</value>
+  </data>
+  <data name="PublishOnLabel" xml:space="preserve">
+    <value>Publish on</value>
+  </data>
 </root>

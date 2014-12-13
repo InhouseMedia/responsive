@@ -11,10 +11,6 @@ namespace Library.Models
 {
     using System;
     using System.Collections.Generic;
-	using System.ComponentModel;
-	using System.ComponentModel.DataAnnotations;
-
-	using Library.Resources;
     
     public partial class Article_Metadata
     {
@@ -22,7 +18,7 @@ namespace Library.Models
         public Nullable<int> Article_Id { get; set; }
         public string Meta_Title { get; set; }
         public string Meta_Keywords { get; set; }
-		public string Meta_Description { get; set; }
+        public string Meta_Description { get; set; }
     
         public virtual Article Article { get; set; }
     }

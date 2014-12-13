@@ -63,7 +63,10 @@
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
 					  "~/Scripts/bootstrap.js",
-					  "~/Scripts/respond.js"));
+					  "~/Scripts/respond.js",
+					  "~/Scripts/moment.js",
+					  "~/Scripts/Locale/*.js",
+					  "~/Scripts/bootstrap-datetimepicker.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/roles").Include("~/Scripts/Site/roles.js"));
 
@@ -72,10 +75,10 @@
 			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
 						"~/Scripts/modernizr-*"));
 			
-			bundles.Add(new LessBundle("~/bundles/css")
-				.Include("~/Content/bootstrap/bootstrap.less")
-				//.Include("~/Content/Index.less")
-			);
+			bundles.Add(new LessBundle("~/bundles/css").Include(
+					"~/Content/bootstrap/bootstrap.less")
+					//.Include("~/Content/Index.less")
+					);
 			
 		}
 	}

@@ -19,7 +19,6 @@
     {
 		ApplicationDbContext context = new ApplicationDbContext();
 
-
 		private ApplicationUserManager _userManager;
 
         public RolesController()

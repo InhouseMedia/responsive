@@ -295,6 +295,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Publish on.
+        /// </summary>
+        public static string PublishOnLabel {
+            get {
+                return ResourceManager.GetString("PublishOnLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remember me?.
         /// </summary>
         public static string RememberMe {
@@ -462,6 +471,15 @@ namespace Library.Resources {
         public static string WebgridName {
             get {
                 return ResourceManager.GetString("WebgridName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Published by.
+        /// </summary>
+        public static string WebgridPublishedBy {
+            get {
+                return ResourceManager.GetString("WebgridPublishedBy", resourceCulture);
             }
         }
         

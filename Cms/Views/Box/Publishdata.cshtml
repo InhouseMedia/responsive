@@ -1,19 +1,45 @@
 ﻿@using Library.Helpers
 @using Library.Resources
-@{Layout = null;}
-@model Library.Models.Article_PublishLogs
+@using Library.Classes
+@model ICollection<Library.Models.Article_PublishLogs>
+@{Layout = null;
+  var grid = new WebGrid(
+			source: Model,
+			rowsPerPage: 25,
+			canPage: true,
+			canSort: false,
+			defaultSort: "Published_Date",
+			sortFieldName: "Published_Date",
+			sortDirectionFieldName: "DESC"
+		);
+}
 <div class="panel panel-primary">
 	<div class="panel-heading" role="tab" id="headingPublishdata">
 		<h4 class="panel-title">
 			<a data-toggle="collapse" data-parent="#accordion" href="#collapsePublishdata" aria-expanded="true" aria-controls="collapsePublishdata">
-				Publish information
+				@Translate.PublishInformation
 			</a>
 		</h4>
 	</div>
 	<div id="collapsePublishdata" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPublishdata">
 		<div class="panel-body">
-			
+			@Html.Label(Translate.PublishOnLabel)
+			<div class='input-group date' data-date-option="language:@ConfigClass.Settings.language.locale.First().Split('-').First()">
+				@Html.TextBox("PublishDate", "", new { @class = "form-control", @placeholder = String.Format("{0:g}", DateTime.Now) })
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-calendar"></span>
+				</span>
+			</div>
 		</div>
+		@if (grid.TotalRowCount > 0)
+		{
+			@grid.GetHtml(
+				tableStyle: "table table-striped table-hover",
+					headerStyle: "head",
+					alternatingRowStyle: "alt",
+					columns: ViewBag.Columns
+				)	
+		}
 	</div>
 </div>
 

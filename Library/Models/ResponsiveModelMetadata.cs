@@ -5,16 +5,17 @@
 
 	using Library.Resources;
 
-
 	public class Article_Datanotation
 	{
 		[Range(0, 2)]
 		[Display(Name = "WebgridActive", ResourceType = typeof(Translate))]
 		public byte Active;
 
+		[DisplayFormat(DataFormatString = "{0:g}")]
 		[Display(Name = "WebgridCreatedBy", ResourceType = typeof(Translate))]
 		public string Created_By;
 
+		[DisplayFormat(DataFormatString = "{0:g}")]
 		[Display(Name = "WebgridCreationDate", ResourceType = typeof(Translate))]
 		public DateTime Creation_Date;
 	}
@@ -29,7 +30,6 @@
 		[Display(Name = "WebgridKeywords", Prompt = "WebgridKeywordsInfo", ResourceType = typeof(Translate))]
 		public string Meta_Keywords;
 
-
 		[StringLength(50)]
 		[Display(Name = "WebgridMetaDescription", Prompt = "WebgridMetaDescriptionInfo", ResourceType = typeof(Translate))]
 		public string Meta_Description;
@@ -41,6 +41,16 @@
 		public Nullable<decimal> Grade;
 	}
 
+	public class Article_Publishlogs_Datanotation
+	{
+		[Display(Name = "WebgridPublishedBy", ResourceType = typeof(Translate))]
+		public string Published_By;
+
+		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:g}")]
+		[Display(Name = "WebgridPublishedDate", ResourceType = typeof(Translate))]
+		public DateTime Published_Date;
+	}
+
 	[MetadataType(typeof(Article_Datanotation))]
 	public partial class Article { }
 
@@ -49,4 +59,7 @@
 
 	[MetadataType(typeof(Article_Content_Datanotation))]
 	public partial class Article_Content { }
+
+	[MetadataType(typeof(Article_Publishlogs_Datanotation))]
+	public partial class Article_Publishlogs { }
 }

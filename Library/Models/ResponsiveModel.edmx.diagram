@@ -13,7 +13,7 @@
         <AssociationConnector Association="Model.FK_Article_Content" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Navigation_ChangeLogs" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Navigation_PublishLogs" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model.Article_ChangeLogs" Width="1.5" PointX="5" PointY="1" FillColor="0, 122, 204" />
+        <EntityTypeShape EntityType="Model.Article_ChangeLogs" Width="1.5" PointX="5" PointY="1" FillColor="0, 122, 204" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_Article_ChangeLogs" ManuallyRouted="false" >
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.Article_PublishLogs" Width="1.5" PointX="5" PointY="3.125" FillColor="0, 122, 204" />

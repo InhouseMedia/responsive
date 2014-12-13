@@ -2,9 +2,9 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.ComponentModel.DataAnnotations;
 	using System.Linq;
 	using System.Web.Mvc;
-	//using System.Web;
 
 	using Library.Models;
 
@@ -12,6 +12,7 @@
 	{
 		public int Id { get; set; }
 		public int Active { get; set; }
+		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:g}")]
 		public DateTime CreationDate { get; set; }
 		public ICollection<Article_Content> Content { get; set; }
 		public ICollection<Article_Metadata> Metadata { get; set; }
@@ -24,15 +25,17 @@
 		public int Id { get; set; }
 		public int Active { get; set; }
 		public string Title { get; set; }
+		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:g}")]
 		public DateTime CreationDate { get; set; }
+		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:g}")]
 		public DateTime PublishedDate { get; set; }
+		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:g}")]
 		public DateTime ChangedDate { get; set; }
 		public string PublishedBy { get; set; }
 		public string ChangedBy { get; set; }
 		public bool HasMetaData { get; set; }
 		public bool HasKeyWords { get; set; }
 	}
-
 
 	public class ArticleClass
 	{
@@ -52,10 +55,16 @@
 			return ArticleList;
 		}
 
-		public static ArticleItem getArticle(int Article_Id) {
+		public static ArticleItem getArticle(int Article_Id, bool ShowErrorPage) {
+			// When retreiving the data for changing this article in the CMS you should not
+			// return the error page. So in that case the error page is disabled:
+			int errorPage = (ShowErrorPage) ? 10 : -1;
 
-			//ArticleItem ArticleItem = null;
-
+			// Check if the article that you've requested exsist. 
+			// Otherwise show an error page. (By default it should be article_id : 10)
+			// Todo: article 10 should trigger a Status Code:404 Not Found in the source.
+			// !!!Coution!!! the page should also trigger this when the page is already in cache. 
+			// So caching should be turned off when serving a page not found.
 			using (ResponsiveContext db = new ResponsiveContext())
 			{
 				List<Article> tempArticle = db.Article.Where(
@@ -64,7 +73,6 @@
 					x.Active != 0
 				).OrderByDescending(x => x.Article_Id).ToList();
 
-
 				currentArticleItem = getArticleItem(tempArticle.First());
 			}
 			return currentArticleItem;
@@ -72,6 +80,11 @@
 		
 		private static ArticleItem getArticleItem(Article item)
 		{
+			ApplicationDbContext context = new ApplicationDbContext();
+			var users = context.Users;
+			
+			//var x = item.Article_PublishLogs.Select(y => y.Published_Date, users.Where(f => f.Id == y.Publis );
+
 			return new ArticleItem
 			{
 				Id = item.Article_Id,
