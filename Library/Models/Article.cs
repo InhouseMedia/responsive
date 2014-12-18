@@ -16,10 +16,10 @@ namespace Library.Models
     {
         public Article()
         {
-            this.Article_Content = new HashSet<Article_Content>();
             this.Article_ChangeLogs = new HashSet<Article_ChangeLogs>();
-            this.Article_PublishLogs = new HashSet<Article_PublishLogs>();
+            this.Article_Content = new HashSet<Article_Content>();
             this.Article_Metadata = new HashSet<Article_Metadata>();
+            this.Article_PublishLogs = new HashSet<Article_PublishLogs>();
         }
     
         public int Article_Id { get; set; }
@@ -27,9 +27,9 @@ namespace Library.Models
         public string Created_By { get; set; }
         public System.DateTime Creation_Date { get; set; }
     
-        public virtual ICollection<Article_Content> Article_Content { get; set; }
         public virtual ICollection<Article_ChangeLogs> Article_ChangeLogs { get; set; }
-        public virtual ICollection<Article_PublishLogs> Article_PublishLogs { get; set; }
+        public virtual ICollection<Article_Content> Article_Content { get; set; }
         public virtual ICollection<Article_Metadata> Article_Metadata { get; set; }
+        public virtual ICollection<Article_PublishLogs> Article_PublishLogs { get; set; }
     }
 }

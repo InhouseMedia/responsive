@@ -39,7 +39,7 @@
 			//var path = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
 			string path = HttpContext.Current.Request.Url.AbsolutePath;
 
-			using (ResponsiveContext db = new ResponsiveContext())
+			using (LibraryEntities db = new LibraryEntities())
 			{
 				foreach (var item in navigation)
 				{
@@ -89,7 +89,8 @@
 
 			allNavigationItems = null;
 
-			using(ResponsiveContext db = new ResponsiveContext()){
+			using (LibraryEntities db = new LibraryEntities())
+			{
 				List<Navigation> navItems = db.Navigation.Where(
 					x =>  
 					x.Parent_Id == null && 
@@ -107,7 +108,7 @@
 			List<NavigationItem> allNavItems = null;
 			List<tUrl> SitemapUrls = new List<tUrl>();
 
-			using (ResponsiveContext db = new ResponsiveContext())
+			using (LibraryEntities db = new LibraryEntities())
 			{
 				// Get data from database
 				// TODO: should be cached

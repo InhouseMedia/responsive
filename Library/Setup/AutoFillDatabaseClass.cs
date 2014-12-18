@@ -21,7 +21,7 @@
 			DirectoryInfo directory = new DirectoryInfo(path);
 			List<FileInfo> files = directory.GetFiles().ToList();
 
-			ResponsiveContext Database = new ResponsiveContext();
+			LibraryEntities Database = new LibraryEntities();
 			var conn = new SqlConnection(Database.Database.Connection.ConnectionString);
 			
 			SqlCommand command = new SqlCommand(@"SELECT COUNT(*) FROM [dbo].[Article]", conn);

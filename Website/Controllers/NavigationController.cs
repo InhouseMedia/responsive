@@ -19,7 +19,7 @@
 
 	public class NavigationController : Controller
     {
-		private ResponsiveContext db = new ResponsiveContext();
+		private LibraryEntities db = new LibraryEntities();
 
         // GET: Navigation
 		[OutputCache(Duration = 3600, VaryByParam = "none")]

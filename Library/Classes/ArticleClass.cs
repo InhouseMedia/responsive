@@ -45,7 +45,7 @@
 		public static List<ArticleListItem> getArticleList()
 		{
 			List<ArticleListItem> ArticleList = new List<ArticleListItem>();
-			using (ResponsiveContext db = new ResponsiveContext())
+			using (LibraryEntities db = new LibraryEntities())
 			{
 				List<Article> tempArticles = db.Article.OrderByDescending(x => x.Article_Id).ToList();
 				foreach (Article item in tempArticles) {
@@ -65,11 +65,11 @@
 			// Todo: article 10 should trigger a Status Code:404 Not Found in the source.
 			// !!!Coution!!! the page should also trigger this when the page is already in cache. 
 			// So caching should be turned off when serving a page not found.
-			using (ResponsiveContext db = new ResponsiveContext())
+			using (LibraryEntities db = new LibraryEntities())
 			{
 				List<Article> tempArticle = db.Article.Where(
-					x => 
-					(x.Article_Id == Article_Id || x.Article_Id == 10) && 
+					x =>
+					(x.Article_Id == Article_Id || x.Article_Id == errorPage) && 
 					x.Active != 0
 				).OrderByDescending(x => x.Article_Id).ToList();
 

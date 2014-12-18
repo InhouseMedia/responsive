@@ -21,7 +21,7 @@
 			string jsonSiteConfig = "{}";
 
 			// Get website specific Config
-			using (ResponsiveContext db = new ResponsiveContext())
+			using (LibraryEntities db = new LibraryEntities())
 			{
 				var tempConfig = db.Config.Select(x => x.Data).FirstOrDefault();
 				jsonSiteConfig = (tempConfig ?? null).ToString();

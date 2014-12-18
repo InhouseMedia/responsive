@@ -1,0 +1,887 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LibraryModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="LibraryModelStoreContainer">
+    <EntitySet Name="Article" EntityType="LibraryModel.Store.Article" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Article_ChangeLogs" EntityType="LibraryModel.Store.Article_ChangeLogs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Article_Content" EntityType="LibraryModel.Store.Article_Content" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Article_Metadata" EntityType="LibraryModel.Store.Article_Metadata" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Article_PublishLogs" EntityType="LibraryModel.Store.Article_PublishLogs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetRoles" EntityType="LibraryModel.Store.AspNetRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserClaims" EntityType="LibraryModel.Store.AspNetUserClaims" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserLogins" EntityType="LibraryModel.Store.AspNetUserLogins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUsers" EntityType="LibraryModel.Store.AspNetUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Config" EntityType="LibraryModel.Store.Config" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Navigation" EntityType="LibraryModel.Store.Navigation" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Navigation_ChangeLogs" EntityType="LibraryModel.Store.Navigation_ChangeLogs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Navigation_Content" EntityType="LibraryModel.Store.Navigation_Content" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Navigation_PublishLogs" EntityType="LibraryModel.Store.Navigation_PublishLogs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserRoles" EntityType="LibraryModel.Store.AspNetUserRoles" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Article_ChangeLogs" Association="LibraryModel.Store.FK_Article_ChangeLogs">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Article_ChangeLogs" EntitySet="Article_ChangeLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_Content" Association="LibraryModel.Store.FK_Article_Content">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Article_Content" EntitySet="Article_Content" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_Metadata" Association="LibraryModel.Store.FK_Article_Metadata">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Article_Metadata" EntitySet="Article_Metadata" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_PublishLogs" Association="LibraryModel.Store.FK_Article_PublishLogs">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Article_PublishLogs" EntitySet="Article_PublishLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="LibraryModel.Store.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="LibraryModel.Store.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Navigation_ChangeLogs" Association="LibraryModel.Store.FK_Navigation_ChangeLogs">
+      <End Role="Navigation" EntitySet="Navigation" />
+      <End Role="Navigation_ChangeLogs" EntitySet="Navigation_ChangeLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Navigation_PublishLogs" Association="LibraryModel.Store.FK_Navigation_PublishLogs">
+      <End Role="Navigation" EntitySet="Navigation" />
+      <End Role="Navigation_PublishLogs" EntitySet="Navigation_PublishLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NavigationNavigation_Content" Association="LibraryModel.Store.FK_NavigationNavigation_Content">
+      <End Role="Navigation" EntitySet="Navigation" />
+      <End Role="Navigation_Content" EntitySet="Navigation_Content" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles" Association="LibraryModel.Store.FK_AspNetUserRoles_AspNetRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserRoles_AspNetUsers" Association="LibraryModel.Store.FK_AspNetUserRoles_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="Article_Id" />
+    </Key>
+    <Property Name="Article_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Active" Type="tinyint" Nullable="false" />
+    <Property Name="Created_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Creation_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Article_ChangeLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Article_Id" Type="int" Nullable="true" />
+    <Property Name="Changed_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Changed_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Article_Content">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Article_Id" Type="int" Nullable="true" />
+    <Property Name="Title" Type="varchar" Nullable="true" MaxLength="250" />
+    <Property Name="Text" Type="varchar(max)" Nullable="true" />
+    <Property Name="Level" Type="int" Nullable="false" />
+    <Property Name="Controller" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Action" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Active" Type="tinyint" Nullable="false" />
+    <Property Name="Created_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Creation_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Article_Metadata">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Article_Id" Type="int" Nullable="true" />
+    <Property Name="Meta_Title" Type="varchar" Nullable="true" MaxLength="250" />
+    <Property Name="Meta_Keywords" Type="varchar" Nullable="true" MaxLength="250" />
+    <Property Name="Meta_Description" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Article_PublishLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Article_Id" Type="int" Nullable="true" />
+    <Property Name="Published_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Published_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ClaimType" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ProviderKey" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" Nullable="true" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="Config">
+    <Key>
+      <PropertyRef Name="Config_Id" />
+    </Key>
+    <Property Name="Config_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Data" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Navigation">
+    <Key>
+      <PropertyRef Name="Navigation_Id" />
+    </Key>
+    <Property Name="Navigation_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Article_Id" Type="int" Nullable="false" />
+    <Property Name="Parent_Id" Type="int" Nullable="true" />
+    <Property Name="Level" Type="int" Nullable="false" />
+    <Property Name="Priority" Type="float" Nullable="false" DefaultValue="0.5" />
+    <Property Name="Active" Type="tinyint" Nullable="false" />
+    <Property Name="Created_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Creation_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Navigation_ChangeLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Navigation_Id" Type="int" Nullable="true" />
+    <Property Name="Changed_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Changed_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Navigation_Content">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Navigation_Id" Type="int" Nullable="true" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="On_Click" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Navigation_PublishLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Navigation_Id" Type="int" Nullable="true" />
+    <Property Name="Published_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Published_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="AspNetRoles_Id" />
+      <PropertyRef Name="AspNetUsers_Id" />
+    </Key>
+    <Property Name="AspNetRoles_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="AspNetUsers_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <Association Name="FK_Article_ChangeLogs">
+    <End Role="Article" Type="LibraryModel.Store.Article" Multiplicity="0..1" />
+    <End Role="Article_ChangeLogs" Type="LibraryModel.Store.Article_ChangeLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="Article_Id" />
+      </Principal>
+      <Dependent Role="Article_ChangeLogs">
+        <PropertyRef Name="Article_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_Content">
+    <End Role="Article" Type="LibraryModel.Store.Article" Multiplicity="0..1" />
+    <End Role="Article_Content" Type="LibraryModel.Store.Article_Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="Article_Id" />
+      </Principal>
+      <Dependent Role="Article_Content">
+        <PropertyRef Name="Article_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_Metadata">
+    <End Role="Article" Type="LibraryModel.Store.Article" Multiplicity="0..1" />
+    <End Role="Article_Metadata" Type="LibraryModel.Store.Article_Metadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="Article_Id" />
+      </Principal>
+      <Dependent Role="Article_Metadata">
+        <PropertyRef Name="Article_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_PublishLogs">
+    <End Role="Article" Type="LibraryModel.Store.Article" Multiplicity="0..1" />
+    <End Role="Article_PublishLogs" Type="LibraryModel.Store.Article_PublishLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="Article_Id" />
+      </Principal>
+      <Dependent Role="Article_PublishLogs">
+        <PropertyRef Name="Article_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="LibraryModel.Store.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="LibraryModel.Store.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="LibraryModel.Store.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="LibraryModel.Store.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Navigation_ChangeLogs">
+    <End Role="Navigation" Type="LibraryModel.Store.Navigation" Multiplicity="0..1" />
+    <End Role="Navigation_ChangeLogs" Type="LibraryModel.Store.Navigation_ChangeLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Navigation">
+        <PropertyRef Name="Navigation_Id" />
+      </Principal>
+      <Dependent Role="Navigation_ChangeLogs">
+        <PropertyRef Name="Navigation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Navigation_PublishLogs">
+    <End Role="Navigation" Type="LibraryModel.Store.Navigation" Multiplicity="0..1" />
+    <End Role="Navigation_PublishLogs" Type="LibraryModel.Store.Navigation_PublishLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Navigation">
+        <PropertyRef Name="Navigation_Id" />
+      </Principal>
+      <Dependent Role="Navigation_PublishLogs">
+        <PropertyRef Name="Navigation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NavigationNavigation_Content">
+    <End Role="Navigation" Type="LibraryModel.Store.Navigation" Multiplicity="0..1" />
+    <End Role="Navigation_Content" Type="LibraryModel.Store.Navigation_Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Navigation">
+        <PropertyRef Name="Navigation_Id" />
+      </Principal>
+      <Dependent Role="Navigation_Content">
+        <PropertyRef Name="Navigation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserRoles_AspNetRoles">
+    <End Role="AspNetRoles" Type="LibraryModel.Store.AspNetRoles" Multiplicity="1" />
+    <End Role="AspNetUserRoles" Type="LibraryModel.Store.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="AspNetRoles_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserRoles_AspNetUsers">
+    <End Role="AspNetUserRoles" Type="LibraryModel.Store.AspNetUserRoles" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="LibraryModel.Store.AspNetUsers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="AspNetUsers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Article_Id" />
+          </Key>
+          <Property Name="Article_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Created_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Article_ChangeLogs" Relationship="Self.FK_Article_ChangeLogs" FromRole="Article" ToRole="Article_ChangeLogs" />
+          <NavigationProperty Name="Article_Content" Relationship="Self.FK_Article_Content" FromRole="Article" ToRole="Article_Content" />
+          <NavigationProperty Name="Article_Metadata" Relationship="Self.FK_Article_Metadata" FromRole="Article" ToRole="Article_Metadata" />
+          <NavigationProperty Name="Article_PublishLogs" Relationship="Self.FK_Article_PublishLogs" FromRole="Article" ToRole="Article_PublishLogs" />
+        </EntityType>
+        <EntityType Name="Article_ChangeLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Article_Id" Type="Int32" />
+          <Property Name="Changed_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Changed_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_Article_ChangeLogs" FromRole="Article_ChangeLogs" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Article_Content">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Article_Id" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Controller" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Created_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_Article_Content" FromRole="Article_Content" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Article_Metadata">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Article_Id" Type="Int32" />
+          <Property Name="Meta_Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Meta_Keywords" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Meta_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_Article_Metadata" FromRole="Article_Metadata" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Article_PublishLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Article_Id" Type="Int32" />
+          <Property Name="Published_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Published_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_Article_PublishLogs" FromRole="Article_PublishLogs" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Config">
+          <Key>
+            <PropertyRef Name="Config_Id" />
+          </Key>
+          <Property Name="Config_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Navigation">
+          <Key>
+            <PropertyRef Name="Navigation_Id" />
+          </Key>
+          <Property Name="Navigation_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Article_Id" Type="Int32" Nullable="false" />
+          <Property Name="Parent_Id" Type="Int32" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Priority" Type="Double" Nullable="false" DefaultValue="0.5" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Created_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Navigation_ChangeLogs" Relationship="Self.FK_Navigation_ChangeLogs" FromRole="Navigation" ToRole="Navigation_ChangeLogs" />
+          <NavigationProperty Name="Navigation_PublishLogs" Relationship="Self.FK_Navigation_PublishLogs" FromRole="Navigation" ToRole="Navigation_PublishLogs" />
+          <NavigationProperty Name="Navigation_Content" Relationship="Self.FK_NavigationNavigation_Content" FromRole="Navigation" ToRole="Navigation_Content" />
+        </EntityType>
+        <EntityType Name="Navigation_ChangeLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navigation_Id" Type="Int32" />
+          <Property Name="Changed_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Changed_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Navigation" Relationship="Self.FK_Navigation_ChangeLogs" FromRole="Navigation_ChangeLogs" ToRole="Navigation" />
+        </EntityType>
+        <EntityType Name="Navigation_Content">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navigation_Id" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="On_Click" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Navigation" Relationship="Self.FK_NavigationNavigation_Content" FromRole="Navigation_Content" ToRole="Navigation" />
+        </EntityType>
+        <EntityType Name="Navigation_PublishLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navigation_Id" Type="Int32" />
+          <Property Name="Published_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Published_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Navigation" Relationship="Self.FK_Navigation_PublishLogs" FromRole="Navigation_PublishLogs" ToRole="Navigation" />
+        </EntityType>
+        <Association Name="FK_Article_ChangeLogs">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Article_ChangeLogs" Type="Self.Article_ChangeLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Article_Id" />
+            </Principal>
+            <Dependent Role="Article_ChangeLogs">
+              <PropertyRef Name="Article_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Content">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Article_Content" Type="Self.Article_Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Article_Id" />
+            </Principal>
+            <Dependent Role="Article_Content">
+              <PropertyRef Name="Article_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_Metadata">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Article_Metadata" Type="Self.Article_Metadata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Article_Id" />
+            </Principal>
+            <Dependent Role="Article_Metadata">
+              <PropertyRef Name="Article_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_PublishLogs">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Article_PublishLogs" Type="Self.Article_PublishLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Article_Id" />
+            </Principal>
+            <Dependent Role="Article_PublishLogs">
+              <PropertyRef Name="Article_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Navigation_ChangeLogs">
+          <End Role="Navigation" Type="Self.Navigation" Multiplicity="0..1" />
+          <End Role="Navigation_ChangeLogs" Type="Self.Navigation_ChangeLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Navigation">
+              <PropertyRef Name="Navigation_Id" />
+            </Principal>
+            <Dependent Role="Navigation_ChangeLogs">
+              <PropertyRef Name="Navigation_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Navigation_PublishLogs">
+          <End Role="Navigation" Type="Self.Navigation" Multiplicity="0..1" />
+          <End Role="Navigation_PublishLogs" Type="Self.Navigation_PublishLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Navigation">
+              <PropertyRef Name="Navigation_Id" />
+            </Principal>
+            <Dependent Role="Navigation_PublishLogs">
+              <PropertyRef Name="Navigation_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NavigationNavigation_Content">
+          <End Role="Navigation" Type="Self.Navigation" Multiplicity="0..1" />
+          <End Role="Navigation_Content" Type="Self.Navigation_Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Navigation">
+              <PropertyRef Name="Navigation_Id" />
+            </Principal>
+            <Dependent Role="Navigation_Content">
+              <PropertyRef Name="Navigation_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" >
+          </End>
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="LibraryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Article" EntityType="Self.Article" />
+          <EntitySet Name="Article_ChangeLogs" EntityType="Self.Article_ChangeLogs" />
+          <EntitySet Name="Article_Content" EntityType="Self.Article_Content" />
+          <EntitySet Name="Article_Metadata" EntityType="Self.Article_Metadata" />
+          <EntitySet Name="Article_PublishLogs" EntityType="Self.Article_PublishLogs" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="Config" EntityType="Self.Config" />
+          <EntitySet Name="Navigation" EntityType="Self.Navigation" />
+          <EntitySet Name="Navigation_ChangeLogs" EntityType="Self.Navigation_ChangeLogs" />
+          <EntitySet Name="Navigation_Content" EntityType="Self.Navigation_Content" />
+          <EntitySet Name="Navigation_PublishLogs" EntityType="Self.Navigation_PublishLogs" />
+          <AssociationSet Name="FK_Article_ChangeLogs" Association="Self.FK_Article_ChangeLogs">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Article_ChangeLogs" EntitySet="Article_ChangeLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Content" Association="Self.FK_Article_Content">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Article_Content" EntitySet="Article_Content" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Metadata" Association="Self.FK_Article_Metadata">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Article_Metadata" EntitySet="Article_Metadata" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_PublishLogs" Association="Self.FK_Article_PublishLogs">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Article_PublishLogs" EntitySet="Article_PublishLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Navigation_ChangeLogs" Association="Self.FK_Navigation_ChangeLogs">
+            <End Role="Navigation" EntitySet="Navigation" />
+            <End Role="Navigation_ChangeLogs" EntitySet="Navigation_ChangeLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Navigation_PublishLogs" Association="Self.FK_Navigation_PublishLogs">
+            <End Role="Navigation" EntitySet="Navigation" />
+            <End Role="Navigation_PublishLogs" EntitySet="Navigation_PublishLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NavigationNavigation_Content" Association="Self.FK_NavigationNavigation_Content">
+            <End Role="Navigation" EntitySet="Navigation" />
+            <End Role="Navigation_Content" EntitySet="Navigation_Content" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LibraryModelStoreContainer" CdmEntityContainer="LibraryEntities">
+    <EntitySetMapping Name="Article">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.Article)">
+        <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article_ChangeLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.Article_ChangeLogs)">
+        <MappingFragment StoreEntitySet="Article_ChangeLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Changed_By" ColumnName="Changed_By" />
+          <ScalarProperty Name="Changed_Date" ColumnName="Changed_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article_Content">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.Article_Content)">
+        <MappingFragment StoreEntitySet="Article_Content">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article_Metadata">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.Article_Metadata)">
+        <MappingFragment StoreEntitySet="Article_Metadata">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Meta_Title" ColumnName="Meta_Title" />
+          <ScalarProperty Name="Meta_Keywords" ColumnName="Meta_Keywords" />
+          <ScalarProperty Name="Meta_Description" ColumnName="Meta_Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article_PublishLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.Article_PublishLogs)">
+        <MappingFragment StoreEntitySet="Article_PublishLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Published_By" ColumnName="Published_By" />
+          <ScalarProperty Name="Published_Date" ColumnName="Published_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.AspNetRoles)">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.AspNetUserClaims)">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.AspNetUserLogins)">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.AspNetUsers)">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Config">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.Config)">
+        <MappingFragment StoreEntitySet="Config">
+          <ScalarProperty Name="Config_Id" ColumnName="Config_Id" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Navigation">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.Navigation)">
+        <MappingFragment StoreEntitySet="Navigation">
+          <ScalarProperty Name="Navigation_Id" ColumnName="Navigation_Id" />
+          <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Parent_Id" ColumnName="Parent_Id" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Navigation_ChangeLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.Navigation_ChangeLogs)">
+        <MappingFragment StoreEntitySet="Navigation_ChangeLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Navigation_Id" ColumnName="Navigation_Id" />
+          <ScalarProperty Name="Changed_By" ColumnName="Changed_By" />
+          <ScalarProperty Name="Changed_Date" ColumnName="Changed_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Navigation_Content">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.Navigation_Content)">
+        <MappingFragment StoreEntitySet="Navigation_Content">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Navigation_Id" ColumnName="Navigation_Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="On_Click" ColumnName="On_Click" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Navigation_PublishLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.Navigation_PublishLogs)">
+        <MappingFragment StoreEntitySet="Navigation_PublishLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Navigation_Id" ColumnName="Navigation_Id" />
+          <ScalarProperty Name="Published_By" ColumnName="Published_By" />
+          <ScalarProperty Name="Published_Date" ColumnName="Published_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="LibraryModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="AspNetRoles_Id" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="AspNetUsers_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -12,8 +12,9 @@ namespace Library.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
-    public partial class ResponsiveContext : DbContext
+	using Microsoft.AspNet.Identity.EntityFramework;
+
+	public partial class ResponsiveContext : IdentityDbContext 
     {
         public ResponsiveContext()
             : base("name=ResponsiveContext")

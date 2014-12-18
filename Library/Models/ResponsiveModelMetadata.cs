@@ -2,6 +2,11 @@
 {
 	using System;
 	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
+
+	using System.Data.Entity.ModelConfiguration.Conventions;
+	using System.Data.Entity;
+	using Microsoft.AspNet.Identity.EntityFramework;
 
 	using Library.Resources;
 
@@ -37,12 +42,13 @@
 
 	public class Article_Content_Datanotation
 	{
-		[Range(0, 4)]
-		public Nullable<decimal> Grade;
+		//[Range(0, 4)]
+		//public Nullable<decimal> Grade;
 	}
 
-	public class Article_Publishlogs_Datanotation
+	public class Article_PublishLogs_Datanotation
 	{
+		//[Key, ForeignKey("User")]
 		[Display(Name = "WebgridPublishedBy", ResourceType = typeof(Translate))]
 		public string Published_By;
 
@@ -57,9 +63,9 @@
 	[MetadataType(typeof(Article_Metadata_Datanotation))]
 	public partial class Article_Metadata { }
 
-	[MetadataType(typeof(Article_Content_Datanotation))]
-	public partial class Article_Content { }
+	//[MetadataType(typeof(Article_Content_Datanotation))]
+	//public partial class Article_Content { }
 
-	[MetadataType(typeof(Article_Publishlogs_Datanotation))]
-	public partial class Article_Publishlogs { }
+	[MetadataType(typeof(Article_PublishLogs_Datanotation))]
+	public partial class Article_PublishLogs { }
 }
