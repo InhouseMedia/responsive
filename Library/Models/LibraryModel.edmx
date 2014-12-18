@@ -211,11 +211,11 @@
   </EntityType>
   <EntityType Name="AspNetUserRoles">
     <Key>
-      <PropertyRef Name="AspNetRoles_Id" />
-      <PropertyRef Name="AspNetUsers_Id" />
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="UserId" />
     </Key>
-    <Property Name="AspNetRoles_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="AspNetUsers_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="RoleId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
   </EntityType>
   <Association Name="FK_Article_ChangeLogs">
     <End Role="Article" Type="LibraryModel.Store.Article" Multiplicity="0..1" />
@@ -337,7 +337,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="AspNetUserRoles">
-        <PropertyRef Name="AspNetRoles_Id" />
+        <PropertyRef Name="RoleId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -349,7 +349,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="AspNetUserRoles">
-        <PropertyRef Name="AspNetUsers_Id" />
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -856,10 +856,10 @@
     </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="LibraryModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
-        <ScalarProperty Name="Id" ColumnName="AspNetRoles_Id" />
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
       <EndProperty Name="AspNetUsers">
-        <ScalarProperty Name="Id" ColumnName="AspNetUsers_Id" />
+        <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

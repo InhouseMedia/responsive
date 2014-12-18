@@ -171,7 +171,7 @@
     <Property Name="Article_Id" Type="int" Nullable="false" />
     <Property Name="Parent_Id" Type="int" Nullable="true" />
     <Property Name="Level" Type="int" Nullable="false" />
-    <Property Name="Priority" Type="float" Nullable="false" />
+    <Property Name="Priority" Type="float" Nullable="false" DefaultValue="0.5" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
     <Property Name="Created_By" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Creation_Date" Type="datetime" Nullable="false" />
@@ -206,11 +206,11 @@
   </EntityType>
   <EntityType Name="AspNetUserRoles">
     <Key>
-      <PropertyRef Name="AspNetRoles_Id" />
-      <PropertyRef Name="AspNetUsers_Id" />
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="UserId" />
     </Key>
-    <Property Name="AspNetRoles_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="AspNetUsers_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="RoleId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
   </EntityType>
   <Association Name="FK_Article_ChangeLogs">
     <End Role="Article" Type="LibraryModel.Store.Article" Multiplicity="0..1" />
@@ -332,7 +332,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="AspNetUserRoles">
-        <PropertyRef Name="AspNetRoles_Id" />
+        <PropertyRef Name="RoleId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -344,7 +344,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="AspNetUserRoles">
-        <PropertyRef Name="AspNetUsers_Id" />
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -124,7 +124,7 @@
     <Property Name="Article_Id" Type="Int32" Nullable="false" />
     <Property Name="Parent_Id" Type="Int32" />
     <Property Name="Level" Type="Int32" Nullable="false" />
-    <Property Name="Priority" Type="Double" Nullable="false" />
+    <Property Name="Priority" Type="Double" Nullable="false" DefaultValue="0.5" />
     <Property Name="Active" Type="Byte" Nullable="false" />
     <Property Name="Created_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
