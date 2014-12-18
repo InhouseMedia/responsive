@@ -27,7 +27,7 @@
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("Responsive", throwIfV1Schema: false)
+			: base("Library", throwIfV1Schema: false)
         {
         }
 		/*
