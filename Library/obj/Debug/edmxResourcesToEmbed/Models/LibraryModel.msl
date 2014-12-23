@@ -158,10 +158,10 @@
     </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="LibraryModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
-        <ScalarProperty Name="Id" ColumnName="RoleId" />
+        <ScalarProperty Name="Id" ColumnName="AspNetRoles_Id" />
       </EndProperty>
       <EndProperty Name="AspNetUsers">
-        <ScalarProperty Name="Id" ColumnName="UserId" />
+        <ScalarProperty Name="Id" ColumnName="AspNetUsers_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

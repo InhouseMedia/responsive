@@ -60,6 +60,22 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
+    <AssociationSet Name="AspNetUsersArticle_PublishLogs" Association="LibraryModel.Store.AspNetUsersArticle_PublishLogs">
+      <End Role="Article_PublishLogs" EntitySet="Article_PublishLogs" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="Article_ChangeLogsAspNetUsers" Association="LibraryModel.Store.Article_ChangeLogsAspNetUsers">
+      <End Role="Article_ChangeLogs" EntitySet="Article_ChangeLogs" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="Article_ContentAspNetUsers" Association="LibraryModel.Store.Article_ContentAspNetUsers">
+      <End Role="Article_Content" EntitySet="Article_Content" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="ArticleAspNetUsers" Association="LibraryModel.Store.ArticleAspNetUsers">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Article">
     <Key>
@@ -67,7 +83,7 @@
     </Key>
     <Property Name="Article_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
-    <Property Name="Created_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Created_By" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="Creation_Date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Article_ChangeLogs">
@@ -76,7 +92,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Article_Id" Type="int" Nullable="true" />
-    <Property Name="Changed_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Changed_By" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="Changed_Date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Article_Content">
@@ -91,7 +107,7 @@
     <Property Name="Controller" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Action" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
-    <Property Name="Created_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Created_By" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="Creation_Date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Article_Metadata">
@@ -110,7 +126,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Article_Id" Type="int" Nullable="true" />
-    <Property Name="Published_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Published_By" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="Published_Date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetRoles">
@@ -206,11 +222,11 @@
   </EntityType>
   <EntityType Name="AspNetUserRoles">
     <Key>
-      <PropertyRef Name="RoleId" />
-      <PropertyRef Name="UserId" />
+      <PropertyRef Name="AspNetRoles_Id" />
+      <PropertyRef Name="AspNetUsers_Id" />
     </Key>
-    <Property Name="RoleId" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="AspNetRoles_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="AspNetUsers_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
   </EntityType>
   <Association Name="FK_Article_ChangeLogs">
     <End Role="Article" Type="LibraryModel.Store.Article" Multiplicity="0..1" />
@@ -324,6 +340,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="AspNetUsersArticle_PublishLogs">
+    <End Role="Article_PublishLogs" Type="LibraryModel.Store.Article_PublishLogs" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="LibraryModel.Store.AspNetUsers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article_PublishLogs">
+        <PropertyRef Name="Published_By" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Article_ChangeLogsAspNetUsers">
+    <End Role="Article_ChangeLogs" Type="LibraryModel.Store.Article_ChangeLogs" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="LibraryModel.Store.AspNetUsers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article_ChangeLogs">
+        <PropertyRef Name="Changed_By" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Article_ContentAspNetUsers">
+    <End Role="Article_Content" Type="LibraryModel.Store.Article_Content" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="LibraryModel.Store.AspNetUsers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article_Content">
+        <PropertyRef Name="Created_By" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ArticleAspNetUsers">
+    <End Role="Article" Type="LibraryModel.Store.Article" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="LibraryModel.Store.AspNetUsers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="Created_By" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_AspNetUserRoles_AspNetRoles">
     <End Role="AspNetRoles" Type="LibraryModel.Store.AspNetRoles" Multiplicity="1" />
     <End Role="AspNetUserRoles" Type="LibraryModel.Store.AspNetUserRoles" Multiplicity="*" />
@@ -332,7 +396,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="AspNetUserRoles">
-        <PropertyRef Name="RoleId" />
+        <PropertyRef Name="AspNetRoles_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -344,7 +408,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="AspNetUserRoles">
-        <PropertyRef Name="UserId" />
+        <PropertyRef Name="AspNetUsers_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

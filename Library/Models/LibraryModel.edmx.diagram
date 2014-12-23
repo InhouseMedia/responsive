@@ -6,10 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="f51cca4ddb51480fbaf6ad0e0347a116" Name="Diagram1" ZoomLevel="109">
         <EntityTypeShape EntityType="LibraryModel.Article" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryModel.Article_ChangeLogs" Width="1.5" PointX="3.25" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryModel.Article_Content" Width="1.5" PointX="0.5" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryModel.Article_Metadata" Width="1.5" PointX="0.5" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryModel.Article_PublishLogs" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.Article_ChangeLogs" Width="1.75" PointX="3.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.Article_Content" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.Article_Metadata" Width="1.5" PointX="0.625" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.Article_PublishLogs" Width="2" PointX="3" PointY="15.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryModel.AspNetRoles" Width="1.5" PointX="5.75" PointY="11.5" IsExpanded="true" FillColor="DarkTurquoise" />
         <EntityTypeShape EntityType="LibraryModel.AspNetUserClaims" Width="1.5" PointX="10.25" PointY="10" IsExpanded="true" FillColor="DarkTurquoise" />
         <EntityTypeShape EntityType="LibraryModel.AspNetUserLogins" Width="1.5" PointX="10.25" PointY="12.75" IsExpanded="true" FillColor="DarkTurquoise" />
@@ -30,6 +30,9 @@
         <AssociationConnector Association="LibraryModel.FK_NavigationNavigation_Content" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryModel.AspNetUserRoles" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryModel.AspNetUsersArticle_PublishLogs" />
+        <AssociationConnector Association="LibraryModel.Article_ChangeLogsAspNetUsers" />
+        <AssociationConnector Association="LibraryModel.Article_ContentAspNetUsers" />
+        <AssociationConnector Association="LibraryModel.ArticleAspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

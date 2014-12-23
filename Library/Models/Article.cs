@@ -31,5 +31,6 @@ namespace Library.Models
         public virtual ICollection<Article_Content> Article_Content { get; set; }
         public virtual ICollection<Article_Metadata> Article_Metadata { get; set; }
         public virtual ICollection<Article_PublishLogs> Article_PublishLogs { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

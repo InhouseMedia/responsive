@@ -69,8 +69,11 @@
 			// So caching should be turned off when serving a page not found.
 			using (LibraryEntities db = new LibraryEntities())
 			{
-				Article tempArticle = db
-					.Article.Include("Article_PublishLogs.AspNetUsers")
+				Article tempArticle = db.Article
+					.Include("Article_PublishLogs.AspNetUsers")
+					.Include("Article_ChangeLogs.AspNetUsers")
+					.Include("Article_Content.AspNetUsers")
+					.Include("AspNetUsers")
 					.Where(a => (a.Article_Id == Article_Id || a.Article_Id == errorPage) /*&& a.Active > 0*/)
 					.OrderByDescending(x => x.Article_Id)
 					.FirstOrDefault();

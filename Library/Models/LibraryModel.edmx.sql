@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/18/2014 08:40:10
+-- Date Created: 12/23/2014 23:20:15
 -- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Library\Models\LibraryModel.edmx
 -- --------------------------------------------------
 
@@ -109,7 +109,7 @@ GO
 CREATE TABLE [dbo].[Article] (
     [Article_Id] int IDENTITY(1,1) NOT NULL  ,
     [Active] tinyint  NOT NULL  ,
-    [Created_By] nvarchar(max)  NOT NULL  ,
+    [Created_By] nvarchar(128)  NOT NULL  ,
     [Creation_Date] datetime  NOT NULL  
 );
 GO
@@ -118,7 +118,7 @@ GO
 CREATE TABLE [dbo].[Article_ChangeLogs] (
     [Id] int IDENTITY(1,1) NOT NULL  ,
     [Article_Id] int  NULL  ,
-    [Changed_By] nvarchar(max)  NOT NULL  ,
+    [Changed_By] nvarchar(128)  NOT NULL  ,
     [Changed_Date] datetime  NOT NULL  
 );
 GO
@@ -133,7 +133,7 @@ CREATE TABLE [dbo].[Article_Content] (
     [Controller] nvarchar(max)  NOT NULL  ,
     [Action] nvarchar(max)  NOT NULL  ,
     [Active] tinyint  NOT NULL  ,
-    [Created_By] nvarchar(max)  NOT NULL  ,
+    [Created_By] nvarchar(128)  NOT NULL  ,
     [Creation_Date] datetime  NOT NULL  
 );
 GO
@@ -152,7 +152,7 @@ GO
 CREATE TABLE [dbo].[Article_PublishLogs] (
     [Id] int IDENTITY(1,1) NOT NULL  ,
     [Article_Id] int  NULL  ,
-    [Published_By] nvarchar(max)  NOT NULL  ,
+    [Published_By] nvarchar(128)  NOT NULL  ,
     [Published_Date] datetime  NOT NULL  
 );
 GO
@@ -508,6 +508,66 @@ GO
 CREATE INDEX [IX_FK_AspNetUserRoles_AspNetUsers]
 ON [dbo].[AspNetUserRoles]
     ([UserId]);
+GO
+
+-- Creating foreign key on [Published_By] in table 'Article_PublishLogs'
+ALTER TABLE [dbo].[Article_PublishLogs]
+ADD CONSTRAINT [FK_AspNetUsersArticle_PublishLogs]
+    FOREIGN KEY ([Published_By])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUsersArticle_PublishLogs'
+CREATE INDEX [IX_FK_AspNetUsersArticle_PublishLogs]
+ON [dbo].[Article_PublishLogs]
+    ([Published_By]);
+GO
+
+-- Creating foreign key on [Changed_By] in table 'Article_ChangeLogs'
+ALTER TABLE [dbo].[Article_ChangeLogs]
+ADD CONSTRAINT [FK_Article_ChangeLogsAspNetUsers]
+    FOREIGN KEY ([Changed_By])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Article_ChangeLogsAspNetUsers'
+CREATE INDEX [IX_FK_Article_ChangeLogsAspNetUsers]
+ON [dbo].[Article_ChangeLogs]
+    ([Changed_By]);
+GO
+
+-- Creating foreign key on [Created_By] in table 'Article_Content'
+ALTER TABLE [dbo].[Article_Content]
+ADD CONSTRAINT [FK_Article_ContentAspNetUsers]
+    FOREIGN KEY ([Created_By])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Article_ContentAspNetUsers'
+CREATE INDEX [IX_FK_Article_ContentAspNetUsers]
+ON [dbo].[Article_Content]
+    ([Created_By]);
+GO
+
+-- Creating foreign key on [Created_By] in table 'Article'
+ALTER TABLE [dbo].[Article]
+ADD CONSTRAINT [FK_ArticleAspNetUsers]
+    FOREIGN KEY ([Created_By])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ArticleAspNetUsers'
+CREATE INDEX [IX_FK_ArticleAspNetUsers]
+ON [dbo].[Article]
+    ([Created_By]);
 GO
 
 -- --------------------------------------------------

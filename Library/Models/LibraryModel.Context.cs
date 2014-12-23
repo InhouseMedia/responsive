@@ -18,7 +18,6 @@ namespace Library.Models
         public LibraryEntities()
             : base("name=LibraryEntities")
         {
-			//Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -26,5 +26,6 @@ namespace Library.Models
         public System.DateTime Creation_Date { get; set; }
     
         public virtual Article Article { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

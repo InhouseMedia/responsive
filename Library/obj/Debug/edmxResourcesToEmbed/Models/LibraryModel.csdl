@@ -6,12 +6,13 @@
     </Key>
     <Property Name="Article_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Active" Type="Byte" Nullable="false" />
-    <Property Name="Created_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Created_By" Type="String" FixedLength="false" Unicode="true" Nullable="false" MaxLength="128" />
     <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Article_ChangeLogs" Relationship="Self.FK_Article_ChangeLogs" FromRole="Article" ToRole="Article_ChangeLogs" />
     <NavigationProperty Name="Article_Content" Relationship="Self.FK_Article_Content" FromRole="Article" ToRole="Article_Content" />
     <NavigationProperty Name="Article_Metadata" Relationship="Self.FK_Article_Metadata" FromRole="Article" ToRole="Article_Metadata" />
     <NavigationProperty Name="Article_PublishLogs" Relationship="Self.FK_Article_PublishLogs" FromRole="Article" ToRole="Article_PublishLogs" />
+    <NavigationProperty Name="AspNetUsers" Relationship="LibraryModel.ArticleAspNetUsers" FromRole="Article" ToRole="AspNetUsers" />
   </EntityType>
   <EntityType Name="Article_ChangeLogs">
     <Key>
@@ -19,9 +20,10 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Article_Id" Type="Int32" />
-    <Property Name="Changed_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Changed_By" Type="String" FixedLength="false" Unicode="true" Nullable="false" MaxLength="128" />
     <Property Name="Changed_Date" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Article" Relationship="Self.FK_Article_ChangeLogs" FromRole="Article_ChangeLogs" ToRole="Article" />
+    <NavigationProperty Name="AspNetUsers" Relationship="LibraryModel.Article_ChangeLogsAspNetUsers" FromRole="Article_ChangeLogs" ToRole="AspNetUsers" />
   </EntityType>
   <EntityType Name="Article_Content">
     <Key>
@@ -35,9 +37,10 @@
     <Property Name="Controller" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Active" Type="Byte" Nullable="false" />
-    <Property Name="Created_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Created_By" Type="String" FixedLength="false" Unicode="true" Nullable="false" MaxLength="128" />
     <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Article" Relationship="Self.FK_Article_Content" FromRole="Article_Content" ToRole="Article" />
+    <NavigationProperty Name="AspNetUsers" Relationship="LibraryModel.Article_ContentAspNetUsers" FromRole="Article_Content" ToRole="AspNetUsers" />
   </EntityType>
   <EntityType Name="Article_Metadata">
     <Key>
@@ -56,7 +59,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Article_Id" Type="Int32" />
-    <Property Name="Published_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Published_By" Type="String" FixedLength="false" Unicode="true" Nullable="false" MaxLength="128" />
     <Property Name="Published_Date" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Article" Relationship="Self.FK_Article_PublishLogs" FromRole="Article_PublishLogs" ToRole="Article" />
     <NavigationProperty Name="AspNetUsers" Relationship="LibraryModel.AspNetUsersArticle_PublishLogs" FromRole="Article_PublishLogs" ToRole="AspNetUsers" />
@@ -110,6 +113,9 @@
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
     <NavigationProperty Name="Article_PublishLogs" Relationship="LibraryModel.AspNetUsersArticle_PublishLogs" FromRole="AspNetUsers" ToRole="Article_PublishLogs" />
+    <NavigationProperty Name="Article_ChangeLogs" Relationship="LibraryModel.Article_ChangeLogsAspNetUsers" FromRole="AspNetUsers" ToRole="Article_ChangeLogs" />
+    <NavigationProperty Name="Article_Content" Relationship="LibraryModel.Article_ContentAspNetUsers" FromRole="AspNetUsers" ToRole="Article_Content" />
+    <NavigationProperty Name="Article" Relationship="LibraryModel.ArticleAspNetUsers" FromRole="AspNetUsers" ToRole="Article" />
   </EntityType>
   <EntityType Name="Config">
     <Key>
@@ -340,6 +346,18 @@
       <End Role="Article_PublishLogs" EntitySet="Article_PublishLogs" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <AssociationSet Name="Article_ChangeLogsAspNetUsers" Association="LibraryModel.Article_ChangeLogsAspNetUsers">
+      <End Role="Article_ChangeLogs" EntitySet="Article_ChangeLogs" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="Article_ContentAspNetUsers" Association="LibraryModel.Article_ContentAspNetUsers">
+      <End Role="Article_Content" EntitySet="Article_Content" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="ArticleAspNetUsers" Association="LibraryModel.ArticleAspNetUsers">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="AspNetUsersArticle_PublishLogs">
     <End Type="LibraryModel.Article_PublishLogs" Role="Article_PublishLogs" Multiplicity="*" />
@@ -350,6 +368,42 @@
       </Principal>
       <Dependent Role="Article_PublishLogs">
         <PropertyRef Name="Published_By" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Article_ChangeLogsAspNetUsers">
+    <End Type="LibraryModel.Article_ChangeLogs" Role="Article_ChangeLogs" Multiplicity="*" />
+    <End Type="LibraryModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article_ChangeLogs">
+        <PropertyRef Name="Changed_By" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Article_ContentAspNetUsers">
+    <End Type="LibraryModel.Article_Content" Role="Article_Content" Multiplicity="*" />
+    <End Type="LibraryModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article_Content">
+        <PropertyRef Name="Created_By" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ArticleAspNetUsers">
+    <End Type="LibraryModel.Article" Role="Article" Multiplicity="*" />
+    <End Type="LibraryModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="Created_By" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
