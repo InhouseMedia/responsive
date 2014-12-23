@@ -94,9 +94,7 @@
 		{
 			ViewBag.Title = String.Format(Translate.ChangeButton, Translate.ArticleName);
 
-			ArticleItem ArticleItem = ArticleClass.getArticle(id, false);
-
-			return View("Create", ArticleItem);
+			return View("Create",  ArticleClass.getArticle(id, false));
 		}
     }
 }

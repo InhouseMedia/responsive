@@ -19,6 +19,7 @@ namespace Library.Models
             this.AspNetUserClaims = new HashSet<AspNetUserClaims>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogins>();
             this.AspNetRoles = new HashSet<AspNetRoles>();
+            this.Article_PublishLogs = new HashSet<Article_PublishLogs>();
         }
     
         public string Id { get; set; }
@@ -37,5 +38,6 @@ namespace Library.Models
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
+        public virtual ICollection<Article_PublishLogs> Article_PublishLogs { get; set; }
     }
 }

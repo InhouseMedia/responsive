@@ -25,9 +25,10 @@
 		}
 		//[ForeignKey("Published_By")]
 		public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
-		*/
+		
 		[ForeignKey("Published_By")]
 		public virtual ApplicationUser User { get; set; }
+		 */
 	}
 
 

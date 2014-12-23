@@ -48,14 +48,16 @@
 			using (LibraryEntities db = new LibraryEntities())
 			{
 				List<Article> tempArticles = db.Article.OrderByDescending(x => x.Article_Id).ToList();
-				foreach (Article item in tempArticles) {
+				foreach (Article item in tempArticles)
+				{
 					ArticleList.Add(getArticleListItem(item));
 				}
 			}
 			return ArticleList;
 		}
 
-		public static ArticleItem getArticle(int Article_Id, bool ShowErrorPage) {
+		public static ArticleItem getArticle(int Article_Id, bool ShowErrorPage)
+		{
 			// When retreiving the data for changing this article in the CMS you should not
 			// return the error page. So in that case the error page is disabled:
 			int errorPage = (ShowErrorPage) ? 10 : -1;
@@ -67,24 +69,20 @@
 			// So caching should be turned off when serving a page not found.
 			using (LibraryEntities db = new LibraryEntities())
 			{
-				List<Article> tempArticle = db.Article.Where(
-					x =>
-					(x.Article_Id == Article_Id || x.Article_Id == errorPage) && 
-					x.Active != 0
-				).OrderByDescending(x => x.Article_Id).ToList();
+				Article tempArticle = db
+					.Article.Include("Article_PublishLogs.AspNetUsers")
+					.Where(a => (a.Article_Id == Article_Id || a.Article_Id == errorPage) /*&& a.Active > 0*/)
+					.OrderByDescending(x => x.Article_Id)
+					.FirstOrDefault();
 
-				currentArticleItem = getArticleItem(tempArticle.First());
+				currentArticleItem = getArticleItem(tempArticle);
+
+				return currentArticleItem;
 			}
-			return currentArticleItem;
 		}
-		
+
 		private static ArticleItem getArticleItem(Article item)
 		{
-			ApplicationDbContext context = new ApplicationDbContext();
-			var users = context.Users;
-			
-			//var x = item.Article_PublishLogs.Select(y => y.Published_Date, users.Where(f => f.Id == y.Publis );
-
 			return new ArticleItem
 			{
 				Id = item.Article_Id,
@@ -93,9 +91,11 @@
 				Content = item.Article_Content.OrderBy(x => x.Level).ToList(),
 				Metadata = item.Article_Metadata,
 				PublishLogs = item.Article_PublishLogs,
+				//PublishLogs = getPublishLogs(item.Article_PublishLogs),
 				ChangeLogs = item.Article_ChangeLogs
 			};
 		}
+
 
 		private static ArticleListItem getArticleListItem(Article item)
 		{

@@ -29,6 +29,7 @@
         <AssociationConnector Association="LibraryModel.FK_Navigation_PublishLogs" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryModel.FK_NavigationNavigation_Content" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryModel.AspNetUsersArticle_PublishLogs" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

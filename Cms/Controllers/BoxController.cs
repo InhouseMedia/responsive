@@ -9,6 +9,7 @@
 
 	using Library.Classes;
 	using Library.Resources;
+	using Library.Models;
 
 	public class BoxController : Controller
     {
@@ -58,10 +59,10 @@
 		{
 			List<WebGridColumn> columns = new List<WebGridColumn>();
 			columns.Add(new WebGridColumn() { Header = Translate.WebgridPublishedDate, ColumnName = "Published_Date", CanSort = true, Format = item => String.Format("{0:g}",item["Published_Date"]) });
-			columns.Add(new WebGridColumn() { Header = Translate.WebgridPublishedBy, ColumnName = "Published_By", CanSort = true });
+			columns.Add(new WebGridColumn() { Header = Translate.WebgridPublishedBy, ColumnName = "AspNetUsers.UserName", CanSort = true });
 
 			ViewBag.Columns = columns;
-
+	
 			return View(model.PublishLogs);
 		}
 
