@@ -23,6 +23,9 @@ namespace Library.Models
             this.Article_ChangeLogs = new HashSet<Article_ChangeLogs>();
             this.Article_Content = new HashSet<Article_Content>();
             this.Article = new HashSet<Article>();
+            this.Navigation = new HashSet<Navigation>();
+            this.Navigation_ChangeLogs = new HashSet<Navigation_ChangeLogs>();
+            this.Navigation_PublishLogs = new HashSet<Navigation_PublishLogs>();
         }
     
         public string Id { get; set; }
@@ -45,5 +48,8 @@ namespace Library.Models
         public virtual ICollection<Article_ChangeLogs> Article_ChangeLogs { get; set; }
         public virtual ICollection<Article_Content> Article_Content { get; set; }
         public virtual ICollection<Article> Article { get; set; }
+        public virtual ICollection<Navigation> Navigation { get; set; }
+        public virtual ICollection<Navigation_ChangeLogs> Navigation_ChangeLogs { get; set; }
+        public virtual ICollection<Navigation_PublishLogs> Navigation_PublishLogs { get; set; }
     }
 }

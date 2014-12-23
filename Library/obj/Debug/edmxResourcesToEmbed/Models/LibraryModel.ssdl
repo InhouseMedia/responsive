@@ -76,6 +76,18 @@
       <End Role="Article" EntitySet="Article" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <AssociationSet Name="NavigationAspNetUsers" Association="LibraryModel.Store.NavigationAspNetUsers">
+      <End Role="Navigation" EntitySet="Navigation" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="Navigation_ChangeLogsAspNetUsers" Association="LibraryModel.Store.Navigation_ChangeLogsAspNetUsers">
+      <End Role="Navigation_ChangeLogs" EntitySet="Navigation_ChangeLogs" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="Navigation_PublishLogsAspNetUsers" Association="LibraryModel.Store.Navigation_PublishLogsAspNetUsers">
+      <End Role="Navigation_PublishLogs" EntitySet="Navigation_PublishLogs" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Article">
     <Key>
@@ -189,7 +201,7 @@
     <Property Name="Level" Type="int" Nullable="false" />
     <Property Name="Priority" Type="float" Nullable="false" DefaultValue="0.5" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
-    <Property Name="Created_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Created_By" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="Creation_Date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Navigation_ChangeLogs">
@@ -198,7 +210,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Navigation_Id" Type="int" Nullable="true" />
-    <Property Name="Changed_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Changed_By" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="Changed_Date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Navigation_Content">
@@ -217,7 +229,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Navigation_Id" Type="int" Nullable="true" />
-    <Property Name="Published_By" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Published_By" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="Published_Date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetUserRoles">
@@ -385,6 +397,42 @@
       </Principal>
       <Dependent Role="Article">
         <PropertyRef Name="Created_By" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NavigationAspNetUsers">
+    <End Role="Navigation" Type="LibraryModel.Store.Navigation" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="LibraryModel.Store.AspNetUsers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Navigation">
+        <PropertyRef Name="Created_By" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Navigation_ChangeLogsAspNetUsers">
+    <End Role="Navigation_ChangeLogs" Type="LibraryModel.Store.Navigation_ChangeLogs" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="LibraryModel.Store.AspNetUsers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Navigation_ChangeLogs">
+        <PropertyRef Name="Changed_By" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Navigation_PublishLogsAspNetUsers">
+    <End Role="Navigation_PublishLogs" Type="LibraryModel.Store.Navigation_PublishLogs" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="LibraryModel.Store.AspNetUsers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Navigation_PublishLogs">
+        <PropertyRef Name="Published_By" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

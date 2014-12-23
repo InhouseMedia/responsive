@@ -34,5 +34,6 @@ namespace Library.Models
         public virtual ICollection<Navigation_ChangeLogs> Navigation_ChangeLogs { get; set; }
         public virtual ICollection<Navigation_PublishLogs> Navigation_PublishLogs { get; set; }
         public virtual ICollection<Navigation_Content> Navigation_Content { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

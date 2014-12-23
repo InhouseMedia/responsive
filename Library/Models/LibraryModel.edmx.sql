@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/23/2014 23:20:15
+-- Date Created: 12/23/2014 23:45:32
 -- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Library\Models\LibraryModel.edmx
 -- --------------------------------------------------
 
@@ -49,6 +49,18 @@ IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetRoles]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetUsers]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetUsers];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AspNetUsersArticle_PublishLogs]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Article_PublishLogs] DROP CONSTRAINT [FK_AspNetUsersArticle_PublishLogs];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Article_ChangeLogsAspNetUsers]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Article_ChangeLogs] DROP CONSTRAINT [FK_Article_ChangeLogsAspNetUsers];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Article_ContentAspNetUsers]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Article_Content] DROP CONSTRAINT [FK_Article_ContentAspNetUsers];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ArticleAspNetUsers]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Article] DROP CONSTRAINT [FK_ArticleAspNetUsers];
 GO
 
 -- --------------------------------------------------
@@ -213,7 +225,7 @@ CREATE TABLE [dbo].[Navigation] (
     [Level] int  NOT NULL  ,
     [Priority] float  NOT NULL DEFAULT 0.5 ,
     [Active] tinyint  NOT NULL  ,
-    [Created_By] nvarchar(max)  NOT NULL  ,
+    [Created_By] nvarchar(128)  NOT NULL  ,
     [Creation_Date] datetime  NOT NULL  
 );
 GO
@@ -222,7 +234,7 @@ GO
 CREATE TABLE [dbo].[Navigation_ChangeLogs] (
     [Id] int IDENTITY(1,1) NOT NULL  ,
     [Navigation_Id] int  NULL  ,
-    [Changed_By] nvarchar(max)  NOT NULL  ,
+    [Changed_By] nvarchar(128)  NOT NULL  ,
     [Changed_Date] datetime  NOT NULL  
 );
 GO
@@ -241,7 +253,7 @@ GO
 CREATE TABLE [dbo].[Navigation_PublishLogs] (
     [Id] int IDENTITY(1,1) NOT NULL  ,
     [Navigation_Id] int  NULL  ,
-    [Published_By] nvarchar(max)  NOT NULL  ,
+    [Published_By] nvarchar(128)  NOT NULL  ,
     [Published_Date] datetime  NOT NULL  
 );
 GO
@@ -568,6 +580,51 @@ GO
 CREATE INDEX [IX_FK_ArticleAspNetUsers]
 ON [dbo].[Article]
     ([Created_By]);
+GO
+
+-- Creating foreign key on [Created_By] in table 'Navigation'
+ALTER TABLE [dbo].[Navigation]
+ADD CONSTRAINT [FK_NavigationAspNetUsers]
+    FOREIGN KEY ([Created_By])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_NavigationAspNetUsers'
+CREATE INDEX [IX_FK_NavigationAspNetUsers]
+ON [dbo].[Navigation]
+    ([Created_By]);
+GO
+
+-- Creating foreign key on [Changed_By] in table 'Navigation_ChangeLogs'
+ALTER TABLE [dbo].[Navigation_ChangeLogs]
+ADD CONSTRAINT [FK_Navigation_ChangeLogsAspNetUsers]
+    FOREIGN KEY ([Changed_By])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Navigation_ChangeLogsAspNetUsers'
+CREATE INDEX [IX_FK_Navigation_ChangeLogsAspNetUsers]
+ON [dbo].[Navigation_ChangeLogs]
+    ([Changed_By]);
+GO
+
+-- Creating foreign key on [Published_By] in table 'Navigation_PublishLogs'
+ALTER TABLE [dbo].[Navigation_PublishLogs]
+ADD CONSTRAINT [FK_Navigation_PublishLogsAspNetUsers]
+    FOREIGN KEY ([Published_By])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Navigation_PublishLogsAspNetUsers'
+CREATE INDEX [IX_FK_Navigation_PublishLogsAspNetUsers]
+ON [dbo].[Navigation_PublishLogs]
+    ([Published_By]);
 GO
 
 -- --------------------------------------------------

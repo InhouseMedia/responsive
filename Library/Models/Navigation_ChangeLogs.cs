@@ -20,5 +20,6 @@ namespace Library.Models
         public System.DateTime Changed_Date { get; set; }
     
         public virtual Navigation Navigation { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

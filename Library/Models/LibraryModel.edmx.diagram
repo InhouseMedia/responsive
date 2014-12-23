@@ -33,6 +33,9 @@
         <AssociationConnector Association="LibraryModel.Article_ChangeLogsAspNetUsers" />
         <AssociationConnector Association="LibraryModel.Article_ContentAspNetUsers" />
         <AssociationConnector Association="LibraryModel.ArticleAspNetUsers" />
+        <AssociationConnector Association="LibraryModel.NavigationAspNetUsers" />
+        <AssociationConnector Association="LibraryModel.Navigation_ChangeLogsAspNetUsers" />
+        <AssociationConnector Association="LibraryModel.Navigation_PublishLogsAspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
