@@ -69,7 +69,12 @@
 		// GET: Box/Actions
 		public ActionResult Actions()
 		{
-			return View();
+			string[] articleActions = ConfigClass.Settings.controllers.article.actions;
+			
+			List<WebGridColumn> columns = new List<WebGridColumn>();
+			columns.Add(new WebGridColumn() { Header = Translate.WebgridType, ColumnName = "ActionName", Format = item => item, CanSort = true });
+
+			return View(articleActions);
 		}
 
     }

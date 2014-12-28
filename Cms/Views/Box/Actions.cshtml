@@ -1,16 +1,36 @@
-﻿@{Layout = null;}
+﻿@using Library.Helpers
+@using Library.Resources
+@model string[]
+@{Layout = null;
+var grid = new WebGrid(
+		  source: Model,
+		  rowsPerPage: 10,
+		  canPage: true,
+		  canSort: false,
+		  defaultSort: "ActionName",
+		  sortFieldName: "ActionName",
+		  sortDirectionFieldName: "DESC"
+	  );
+}
 <div class="panel panel-primary">
-	<div class="panel-heading" role="tab" id="headingActions">
+	<div class="panel-heading" role="tab" id="headingActions" data-toggle="collapse" data-parent="#accordion" data-target="#collapseActions">
 		<h4 class="panel-title">
-			<a data-toggle="collapse" data-parent="#accordion" href="#collapseActions" aria-expanded="true" aria-controls="collapseActions">
-				Content boxes
+			<a href="#collapseActions" aria-expanded="true" aria-controls="collapseActions">
+				@Translate.ContentItemsTitle
 			</a>
 		</h4>
 	</div>
 	<div id="collapseActions" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingActions">
-		<div class="panel-body">
-			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-		</div>
+		@if (grid.TotalRowCount > 0)
+		{
+			@grid.GetHtml(
+			tableStyle: "table table-striped table-hover",
+				headerStyle: "head",
+				alternatingRowStyle: "alt",
+						columns: grid.Columns(grid.Column(Translate.WebgridType, format: item => item))
+			)
+		}
 	</div>
 </div>
+
 

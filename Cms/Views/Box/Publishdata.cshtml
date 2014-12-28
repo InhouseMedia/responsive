@@ -5,7 +5,7 @@
 @{Layout = null;
   var grid = new WebGrid(
 			source: Model,
-			rowsPerPage: 25,
+			rowsPerPage: 10,
 			canPage: true,
 			canSort: false,
 			defaultSort: "Published_Date",
@@ -14,9 +14,9 @@
 		);
 }
 <div class="panel panel-primary">
-	<div class="panel-heading" role="tab" id="headingPublishdata">
+	<div class="panel-heading" role="tab" id="headingPublishdata" data-toggle="collapse" data-parent="#accordion" data-target="#collapsePublishdata">
 		<h4 class="panel-title">
-			<a data-toggle="collapse" data-parent="#accordion" href="#collapsePublishdata" aria-expanded="true" aria-controls="collapsePublishdata">
+			<a href="#collapsePublishdata" aria-expanded="true" aria-controls="collapsePublishdata">
 				@Translate.PublishInformation
 			</a>
 		</h4>

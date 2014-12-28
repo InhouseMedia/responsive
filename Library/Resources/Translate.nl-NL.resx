@@ -252,4 +252,10 @@
   <data name="PublishOnLabel" xml:space="preserve">
     <value>Publiceer op</value>
   </data>
+  <data name="ContentItemsTitle" xml:space="preserve">
+    <value>Content types</value>
+  </data>
+  <data name="WebgridType" xml:space="preserve">
+    <value>Type</value>
+  </data>
 </root>

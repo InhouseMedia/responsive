@@ -106,6 +106,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Content items.
+        /// </summary>
+        public static string ContentItemsTitle {
+            get {
+                return ResourceManager.GetString("ContentItemsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a new {0}.
         /// </summary>
         public static string CreateButton {
@@ -498,6 +507,15 @@ namespace Library.Resources {
         public static string WebgridTitle {
             get {
                 return ResourceManager.GetString("WebgridTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string WebgridType {
+            get {
+                return ResourceManager.GetString("WebgridType", resourceCulture);
             }
         }
     }

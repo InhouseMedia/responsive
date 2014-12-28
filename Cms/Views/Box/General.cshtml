@@ -3,9 +3,9 @@
 @{Layout = null;}
 @model Library.Classes.ArticleItem
 <div class="panel panel-primary">
-	<div class="panel-heading" role="tab" id="headingGeneral">
+	<div class="panel-heading" role="tab" id="headingGeneral" data-toggle="collapse" data-parent="#accordion" data-target="#collapseGeneral">
 		<h4 class="panel-title">
-			<a data-toggle="collapse" data-parent="#accordion" href="#collapseGeneral" aria-expanded="true" aria-controls="collapseGeneral">
+			<a href="#collapseGeneral" aria-expanded="true" aria-controls="collapseGeneral">
 				@*String.Format(Translate.CreateButton, Translate.ArticleName)*@
 				test
 			</a>
