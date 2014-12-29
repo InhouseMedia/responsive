@@ -13,9 +13,9 @@
 html{overflow-y:scroll;}
 
 //table.table thead tr.head th,
-table.table tbody td.text-center{text-align:center;}
-
 table.table thead tr.head th:first-child{text-align:left;}
+
+table.table tbody td.text-center{text-align:center;}
 
 .panel-heading {
 	cursor: pointer;
@@ -58,6 +58,9 @@ table.table thead tr.head th:first-child{text-align:left;}
 	}
 }
 
+
+.has-feedback .form-control{padding-right:inherit;}
+
 .form-control-feedback {
 
 	&.text-danger {
@@ -73,6 +76,7 @@ table.table thead tr.head th:first-child{text-align:left;}
 		}
 	}
 }
+
 
 .has-error .form-control-feedback.text-danger{display:block;}
 

@@ -16,3 +16,4 @@
 /// <reference path="locale/de.js" />
 /// <reference path="locale/es.js" />
 /// <reference path="locale/it.js" />
+/// <reference path="site/article.js" />

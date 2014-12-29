@@ -6,8 +6,7 @@
 	<div class="panel-heading" role="tab" id="headingGeneral" data-toggle="collapse" data-parent="#accordion" data-target="#collapseGeneral">
 		<h4 class="panel-title">
 			<a href="#collapseGeneral" aria-expanded="true" aria-controls="collapseGeneral">
-				@*String.Format(Translate.CreateButton, Translate.ArticleName)*@
-				test
+				@String.Format(Translate.CreateButton, Translate.ArticleName)
 			</a>
 		</h4>
 	</div>
@@ -17,14 +16,16 @@
 			{
 				<div class=" form-group has-feedback">
 					<div class="col-md-12">
-						@*@Html.BootstrapEditorFor(m => m.Title, new {label = Translate.WebgridTitle})*@
+						@*Html.BootstrapEditorFor(m => m.Content, new {label = Translate.WebgridTitle})*@	
 						@Html.LabelFor(m => m.CreationDate)
-						@Html.NameFor(m => m.CreationDate)
+						@Html.ValueFor(m => m.CreationDate)
+					</div>
+					<div class="col-md-12">
+						@Html.LabelFor(m => m.CreatedBy)
+						@Html.ValueFor(m => m.AspNetUsers.UserName)
 					</div>
 				</div>
 			}
-			
-
 		</div>
 	</div>
 </div>

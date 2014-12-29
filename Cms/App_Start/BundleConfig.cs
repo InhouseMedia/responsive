@@ -68,6 +68,8 @@
 					  "~/Scripts/Locale/*.js",
 					  "~/Scripts/bootstrap-datetimepicker.js"));
 
+			bundles.Add(new ScriptBundle("~/bundles/article").Include("~/Scripts/Site/article.js"));
+
 			bundles.Add(new ScriptBundle("~/bundles/roles").Include("~/Scripts/Site/roles.js"));
 
 			// Use the development version of Modernizr to develop with and learn from. Then, when you're

@@ -7,17 +7,22 @@
 	using System.Web.Mvc;
 
 	using Library.Models;
+	using Library.Resources;
 
 	public class ArticleItem
 	{
 		public int Id { get; set; }
 		public int Active { get; set; }
 		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:g}")]
+		[Display(Name = "WebgridCreationDate", ResourceType = typeof(Translate))]
 		public DateTime CreationDate { get; set; }
+		[Display(Name = "WebgridCreatedBy", ResourceType = typeof(Translate))]
+		public string CreatedBy { get; set; }
 		public ICollection<Article_Content> Content { get; set; }
 		public ICollection<Article_Metadata> Metadata { get; set; }
 		public ICollection<Article_PublishLogs> PublishLogs { get; set; }
 		public ICollection<Article_ChangeLogs> ChangeLogs { get; set; }
+		public AspNetUsers AspNetUsers { get; set; }
 	}
 
 	public class ArticleListItem
@@ -94,6 +99,7 @@
 				Content = item.Article_Content.OrderBy(x => x.Level).ToList(),
 				Metadata = item.Article_Metadata,
 				PublishLogs = item.Article_PublishLogs,
+				AspNetUsers = item.AspNetUsers,
 				//PublishLogs = getPublishLogs(item.Article_PublishLogs),
 				ChangeLogs = item.Article_ChangeLogs
 			};
