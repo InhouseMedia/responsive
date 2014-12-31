@@ -24,12 +24,11 @@ var grid = new WebGrid(
 		@if (grid.TotalRowCount > 0)
 		{
 			@grid.GetHtml(
-			tableStyle: "table table-striped table-hover table-drag",
+				tableStyle: "table table-striped table-hover table-drag",
 				headerStyle: "head",
 				alternatingRowStyle: "alt",
-						columns: grid.Columns(grid.Column(Translate.WebgridType, format: item => item))
+				columns: grid.Columns(grid.Column(Translate.WebgridType, format: item => item))
 			)
 		}
 	</div>
 </div>
-

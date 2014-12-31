@@ -110,7 +110,10 @@ function windowLoad() {
 
 	// Setup datetime picker
 	var newDate = new Date().getTime() - 3600000;
-	$('.input-group.date').datetimepicker({minDate: new Date(newDate)});
+	$('.input-group.date').datetimepicker({
+		minDate: new Date(newDate),
+		widgetParent : 'body'
+	});
 	 
 	console.log("load");
 }
