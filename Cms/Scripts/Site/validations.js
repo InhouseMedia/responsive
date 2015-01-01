@@ -112,7 +112,9 @@ function windowLoad() {
 	var newDate = new Date().getTime() - 3600000;
 	$('.input-group.date').datetimepicker({
 		minDate: new Date(newDate),
-		widgetParent : 'body'
+		widgetParent: 'body',
+		language: Locale
+
 	});
 	 
 	console.log("load");

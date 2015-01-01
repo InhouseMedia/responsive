@@ -1,6 +1,8 @@
 ﻿@using Library.Classes
 @using Library.Resources
-@{var Language = ConfigClass.Settings.language.locale.First().Split('-').First();}<!DOCTYPE html>
+@{
+	var Locale = ConfigClass.Settings.language.locale.First();
+	var Language = Locale.Split('-').First();}<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" lang="@Language" xml:lang="@Language">
 	<head>
 		<meta charset="utf-8" />
@@ -24,6 +26,7 @@
 
 		<link rel="canonical" href="@ViewBag.NavigationUrl" />
 
+		<script type="text/javascript">var Locale = '@Locale';</script>
 		<script src="~/bundles/resources" type="text/javascript"></script>
 		@Scripts.Render("~/bundles/modernizr")
 		@Styles.Render("~/bundles/css")
