@@ -12,8 +12,9 @@
 
 html{overflow-y:scroll;}
 
+textarea{width:100%; min-height:250px;}
 //Just for test
-.col-md-8{border:1px solid red; min-height:300px;}
+.col-md-8{ min-height:300px;}
 
 
 table.table thead tr.head th:first-child{text-align:left;}
@@ -22,24 +23,24 @@ table.table tbody td.text-center{text-align:center;}
 
 table.table-drag tbody tr{cursor: move;}
 
-.ui-sortable-helper{
-	background-color: @table-bg-hover;
-	border:1px solid @table-border-color; 
-	overflow:hidden;
-	opacity:0.8;
-	td{
-		background-color:transparent;
-		border:0px!important;
-		&:hover{
-			background-color:transparent;
-		}
-	}
+.highlight{
+	box-sizing:border-box;
+	border:2px dashed @panel-primary-heading-bg;
+	.border-radius(5px)
 }
 
 .panel-heading {
 	cursor: pointer;
 
 	a:hover {text-decoration:none;}
+}
+
+.ui-sortable-helper{
+	opacity:0.8;
+	border-color:@panel-primary-heading-bg;
+	.box-shadow(0 3px 9px rgba(0,0,0,.5));
+	
+	.panel-heading{cursor:n-resize!important;}
 }
 
 .body-content{margin-top:60px;}
@@ -49,7 +50,7 @@ table.table-drag tbody tr{cursor: move;}
 
 	.progress{
 		height:3px;
-		border-radius:0px;
+		.border-radius(0px);
 		margin-bottom:0px;
 	}
 

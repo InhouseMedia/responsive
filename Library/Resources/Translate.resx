@@ -270,4 +270,7 @@
   <data name="WebgridType" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="ArticleText" xml:space="preserve">
+    <value>Content</value>
+  </data>
 </root>

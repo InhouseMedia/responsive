@@ -42,6 +42,9 @@
 
 	public class Article_Content_Datanotation
 	{
+		[Display(Name = "ArticleText", ResourceType = typeof(Translate))]
+		public string Text;
+
 		//[Range(0, 4)]
 		//public Nullable<decimal> Grade;
 	}
@@ -63,8 +66,8 @@
 	[MetadataType(typeof(Article_Metadata_Datanotation))]
 	public partial class Article_Metadata { }
 
-	//[MetadataType(typeof(Article_Content_Datanotation))]
-	//public partial class Article_Content { }
+	[MetadataType(typeof(Article_Content_Datanotation))]
+	public partial class Article_Content { }
 
 	[MetadataType(typeof(Article_PublishLogs_Datanotation))]
 	public partial class Article_PublishLogs { }

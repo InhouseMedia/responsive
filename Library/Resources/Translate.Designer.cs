@@ -79,6 +79,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Content.
+        /// </summary>
+        public static string ArticleText {
+            get {
+                return ResourceManager.GetString("ArticleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change the {0}.
         /// </summary>
         public static string ChangeButton {

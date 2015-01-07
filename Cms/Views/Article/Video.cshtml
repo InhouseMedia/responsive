@@ -1,0 +1,23 @@
+﻿@using Library.Helpers
+@using Library.Resources
+@{Layout = null;}
+@model Library.Models.Article_Content
+
+<div class="panel panel-default">
+	<div class="panel-heading" role="tab" id="headingVideo_@Model.Id" data-toggle="collapse" data-target="#collapseVideo_@Model.Id">
+		<h4 class="panel-title">
+			<a href="#collapseVideo_@Model.Id" aria-expanded="true" aria-controls="collapseVideo_@Model.Id">
+				@*Translate.ContentItemsTitle*@
+				@Model.Action
+			</a>
+		</h4>
+	</div>
+	<div id="collapseVideo_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingVideo_@Model.Id">
+		<div class="panel-body form-horizontal">
+			@Html.BootstrapEditorFor(m => m.Title, new { Label = true })
+
+			@Html.LabelFor(m => m.Text)
+			@Html.TextAreaFor(m => m.Text)
+		</div>
+	</div>
+</div>

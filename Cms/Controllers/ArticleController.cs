@@ -7,6 +7,7 @@
 	using System.Web.Mvc;
 
 	using Library.Classes;
+	using Library.Models;
 	using Library.Resources;
 
 	[Authorize]
@@ -96,5 +97,21 @@
 
 			return View("Create",  ArticleClass.getArticle(id, false));
 		}
+
+		// GET: Article - Text
+		public ActionResult Text(Article_Content content)
+		{
+
+			return View(content);
+		}
+
+		// GET: Article - Video
+		public ActionResult Video(Article_Content content)
+		{
+
+			return View(content);
+		}
+
+
     }
 }

@@ -66,7 +66,8 @@
 					  "~/Scripts/respond.js",
 					  "~/Scripts/moment.js",
 					  "~/Scripts/Locale/*.js",
-					  "~/Scripts/bootstrap-datetimepicker.js"));
+					  "~/Scripts/bootstrap-datetimepicker.js",
+					  "~/Scripts/Site/common.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/article").Include("~/Scripts/Site/article.js"));
 

@@ -7,7 +7,14 @@
 <h2>@ViewBag.Title</h2>
 @model Library.Classes.ArticleItem
 <div class="row">
-	<div class="col-md-8"></div>
+	<div class="col-md-8">
+		<div class="panel-group" id="content" role="tablist" aria-multiselectable="true">
+			@foreach (var item in Model.Content)
+			{
+				@Html.Action(item.Action, item.Controller, item)
+			}
+		</div>
+	</div>
 	<div class="col-md-4">
 		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 

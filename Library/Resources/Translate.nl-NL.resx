@@ -196,7 +196,7 @@
     <value>Stel een nieuw wachtwoord in</value>
   </data>
   <data name="ResetPasswordText" xml:space="preserve">
-    <value>Setl een nieuw wachtwoord in</value>
+    <value>Stel een nieuw wachtwoord in</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Opslaan</value>
@@ -257,5 +257,17 @@
   </data>
   <data name="WebgridType" xml:space="preserve">
     <value>Type</value>
+  </data>
+  <data name="ArticleText" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="WebgridKeywords" xml:space="preserve">
+    <value>Trefwoorden</value>
+  </data>
+  <data name="WebgridMetaDescription" xml:space="preserve">
+    <value>Meta Omschrijving</value>
+  </data>
+  <data name="WebgridMetaTitle" xml:space="preserve">
+    <value>Meta Titel</value>
   </data>
 </root>
