@@ -29,15 +29,18 @@ table.table-drag tbody tr{cursor: move;}
 	.border-radius(5px)
 }
 
-.panel-heading {
-	cursor: pointer;
+.panel {
+	overflow:hidden;
+	.panel-heading {
+		cursor: pointer;
 
-	a:hover {text-decoration:none;}
+		a:hover {text-decoration:none;}
+	}
 }
-
 .ui-sortable-helper{
 	opacity:0.8;
 	border-color:@panel-primary-heading-bg;
+	width:96%!important;
 	.box-shadow(0 3px 9px rgba(0,0,0,.5));
 	
 	.panel-heading{cursor:n-resize!important;}

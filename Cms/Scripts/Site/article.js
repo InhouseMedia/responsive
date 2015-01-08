@@ -23,89 +23,41 @@ function articleReady() {
 	$("#content").sortable(
 		{
 			distance: 10,
-			helper: 'clone',
+			addClasses: false,
 			containment: '#content',
 			connectWith: '#content',
 			receive: function (event, ui) {
 				ui.helper.first().removeAttr('style').removeClass('.ui-sortable-helper'); // undo styling set by jqueryUI
-			}/*,
-			activate: function (event, ui) { console.log('activate', event, ui) },
-			change: function(event, ui){console.log('change', event, ui)},
+			},
 			start: function (event, ui) {
-				console.log('start', event, ui);
-				//console.log(ui.helper.first())
-				var collapse = ui.helper.find('.in');
-				collapse.setStyle({ 'border': '1px solid red' });
-				//console.log(collapse);
-				if (collapse) {
-					//collapse.toggleClass('collapsing');
-				}
-			}*/
+				//todo: can't dragg a collapsed content box directly downwards
+				var panels = $(this).find('.collapse.in');
+
+				var heightList = $(this).find('.panel').map(function (key, item) { return $(item).outerHeight(); });
+				heightList.push(45); // needed when you want to sort when all panels are open
+				var height = Math.min.apply(Math, heightList);
+
+				$(this).find('.ui-sortable-placeholder').css({ 'height':height + 'px' });
+			
+				panels.closest('.panel')
+					.addClass('tempCollapse')
+					.css({ 'height': 'auto' });
+
+				panels.collapse('hide');				
+			},
+			stop: function (event, ui) {
+
+				//console.log(event, ui, this);
+				var panels = $(this).find('.tempCollapse .collapse');
+				panels.collapse('show');
+				panels.closest('.tempCollapse').removeClass('tempCollapse');
+			}
 
 		}
 	).droppable(
 		{
-			activeClass:'highlight'
+			activeClass: 'highlight'
 		}
 	).disableSelection();
 
-	/*
-	$("table.table-drag tbody tr")
-		.draggable({
-			helper: 'clone',
-			revert: true,
-			connectWith: ".col-md-8",
-			appendTo: '.col-md-8',
-			containment: '.row'
-		});
-
-
-	$("#content").sortable({
-		connectWith: "#content",
-		//items: "> tr:not(:first)",
-		appendTo: '.col-md-8',
-		containment: '.col-md-8',
-		//helper: 'clone',
-
-		zIndex: 999990//,
-		//start: function () { $tabs.addClass("dragging") },
-		//stop: function () { $tabs.removeClass("dragging") }
-	})
-		.disableSelection()
-		.droppable(
-		{
-			accept: function (d) {
-				// Accept only the components we want  
-				if (d.hasClass("ui-draggable")) {
-					return true;
-				}
-			},
-
-			drop: function (event, ui) {
-				// Create similar shape as the original	
-				//debugger;
-				$droppedShape = ui.helper.clone();
-				$container = $('#content');
-				$droppedShape.appendTo($container);
-				$droppedShape.show();
-
-				// Remove the helper
-				ui.helper.remove();
-			}
-		}
-
-		);
-	*/
-	/*
-	$(".col-md-8").droppable({
-		accept: "table.table-drag tbody tr",
-		hoverClass: "ui-state-hover",
-		over: function (event, ui) {
-			var $item = $(this);
-			$item.find("a").tab("show");
-		},
-		drop: function (event, ui) {
-			return false;
-		}
-	});*/
 }
