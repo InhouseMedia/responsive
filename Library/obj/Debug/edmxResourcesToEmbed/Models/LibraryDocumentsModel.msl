@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LibraryDocumentsModelStoreContainer" CdmEntityContainer="DocumentEntities">
+    <EntitySetMapping Name="DocumentsView">
+      <EntityTypeMapping TypeName="LibraryDocumentsModel.DocumentsView">
+        <MappingFragment StoreEntitySet="DocumentsView">
+          <ScalarProperty Name="stream_id" ColumnName="stream_id" />
+          <ScalarProperty Name="file_stream" ColumnName="file_stream" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="is_directory" ColumnName="is_directory" />
+          <ScalarProperty Name="unc_path" ColumnName="unc_path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="LibraryDocumentsModel.DocumentsView">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="LibraryDocumentsModel.Store.Documents_Add">
+            <ScalarProperty Name="file_stream" ParameterName="filedata" />
+            <ScalarProperty Name="name" ParameterName="filename" />
+          </InsertFunction>
+          <DeleteFunction FunctionName="LibraryDocumentsModel.Store.Documents_Del">
+            <ScalarProperty Name="stream_id" ParameterName="docId" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Documents_Add" FunctionName="LibraryDocumentsModel.Store.Documents_Add">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LibraryDocumentsModel.Documents_Add_Result">
+          <ScalarProperty Name="stream_id" ColumnName="stream_id" />
+          <ScalarProperty Name="unc_path" ColumnName="unc_path" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Documents_Del" FunctionName="LibraryDocumentsModel.Store.Documents_Del" />
+  </EntityContainerMapping>
+</Mapping>

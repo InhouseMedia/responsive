@@ -43,16 +43,7 @@
 		public ActionResult Video(Article_Content content)
 		{
 			
-			/*
-			var newDocument = new DocumentsView();
-				newDocument.file_stream = System.IO.File.ReadAllBytes("C:\\Temp\\IMG_3401.JPG");
-				newDocument.name = Path.GetFileName("somefile.txt");
-
-				var ctx1 = new ResponsiveDocuments();
-					ctx1.DocumentsView.Add(newDocument);
-					ctx1.SaveChanges();
-			*/
-			var ctx = new ResponsiveDocuments();
+			var ctx = new DocumentEntities();
 			
 				ctx.DocumentsView.Load();
 			

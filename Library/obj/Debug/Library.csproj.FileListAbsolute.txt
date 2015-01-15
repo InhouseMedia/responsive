@@ -88,7 +88,6 @@ C:\Users\rklank65\Documents\Solutions\Responsive\Library\bin\Debug\WebMatrix.Web
 C:\Users\rklank65\Documents\Solutions\Responsive\Library\bin\Debug\Org.Mentalis.Security.Cryptography.xml
 C:\Users\rklank65\Documents\Solutions\Responsive\Library\bin\Debug\Mono.Math.xml
 C:\Users\rklank65\Documents\Solutions\Responsive\Library\obj\Debug\Library.csproj.App.config
-C:\Users\rklank65\Documents\Solutions\Responsive\Library\obj\Debug\Library.csprojResolveAssemblyReference.cache
 C:\Users\rklank65\Documents\Solutions\Responsive\Library\obj\Debug\Library.Resources.Translate.resources
 C:\Users\rklank65\Documents\Solutions\Responsive\Library\obj\Debug\Library.Resources.Translate.nl-NL.resources
 C:\Users\rklank65\Documents\Solutions\Responsive\Library\obj\Debug\Library.csproj.GenerateResource.Cache
