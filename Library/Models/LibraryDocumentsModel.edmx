@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LibraryDocumentsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Library.dbo.DocumentsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DocumentsView">
+          <Key>
+            <PropertyRef Name="stream_id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="is_directory" />
+          </Key>
+          <Property Name="stream_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="file_stream" Type="varbinary(max)" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="is_directory" Type="bit" Nullable="false" />
+          <Property Name="unc_path" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <Function Name="Documents_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="filename" Type="nvarchar" Mode="In" />
+          <Parameter Name="filedata" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="Documents_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="docId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <EntityContainer Name="LibraryDocumentsModelStoreContainer">
+          <EntitySet Name="DocumentsView" EntityType="Self.DocumentsView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DocumentsView].[stream_id] AS [stream_id], 
+    [DocumentsView].[file_stream] AS [file_stream], 
+    [DocumentsView].[name] AS [name], 
+    [DocumentsView].[is_directory] AS [is_directory], 
+    [DocumentsView].[unc_path] AS [unc_path]
+    FROM [dbo].[DocumentsView] AS [DocumentsView]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LibraryDocumentsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DocumentsView">
+          <Key>
+            <PropertyRef Name="stream_id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="is_directory" />
+          </Key>
+          <Property Name="stream_id" Type="Guid" Nullable="false" />
+          <Property Name="file_stream" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="is_directory" Type="Boolean" Nullable="false" />
+          <Property Name="unc_path" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="DocumentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DocumentsView" EntityType="Self.DocumentsView" />
+          <FunctionImport Name="Documents_Add" ReturnType="Collection(LibraryDocumentsModel.Documents_Add_Result)">
+            <Parameter Name="filename" Mode="In" Type="String" />
+            <Parameter Name="filedata" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="Documents_Del">
+          <Parameter Name="docId" Mode="In" Type="Guid" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Documents_Add_Result">
+          <Property Type="Guid" Name="stream_id" Nullable="false" />
+          <Property Type="String" Name="unc_path" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LibraryDocumentsModelStoreContainer" CdmEntityContainer="DocumentEntities">
+          <EntitySetMapping Name="DocumentsView">
+            <EntityTypeMapping TypeName="LibraryDocumentsModel.DocumentsView">
+              <MappingFragment StoreEntitySet="DocumentsView">
+                <ScalarProperty Name="stream_id" ColumnName="stream_id" />
+                <ScalarProperty Name="file_stream" ColumnName="file_stream" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="is_directory" ColumnName="is_directory" />
+                <ScalarProperty Name="unc_path" ColumnName="unc_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="LibraryDocumentsModel.DocumentsView">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="LibraryDocumentsModel.Store.Documents_Add" >
+                  <ScalarProperty Name="file_stream" ParameterName="filedata" />
+                  <ScalarProperty Name="name" ParameterName="filename" />
+                </InsertFunction>
+                <DeleteFunction FunctionName="LibraryDocumentsModel.Store.Documents_Del" >
+                  <ScalarProperty Name="stream_id" ParameterName="docId" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Documents_Add" FunctionName="LibraryDocumentsModel.Store.Documents_Add">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LibraryDocumentsModel.Documents_Add_Result">
+                <ScalarProperty Name="stream_id" ColumnName="stream_id" />
+                <ScalarProperty Name="unc_path" ColumnName="unc_path" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Documents_Del" FunctionName="LibraryDocumentsModel.Store.Documents_Del" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
