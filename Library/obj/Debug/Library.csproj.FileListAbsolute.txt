@@ -94,3 +94,4 @@ C:\Users\rklank65\Documents\Solutions\Responsive\Library\obj\Debug\Library.cspro
 C:\Users\rklank65\Documents\Solutions\Responsive\Library\obj\Debug\nl-NL\Library.resources.dll
 C:\Users\rklank65\Documents\Solutions\Responsive\Library\obj\Debug\Library.dll
 C:\Users\rklank65\Documents\Solutions\Responsive\Library\obj\Debug\Library.pdb
+C:\Users\rklank65\Documents\Solutions\Responsive\Library\obj\Debug\Library.csprojResolveAssemblyReference.cache
