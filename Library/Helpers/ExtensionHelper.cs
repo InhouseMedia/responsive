@@ -67,7 +67,7 @@
 
 		public static MvcHtmlString BootstrapEditorFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object attributes = null)
 		{
-			bool isError = (htmlHelper.ValidationErrorFor(expression, "has-error") == null)? false: true;
+			bool isError = (htmlHelper.ValidationErrorFor(expression, "has-error") != null);
 
 			object standardObj = new
 			{

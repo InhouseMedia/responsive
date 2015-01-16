@@ -1,6 +1,5 @@
 ﻿namespace Cms
 {
-	using System.Collections.Generic;
 	using System.Web;
 	using System.Web.Optimization;
 	using System.Linq;
@@ -78,9 +77,9 @@
 			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
 						"~/Scripts/modernizr-*"));
 			
-			bundles.Add(new LessBundle("~/bundles/css").Include(
-					"~/Content/bootstrap/bootstrap.less")
-					//.Include("~/Content/Index.less")
+			bundles.Add(new LessBundle("~/bundles/css")
+					//.Include("~/Content/bootstrap/bootstrap.less")
+					.Include("~/Content/Index.less")
 					);
 			
 		}
