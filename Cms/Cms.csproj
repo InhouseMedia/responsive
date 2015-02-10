@@ -208,6 +208,7 @@
     <None Include="BundleTransformer.Configuration.xsd" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\loader.svg" />
+    <Content Include="Content\img\loader2.svg" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />

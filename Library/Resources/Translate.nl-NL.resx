@@ -244,7 +244,7 @@
     <value>Wijzig het {0}</value>
   </data>
   <data name="PublishInformation" xml:space="preserve">
-    <value>Publicatie informatie</value>
+    <value>Publicatie instellingen</value>
   </data>
   <data name="WebgridPublishedBy" xml:space="preserve">
     <value>Publicatie door</value>
@@ -269,5 +269,8 @@
   </data>
   <data name="WebgridMetaTitle" xml:space="preserve">
     <value>Meta Titel</value>
+  </data>
+  <data name="GeneralInformation" xml:space="preserve">
+    <value>Informatie</value>
   </data>
 </root>

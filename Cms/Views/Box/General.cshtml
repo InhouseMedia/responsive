@@ -6,14 +6,15 @@
 	<div class="panel-heading" role="tab" id="headingGeneral" data-toggle="collapse" data-parent="#accordion" data-target="#collapseGeneral">
 		<h4 class="panel-title">
 			<a href="#collapseGeneral" aria-expanded="true" aria-controls="collapseGeneral">
-				@if (Model != null)
+				@Translate.GeneralInformation
+				@*if (Model != null)
 				{
 					@String.Format(Translate.ChangeButton, Translate.ArticleName)
 				}
 				else
 				{
 					@String.Format(Translate.CreateButton, Translate.ArticleName)
-				}
+				}*@
 			</a>
 		</h4>
 	</div>

@@ -4,7 +4,7 @@
 .border-radius(@radius) {
 	border-radius: @radius;
 	-webkit-border-radius: @radius;
-	-moz-border-radius: @radius;
+	-moz-border-radius: @radius;	
 }
 
 @bgColor : #ffffff;
@@ -31,16 +31,54 @@ table.table-drag tbody tr{cursor: move;}
 
 .panel {
 	overflow:hidden;
+	height:auto;
+	.transition(~"height 0.3s ease-in-out");
+			
+	&.tempCollapse{
+		height:39px!important;
+		
+		&:after{
+			background: transparent url('../Content/img/loader2.svg') no-repeat center right;
+			background-size:20px 20px;
+			content:"";
+			display:block;
+			width:0px;
+			height:20px;
+			opacity:0;
+			float: right;
+			vertical-align: middle;
+			text-align: center;
+			margin:-27px 5px 0 0;	
+			.transition(~"width 0.2s ease-in-out 0.3s, opacity 0.5s ease-in-out, margin 0.2s ease-in-out 0.3s");
+		}
+		
+		&.loading{
+
+			&:after{
+				opacity:1;
+				width:20px;
+			}
+		}
+
+
+		.panel-collapse{
+			display:none!important;
+		}
+
+	}
+
 	.panel-heading {
 		cursor: pointer;
 
 		a:hover {text-decoration:none;}
 	}
 }
+
 .ui-sortable-helper{
 	opacity:0.8;
 	border-color:@panel-primary-heading-bg;
 	width:96%!important;
+
 	.box-shadow(0 3px 9px rgba(0,0,0,.5));
 	
 	.panel-heading{cursor:n-resize!important;}

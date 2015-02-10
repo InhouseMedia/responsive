@@ -256,7 +256,7 @@
     <value>Change the {0}</value>
   </data>
   <data name="PublishInformation" xml:space="preserve">
-    <value>Publish information</value>
+    <value>Publish settings</value>
   </data>
   <data name="WebgridPublishedBy" xml:space="preserve">
     <value>Published by</value>
@@ -272,5 +272,8 @@
   </data>
   <data name="ArticleText" xml:space="preserve">
     <value>Content</value>
+  </data>
+  <data name="GeneralInformation" xml:space="preserve">
+    <value>Information</value>
   </data>
 </root>
