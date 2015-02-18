@@ -101,6 +101,7 @@
 		// GET: Article - Text
 		public ActionResult Text(Article_Content content)
 		{
+			if (content.Id == 0) content.Id = new Random().Next(1000) * 1000000;
 
 			return View(content);
 		}
@@ -108,6 +109,7 @@
 		// GET: Article - Video
 		public ActionResult Video(Article_Content content)
 		{
+			if (content.Id == 0) content.Id = new Random().Next(1000) * 1000000;
 
 			return View(content);
 		}
