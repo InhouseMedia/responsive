@@ -273,4 +273,19 @@
   <data name="GeneralInformation" xml:space="preserve">
     <value>Informatie</value>
   </data>
+  <data name="PageVisibility" xml:space="preserve">
+    <value>Zichtbaar voor</value>
+  </data>
+  <data name="PageVisibilityBlocked" xml:space="preserve">
+    <value>Niemand</value>
+  </data>
+  <data name="PageVisibilityLimited" xml:space="preserve">
+    <value>Beperkt</value>
+  </data>
+  <data name="PageVisibilityPublic" xml:space="preserve">
+    <value>Iedereen</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Voorvertoning</value>
+  </data>
 </root>

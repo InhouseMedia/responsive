@@ -7,7 +7,12 @@
 		"googleTranslation": false,
 		"websiteType": "company",
 		"author": "Inhouse Media",
-		"generator": "Inhouse Media"
+		"generator": "Inhouse Media",
+		"visibility": {
+			"PageVisibilityPublic": 1,
+			"PageVisibilityLimited": 2,
+			"PageVisibilityBlocked": 0
+		}
 	},
 	"socialMedia": {
 		"socialMediaTags": false,

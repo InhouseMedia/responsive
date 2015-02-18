@@ -72,6 +72,14 @@
 			public string websiteType { get; set; }
 			public string author { get; set; }
 			public string generator { get; set; }
+			public visibility visibility { get; set; }
+		}
+
+		public class visibility 
+		{
+			public int PageVisibilityPublic { get; set; }
+			public int PageVisibilityLimited { get; set; }
+			public int PageVisibilityBlocked { get; set; }
 		}
 
 		public class Socialmedia
@@ -130,11 +138,5 @@
 			public int Allexcepttopnavigation { get; set; }
 			public int _301Redirect { get; set; }
 		}
-
 	}
-
-
-
-
-
 }

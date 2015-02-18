@@ -1,40 +1,64 @@
-﻿@using Library.Helpers
-@using Library.Resources
-@{Layout = null;}
-@model Library.Classes.ArticleItem
-<div class="panel panel-primary">
-	<div class="panel-heading" role="tab" id="headingGeneral" data-toggle="collapse" data-parent="#accordion" data-target="#collapseGeneral">
-		<h4 class="panel-title">
-			<a href="#collapseGeneral" aria-expanded="true" aria-controls="collapseGeneral">
-				@Translate.GeneralInformation
-				@*if (Model != null)
-				{
-					@String.Format(Translate.ChangeButton, Translate.ArticleName)
-				}
-				else
-				{
-					@String.Format(Translate.CreateButton, Translate.ArticleName)
-				}*@
-			</a>
-		</h4>
-	</div>
-	<div id="collapseGeneral" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingGeneral">
-		<div class="panel-body form-horizontal">
-			@if (Model != null)
-			{
-				<div class=" form-group has-feedback">
-					<div class="col-md-12">
-						@*Html.BootstrapEditorFor(m => m.Content, new {label = Translate.WebgridTitle})*@	
-						@Html.LabelFor(m => m.CreationDate)
-						@Html.ValueFor(m => m.CreationDate)
+﻿@using Library.Resources
+@using Library.Helpers
+@model dynamic
+@{
+	Layout = null;
+	var viewModelCreationDate = Model.Data.CreationDate;
+	var viewModelCreatedBy = Model.Data.CreatedBy;
+	//var viewModelUser = @Model.Data.AspNetUsers.UserName;
+}
+<div id="isolatedGroup">
+	<div class="panel panel-primary">
+		<div class="panel-heading" role="tab" id="headingGeneral" data-toggle="collapse" data-parent="#isolatedGroup" data-target="#collapseGeneral">
+			<h4 class="panel-title">
+				<a href="#collapseGeneral" aria-expanded="true" aria-controls="collapseGeneral">
+					@Translate.GeneralInformation
+				</a>
+			</h4>
+		</div>
+		<div id="collapseGeneral" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingGeneral">
+			<div class="panel-body form-horizontal">
+				<div class="row">
+					<div class="col-md-6">
+						<button class="btn btn-primary btn-block">@Translate.Save</button>
 					</div>
-					<div class="col-md-12">
-						@Html.LabelFor(m => m.CreatedBy)
-						@Html.ValueFor(m => m.AspNetUsers.UserName)
+					<div class="col-md-6">
+						<button class="btn btn-general btn-block">@Translate.Preview</button>
 					</div>
 				</div>
-			}
+				<br />
+				<div class="row">
+					<div class="col-md-12">
+						<label>@Translate.PageVisibility</label>
+						<div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+							@foreach (var item in Model.Visibility)
+							{
+								<label class="btn btn-default @item.Value.Active">
+									<input type="radio" name="@item.Value.Name" id="@item.Value.Name@item.Value.Key" autocomplete="off" checked>@item.Value.Translation
+								</label>
+							}
+						</div>
+					</div>
+				</div>
+				<br />
+				@if (Model != null)
+				{
+					<div class="row">
+						<div class="col-md-12">
+							@*Html.BootstrapEditorFor(m => m.Content, new {label = Translate.WebgridTitle})*@
+							@Html.LabelFor(m => viewModelCreationDate)
+							@Html.ValueFor(m => viewModelCreationDate)
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							@Html.LabelFor(m => viewModelCreatedBy)
+							@Html.ValueFor(m => viewModelCreatedBy)
+						</div>
+					</div>
+				}
+			</div>
 		</div>
 	</div>
+	<div class="panel"></div>
 </div>
-

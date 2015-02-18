@@ -2,7 +2,9 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Dynamic;
 	using System.Reflection;
+	using System.Resources;
 	using System.Linq;
 	using System.Web.Helpers;
 	using System.Web.Mvc;
@@ -45,7 +47,36 @@
 		// GET: Box/General
 		public ActionResult General(ArticleItem model)
 		{
-			return View(model);
+			// ConfigClass for all visibility options
+			var se = ConfigClass.Settings.searchEngines;
+			Type t = typeof(ConfigClass.visibility);
+			var properties = t.GetProperties();
+
+			Dictionary<string, BoxVisibility> items = new Dictionary<string, BoxVisibility>();
+
+			// Get all translations so that we can get the ones for the visibility buttons
+			var manager = new ResourceManager(typeof(Translate));
+
+			foreach (var item in properties)
+			{
+				// Get current visibility value from the ConfigClass
+				int x = (int)item.GetValue(se.visibility);
+
+				BoxVisibility boxObject = new BoxVisibility();
+				boxObject.Active = (x == model.Active) ? "active" : "";
+				boxObject.Name = item.Name;
+				boxObject.Key = x;
+				boxObject.Translation = manager.GetString(item.Name);
+
+				items.Add(manager.GetString(item.Name),boxObject);
+			}
+			
+			// Define the model with multiple object
+			dynamic mymodel = new ExpandoObject();
+			mymodel.Visibility = items;
+			mymodel.Data = model;
+
+			return View(mymodel);
 		}
 
 		// GET: Box/Metadata

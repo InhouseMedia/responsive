@@ -192,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\ArticleClass.cs" />
+    <Compile Include="Classes\BoxClass.cs" />
     <Compile Include="Classes\ConfigClass.cs" />
     <Compile Include="Classes\NavigationClass.cs" />
     <Compile Include="Helpers\AccountHelper.cs" />
