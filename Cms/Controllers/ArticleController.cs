@@ -35,7 +35,7 @@
 			columns.Add(new WebGridColumn() { Header = Translate.WebgridCreationDate, ColumnName = "CreationDate", CanSort = true, Format = item => String.Format("{0:g}", item["CreationDate"]) });
 			columns.Add(new WebGridColumn() { Header = Translate.WebgridChangedDate, ColumnName = "ChangedDate", CanSort = true, Format = item => String.Format("{0:g}", item["ChangedDate"]) });
 			columns.Add(new WebGridColumn() { Header = Translate.WebgridPublishedDate, ColumnName = "PublishedDate", CanSort = true, Format = item => String.Format("{0:g}", item["PublishedDate"]) });
-			columns.Add(new WebGridColumn() { Header = Translate.WebgridActive, ColumnName = "Active", CanSort = true, Style = "text-center", Format = (item) => { return new HtmlString("<i class='" + (item["Active"] > 0 ? "glyphicon glyphicon-ok" : "") + "'></i>"); } });
+			columns.Add(new WebGridColumn() { Header = Translate.WebgridActive, ColumnName = "Active", CanSort = true, Style = "text-center", Format = (item) => { return new HtmlString("<i class='" + (item["Active"] > 0 ? item["Active"] == 2 ? "glyphicon glyphicon-ok disabled" : "glyphicon glyphicon-ok" : "") + "'></i>"); } });
 			columns.Add(new WebGridColumn() { Header = Translate.WebgridKeywords, ColumnName = "HasKeywords", CanSort = true, Style = "text-center", Format = (item) => { return new HtmlString("<i class='" + (item["HasKeyWords"] ? "glyphicon glyphicon-ok" : "") + "'></i>"); } });
 			columns.Add(new WebGridColumn() { Header = Translate.WebgridMetaData, ColumnName = "HasMetadata", CanSort = true, Style = "text-center", Format = (item) => { return new HtmlString("<i class='" + (item["HasMetaData"] ? "glyphicon glyphicon-ok" : "") + "'></i>"); } });
 
