@@ -1,9 +1,6 @@
 ﻿$(document).ready(articleReady);
 
 function articleReady() {
-	console.log('article ready');
-	
-
 	var draggable = $("table.table-drag tbody tr").draggable(
 		{
 			addClasses: false,
@@ -19,7 +16,7 @@ function articleReady() {
 				ui.helper.addClass('loading');
 
 				// Get render action that's been dragged into the content holder
-				$.get('/Article/' + ui.helper.text(), function (item) {
+				$.get('/Shared/EditorTemplates/Article_Content_' + ui.helper.text(), function (item) {
 					this.helper.after($(item));
 					this.helper.remove();
 				}.bind(ui)).error(function (item) {
@@ -32,7 +29,7 @@ function articleReady() {
 	var widget = draggable.data('ui-draggable');
 
 	draggable.dblclick(function(e){
-		widget.trigger('mousedown');
+			widget.trigger('mousedown');
 		}
 	);
 
@@ -66,6 +63,9 @@ function articleReady() {
 				var panels = $(this).find('.tempCollapse .collapse');
 				panels.collapse('show');
 				panels.closest('.tempCollapse').removeClass('tempCollapse');
+				
+				// is used when a new article is created and the content droppable holder is empty 
+				$(this).removeClass('empty');
 			}
 
 		}
@@ -74,7 +74,6 @@ function articleReady() {
 			activeClass: 'highlight'
 		}
 	).disableSelection();
-
 }
 
 function getHelper(text) {
@@ -82,4 +81,34 @@ function getHelper(text) {
 	var header = $('<div>', { 'class': 'panel-heading' }).append(head);
 	var panel = $('<div>', { 'class': 'panel panel-default ui-sortable-helper tempCollapse' }).append(header);
 	return panel;
+}
+
+
+
+
+
+
+// Change the save bar on success
+function onSuccess(ajaxContext) {
+	progressBar.attr("title", "");
+	progressBar.removeClass("progress-bar-striped")
+		.removeClass("active")
+		.removeClass("loading")
+		.addClass("loaded");
+	setTimeout(function () { progressBar.removeClass("loaded") }, 300);
+}
+
+// Change the save bar into an error bar showing a tooltip with the error in it
+function onFailure(ajaxContext) {
+	var errorMessage = $(ajaxContext.responseJSON).get(0).ErrorMessage;
+
+	tooltip.tooltip('enable');
+	tooltip.attr("title", errorMessage)
+		.tooltip('fixTitle');
+
+	progressBar.removeClass("progress-bar-striped")
+		.removeClass("active")
+		.removeClass("loading")
+		.addClass("loaded")
+		.addClass("progress-bar-danger");
 }

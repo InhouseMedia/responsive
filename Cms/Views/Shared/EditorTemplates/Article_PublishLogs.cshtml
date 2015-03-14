@@ -1,0 +1,56 @@
+﻿@using Library.Helpers
+@using Library.Resources
+@using Library.Classes
+@using Library.Models
+@model Article
+@{
+	Layout = null;
+	
+	var grid = new WebGrid(
+		source: Model.Article_PublishLogs,
+		rowsPerPage: 10,
+		canPage: true,
+		canSort: false,
+		defaultSort: "Published_Date DESC",
+		sortFieldName: "Published_Date",
+		sortDirectionFieldName: "DESC"
+	);
+
+	List<WebGridColumn> columns = new List<WebGridColumn>();
+	columns.Add(new WebGridColumn() { Header = Translate.WebgridPublishedDate, ColumnName = "Published_Date", CanSort = true, Format = item => String.Format("{0:g}", item["Published_Date"]) });
+	columns.Add(new WebGridColumn() { Header = Translate.WebgridPublishedBy, ColumnName = "AspNetUsers.UserName", CanSort = true });
+
+	 
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading" role="tab" id="headingPublishdata" data-toggle="collapse" data-parent="#accordion" data-target="#collapsePublishdata">
+		<h4 class="panel-title">
+			<a href="#collapsePublishdata" aria-expanded="true" aria-controls="collapsePublishdata">
+				@Translate.PublishInformation
+			</a>
+		</h4>
+	</div>
+	<div id="collapsePublishdata" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPublishdata">
+		<div class="panel-body">
+			@Html.Label(Translate.PublishOnLabel)
+			<div class='input-group date' data-date-option="language:@ConfigClass.Settings.language.locale.First().Split('-').First()">
+				<input class="form-control" id="PublishLogs__Published_Date" name="Article_Publishlogs[0].Published_Date" placeholder="@String.Format("{0:g}", DateTime.Now)" type="text" value="">
+				@*Html.TextBox("Published_Date","", new { @class = "form-control", @placeholder = String.Format("{0:g}", DateTime.Now) })
+				*@<span class="input-group-addon">
+					<span class="glyphicon glyphicon-calendar"></span>
+				</span>
+			</div>
+		</div>
+		@if (grid.TotalRowCount > 0)
+	{
+		@grid.GetHtml(
+			tableStyle: "table table-striped table-hover",
+				headerStyle: "head",
+				alternatingRowStyle: "alt",
+				columns: columns
+			)
+	}
+	</div>
+</div>
+

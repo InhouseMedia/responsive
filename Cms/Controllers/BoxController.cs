@@ -82,7 +82,7 @@
 		// GET: Box/Metadata
 		public ActionResult Metadata(ArticleItem model)
 		{
-			return View(model.Metadata.FirstOrDefault());
+			return View(model.Metadata);
 		}
 
 		// GET: Box/Publishdata

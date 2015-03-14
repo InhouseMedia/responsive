@@ -288,4 +288,7 @@
   <data name="Preview" xml:space="preserve">
     <value>Voorvertoning</value>
   </data>
+  <data name="ContentEmpty" xml:space="preserve">
+    <value>Er is geen content in dit artikel. Sleep een content type vanuit het rechter blok in dit veld om content toe te voegen.</value>
+  </data>
 </root>

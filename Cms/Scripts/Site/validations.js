@@ -62,12 +62,18 @@ function documentReady () {
 		if (form.find(".has-error").length == 0) {
 			// Use parent for standard modal buttons that are outside the form.
 			form.offsetParent().find("button[type=submit]").addClass("submit");
+	
+			// Add default Publish date to inputfield when empty
+			var pubdate = form.find('[id*=Published_Date]');
+			if (pubdate != null && pubdate.val() == '') {
+				//pubdate.val(pubdate.attr('placeholder'));
+				pubdate.val('1-1-0001 00:00:00');
+			}
 		}
 	});
 
 	// Trigger standard Save button in modal boxes
 	$(".modal button[type=submit]").click(function (item) {
-		console.log('click',this,item);
 		$(this).offsetParent().find('form').submit();
 	});
 
@@ -113,7 +119,7 @@ function windowLoad() {
 	$('.input-group.date').datetimepicker({
 		minDate: new Date(newDate),
 		widgetParent: 'body',
-		language: Locale
+		language: (typeof Locale == 'string')? Locale : 'en-US'
 
 	});
 	 

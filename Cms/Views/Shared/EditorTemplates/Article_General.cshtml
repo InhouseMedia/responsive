@@ -1,0 +1,89 @@
+﻿@using System.Resources
+
+@using Library.Classes
+@using Library.Resources
+@using Library.Helpers
+@using Library.Models
+@model Article
+@{
+	Layout = null;
+
+	// ConfigClass for all visibility options
+	var se = ConfigClass.Settings.searchEngines;
+	Type t = typeof(ConfigClass.visibility);
+	var properties = t.GetProperties();
+
+	Dictionary<string, BoxVisibility> Visibility = new Dictionary<string, BoxVisibility>();
+	
+	// Get all translations so that we can get the ones for the visibility buttons
+	var manager = new ResourceManager(typeof(Translate));
+	
+	foreach (var item in properties)
+	{
+		// Get current visibility value from the ConfigClass
+		int x = (int)item.GetValue(se.visibility);
+
+		BoxVisibility boxObject = new BoxVisibility();
+		boxObject.Active = (x == Model.Active) ? "active" : "";
+		boxObject.Name = item.Name;
+		boxObject.Key = x;
+		boxObject.Translation = manager.GetString(item.Name);
+
+		Visibility.Add(manager.GetString(item.Name), boxObject);
+	}
+}
+<div id="isolatedGroup">
+	<div class="panel panel-primary">
+		<div class="panel-heading" role="tab" id="headingGeneral" data-toggle="collapse" data-parent="#isolatedGroup" data-target="#collapseGeneral">
+			<h4 class="panel-title">
+				<a href="#collapseGeneral" aria-expanded="true" aria-controls="collapseGeneral">
+					@Translate.GeneralInformation
+				</a>
+			</h4>
+		</div>
+		<div id="collapseGeneral" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingGeneral">
+			<div class="panel-body form-horizontal">
+				<div class="row">
+					<div class="col-md-6">
+						<button type="submit" class="btn btn-primary btn-block">@Translate.Save</button>
+					</div>
+					<div class="col-md-6">
+						<button class="btn btn-general btn-block">@Translate.Preview</button>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-md-12">
+						<label>@Translate.PageVisibility</label>
+						<div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+							@foreach (var item in Visibility)
+							{
+								<label class="btn btn-default @item.Value.Active">
+									@Html.RadioButton("Active", item.Value.Key, @item.Value.Active)@item.Value.Translation
+								</label>
+							}
+						</div>
+					</div>
+				</div>
+				<br />
+				@if (Model.AspNetUsers != null)
+				{
+					<div class="row">
+						<div class="col-md-12">
+							@Html.LabelFor(m => m.Creation_Date)
+							@Html.ValueFor(m => m.Creation_Date)
+							@Html.HiddenFor(m => m.Creation_Date)
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							@Html.LabelFor(m => m.Created_By)
+							@Html.ValueFor(m => m.AspNetUsers.UserName)
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+	<div class="panel"></div>
+</div>

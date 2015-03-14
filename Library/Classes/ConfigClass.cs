@@ -131,11 +131,11 @@
 		public class Placement
 		{
 			public int Disabled { get; set; }
-			public int Allnavigations { get; set; }
-			public int Topnavigationonly { get; set; }
-			public int Leftnavigationonly { get; set; }
-			public int Bottomnavigationonly { get; set; }
-			public int Allexcepttopnavigation { get; set; }
+			public int AllNavigations { get; set; }
+			public int TopNavigationOnly { get; set; }
+			public int LeftNavigationOnly { get; set; }
+			public int BottomNavigationOnly { get; set; }
+			public int AllExceptTopNavigation { get; set; }
 			public int _301Redirect { get; set; }
 		}
 	}

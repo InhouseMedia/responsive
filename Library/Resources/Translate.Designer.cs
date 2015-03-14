@@ -115,6 +115,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no content in this article Drag a content item from the right box  into this field to add content..
+        /// </summary>
+        public static string ContentEmpty {
+            get {
+                return ResourceManager.GetString("ContentEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Content items.
         /// </summary>
         public static string ContentItemsTitle {

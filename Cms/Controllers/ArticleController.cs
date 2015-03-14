@@ -1,10 +1,16 @@
 ﻿namespace Cms.Controllers
 {
+	using Microsoft.AspNet.Identity;
+	using Microsoft.AspNet.Identity.EntityFramework;
+	using Microsoft.AspNet.Identity.Owin;
 	using System;
+	using System.Linq;
 	using System.Collections.Generic;
+	using System.Data.Entity;
 	using System.Web;
 	using System.Web.Helpers;
 	using System.Web.Mvc;
+	using System.Threading.Tasks;
 
 	using Library.Classes;
 	using Library.Models;
@@ -13,7 +19,9 @@
 	[Authorize]
 	public class ArticleController : Controller
     {
-        // GET: Article
+		LibraryEntities context = new LibraryEntities();
+
+		// GET: Article
         public ActionResult Index()
         {
             return View();
@@ -87,7 +95,93 @@
 		public ActionResult Create()
 		{
 			ViewBag.Title = String.Format(Translate.CreateButton, Translate.ArticleName);
-			return View();
+
+			var emptyMetadata = new HashSet<Article_Metadata>();
+				emptyMetadata.Add(new Article_Metadata());
+
+			var viewArticle = new Article() {
+				Article_Metadata = emptyMetadata
+			};
+
+			return View(viewArticle);
+		}
+
+        // POST: /Account/Login
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Change(Article model, string returnUrl)
+		{
+			if (ModelState.IsValid)
+			{	
+				// Get previous saved data for comparison reasons.
+				Article currentArticle;
+				using (LibraryEntities db = new LibraryEntities()){
+					 currentArticle = db.Article
+						.Include("Article_PublishLogs")
+						.Include("Article_ChangeLogs")
+						.Include("Article_Metadata")
+						.Include("Article_Content")
+						.Where(a => a.Article_Id == model.Article_Id)
+						.First();
+				}
+
+				// Add extra info to the changed model that it needs to save and 
+				// we don't want to be visible as hidden input fields on the page
+				model.Created_By = currentArticle.Created_By;
+				model.Article_PublishLogs.First().Article_Id = model.Article_Id;
+				model.Article_PublishLogs.First().Published_By = User.Identity.GetUserId();
+				model.Article_Metadata.First().Article_Id = model.Article_Id;
+
+				// Add Change log
+				Article_ChangeLogs changeLog = new Article_ChangeLogs()
+				{
+					Article_Id = model.Article_Id,
+					Changed_By = User.Identity.GetUserId(),
+					Changed_Date = DateTime.Now
+				};
+
+				model.Article_ChangeLogs.Add(changeLog);
+
+				using (LibraryEntities db = new LibraryEntities())
+				{					
+					// Change Article items
+					db.Entry(model).State = EntityState.Modified;
+
+					// Add Change data
+					db.Entry(model.Article_ChangeLogs.First()).State = EntityState.Added;
+
+					DateTime oldPublishDate = (currentArticle.Article_PublishLogs.Count > 0)
+						?currentArticle.Article_PublishLogs.OrderByDescending(p => p.Published_Date).FirstOrDefault().Published_Date
+					: new DateTime();
+					DateTime newPublishDate = model.Article_PublishLogs.First().Published_Date;
+
+					// Define New publishDate when there is no PublishDate filled
+					if (newPublishDate == new DateTime() && oldPublishDate < DateTime.Now) {
+						model.Article_PublishLogs.FirstOrDefault().Published_Date = DateTime.Now;
+						db.Entry(model.Article_PublishLogs.First()).State = EntityState.Added;
+					}
+
+					// Add new PublishDate that's been filled-in when changing the page
+					if (newPublishDate != new DateTime() && newPublishDate > oldPublishDate) {
+						db.Entry(model.Article_PublishLogs.First()).State = EntityState.Added;
+					}
+
+					// Add or change metadata
+					bool hasMedia = (model.Article_Metadata.First().Id > 0);
+					db.Entry(model.Article_Metadata.First()).State = (hasMedia) ? EntityState.Modified : EntityState.Added;
+
+					foreach (Article_Content item in model.Article_Content) {
+						db.Entry(item).State = (item.Id == 0) ? EntityState.Added : EntityState.Modified;
+					}
+
+					db.SaveChanges();
+				}
+
+				return RedirectToAction("List");
+			}
+
+			return View(model);
+
 		}
 
 		[Authorize(Roles = "Admin,Editor,Manager,Moderator,Contributors")]
@@ -95,7 +189,48 @@
 		{
 			ViewBag.Title = String.Format(Translate.ChangeButton, Translate.ArticleName);
 
-			return View("Create",  ArticleClass.getArticle(id, false));
+			using (LibraryEntities db = new LibraryEntities())
+			{
+				db.Configuration.LazyLoadingEnabled = false;
+				var viewPublish = db.Article_PublishLogs
+					.Include("AspNetUsers")
+					.Where(a => a.Article_Id == id)
+					.OrderByDescending(p => p.Published_Date).ToList();
+
+				var viewContent = db.Article_Content
+					.Include("AspNetUsers")
+					.Where(a => a.Article_Id == id)
+					.OrderBy(p => p.Level).ToList();
+
+				Article viewArticle = db.Article
+					.Include("Article_Metadata")
+					.Include("AspNetUsers")
+					.Where(a => a.Article_Id == id)
+					//.OrderByDescending(x => x.Article_Id)
+					.FirstOrDefault();
+
+				viewArticle.Article_PublishLogs = viewPublish;
+				viewArticle.Article_Content = viewContent;
+
+				// When there is no Metadata we need to add an empty item in it to show the EditorTemplate
+				if (viewArticle.Article_Metadata.Count == 0) { 
+					var emptyMetadata = new HashSet<Article_Metadata>();
+						emptyMetadata.Add(new Article_Metadata() { Article_Id = viewArticle.Article_Id});
+
+						viewArticle.Article_Metadata = emptyMetadata;
+				}
+				/*
+				if (viewArticle.Article_PublishLogs.Count == 0)
+				{
+					var emptyPublishLog = new HashSet<Article_PublishLogs>();
+						emptyPublishLog.Add(new Article_PublishLogs() { Article_Id = viewArticle.Article_Id });
+
+						viewArticle.Article_PublishLogs = emptyPublishLog;
+
+				}
+				*/
+				return View("Create", viewArticle);
+			}
 		}
 
 		// GET: Article - Text
@@ -109,11 +244,18 @@
 		// GET: Article - Video
 		public ActionResult Video(Article_Content content)
 		{
-			if (content.Id == 0) content.Id = new Random().Next(1000) * 1000000;
+			if (content.Id == 0) content.Id = new Random().Next(1000);
 
 			return View(content);
 		}
 
+		// GET: Article - E404
+		public ActionResult E404(Article_Content content)
+		{
+			if (content.Id == 0) content.Id = new Random().Next(1000);
+
+			return View("Text",content);
+		}
 
     }
 }

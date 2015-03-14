@@ -412,12 +412,13 @@
     <Content Include="Views\Box\LoginPartial.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Views\Box\General.cshtml" />
-    <Content Include="Views\Box\Metadata.cshtml" />
-    <Content Include="Views\Box\Actions.cshtml" />
-    <Content Include="Views\Box\Publishdata.cshtml" />
-    <Content Include="Views\Article\Text.cshtml" />
-    <Content Include="Views\Article\Video.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Article_Metadata.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Article_PublishLogs.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Article_Actions.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ArticleItem.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Article_General.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Article_Content_Text.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Article_Content_Video.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

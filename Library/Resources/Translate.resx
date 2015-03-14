@@ -291,4 +291,7 @@
   <data name="Preview" xml:space="preserve">
     <value>Preview</value>
   </data>
+  <data name="ContentEmpty" xml:space="preserve">
+    <value>There is no content in this article Drag a content item from the right box  into this field to add content.</value>
+  </data>
 </root>

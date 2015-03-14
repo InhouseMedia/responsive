@@ -1,0 +1,42 @@
+﻿@using Library.Classes
+@using Library.Helpers
+@using Library.Resources
+@model string[]
+@{
+	Layout = null;
+	
+	var grid = new WebGrid(
+		source: Model,
+		rowsPerPage: 10,
+		canPage: false,
+		canSort: false,
+		defaultSort: "ActionName",
+		sortFieldName: "ActionName",
+		sortDirectionFieldName: "DESC"
+	);
+	
+	string[] articleActions = ConfigClass.Settings.controllers.article.actions;
+
+	//List<WebGridColumn> columns = new List<WebGridColumn>();
+	//columns.Add(new WebGridColumn() { Header = Translate.WebgridType, ColumnName = "ActionName", Format = item => item, CanSort = true });
+}
+<div class="panel panel-primary">
+	<div class="panel-heading" role="tab" id="headingActions" data-toggle="collapse" data-parent="#accordion" data-target="#collapseActions">
+		<h4 class="panel-title">
+			<a href="#collapseActions" aria-expanded="true" aria-controls="collapseActions">
+				@Translate.ContentItemsTitle
+			</a>
+		</h4>
+	</div>
+	<div id="collapseActions" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingActions">
+		@if (grid.TotalRowCount > 0)
+		{
+			@grid.GetHtml(
+				tableStyle: "table table-striped table-hover table-drag",
+				headerStyle: "head",
+				alternatingRowStyle: "alt",
+				columns: grid.Columns(grid.Column(Translate.WebgridType, format: item => item))
+			)
+		}
+	</div>
+</div>

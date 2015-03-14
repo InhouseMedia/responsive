@@ -34,7 +34,7 @@
 		"article": {
 			"active": true,
 			"admin": false,
-			"tools": [ "General", "Metadata", "Publishdata", "Actions"],
+			"tools": [ "Article_General", "Article_Metadata", "Article_PublishLogs", "Article_Actions" ],
 			"actions": [ "text", "video", "image", "caroussel", "contact", "socialmedia", "socailshare" ]
 		},
 		"navigation": {
@@ -43,12 +43,12 @@
 			"maxLength": 250,
 			"placement": {
 				"Disabled": 0,
-				"All navigations": 1,
-				"Top navigation only": 2,
-				"Left navigation only": 3,
-				"Bottom navigation only": 4,
-				"All except top navigation": 5,
-				"301 Redirect": 301
+				"AllNavigations": 1,
+				"TopNavigationOnly": 2,
+				"LeftNavigationOnly": 3,
+				"BottomNavigationOnly": 4,
+				"AllExceptTopNavigation": 5,
+				"_301Redirect": 301
 			}
 		}
 	}

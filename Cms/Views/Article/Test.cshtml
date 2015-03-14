@@ -1,0 +1,50 @@
+﻿@using Library.Resources
+@using Library.Classes
+@using Library.Models
+@model Article
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	
+	var ArticleTools = ConfigClass.Settings.controllers.article.tools;
+
+	string currentActionName = ViewContext.RouteData.GetRequiredString("action");
+	
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm(currentActionName, "Article", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "createForm" }))
+{
+	@Html.AntiForgeryToken()
+
+	
+
+		if (ArticleTools.Contains("Article_General"))
+		{
+			@Html.EditorFor(m => m);
+		}
+
+		if (ArticleTools.Contains("Article_Metadata"))
+		{
+			@Html.EditorFor(m => m.Article_Metadata);
+		}
+
+		if (ArticleTools.Contains("Article_PublishLogs"))
+		{
+			@Html.EditorFor(m => m, "Article_PublishLogs");
+		}
+
+		if (ArticleTools.Contains("Article_Actions"))
+		{
+			@Html.EditorFor(m => ConfigClass.Settings.controllers.article.actions, "Article_Actions");
+		}
+	
+
+
+}
+
+
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/article")
+}	

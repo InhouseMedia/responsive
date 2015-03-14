@@ -1,0 +1,23 @@
+﻿@using Library.Helpers
+@using Library.Resources
+@using Library.Models
+@{Layout = null;}
+@model Article_Metadata
+
+<div class="panel panel-primary">
+	<div class="panel-heading" role="tab" id="headingMetadata" data-toggle="collapse" data-parent="#accordion" data-target="#collapseMetadata">
+		<h4 class="panel-title">
+			<a href="#collapseMetadata" aria-expanded="true" aria-controls="collapseMetadata">
+				@Translate.SearchEngineOptimization
+			</a>
+		</h4>
+	</div>
+	<div id="collapseMetadata" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMetadata">
+		<div class="panel-body form-horizontal">
+			@Html.HiddenFor(m => m.Id)
+			@Html.BootstrapEditorFor(m => m.Meta_Title, new { Label = true })
+			@Html.BootstrapEditorFor(m => m.Meta_Keywords, new { Label = true })
+			@Html.BootstrapEditorFor(m => m.Meta_Description, new { Label = true })
+		</div>
+	</div>
+</div>

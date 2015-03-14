@@ -1,0 +1,13 @@
+﻿@using Library.Helpers
+@using Library.Resources
+@using Library.Classes
+@using Library.Models
+@model Article_PublishLogs
+@{
+	Layout = null;
+	
+}
+
+
+@Html.TextBoxFor(m => m.Published_Date)
+

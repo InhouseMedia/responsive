@@ -1,30 +1,71 @@
 ﻿@using Library.Resources
 @using Library.Classes
+@using Library.Models
+@using Library.Helpers
+@model Article
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	
+	var ArticleTools = ConfigClass.Settings.controllers.article.tools;
+	string countContent = (Model.Article_Content.Count() == 0)? "highlight empty":"";
+
+	string currentActionName = ViewContext.RouteData.GetRequiredString("action");	
 }
 
 <h2>@ViewBag.Title</h2>
-@model Library.Classes.ArticleItem
-<div class="row">
-	<div class="col-md-8">
-		<div class="panel-group" id="content" role="tablist" aria-multiselectable="true">
-			@foreach (var item in Model.Content)
-			{
-				@Html.Action(item.Action, item.Controller, item)
-			}
+@using (Html.BeginForm(currentActionName, "Article", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "createForm" }))
+{
+	@Html.AntiForgeryToken()
+	@Html.HiddenFor(m => m.Article_Id)
+	<div class="row">
+		<div class="col-md-8">
+			<div class="panel-group @countContent" id="content" role="tablist" aria-multiselectable="true" title-empty="@Translate.ContentEmpty">
+				
+				@using (Html.BeginHtmlFieldPrefixScope("Article_Content"))
+				{
+					for (var i = 0; i < Model.Article_Content.Count; i++)
+					{
+						Article_Content element = Model.Article_Content.ToList()[i];
+						@Html.EditorFor(m => element, "Article_Content_" + element.Action.ToString())
+					}
+				}
 		</div>
 	</div>
 	<div class="col-md-4">
 		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
-			@foreach (string item in ConfigClass.Settings.controllers.article.tools)
-			{
-				Html.RenderAction(item, "Box", new { model = Model});
-			}
+			@*foreach (string item in ConfigClass.Settings.controllers.article.tools)
+				{
+					Html.RenderAction(item, "Box", new { model = Model });
+				}
+					*@
+
+				@{
+
+					if (ArticleTools.Contains("Article_General"))
+					{
+						@Html.EditorFor(m => m, "Article_General");
+					}
+
+					if (ArticleTools.Contains("Article_Metadata"))
+					{
+						@Html.EditorFor(m => m.Article_Metadata);
+					}
+
+					if (ArticleTools.Contains("Article_PublishLogs"))
+					{
+						@Html.EditorFor(m => m, "Article_PublishLogs");
+					}
+
+					if (ArticleTools.Contains("Article_Actions"))
+					{
+						@Html.EditorFor(m => ConfigClass.Settings.controllers.article.actions, "Article_Actions");
+					}
+				}
+			</div>
 		</div>
 	</div>
-</div>
+}
 
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")
