@@ -16,9 +16,16 @@ function articleReady() {
 				ui.helper.addClass('loading');
 
 				// Get render action that's been dragged into the content holder
-				$.get('/Shared/EditorTemplates/Article_Content_' + ui.helper.text(), function (item) {
+				$.get('/Article/' + ui.helper.text() + '?Article_Id=' + $('[name=Article_Id]').val(), function (item) {
 					this.helper.after($(item));
 					this.helper.remove();
+
+					// Change the levels of all content items within the holder
+					$(this).find("[name$=Level]").each(
+						function (key, item) {
+							$(item).val(key + 1);
+						}
+					);
 				}.bind(ui)).error(function (item) {
 					this.helper.removeClass('loading').css({ 'opacity': 0.5 })
 				}.bind(ui));
@@ -61,11 +68,18 @@ function articleReady() {
 			},
 			stop: function (event, ui) {
 				var panels = $(this).find('.tempCollapse .collapse');
-				panels.collapse('show');
-				panels.closest('.tempCollapse').removeClass('tempCollapse');
+					panels.collapse('show');
+					panels.closest('.tempCollapse').removeClass('tempCollapse');
 				
 				// is used when a new article is created and the content droppable holder is empty 
 				$(this).removeClass('empty');
+
+				// Change the levels of all content items within the holder
+				$(this).find("[name$=Level]").each(
+					function (key, item) {
+						$(item).val(key + 1);
+					}
+				);
 			}
 
 		}

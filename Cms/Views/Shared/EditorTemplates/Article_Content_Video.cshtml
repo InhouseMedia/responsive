@@ -14,11 +14,20 @@
 	</div>
 	<div id="collapseVideo_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingVideo_@Model.Id">
 		<div class="panel-body form-horizontal">
-			@Html.HiddenFor(m => m.Id)
-			@Html.HiddenFor(m => m.Level)
-			@Html.BootstrapEditorFor(m => m.Title, new { Label = true })
-			@Html.LabelFor(m => m.Text)
-			@Html.TextAreaFor(m => m.Text)
+			@using (Html.BeginCollectionItem("Article_Content"))
+			{
+				@Html.HiddenFor(m => m.Id)
+				@Html.HiddenFor(m => m.Article_Id)
+				@Html.HiddenFor(m => m.Action)
+				@Html.HiddenFor(m => m.Controller)
+				@Html.HiddenFor(m => m.Creation_Date)
+				@Html.HiddenFor(m => m.Created_By)
+				@Html.HiddenFor(m => m.Active)
+				@Html.HiddenFor(m => m.Level)
+				@Html.BootstrapEditorFor(m => m.Title, new { Label = true })
+				@Html.LabelFor(m => m.Text)
+				@Html.TextAreaFor(m => m.Text)
+			}
 		</div>
 	</div>
 </div>

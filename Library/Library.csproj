@@ -196,7 +196,7 @@
     <Compile Include="Classes\ConfigClass.cs" />
     <Compile Include="Classes\NavigationClass.cs" />
     <Compile Include="Helpers\AccountHelper.cs" />
-    <Compile Include="Helpers\HtmlPrefixHelper.cs" />
+    <Compile Include="Helpers\HtmlPrefixScopeExtensions.cs" />
     <Compile Include="Helpers\SitemapHelper.cs" />
     <Compile Include="Helpers\ExtensionHelper.cs" />
     <Compile Include="Helpers\TreeViewHelper.cs" />

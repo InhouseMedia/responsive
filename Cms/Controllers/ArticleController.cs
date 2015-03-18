@@ -15,6 +15,7 @@
 	using Library.Classes;
 	using Library.Models;
 	using Library.Resources;
+	using Library.Helpers;
 
 	[Authorize]
 	public class ArticleController : Controller
@@ -234,11 +235,19 @@
 		}
 
 		// GET: Article - Text
-		public ActionResult Text(Article_Content content)
+		[HttpGet]
+		public ActionResult Text(int? Article_Id)
 		{
-			if (content.Id == 0) content.Id = new Random().Next(1000) * 1000000;
-
-			return View(content);
+			Article_Content newItem = new Article_Content() { 
+				Article_Id = Article_Id, //Convert.ToInt32(this.Request.QueryString["id"]),
+				Created_By = User.Identity.GetUserId(),
+				Creation_Date = DateTime.Now,
+				Active = 1,
+				Level = 0,
+				Controller = "Article",
+				Action = "Text"
+			};
+			return View("~/Views/Shared/EditorTemplates/Article_Content_Text.cshtml", newItem);
 		}
 
 		// GET: Article - Video
@@ -246,7 +255,7 @@
 		{
 			if (content.Id == 0) content.Id = new Random().Next(1000);
 
-			return View(content);
+			return View("~/Views/Shared/EditorTemplates/Article_Content_Video.cshtml", content);
 		}
 
 		// GET: Article - E404
@@ -254,7 +263,7 @@
 		{
 			if (content.Id == 0) content.Id = new Random().Next(1000);
 
-			return View("Text",content);
+			return View("~/Views/Shared/EditorTemplates/Article_Content_Text.cshtml", content);
 		}
 
     }

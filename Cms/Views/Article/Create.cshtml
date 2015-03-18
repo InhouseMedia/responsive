@@ -20,14 +20,10 @@
 	<div class="row">
 		<div class="col-md-8">
 			<div class="panel-group @countContent" id="content" role="tablist" aria-multiselectable="true" title-empty="@Translate.ContentEmpty">
-				
-				@using (Html.BeginHtmlFieldPrefixScope("Article_Content"))
+				@for (var i = 0; i < Model.Article_Content.Count; i++)
 				{
-					for (var i = 0; i < Model.Article_Content.Count; i++)
-					{
-						Article_Content element = Model.Article_Content.ToList()[i];
-						@Html.EditorFor(m => element, "Article_Content_" + element.Action.ToString())
-					}
+					string action = Model.Article_Content.ToList()[i].Action.ToString();
+					@Html.EditorFor(m => Model.Article_Content.ToList()[i], "Article_Content_" + action)
 				}
 		</div>
 	</div>
@@ -70,4 +66,4 @@
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")
 	@Scripts.Render("~/bundles/article")
-}	
+}
