@@ -21,7 +21,7 @@ function articleReady() {
 					this.helper.remove();
 
 					// Change the levels of all content items within the holder
-					$(this).find("[name$=Level]").each(
+					$('#content').find("[name$=Level]").each(
 						function (key, item) {
 							$(item).val(key + 1);
 						}
