@@ -103,8 +103,13 @@ function articleReady() {
 	$('#content').on('click', 'button.glyphicon-trash',
 		function (e) {
 			var panel = $(this).closest('.panel');
+			if (panel.find('input[name$=Id]').val() == 0) {
+				panel.remove();
+			} else {
 				panel.addClass('deleted');
 				panel.find('input[name$=Active]').val(4); // is used when an item should be deleted
+			}
+				
 
 			var content = $("#content");
 
