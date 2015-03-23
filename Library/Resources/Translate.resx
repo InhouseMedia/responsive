@@ -294,4 +294,16 @@
   <data name="ContentEmpty" xml:space="preserve">
     <value>There is no content in this article Drag a content item from the right box  into this field to add content.</value>
   </data>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>This option is not yet available.</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="SelectTemplate" xml:space="preserve">
+    <value>Select a template</value>
+  </data>
+  <data name="WebgridTemplate" xml:space="preserve">
+    <value>Template</value>
+  </data>
 </root>

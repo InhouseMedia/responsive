@@ -118,6 +118,7 @@
 			public bool admin { get; set; }
 			public string[] tools { get; set; }
 			public string[] actions { get; set; }
+			public string[] templates { get; set; }
 		}
 
 		public class Navigation

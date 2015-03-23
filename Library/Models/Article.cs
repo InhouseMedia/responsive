@@ -23,6 +23,7 @@ namespace Library.Models
         }
     
         public int Article_Id { get; set; }
+        public string Template { get; set; }
         public byte Active { get; set; }
         public string Created_By { get; set; }
         public System.DateTime Creation_Date { get; set; }

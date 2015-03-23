@@ -17,6 +17,9 @@
 		[Display(Name = "WebgridActive", ResourceType = typeof(Translate))]
 		public byte Active;
 
+		[Display(Name = "WebgridTemplate", ResourceType = typeof(Translate))]
+		public string Template;
+
 		[DisplayFormat(DataFormatString = "{0:g}")]
 		[Display(Name = "WebgridCreatedBy", ResourceType = typeof(Translate))]
 		public string Created_By;

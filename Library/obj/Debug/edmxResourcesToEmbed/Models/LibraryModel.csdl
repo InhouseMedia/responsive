@@ -5,6 +5,7 @@
       <PropertyRef Name="Article_Id" />
     </Key>
     <Property Name="Article_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Template" Type="String" Nullable="false" />
     <Property Name="Active" Type="Byte" Nullable="false" />
     <Property Name="Created_By" Type="String" FixedLength="false" Unicode="true" Nullable="false" MaxLength="128" />
     <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />

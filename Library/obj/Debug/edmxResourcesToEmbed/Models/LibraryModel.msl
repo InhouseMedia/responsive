@@ -5,6 +5,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.Article)">
         <MappingFragment StoreEntitySet="Article">
           <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Template" ColumnName="Template" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Created_By" ColumnName="Created_By" />
           <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />

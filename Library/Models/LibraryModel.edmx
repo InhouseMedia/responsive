@@ -99,6 +99,7 @@
       <PropertyRef Name="Article_Id" />
     </Key>
     <Property Name="Article_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Template" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
     <Property Name="Created_By" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="Creation_Date" Type="datetime" Nullable="false" />
@@ -474,6 +475,7 @@
             <PropertyRef Name="Article_Id" />
           </Key>
           <Property Name="Article_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Template" Type="String" Nullable="false" />
           <Property Name="Active" Type="Byte" Nullable="false" />
           <Property Name="Created_By" Type="String" FixedLength="false" Unicode="true" Nullable="false" MaxLength="128" />
           <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
@@ -941,6 +943,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.Article)">
         <MappingFragment StoreEntitySet="Article">
           <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+          <ScalarProperty Name="Template" ColumnName="Template" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Created_By" ColumnName="Created_By" />
           <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />

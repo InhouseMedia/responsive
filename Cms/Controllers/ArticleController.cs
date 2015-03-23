@@ -58,7 +58,7 @@
 					//Managers should not be able to add or remove Admin rights (or remove their own account)
 					//bool disableCheckBox = ((!currentAdminRole && !currentManagerRole) || (!currentAdminRole && item["Admin"] == true) || item.Id == User.Identity.GetUserId());
 					bool disableCheckBox = (currentViewerRole || currentModeratorRole);
-					return new HtmlString("<a href='/Article/Change/" + item.Id + "' class='btn btn-default btn-xs" + (disableCheckBox ? " disabled" : "") + "'><i class='glyphicon glyphicon-edit'></i></a>");
+					return new HtmlString("<a href='/Article/Change/" + item.Id + "' class='btn btn-default btn-xs glyphicon glyphicon-edit" + (disableCheckBox ? " disabled" : "") + "'></a>");
 				}
 			});
 
@@ -71,7 +71,7 @@
 				{
 					//Pages with pageId smaller then 100 are system pages like the 404 error page
 					bool disableCheckBox = ((!currentAdminRole && !currentManagerRole ) || item.Id < 100);
-					return new HtmlString("<a href='/Article/Delete/" + item.Id + "' class='btn btn-default btn-xs" + (disableCheckBox ? " disabled" : "") + "'><i class='glyphicon glyphicon-trash'></i></a>");
+					return new HtmlString("<a href='/Article/Delete/" + item.Id + "' class='btn btn-default btn-xs glyphicon glyphicon-trash" + (disableCheckBox ? " disabled" : "") + "'></a>");
 				}
 			});
 
@@ -81,8 +81,8 @@
 				Header = "",
 				Style = "text-center",
 				Format = (item) =>
-				{		
-					return new HtmlString("<a href='/Article/Preview/" + item.Id + "' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>");
+				{
+					return new HtmlString("<a href='/Article/Preview/" + item.Id + "' class='btn btn-default btn-xs glyphicon glyphicon-eye-open'></a>");
 				}
 			});
 
@@ -170,11 +170,16 @@
 					// Add or change metadata
 					bool hasMedia = (model.Article_Metadata.First().Id > 0);
 					db.Entry(model.Article_Metadata.First()).State = (hasMedia) ? EntityState.Modified : EntityState.Added;
-
-					foreach (Article_Content item in model.Article_Content) {
-						db.Entry(item).State = (item.Id == 0) ? EntityState.Added : EntityState.Modified;
+					
+					foreach (Article_Content item in model.Article_Content.ToList())
+					{
+						if(item.Active == 4){
+							db.Entry(item).State = EntityState.Deleted;
+						}else{
+							db.Entry(item).State = (item.Id == 0) ? EntityState.Added : EntityState.Modified;
+						}
 					}
-
+				
 					db.SaveChanges();
 				}
 

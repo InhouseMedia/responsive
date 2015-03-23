@@ -14,7 +14,15 @@
 	var properties = t.GetProperties();
 
 	Dictionary<string, BoxVisibility> Visibility = new Dictionary<string, BoxVisibility>();
-	
+
+	// Setup template list
+	List<SelectListItem> Templates = new List<SelectListItem>();
+	Templates.Add(new SelectListItem() { Value = "",Text = Translate.SelectTemplate, Selected = true });
+	foreach (string item in ConfigClass.Settings.controllers.article.templates) {
+		String Text = (Translate.ResourceManager.GetString(item) != null)? Translate.ResourceManager.GetString(item) : item;	
+		Templates.Add(new SelectListItem() { Value = item, Text = Text, Selected = (Model.Template == item) });
+	}
+		
 	// Get all translations so that we can get the ones for the visibility buttons
 	var manager = new ResourceManager(typeof(Translate));
 	
@@ -44,10 +52,16 @@
 		<div id="collapseGeneral" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingGeneral">
 			<div class="panel-body form-horizontal">
 				<div class="row">
-					<div class="col-md-6">
-						<button type="submit" class="btn btn-primary btn-block">@Translate.Save</button>
+					<div class="col-xs-6 col-md-6">
+						<div class="input-group">
+							<span class="input-group-addon">
+								<input type="checkbox" aria-label="...">
+							</span>
+							<button type="submit" class="btn btn-primary btn-block">@Translate.Save</button>
+						</div>
+
 					</div>
-					<div class="col-md-6">
+					<div class="col-xs-6 col-md-6">
 						<button class="btn btn-general btn-block">@Translate.Preview</button>
 					</div>
 				</div>
@@ -63,6 +77,13 @@
 								</label>
 							}
 						</div>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-md-12">
+						@Html.LabelFor(m => m.Template)
+						@Html.DropDownListFor(m => m.Template, Templates, new {@class = "form-control"})
 					</div>
 				</div>
 				<br />

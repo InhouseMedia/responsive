@@ -94,6 +94,7 @@
       <PropertyRef Name="Article_Id" />
     </Key>
     <Property Name="Article_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Template" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Active" Type="tinyint" Nullable="false" />
     <Property Name="Created_By" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="Creation_Date" Type="datetime" Nullable="false" />

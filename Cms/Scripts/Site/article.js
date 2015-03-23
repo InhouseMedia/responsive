@@ -17,6 +17,8 @@ function articleReady() {
 
 				// Get render action that's been dragged into the content holder
 				$.get('/Article/' + ui.helper.text() + '?Article_Id=' + $('[name=Article_Id]').val(), function (item) {
+
+				
 					this.helper.after($(item));
 					this.helper.remove();
 
@@ -88,6 +90,32 @@ function articleReady() {
 			activeClass: 'highlight'
 		}
 	).disableSelection();
+
+	
+	$('#content').on('click', '.panel-heading:not(.collapsed) .form-control',
+		function (e) {
+			this.focus();
+			e.stopPropagation();
+			return false;
+		}
+	);
+
+	$('#content').on('click', 'button.glyphicon-trash',
+		function (e) {
+			var panel = $(this).closest('.panel');
+				panel.addClass('deleted');
+				panel.find('input[name$=Active]').val(4); // is used when an item should be deleted
+
+			var content = $("#content");
+
+			if (content.find(".panel").length == 0) {
+				content.addClass('highlight empty');
+			}
+
+			e.stopPropagation();
+			return false;
+		}
+	);
 }
 
 function getHelper(text) {

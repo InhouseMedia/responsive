@@ -3,31 +3,51 @@
 @{Layout = null;}
 @model Library.Models.Article_Content
 
+
 <div class="panel panel-default">
-	<div class="panel-heading" role="tab" id="headingText_@Model.Id" data-toggle="collapse" data-target="#collapseText_@Model.Id">
-		<h4 class="panel-title">
-			<a href="#collapseText_@Model.Id" aria-expanded="true" aria-controls="collapseText_@Model.Id">
-				@*Translate.ContentItemsTitle*@
-				@Model.Action
-			</a>
-		</h4>
+@using (Html.BeginCollectionItem("Article_Content"))
+{
+	<div class="panel-heading collapsed" role="tab" id="headingText_@Model.Id" data-toggle="collapse" data-target="#collapseText_@Model.Id">
+		<div class="row no-gutter">
+			<div class="col-xs-1 col-md-1">
+				<h4 class="panel-title">@Model.Action</h4>
+			</div>
+			<div class="col-xs-8 col-md-8">
+				<h4 class="panel-title">
+					<a href="#collapseText_@Model.Id" aria-expanded="true" aria-controls="collapseText_@Model.Id">
+						@Html.TextBoxFor(m => m.Title, new {@class = "form-control" })
+					</a>
+				</h4>
+			</div>
+			<div class="col-xs-3 col-md-3">
+				<div class="btn-group pull-right" role="group" aria-label="...">
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+							@Translate.Options
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu pull-right" role="menu">
+							<li><a href="#">@Translate.NotAvailable</a></li>
+						</ul>
+					</div>
+					<button type="button" class="btn btn-default glyphicon glyphicon-trash"></button>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div id="collapseText_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingText_@Model.Id">
 		<div class="panel-body form-horizontal">
-			@using (Html.BeginCollectionItem("Article_Content"))
-			{
-				@Html.HiddenFor(m => m.Id)
-				@Html.HiddenFor(m => m.Article_Id)
-				@Html.HiddenFor(m => m.Action)
-				@Html.HiddenFor(m => m.Controller)
-				@Html.HiddenFor(m => m.Creation_Date)
-				@Html.HiddenFor(m => m.Created_By)
-				@Html.HiddenFor(m => m.Active)
-				@Html.HiddenFor(m => m.Level)
-				@Html.BootstrapEditorFor(m => m.Title, new { Label = true })
-				@Html.LabelFor(m => m.Text)
-				@Html.TextAreaFor(m => m.Text)
-			}
+			@Html.HiddenFor(m => m.Id)
+			@Html.HiddenFor(m => m.Article_Id)
+			@Html.HiddenFor(m => m.Action)
+			@Html.HiddenFor(m => m.Controller)
+			@Html.HiddenFor(m => m.Creation_Date)
+			@Html.HiddenFor(m => m.Created_By)
+			@Html.HiddenFor(m => m.Active)
+			@Html.HiddenFor(m => m.Level)
+			@Html.LabelFor(m => m.Text)
+			@Html.TextAreaFor(m => m.Text)
 		</div>
 	</div>
+}
 </div>

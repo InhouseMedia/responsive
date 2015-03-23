@@ -13,9 +13,6 @@
 html{overflow-y:scroll;}
 
 textarea{width:100%; min-height:250px;}
-//Just for test
-//.col-md-8{ min-height:300px;}
-
 
 table.table thead tr.head th:first-child{text-align:left;}
 
@@ -46,7 +43,47 @@ table.table-drag tbody tr{cursor: move;}
 .panel {
 	overflow:hidden;
 	height:auto;
+	max-height:500px;
+	opacity:1;
+
 	.transition(~"height 0.3s ease-in-out");
+	
+	.dropdown-toggle{
+		opacity:1;
+		visibility:visible;
+		.transition(~"opacity 0.3s ease-in-out, visibility 0s linear 0s");
+	}
+
+	.panel-title{
+		.form-control{
+			display:inline-block;
+			width:90%;
+			.transition(~"background-color 0.3s ease-in-out, border 0.3s ease-in-out");
+		}
+	}
+
+	.collapsed{
+
+		.panel-title{
+			.form-control{
+				border:0px;
+				background-color:transparent;
+				border:1px solid transparent;
+				box-shadow:none;
+				cursor:pointer;
+			}
+		}
+		
+		.dropdown-toggle{
+			opacity:0;
+			visibility:hidden;
+			.transition(~"opacity 0.3s ease-in-out, visibility 0s linear 1s");
+		}
+
+		.btn-group > .btn:last-child:not(:first-child){
+			.border-radius(@border-radius-base);
+		}
+	}
 			
 	&.tempCollapse{
 		height:39px!important;
@@ -74,11 +111,16 @@ table.table-drag tbody tr{cursor: move;}
 			}
 		}
 
-
 		.panel-collapse{
 			display:none!important;
 		}
+	}
 
+	&.deleted{
+		opacity:0;
+		max-height:0;
+		margin:0!important;
+		.transition(~"opacity 0.3s ease-in-out, max-height 0.3s ease-in-out, margin 0.3s ease-in-out");
 	}
 
 	.panel-heading {
@@ -86,6 +128,12 @@ table.table-drag tbody tr{cursor: move;}
 
 		a:hover {text-decoration:none;}
 	}
+}
+
+#content .panel-title{
+	line-height:2em;
+
+	a{vertical-align:middle;}
 }
 
 .ui-sortable-helper{
@@ -196,6 +244,9 @@ table.table-drag tbody tr{cursor: move;}
 .modal-body{position:static;}
 
 .glyphicon{
+	top:0;
+	display:inline-block;
+
 	&.glyphicon-ok{
 		&.disabled{
 			.opacity(.25);

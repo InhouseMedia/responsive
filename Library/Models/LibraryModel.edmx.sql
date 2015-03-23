@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/23/2014 23:45:32
+-- Date Created: 03/23/2015 19:04:23
 -- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Library\Models\LibraryModel.edmx
 -- --------------------------------------------------
 
@@ -62,6 +62,15 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ArticleAspNetUsers]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Article] DROP CONSTRAINT [FK_ArticleAspNetUsers];
 GO
+IF OBJECT_ID(N'[dbo].[FK_NavigationAspNetUsers]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Navigation] DROP CONSTRAINT [FK_NavigationAspNetUsers];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Navigation_ChangeLogsAspNetUsers]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Navigation_ChangeLogs] DROP CONSTRAINT [FK_Navigation_ChangeLogsAspNetUsers];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Navigation_PublishLogsAspNetUsers]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Navigation_PublishLogs] DROP CONSTRAINT [FK_Navigation_PublishLogsAspNetUsers];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -120,6 +129,7 @@ GO
 -- Creating table 'Article'
 CREATE TABLE [dbo].[Article] (
     [Article_Id] int IDENTITY(1,1) NOT NULL  ,
+    [Template] nvarchar(max)  NOT NULL  ,
     [Active] tinyint  NOT NULL  ,
     [Created_By] nvarchar(128)  NOT NULL  ,
     [Creation_Date] datetime  NOT NULL  

@@ -1,4 +1,18 @@
 SET IDENTITY_INSERT [dbo].[Article_PublishLogs] ON
 INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (1, 100, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2014-10-08 10:10:00')
 INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (2, 100, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2014-10-09 09:00:00')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (5, 110, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-19 21:10:00')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (6, 110, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-21 21:39:00')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (7, 110, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-06-28 21:39:00')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (1003, 110, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-10 17:30:10')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (1004, 106, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-14 17:38:05')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (1005, 106, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-17 21:05:53')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (1006, 106, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-17 21:06:16')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (1007, 106, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-18 22:57:36')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (1008, 106, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-18 23:29:57')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (1009, 106, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-18 23:30:48')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (1010, 100, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-19 21:29:55')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (1011, 100, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-21 19:13:16')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (1012, 100, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-23 08:22:31')
+INSERT INTO [dbo].[Article_PublishLogs] ([Id], [Article_Id], [Published_By], [Published_Date]) VALUES (1013, 100, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-23 08:32:25')
 SET IDENTITY_INSERT [dbo].[Article_PublishLogs] OFF

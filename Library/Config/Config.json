@@ -35,7 +35,8 @@
 			"active": true,
 			"admin": false,
 			"tools": [ "Article_General", "Article_Metadata", "Article_PublishLogs", "Article_Actions" ],
-			"actions": [ "text", "video", "image", "caroussel", "contact", "socialmedia", "socailshare" ]
+			"actions": [ "text", "video", "image", "caroussel", "contact", "socialmedia", "socialshare" ],
+			"templates": [ "homepage", "landingpage", "cleanLayout" ]
 		},
 		"navigation": {
 			"active": true,
