@@ -91,18 +91,26 @@ function articleReady() {
 		}
 	).disableSelection();
 
-	
-	$('#content').on('click', '.panel-heading:not(.collapsed) .form-control',
+	$('#content').on('click', '.panel-heading .form-control',
 		function (e) {
-			this.focus();
-			e.stopPropagation();
-			return false;
+			var header = $(this).closest('.panel-heading.collapsed');
+			
+			if (header.length > 0) {
+				e.preventDefault();
+				this.blur();
+			} else {
+				this.focus();
+				e.stopPropagation();
+				return false;
+			}
 		}
 	);
-
+	
 	$('#content').on('click', 'button.glyphicon-trash',
 		function (e) {
 			var panel = $(this).closest('.panel');
+			// When an contentbox is deleted before it is saved, it should be removed otherwise
+			// it should be marked as deleted so that the database can remove it.
 			if (panel.find('input[name$=Id]').val() == 0) {
 				panel.remove();
 			} else {
