@@ -19,7 +19,7 @@
 	List<SelectListItem> Templates = new List<SelectListItem>();
 	Templates.Add(new SelectListItem() { Value = "",Text = Translate.SelectTemplate, Selected = true });
 	foreach (string item in ConfigClass.Settings.controllers.article.templates) {
-		String Text = (Translate.ResourceManager.GetString(item) != null)? Translate.ResourceManager.GetString(item) : item;	
+		String Text = (Translate.ResourceManager.GetString("Template" + item.ToCapitalize()) != null)? Translate.ResourceManager.GetString("Template" + item.ToCapitalize()) : item;	
 		Templates.Add(new SelectListItem() { Value = item, Text = Text, Selected = (Model.Template == item) });
 	}
 		

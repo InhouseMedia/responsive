@@ -303,4 +303,13 @@
   <data name="WebgridTemplate" xml:space="preserve">
     <value>Opmaak</value>
   </data>
+  <data name="TemplateCleanLayout" xml:space="preserve">
+    <value>Schone opmaak</value>
+  </data>
+  <data name="TemplateHomepage" xml:space="preserve">
+    <value>Startpagina</value>
+  </data>
+  <data name="TemplateLandingpage" xml:space="preserve">
+    <value>Landingspagina</value>
+  </data>
 </root>

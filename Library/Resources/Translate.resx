@@ -306,4 +306,13 @@
   <data name="WebgridTemplate" xml:space="preserve">
     <value>Template</value>
   </data>
+  <data name="TemplateCleanLayout" xml:space="preserve">
+    <value>Clean layout</value>
+  </data>
+  <data name="TemplateHomepage" xml:space="preserve">
+    <value>Homepage</value>
+  </data>
+  <data name="TemplateLandingpage" xml:space="preserve">
+    <value>Landingpage</value>
+  </data>
 </root>

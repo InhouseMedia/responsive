@@ -225,16 +225,7 @@
 
 						viewArticle.Article_Metadata = emptyMetadata;
 				}
-				/*
-				if (viewArticle.Article_PublishLogs.Count == 0)
-				{
-					var emptyPublishLog = new HashSet<Article_PublishLogs>();
-						emptyPublishLog.Add(new Article_PublishLogs() { Article_Id = viewArticle.Article_Id });
-
-						viewArticle.Article_PublishLogs = emptyPublishLog;
-
-				}
-				*/
+				
 				return View("Create", viewArticle);
 			}
 		}
@@ -253,6 +244,14 @@
 				Action = "Text"
 			};
 			return View("~/Views/Shared/EditorTemplates/Article_Content_Text.cshtml", newItem);
+		}
+
+		// GET: Article - Image
+		public ActionResult Image(Article_Content content)
+		{
+			if (content.Id == 0) content.Id = new Random().Next(1000);
+
+			return View("~/Views/Shared/EditorTemplates/Article_Content_Image.cshtml", content);
 		}
 
 		// GET: Article - Video

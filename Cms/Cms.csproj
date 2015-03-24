@@ -420,6 +420,7 @@
     <Content Include="Views\Shared\EditorTemplates\Article_Content_Text.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Article_Content_Video.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Article_Content_E404.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Article_Content_Image.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

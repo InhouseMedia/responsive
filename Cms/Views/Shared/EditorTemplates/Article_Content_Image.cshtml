@@ -4,7 +4,7 @@
 @model Library.Models.Article_Content
 
 <div class="panel panel-default">
-	<div class="panel-heading collapsed" role="tab" id="headingVideo_@Model.Id" data-toggle="collapse" data-target="#collapseVideo_@Model.Id">
+	<div class="panel-heading collapsed" role="tab" id="headingImage_@Model.Id" data-toggle="collapse" data-target="#collapseImage_@Model.Id">
 		<div class="dragHandle">:::</div>
 		<div class="row no-gutter">
 			<div class="col-xs-1 col-md-1">
@@ -12,7 +12,7 @@
 			</div>
 			<div class="col-xs-8 col-md-8">
 				<h4 class="panel-title">
-					<a href="#collapseVideo_@Model.Id" aria-expanded="true" aria-controls="collapseVideo_@Model.Id">
+					<a href="#collapseImage_@Model.Id" aria-expanded="true" aria-controls="collapseImage_@Model.Id">
 						@Html.TextBoxFor(m => m.Title, new {@class = "form-control" })
 					</a>
 				</h4>
@@ -33,8 +33,9 @@
 			</div>
 		</div>
 	</div>
-	<div id="collapseVideo_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingVideo_@Model.Id">
+	<div id="collapseImage_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingImage_@Model.Id">
 		<div class="panel-body form-horizontal">
+			something
 			@using (Html.BeginCollectionItem("Article_Content"))
 			{
 				@Html.HiddenFor(m => m.Id)
@@ -46,8 +47,8 @@
 				@Html.HiddenFor(m => m.Active)
 				@Html.HiddenFor(m => m.Level)
 				//Html.BootstrapEditorFor(m => m.Title, new { Label = true })
-				@Html.LabelFor(m => m.Text)
-				@Html.TextAreaFor(m => m.Text)
+				//Html.LabelFor(m => m.Text)
+				//Html.TextAreaFor(m => m.Text)
 			}
 		</div>
 	</div>

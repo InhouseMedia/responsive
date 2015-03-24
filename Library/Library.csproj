@@ -199,6 +199,7 @@
     <Compile Include="Helpers\HtmlPrefixScopeExtensions.cs" />
     <Compile Include="Helpers\SitemapHelper.cs" />
     <Compile Include="Helpers\ExtensionHelper.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Helpers\TreeViewHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs">
       <SubType>Code</SubType>

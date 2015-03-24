@@ -466,6 +466,33 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clean layout.
+        /// </summary>
+        public static string TemplateCleanLayout {
+            get {
+                return ResourceManager.GetString("TemplateCleanLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Homepage.
+        /// </summary>
+        public static string TemplateHomepage {
+            get {
+                return ResourceManager.GetString("TemplateHomepage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Landingpage.
+        /// </summary>
+        public static string TemplateLandingpage {
+            get {
+                return ResourceManager.GetString("TemplateLandingpage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid code..
         /// </summary>
         public static string VerifyCodeError {

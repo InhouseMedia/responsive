@@ -8,6 +8,7 @@
 @using (Html.BeginCollectionItem("Article_Content"))
 {
 	<div class="panel-heading collapsed" role="tab" id="headingText_@Model.Id" data-toggle="collapse" data-target="#collapseText_@Model.Id">
+		<div class="dragHandle">:::</div>
 		<div class="row no-gutter">
 			<div class="col-xs-1 col-md-1">
 				<h4 class="panel-title">@Model.Action</h4>
