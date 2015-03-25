@@ -117,11 +117,10 @@ function articleReady() {
 				panel.addClass('deleted');
 				panel.find('input[name$=Active]').val(4); // is used when an item should be deleted
 			}
-				
 
 			var content = $("#content");
 
-			if (content.find(".panel").length == 0) {
+			if (content.find(".panel:not(.deleted)").length == 0) {
 				content.addClass('highlight empty');
 			}
 

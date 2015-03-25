@@ -20,26 +20,6 @@ table.table tbody td.text-center{text-align:center;}
 
 table.table-drag tbody tr{cursor: move;}
 
-.highlight{
-	box-sizing:border-box;
-	border:2px dashed @panel-primary-heading-bg;
-	.border-radius(5px);
-	
-	&.empty{
-		min-height:250px;
-
-		&:before{
-			content:attr(title-empty);
-			text-align:center;
-			display:block;
-			padding: 4em 10em;
-			opacity:0.5;
-			font: @font-family-sans-serif;
-			font-size:@font-size-large;
-		}
-	}
-}
-
 #isolatedGroup{
 	margin-bottom:5px;
 }
@@ -154,10 +134,48 @@ table.table-drag tbody tr{cursor: move;}
 	}
 }
 
-#content .panel-title{
-	line-height:2em;
+#content {
+	min-height:0;
+	
 
-	a{vertical-align:middle;}
+	&:before{
+		content:"";
+		max-height:0;
+		padding:0;
+		opacity:0;
+				
+	}
+
+	.panel-title{
+		line-height:2em;
+
+		a{vertical-align:middle;}
+	}
+
+	&.highlight{
+		box-sizing:border-box;
+		border:2px dashed @panel-primary-heading-bg;
+		.border-radius(5px);
+	
+		&.empty{
+			min-height:250px;
+			.transition(~"min-height 0.2s ease-in");
+		
+			&:before{
+				content:attr(title-empty);
+				text-align:center;
+				display:block;
+				padding: 4em 10em;
+				opacity:0.5;
+				font: @font-family-sans-serif;
+				font-size:@font-size-large;
+				max-height:400px;
+
+				.transition(~"max-height 0.2s ease-in, padding 0.2s ease-in, opacity 0.5s ease-in");
+			}
+		}
+	}
+
 }
 
 .ui-sortable-helper{
