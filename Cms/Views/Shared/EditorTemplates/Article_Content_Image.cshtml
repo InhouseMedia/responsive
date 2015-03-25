@@ -34,8 +34,8 @@
 		</div>
 	</div>
 	<div id="collapseImage_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingImage_@Model.Id">
-		<div class="panel-body form-horizontal">
-			something
+		<div class="panel-body form-horizontal highlight empty" title-empty="@Translate.FileUploadEmpty">
+
 			@using (Html.BeginCollectionItem("Article_Content"))
 			{
 				@Html.HiddenFor(m => m.Id)

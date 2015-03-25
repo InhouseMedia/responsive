@@ -312,4 +312,7 @@
   <data name="TemplateLandingpage" xml:space="preserve">
     <value>Landingspagina</value>
   </data>
+  <data name="FileUploadEmpty" xml:space="preserve">
+    <value>Sleep een foto/image binnen dit vlak om deze te uploaden. Of &lt;u&gt;klik hier&lt;/u&gt; om een bestand te selecteren.</value>
+  </data>
 </root>

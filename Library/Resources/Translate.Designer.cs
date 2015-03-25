@@ -196,6 +196,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drag an image on this box to upload. Or &lt;u&gt;click here&lt;/u&gt; to browse an image..
+        /// </summary>
+        public static string FileUploadEmpty {
+            get {
+                return ResourceManager.GetString("FileUploadEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forgot your password?.
         /// </summary>
         public static string ForgotPassword {

@@ -315,4 +315,7 @@
   <data name="TemplateLandingpage" xml:space="preserve">
     <value>Landingpage</value>
   </data>
+  <data name="FileUploadEmpty" xml:space="preserve">
+    <value>Drag an image on this box to upload. Or &lt;u&gt;click here&lt;/u&gt; to browse an image.</value>
+  </data>
 </root>
