@@ -62,7 +62,7 @@ function articleReady() {
 				//todo: can't dragg a collapsed content box directly downwards
 				var panels = $(this).find('.collapse.in');
 
-				var heightList = $(this).find('.panel').map(function (key, item) { return $(item).outerHeight(); });
+				var heightList = $(this).find('.panel:not(.deleted)').map(function (key, item) { return $(item).outerHeight(); });
 					heightList.push(40); // needed when you want to sort when all panels are open.(specify a default small height)
 				var height = Math.min.apply(Math, heightList);
 				
