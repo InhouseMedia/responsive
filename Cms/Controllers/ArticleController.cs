@@ -247,28 +247,57 @@
 		}
 
 		// GET: Article - Image
-		public ActionResult Image(Article_Content content)
+		public ActionResult Image(int? Article_Id)
 		{
-			if (content.Id == 0) content.Id = new Random().Next(1000);
+			Article_Content newItem = new Article_Content()
+			{
+				Article_Id = Article_Id, //Convert.ToInt32(this.Request.QueryString["id"]),
+				Created_By = User.Identity.GetUserId(),
+				Creation_Date = DateTime.Now,
+				Active = 1,
+				Level = 0,
+				Controller = "Article",
+				Action = "Image"
+			};
 
-			return View("~/Views/Shared/EditorTemplates/Article_Content_Image.cshtml", content);
+			return View("~/Views/Shared/EditorTemplates/Article_Content_Image.cshtml", newItem);
 		}
 
 		// GET: Article - Video
-		public ActionResult Video(Article_Content content)
+		public ActionResult Video(int? Article_Id)
 		{
-			if (content.Id == 0) content.Id = new Random().Next(1000);
+			Article_Content newItem = new Article_Content()
+			{
+				Article_Id = Article_Id, //Convert.ToInt32(this.Request.QueryString["id"]),
+				Created_By = User.Identity.GetUserId(),
+				Creation_Date = DateTime.Now,
+				Active = 1,
+				Level = 0,
+				Controller = "Article",
+				Action = "Video"
+			};
 
-			return View("~/Views/Shared/EditorTemplates/Article_Content_Video.cshtml", content);
+			return View("~/Views/Shared/EditorTemplates/Article_Content_Video.cshtml", newItem);
 		}
 
 		// GET: Article - E404
-		public ActionResult E404(Article_Content content)
+		public ActionResult E404(int? Article_Id)
 		{
-			if (content.Id == 0) content.Id = new Random().Next(1000);
+			Article_Content newItem = new Article_Content()
+			{
+				Article_Id = Article_Id, //Convert.ToInt32(this.Request.QueryString["id"]),
+				Created_By = User.Identity.GetUserId(),
+				Creation_Date = DateTime.Now,
+				Active = 1,
+				Level = 0,
+				Controller = "Article",
+				Action = "E404"
+			};
 
-			return View("~/Views/Shared/EditorTemplates/Article_Content_Text.cshtml", content);
+			return View("~/Views/Shared/EditorTemplates/Article_Content_Text.cshtml", newItem);
 		}
 
+
+		
     }
 }

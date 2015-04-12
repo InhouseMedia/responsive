@@ -27,7 +27,7 @@ table.table-drag tbody tr{cursor: move;}
 .panel {
 	overflow:hidden;
 	height:auto;
-	max-height:500px;
+	max-height:1500px;
 	opacity:1;
 
 	.transition(~"height 0.3s ease-in-out");
@@ -161,19 +161,29 @@ table.table-drag tbody tr{cursor: move;}
 		&.empty{
 			min-height:250px;
 			.transition(~"min-height 0.2s ease-in");
-		
-			&:before{
-				content:attr(title-empty);
-				text-align:center;
-				display:block;
-				padding: 4em 10em;
-				opacity:0.5;
-				font: @font-family-sans-serif;
-				font-size:@font-size-large;
-				max-height:400px;
-				.transition(~"max-height 0.2s ease-in, padding 0.2s ease-in, opacity 0.5s ease-in");
+		}
+	
+		.dz-default{
+			text-align:center;
+			display:block;
+			padding: 4em 10em;
+			opacity:0.5;
+			font: @font-family-sans-serif;
+			font-size:@font-size-large;
+			max-height:400px;
+			.transition(~"max-height 0.2s ease-in, padding 0.2s ease-in, opacity 0.5s ease-in");
+
+			u{
+				cursor:pointer;
+
+				&:hover{background-color:@panel-primary-heading-bg; color: #ffffff;}
 			}
 		}
+
+		&.dz-max-files-reached{
+			.dz-default{display:none;}
+		}
+
 	}
 
 }

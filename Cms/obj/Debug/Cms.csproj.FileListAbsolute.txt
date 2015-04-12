@@ -67,3 +67,13 @@ C:\Users\rklank65\Documents\Solutions\Responsive\Cms\obj\Debug\Cms.pdb
 C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\nl-NL\Library.resources.dll
 C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ExtensionMethods.dll
 C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ExtensionMethods.xml
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.dll
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Mvc.dll
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Plugins.DiskCache.dll
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Plugins.SimpleFilters.dll
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.xml
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Mvc.xml
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Plugins.DiskCache.xml
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Plugins.SimpleFilters.xml
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Plugins.PrettyGifs.dll
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Plugins.PrettyGifs.xml

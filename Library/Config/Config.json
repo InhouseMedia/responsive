@@ -51,6 +51,19 @@
 				"AllExceptTopNavigation": 5,
 				"_301Redirect": 301
 			}
+		},
+		"files": {
+			"active": true,
+			"admin": false,
+			"image": {
+				"maxFileSize": 3,
+				"sizes": {
+					"thumbnail": 120,
+					"small": 240,
+					"medium": 480,
+					"large": 960
+				}
+			}
 		}
 	}
 }

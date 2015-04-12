@@ -68,7 +68,13 @@
 					  "~/Scripts/bootstrap-datetimepicker.js",
 					  "~/Scripts/Site/common.js"));
 
-			bundles.Add(new ScriptBundle("~/bundles/article").Include("~/Scripts/Site/article.js"));
+			bundles.Add(new ScriptBundle("~/bundles/article").Include(
+					"~/Scripts/Site/article.js",
+					"~/Scripts/dropzone/dropzone.js"));
+
+			bundles.Add(new StyleBundle("~/bundles/articlecss").Include(
+					"~/Scripts/dropzone/css/basic.css",
+					"~/Scripts/dropzone/css/dropzone.css"));
 
 			bundles.Add(new ScriptBundle("~/bundles/roles").Include("~/Scripts/Site/roles.js"));
 

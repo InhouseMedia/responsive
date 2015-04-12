@@ -19,5 +19,6 @@ namespace Library.Models
         public string name { get; set; }
         public bool is_directory { get; set; }
         public string unc_path { get; set; }
+        public string file_path { get; set; }
     }
 }

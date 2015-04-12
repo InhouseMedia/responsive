@@ -12,6 +12,15 @@ namespace Cms
 		public static void RegisterRoutes(RouteCollection routes)
 		{
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+			
+			//routes.RouteExistingFiles = true;
+
+			routes.MapRoute(
+				name: "Files",
+				url: "Files/{fileType}/{*fileName}",
+				defaults: new { controller = "File", action = "GetFile", fileType = UrlParameter.Optional, fileName = UrlParameter.Optional },
+				constraints: new { fileType = @"[^/?*:;{}\\]+", fileName = @"[^/?*:;{}\\]+" }
+				);
 
 			routes.MapRoute(
 				name: "Default",

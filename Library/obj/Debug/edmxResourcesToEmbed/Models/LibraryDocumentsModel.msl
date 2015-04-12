@@ -4,6 +4,7 @@
     <EntitySetMapping Name="DocumentsView">
       <EntityTypeMapping TypeName="LibraryDocumentsModel.DocumentsView">
         <MappingFragment StoreEntitySet="DocumentsView">
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
           <ScalarProperty Name="stream_id" ColumnName="stream_id" />
           <ScalarProperty Name="file_stream" ColumnName="file_stream" />
           <ScalarProperty Name="name" ColumnName="name" />
@@ -32,5 +33,17 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Documents_Del" FunctionName="LibraryDocumentsModel.Store.Documents_Del" />
+    <FunctionImportMapping FunctionImportName="Documents_View" FunctionName="LibraryDocumentsModel.Store.Documents_View">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LibraryDocumentsModel.Documents_View_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="is_directory" ColumnName="is_directory" />
+          <ScalarProperty Name="file_type" ColumnName="file_type" />
+          <ScalarProperty Name="file_size" ColumnName="file_size" />
+          <ScalarProperty Name="creation_time" ColumnName="creation_time" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

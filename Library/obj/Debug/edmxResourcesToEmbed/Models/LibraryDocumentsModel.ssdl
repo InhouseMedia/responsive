@@ -13,6 +13,7 @@ warning 6002: The table/view 'Library.dbo.DocumentsView' does not have a primary
     <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="is_directory" Type="bit" Nullable="false" />
     <Property Name="unc_path" Type="nvarchar" MaxLength="4000" />
+    <Property Name="file_path" Type="nvarchar(max)" />
   </EntityType>
   <Function Name="Documents_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="filename" Type="nvarchar" Mode="In" />
@@ -21,6 +22,9 @@ warning 6002: The table/view 'Library.dbo.DocumentsView' does not have a primary
   <Function Name="Documents_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="docId" Type="uniqueidentifier" Mode="In" />
   </Function>
+  <Function Name="Documents_View" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="filename" Type="varchar" Mode="In" />
+  </Function>
   <EntityContainer Name="LibraryDocumentsModelStoreContainer">
     <EntitySet Name="DocumentsView" EntityType="Self.DocumentsView" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -28,7 +32,8 @@ warning 6002: The table/view 'Library.dbo.DocumentsView' does not have a primary
     [DocumentsView].[file_stream] AS [file_stream], 
     [DocumentsView].[name] AS [name], 
     [DocumentsView].[is_directory] AS [is_directory], 
-    [DocumentsView].[unc_path] AS [unc_path]
+    [DocumentsView].[unc_path] AS [unc_path], 
+    [DocumentsView].[file_path] AS [file_path]
     FROM [dbo].[DocumentsView] AS [DocumentsView]</DefiningQuery>
     </EntitySet>
   </EntityContainer>

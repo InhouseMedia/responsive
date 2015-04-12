@@ -1,5 +1,6 @@
 ﻿@using Library.Classes
 @using Library.Resources
+@using Library.Helpers
 @{
 	var Locale = ConfigClass.Settings.language.locale.First();
 	var Language = Locale.Split('-').First();}<!DOCTYPE html>
@@ -30,6 +31,7 @@
 		<script src="~/bundles/resources" type="text/javascript"></script>
 		@Scripts.Render("~/bundles/modernizr")
 		@Styles.Render("~/bundles/css")
+		@RenderSection("styles", required: false)
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -74,5 +76,6 @@
 		@Scripts.Render("~/bundles/jqueryui")
 		@Scripts.Render("~/bundles/bootstrap")
 		@RenderSection("scripts", required: false)
+		@Html.PageScripts()
 	</body>
 </html>

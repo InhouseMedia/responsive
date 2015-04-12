@@ -1,6 +1,8 @@
 ﻿$(document).ready(articleReady);
 
 function articleReady() {
+	Dropzone.autoDiscover = false;
+
 	var draggable = $("table.table-drag tbody tr").draggable(
 		{
 			addClasses: false,
@@ -128,6 +130,10 @@ function articleReady() {
 			return false;
 		}
 	);
+
+	
+	//$('#dropzone').dropzone({ url: '/test/url' });	
+	
 }
 
 function getHelper(text) {

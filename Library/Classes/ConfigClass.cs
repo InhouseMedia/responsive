@@ -103,6 +103,7 @@
 			public Standard standard { get; set; }
 			public Article article { get; set; }
 			public Navigation navigation { get; set; }
+			public Files files { get; set; }
 		}
 
 		public class Standard
@@ -138,6 +139,25 @@
 			public int BottomNavigationOnly { get; set; }
 			public int AllExceptTopNavigation { get; set; }
 			public int _301Redirect { get; set; }
+		}
+
+		public class Files
+		{
+			public bool active { get; set; }
+			public bool admin { get; set; }
+			public Image image { get; set; }
+		}
+
+		public class Image {
+			public int maxFileSize { get; set; }
+			public Sizes sizes { get; set; }
+		}
+
+		public class Sizes {
+			public int thumbnail { get; set; }
+			public int small { get; set; }
+			public int medium { get; set; }
+			public int large { get; set; }
 		}
 	}
 }

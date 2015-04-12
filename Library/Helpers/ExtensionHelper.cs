@@ -33,6 +33,14 @@
 			 
 		}
 
+		public static ImgTag ImgTag(this HtmlHelper htmlHelper, string imagePath, string altText)
+		{
+			var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
+
+			return new ImgTag(imagePath, altText, urlHelper.Content);
+		}
+
+
 		public static MvcHtmlString BootstrapValidationMessageFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, object attributes = null)
 		{
 			string propertyName = ExpressionHelper.GetExpressionText(expression);
@@ -152,6 +160,76 @@
 			var watermark = ModelMetadata.FromLambdaExpression(expression, html.ViewData).Watermark;
 			var htmlEncoded = HttpUtility.HtmlEncode(watermark);
 			return new MvcHtmlString(htmlEncoded);
+		}
+	}
+
+	public class ImgTag : IHtmlString
+	{
+		private readonly string _imagePath;
+		private readonly Func<string, string> _mapVirtualPath;
+		private readonly HashSet<int> _pixelDensities;
+		private readonly IDictionary<string, string> _htmlAttributes;
+
+		public ImgTag(string imagePath, string altText, Func<string, string> mapVirtualPath)
+		{
+			_imagePath = imagePath;
+			_mapVirtualPath = mapVirtualPath;
+
+			_pixelDensities = new HashSet<int>();
+			_htmlAttributes = new Dictionary<string, string>
+        {
+            { "src", mapVirtualPath(imagePath) },
+            { "alt", altText }
+        };
+		}
+
+		public string ToHtmlString()
+		{
+			var imgTag = new TagBuilder("img");
+
+			if (_pixelDensities.Any())
+			{
+				AddSrcsetAttribute(imgTag);
+			}
+
+			foreach (KeyValuePair<string, string> attribute in _htmlAttributes)
+			{
+				imgTag.Attributes[attribute.Key] = attribute.Value;
+			}
+
+			return imgTag.ToString(TagRenderMode.SelfClosing);
+		}
+
+		private void AddSrcsetAttribute(TagBuilder imgTag)
+		{
+			int densityIndex = _imagePath.LastIndexOf('.');
+
+			IEnumerable<string> srcsetImagePaths =
+				from density in _pixelDensities
+				let densityX = density + "x"
+				let highResImagePath = _imagePath.Insert(densityIndex, "@" + densityX)
+					+ " " + densityX
+				select _mapVirtualPath(highResImagePath);
+
+			imgTag.Attributes["srcset"] = string.Join(", ", srcsetImagePaths);
+		}
+
+		public ImgTag WithDensities(params int[] densities)
+		{
+			foreach (int density in densities)
+			{
+				_pixelDensities.Add(density);
+			}
+
+			return this;
+		}
+
+		public ImgTag WithSize(int width, int? height = null)
+		{
+			_htmlAttributes["width"] = width.ToString();
+			_htmlAttributes["height"] = (height ?? width).ToString();
+
+			return this;
 		}
 	}
 

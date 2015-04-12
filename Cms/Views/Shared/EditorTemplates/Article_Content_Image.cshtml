@@ -1,9 +1,40 @@
-﻿@using Library.Helpers
+﻿@using Newtonsoft.Json.Linq
+@using Library.Classes
+@using Library.Helpers
+@using Library.Models
 @using Library.Resources
-@{Layout = null;}
 @model Library.Models.Article_Content
+@{
+	Layout = null;
+
+		
+	JObject imageSettings = JObject.Parse(Model.Text);
+
+	//var ctx = new DocumentEntities();
+
+	string url = "~/" + imageSettings.GetValue("url").ToString();
+	
+	//Guid imageId = new Guid(imageSettings.GetValue("imageId").ToString());
+	
+	//var item = ctx.DocumentsView.Where(m => m.stream_id == imageId).FirstOrDefault();
+	
+ }
+
+
 
 <div class="panel panel-default">
+@using (Html.BeginCollectionItem("Article_Content"))
+{
+	@Html.HiddenFor(m => m.Id)
+	@Html.HiddenFor(m => m.Article_Id)
+	@Html.HiddenFor(m => m.Action)
+	@Html.HiddenFor(m => m.Controller)
+	@Html.HiddenFor(m => m.Creation_Date)
+	@Html.HiddenFor(m => m.Created_By)
+	@Html.HiddenFor(m => m.Active)
+	@Html.HiddenFor(m => m.Level)
+	//Html.HiddenFor(m => m.Text)
+	
 	<div class="panel-heading collapsed" role="tab" id="headingImage_@Model.Id" data-toggle="collapse" data-target="#collapseImage_@Model.Id">
 		<div class="dragHandle">:::</div>
 		<div class="row no-gutter">
@@ -34,22 +65,40 @@
 		</div>
 	</div>
 	<div id="collapseImage_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingImage_@Model.Id">
-		<div class="panel-body form-horizontal highlight empty" title-empty="@Translate.FileUploadEmpty">
+		<div class="panel-body form-horizontal">
+			<div class="highlight empty dropzone">
+				<div class="fallback">
+					@Html.TextBox("test", "", new { Type = "file" })
+				</div>
+			</div>
+			@*Html.ImgTag(url,"").WithDensities(2, 3).WithSize(100, 40);*@
 
-			@using (Html.BeginCollectionItem("Article_Content"))
-			{
-				@Html.HiddenFor(m => m.Id)
-				@Html.HiddenFor(m => m.Article_Id)
-				@Html.HiddenFor(m => m.Action)
-				@Html.HiddenFor(m => m.Controller)
-				@Html.HiddenFor(m => m.Creation_Date)
-				@Html.HiddenFor(m => m.Created_By)
-				@Html.HiddenFor(m => m.Active)
-				@Html.HiddenFor(m => m.Level)
-				//Html.BootstrapEditorFor(m => m.Title, new { Label = true })
-				//Html.LabelFor(m => m.Text)
-				//Html.TextAreaFor(m => m.Text)
-			}
+			@Html.TextAreaFor(m => m.Text)
 		</div>
 	</div>
+}
 </div>
+
+
+<script>
+	(function () {
+		function loadDropZone() {
+			$('#collapseImage_@Model.Id .dropzone').dropzone(
+				{
+					url: '/File/SaveFile',
+					maxFilesize: @ConfigClass.Settings.controllers.files.image.maxFileSize,
+					maxFiles: 1,
+					acceptedFiles: 'image/*',
+					dictDefaultMessage: '@Html.Raw(Translate.FileUploadEmpty)'
+				}
+			);
+		}
+		if (window.jQuery !== undefined) {
+			loadDropZone();
+		} else {
+			window.onload = loadDropZone;
+		}
+	}
+	)();
+</script>
+

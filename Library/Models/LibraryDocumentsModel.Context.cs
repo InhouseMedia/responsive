@@ -18,7 +18,7 @@ namespace Library.Models
     public partial class DocumentEntities : DbContext
     {
         public DocumentEntities()
-			: base("name=DocumentEntities")
+            : base("name=DocumentEntities")
         {
         }
     
@@ -49,6 +49,15 @@ namespace Library.Models
                 new ObjectParameter("docId", typeof(System.Guid));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Documents_Del", docIdParameter);
+        }
+    
+        public virtual ObjectResult<Documents_View_Result> Documents_View(string filename)
+        {
+            var filenameParameter = filename != null ?
+                new ObjectParameter("filename", filename) :
+                new ObjectParameter("filename", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Documents_View_Result>("Documents_View", filenameParameter);
         }
     }
 }

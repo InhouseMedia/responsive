@@ -7,6 +7,15 @@
 <div class="panel panel-default">
 @using (Html.BeginCollectionItem("Article_Content"))
 {
+	@Html.HiddenFor(m => m.Id)
+	@Html.HiddenFor(m => m.Article_Id)
+	@Html.HiddenFor(m => m.Action)
+	@Html.HiddenFor(m => m.Controller)
+	@Html.HiddenFor(m => m.Creation_Date)
+	@Html.HiddenFor(m => m.Created_By)
+	@Html.HiddenFor(m => m.Active)
+	@Html.HiddenFor(m => m.Level)
+	
 	<div class="panel-heading collapsed" role="tab" id="headingText_@Model.Id" data-toggle="collapse" data-target="#collapseText_@Model.Id">
 		<div class="dragHandle">:::</div>
 		<div class="row no-gutter">
@@ -38,14 +47,6 @@
 	</div>
 	<div id="collapseText_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingText_@Model.Id">
 		<div class="panel-body form-horizontal">
-			@Html.HiddenFor(m => m.Id)
-			@Html.HiddenFor(m => m.Article_Id)
-			@Html.HiddenFor(m => m.Action)
-			@Html.HiddenFor(m => m.Controller)
-			@Html.HiddenFor(m => m.Creation_Date)
-			@Html.HiddenFor(m => m.Created_By)
-			@Html.HiddenFor(m => m.Active)
-			@Html.HiddenFor(m => m.Level)
 			@Html.LabelFor(m => m.Text)
 			@Html.TextAreaFor(m => m.Text)
 		</div>
