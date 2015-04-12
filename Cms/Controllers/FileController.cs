@@ -83,7 +83,7 @@
 		public ActionResult SaveFile()
 		{
 			bool isSavedSuccessfully = true;
-			string fName = "";
+			string filename = "";
 			try
 			{
 				using (DocumentEntities db = new DocumentEntities())
@@ -92,88 +92,67 @@
 					{
 						HttpPostedFileBase file = Request.Files[fileName];
 						//Save file content goes here
-						fName = file.FileName;
+						filename = file.FileName.ToLower();
 
 						MemoryStream target = new MemoryStream();
-						file.InputStream.CopyTo(target);
-						byte[] data = target.ToArray();
 						
 						try
 						{
 							Image image = Bitmap.FromStream(file.InputStream); // valid image stream
 							
+							// All images that are uploaded will be generated again.
+							// This is done because we are saving them all as jpeg with a 10% compression.
+							// This way we save datastorage, increase download speed and protect the server for virusses.
 
 							double imageWidth = image.Width;
 							double imageHeight = image.Height;
+							int newWidth = image.Width;
+							int newHeight = image.Height;
 
+							// Scale the image if it is to big. 
+							// ImageResizer library can only handle images that are smaller then 3200 pixels.
 							if (imageWidth > 3200 || imageHeight > 3200)
 							{
 								double ratio = imageWidth / imageHeight;
-								string imageType = (ratio < 1)? "portrait" : "landscape";
+								//string imageType = (ratio < 1)? "portrait" : "landscape";
 
-								int newHeight = (ratio < 1)? 3200 : (int) Math.Round(imageHeight / imageWidth * 3200);
-								int newWidth = (ratio >= 1)? 3200 : (int) Math.Round(imageWidth / imageHeight * 3200);
-
-								Bitmap newImage = new Bitmap(newWidth, newHeight, PixelFormat.Format24bppRgb);
-								newImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-								
-								using (Graphics gr = Graphics.FromImage(newImage))
-								{
-									gr.Clear(Color.Transparent);
-									gr.SmoothingMode = SmoothingMode.AntiAlias;
-									//gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
-									//gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
-									gr.DrawImage(image, new Rectangle(0, 0, newWidth, newHeight));
-			
-									MemoryStream target2 = new MemoryStream();
-									newImage.Save(target2,ImageFormat.Jpeg);
-									
-									data = target2.ToArray();
-
-									myEncoderParameters = new EncoderParameters(1);
-								}
-
-								
+								newHeight = (ratio < 1)? 3200 : (int) Math.Round(imageHeight / imageWidth * 3200);
+								newWidth = (ratio >= 1)? 3200 : (int) Math.Round(imageWidth / imageHeight * 3200);
 							}
 
+							// Create an imageholder for the newly created image
+							Bitmap newImage = new Bitmap(newWidth, newHeight, PixelFormat.Format24bppRgb);
+							newImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
-							var tempFile = db.Documents_Add(fName, data);
+							// Compress the image with 10%. this will create a much smaller image and the quality is still high.
+							EncoderParameters encoderParams = new EncoderParameters()
+							{
+								Param = new[] { new EncoderParameter(Encoder.Quality, 90L)}
+							};
+
+							// Set encoder to JPEG
+							var encoder = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == ImageFormat.Jpeg.Guid);
 
 
-							/*
-							//Save multiple image sizes
-							var imageSettings = ConfigClass.Settings.controllers.files.image.sizes;
-							PropertyInfo[] imageProperties = imageSettings.GetType().GetProperties();
-							
-							foreach (PropertyInfo property in imageProperties) {
-								string name = (property.Name == "large") ? "" : "_" + property.Name;
+							using (Graphics gr = Graphics.FromImage(newImage))
+							{
+								gr.Clear(Color.Transparent);
+								gr.SmoothingMode = SmoothingMode.AntiAlias;
+								gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
+								gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
+								gr.DrawImage(image, new Rectangle(0, 0, newWidth, newHeight));
+								
+								newImage.Save(target, encoder, encoderParams);
+							}
 
-								int size = (int)property.GetValue(imageSettings, null);
-
-								string extension = Path.GetExtension(fName);
-								string filename = Path.GetFileNameWithoutExtension(fName);
-
-								using (Graphics gr = Graphics.FromImage(newImage))
-								{
-									gr.Clear(Color.Transparent);
-									gr.SmoothingMode = SmoothingMode.AntiAlias;
-									gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
-									gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
-									gr.DrawImage(image, new Rectangle(0, 0, size, size));
-								}
-
-								byte[] test = ImageToByte2(newImage);
-
-								var tempFile = db.Documents_Add(filename + name + extension, test);
-							}*/
+							var tempFile = db.Documents_Add(filename, target.ToArray());
 						}
 						catch
 						{
 							// not an image
-							var tempFile = db.Documents_Add(fName, data);
+							file.InputStream.CopyTo(target);
+							var tempFile = db.Documents_Add(filename, target.ToArray());
 						}
-
-
 					}
 				}
 			}
@@ -185,7 +164,7 @@
 
 			if (isSavedSuccessfully)
 			{
-				return Json(new { Message = fName });
+				return Json(new { Message = filename });
 			}
 			else
 			{
