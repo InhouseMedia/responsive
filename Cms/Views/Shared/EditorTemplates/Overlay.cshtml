@@ -1,0 +1,15 @@
+﻿@using System.Resources
+@using Library.Resources
+@model Library.Classes.ImageSettings.Overlay
+@{
+    Layout = null;
+
+	// Get all translations so that we can get the ones for the visibility buttons
+	var manager = new ResourceManager(typeof(Translate));
+
+	string isActive = (Model.value.Equals(true)) ? "active" : "";
+}
+
+<label class="btn btn-default @isActive">
+	@Html.CheckBoxFor(m => m.value, Model.value) @manager.GetString(Model.name)
+</label>

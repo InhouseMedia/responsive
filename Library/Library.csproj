@@ -194,6 +194,7 @@
     <Compile Include="Classes\ArticleClass.cs" />
     <Compile Include="Classes\BoxClass.cs" />
     <Compile Include="Classes\ConfigClass.cs" />
+    <Compile Include="Classes\ImageClass.cs" />
     <Compile Include="Classes\NavigationClass.cs" />
     <Compile Include="Helpers\AccountHelper.cs" />
     <Compile Include="Helpers\BeginScriptHelper.cs" />
@@ -322,6 +323,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Config\Config.json" />
+    <None Include="Config\imageSettings.json" />
     <None Include="Config\sitemap.xsd" />
     <EntityDeploy Include="Models\LibraryModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

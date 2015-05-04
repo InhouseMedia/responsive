@@ -315,4 +315,106 @@
   <data name="FileUploadEmpty" xml:space="preserve">
     <value>Sleep een foto/image binnen dit vlak om deze te uploaden. Of &lt;u&gt;klik hier&lt;/u&gt; om een bestand te selecteren.</value>
   </data>
+  <data name="ImageSettingsFlip" xml:space="preserve">
+    <value>Spiegelen</value>
+  </data>
+  <data name="s_brightness" xml:space="preserve">
+    <value>Helderheid</value>
+  </data>
+  <data name="s_contrast" xml:space="preserve">
+    <value>Contrast</value>
+  </data>
+  <data name="s_saturation" xml:space="preserve">
+    <value>Verzadiging</value>
+  </data>
+  <data name="sflip_x" xml:space="preserve">
+    <value>Horizontaal</value>
+  </data>
+  <data name="sflip_xy" xml:space="preserve">
+    <value>Beide</value>
+  </data>
+  <data name="sflip_y" xml:space="preserve">
+    <value>Verticaal</value>
+  </data>
+  <data name="sflip_" xml:space="preserve">
+    <value>Geen</value>
+  </data>
+  <data name="center" xml:space="preserve">
+    <value>Midden</value>
+  </data>
+  <data name="left" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="right" xml:space="preserve">
+    <value>Rechts</value>
+  </data>
+  <data name="ImageSettingsWatermark" xml:space="preserve">
+    <value>Watermerk</value>
+  </data>
+  <data name="ImageSettingsFilters" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="gradientBottom" xml:space="preserve">
+    <value>Schaduw onder</value>
+  </data>
+  <data name="gradientTop" xml:space="preserve">
+    <value>Schaduw boven</value>
+  </data>
+  <data name="ImageTitle" xml:space="preserve">
+    <value>Titel in afbeelding</value>
+  </data>
+  <data name="logo" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="grayscale_false" xml:space="preserve">
+    <value>Kleur</value>
+  </data>
+  <data name="grayscale_flat" xml:space="preserve">
+    <value>Plat</value>
+  </data>
+  <data name="grayscale_sepia" xml:space="preserve">
+    <value>Sepia</value>
+  </data>
+  <data name="grayscale_true" xml:space="preserve">
+    <value>Grijstinten</value>
+  </data>
+  <data name="ImageSettingsEnlarge" xml:space="preserve">
+    <value>Vergroten (bij klikken)</value>
+  </data>
+  <data name="ImageSettingsLinkTo" xml:space="preserve">
+    <value>Verwijzing</value>
+  </data>
+  <data name="ImageSettingsPlacement" xml:space="preserve">
+    <value>Plaatsing</value>
+  </data>
+  <data name="ImageSettingsSize" xml:space="preserve">
+    <value>Formaat</value>
+  </data>
+  <data name="ImageSettingsTitle" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="ImageSettingsTransform" xml:space="preserve">
+    <value>Opmaak</value>
+  </data>
+  <data name="imagesize_large" xml:space="preserve">
+    <value>Groot</value>
+  </data>
+  <data name="imagesize_medium" xml:space="preserve">
+    <value>Middel</value>
+  </data>
+  <data name="imagesize_small" xml:space="preserve">
+    <value>Klein</value>
+  </data>
+  <data name="imagesize_thumbnail" xml:space="preserve">
+    <value>Thumbnail</value>
+  </data>
+  <data name="ImageSettingsColor" xml:space="preserve">
+    <value>Kleur instellingen</value>
+  </data>
+  <data name="ImageSettingsImage" xml:space="preserve">
+    <value>Eigenschappen</value>
+  </data>
+  <data name="ImageSettingsOverlay" xml:space="preserve">
+    <value>Overlay</value>
+  </data>
 </root>

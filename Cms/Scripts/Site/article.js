@@ -85,7 +85,6 @@ function articleReady() {
 					}
 				);
 			}
-
 		}
 	).droppable(
 		{
@@ -130,10 +129,6 @@ function articleReady() {
 			return false;
 		}
 	);
-
-	
-	//$('#dropzone').dropzone({ url: '/test/url' });	
-	
 }
 
 function getHelper(text) {

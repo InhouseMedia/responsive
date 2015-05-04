@@ -150,14 +150,12 @@
 
 		public class Image {
 			public int maxFileSize { get; set; }
-			public Sizes sizes { get; set; }
+			public Sizes[] sizes { get; set; }
 		}
 
 		public class Sizes {
-			public int thumbnail { get; set; }
-			public int small { get; set; }
-			public int medium { get; set; }
-			public int large { get; set; }
+			public string name { get; set; }
+			public int value { get; set; }
 		}
 	}
 }

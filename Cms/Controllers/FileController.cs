@@ -23,28 +23,29 @@
 
 	public class FileController : Controller
     {
-		public static byte[] ImageToByte2(Image img)
-		{
-			byte[] byteArray = new byte[0];
-			using (MemoryStream stream = new MemoryStream())
-			{
-				img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-				stream.Close();
-
-				byteArray = stream.ToArray();
-			}
-			return byteArray;
-		}
-
         // GET: file
         public ActionResult Index()
         {
             return View();
         }
 
+		
 		// GET: getFile
 		[HttpGet]
 		public ActionResult GetFile(string fileType, string fileName)
+		{
+
+			switch (fileType) { 
+				case "Images":
+					return GetImage(fileType, fileName);
+				default:
+					return null;
+			}
+		}
+
+		// GET: getImage
+		[HttpGet]
+		public ActionResult GetImage(string fileType, string fileName)
 		{
 			string filePath = Path.Combine("\\", "Documents", fileType, fileName);
 
@@ -71,7 +72,8 @@
 			Instructions imageSettings = new Instructions(Request.QueryString);
 			imageSettings.OutputFormat = OutputFormat.Jpeg;
 			imageSettings.JpegQuality = getConnectionTypeQuality();
-
+			imageSettings.Mode = FitMode.Crop;
+ 
 			new ImageJob(stream.file_stream, target, imageSettings).Build();
 
 			target.Seek(0, SeekOrigin.Begin);
@@ -80,9 +82,9 @@
 		}
 
 
-		public ActionResult SaveFile()
+		public ActionResult SaveImage()
 		{
-			bool isSavedSuccessfully = true;
+			string returnMessage = "Undefined error";
 			string filename = "";
 			try
 			{
@@ -93,7 +95,7 @@
 						HttpPostedFileBase file = Request.Files[fileName];
 						//Save file content goes here
 						filename = file.FileName.ToLower();
-
+						
 						MemoryStream target = new MemoryStream();
 						
 						try
@@ -146,30 +148,24 @@
 							}
 
 							var tempFile = db.Documents_Add(filename, target.ToArray());
+							returnMessage = filename;
 						}
 						catch
 						{
 							// not an image
-							file.InputStream.CopyTo(target);
-							var tempFile = db.Documents_Add(filename, target.ToArray());
+							//file.InputStream.CopyTo(target);
+							//var tempFile = db.Documents_Add(filename, target.ToArray());
+							returnMessage = "File is not an image";
 						}
 					}
 				}
 			}
 			catch (Exception ex)
 			{
-				isSavedSuccessfully = false;
+				returnMessage = "Error in saving image";
 			}
 
-
-			if (isSavedSuccessfully)
-			{
-				return Json(new { Message = filename });
-			}
-			else
-			{
-				return Json(new { Message = "Error in saving file" });
-			}
+			return Json(new { Message = returnMessage });
 		}
 
 		[OutputCache(Duration = 3600, VaryByParam = "none")]
@@ -191,6 +187,20 @@
 				default:
 					return 75;
 			}
+		}
+
+		// Not used
+		public static byte[] ImageToByte2(Image img)
+		{
+			byte[] byteArray = new byte[0];
+			using (MemoryStream stream = new MemoryStream())
+			{
+				img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+				stream.Close();
+
+				byteArray = stream.ToArray();
+			}
+			return byteArray;
 		}
     }
 }

@@ -1,0 +1,31 @@
+﻿@using Library.Classes
+@model ImageSettings.Image
+@{
+    Layout = null;
+}
+<!--
+<div class="row">
+	<div class="col-md-12">
+		@*Html.LabelFor(m => m.title)*@
+		@*Html.TextBoxFor(m => m.title, new { @class = "form-control" })*@
+	</div>
+</div>
+-->
+<div class="row">
+	<div class="col-md-12">
+		@Html.LabelFor(m => m.size)
+		<div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+			@Html.EditorFor(m => ConfigClass.Settings.controllers.files.image.sizes)
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		@Html.LabelFor(m => m.placement)
+		<div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+			@Html.EditorFor(m => m.placement)
+		</div>
+	</div>
+</div>
+

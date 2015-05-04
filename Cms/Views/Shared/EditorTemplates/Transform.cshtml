@@ -1,0 +1,14 @@
+﻿@model Library.Classes.ImageSettings.Transform
+@{
+    Layout = null;
+}
+
+<div class="row">
+	<div class="col-md-12">
+		@Html.LabelFor(m => m.sflip)
+		<div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+			@Html.EditorFor(m => m.sflip)
+		</div>
+	</div>
+</div>
+

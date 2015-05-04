@@ -70,6 +70,9 @@
     <Reference Include="ImageResizer.Plugins.SimpleFilters">
       <HintPath>..\packages\ImageResizer.Plugins.SimpleFilters.3.4.3\lib\ImageResizer.Plugins.SimpleFilters.dll</HintPath>
     </Reference>
+    <Reference Include="ImageResizer.Plugins.Watermark">
+      <HintPath>..\packages\ImageResizer.Plugins.Watermark.3.4.3\lib\ImageResizer.Plugins.Watermark.dll</HintPath>
+    </Reference>
     <Reference Include="JavaScriptEngineSwitcher.Core">
       <HintPath>..\packages\JavaScriptEngineSwitcher.Core.1.2.0\lib\net40\JavaScriptEngineSwitcher.Core.dll</HintPath>
     </Reference>
@@ -224,6 +227,9 @@
     <None Include="BundleTransformer.Configuration.xsd" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\404.jpg" />
+    <Content Include="Content\img\gradientBottom.png" />
+    <Content Include="Content\img\gradientTop.png" />
+    <Content Include="Content\img\heart.png" />
     <Content Include="Content\img\loader.svg" />
     <Content Include="Content\img\loader2.svg" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -335,11 +341,16 @@
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\Index.less" />
-    <Content Include="Content\less\bootstrap-datetimepicker-build.less" />
-    <Content Include="Content\less\bootstrap-datetimepicker.less" />
+    <Content Include="Content\bootstrap-datetimepicker\bootstrap-datetimepicker-build.less" />
+    <Content Include="Content\bootstrap-datetimepicker\bootstrap-datetimepicker.less" />
+    <Content Include="Content\bootstrap-slider\bootstrap-slider.less" />
+    <Content Include="Content\bootstrap-slider\variables.less" />
+    <Content Include="Content\bootstrap-slider\rules.less" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap-slider.js" />
+    <Content Include="Scripts\bootstrap-slider.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\dropzone\basic.css" />
@@ -447,6 +458,16 @@
     <Content Include="Views\Shared\EditorTemplates\Article_Content_E404.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Article_Content_Image.cshtml" />
     <Content Include="Views\File\GetFile.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Color.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Sflip.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Placement.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Overlay.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\watermark.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\sgrayscale.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Image.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\sizes.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Filters.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Transform.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

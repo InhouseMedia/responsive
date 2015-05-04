@@ -1,23 +1,33 @@
 ﻿@using Newtonsoft.Json.Linq
+@using System.Resources
+
 @using Library.Classes
 @using Library.Helpers
 @using Library.Models
 @using Library.Resources
-@model Library.Models.Article_Content
+@using System.IO
+@using System.Web.Hosting
+@model Article_Content
 @{
 	Layout = null;
-
 		
-	JObject imageSettings = JObject.Parse(Model.Text);
+	JObject jsonSettings = JObject.Parse(Model.Text);
+	/*
+	const string JsonConfigFile = "Library\\Config\\ImageSettings.json";
+	string path = Path.Combine(new DirectoryInfo(HostingEnvironment.MapPath("~/")).Parent.FullName, @JsonConfigFile);
 
-	//var ctx = new DocumentEntities();
+	string jsonString = File.ReadAllText(path);
+	JObject jsonSettings = JObject.Parse(jsonString);
+	*/
+	ImageSettings.ImageObject imageSettings = jsonSettings.ToObject<ImageSettings.ImageObject>();
 
-	string url = "~/" + imageSettings.GetValue("url").ToString();
+	// Get all translations so that we can get the ones for the visibility buttons
+	var manager = new ResourceManager(typeof(Translate));
 	
 	//Guid imageId = new Guid(imageSettings.GetValue("imageId").ToString());
 	
 	//var item = ctx.DocumentsView.Where(m => m.stream_id == imageId).FirstOrDefault();
-	
+		
  }
 
 
@@ -66,14 +76,80 @@
 	</div>
 	<div id="collapseImage_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingImage_@Model.Id">
 		<div class="panel-body form-horizontal">
-			<div class="highlight empty dropzone">
-				<div class="fallback">
-					@Html.TextBox("test", "", new { Type = "file" })
+			
+			@*Html.ImgTag(url,"").WithDensities(2, 3).WithSize(100, 40)*@
+
+
+			<div class="row no-gutter">
+
+				<div class="col-xs-6 col-md-5">
+					<div class="highlight empty dropzone">
+						<div class="fallback">
+							@Html.TextBox("test", "", new { Type = "file" })
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-7">
+
+					<div class="panel-group" id="collapseSettings_@Model.Id" role="tablist" aria-multiselectable="true">
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" data-toggle="collapse" data-parent="#somethingelse_@Model.Id" data-target="#collapseSettingsImage_@Model.Id">
+								<h4 class="panel-title">@Html.DisplayNameFor(m => imageSettings.image)</h4>
+							</div>
+							<div id="collapseSettingsImage_@Model.Id" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSettingsImage_@Model.Id">
+								<div class="panel-body form-horizontal">
+									@Html.EditorFor(m => imageSettings.image)
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" data-toggle="collapse" data-parent="#collapseSettings_@Model.Id" data-target="#collapseSettingsColor_@Model.Id">
+								<h4 class="panel-title">@Html.DisplayNameFor(m => imageSettings.color)</h4>
+							</div>
+							<div id="collapseSettingsColor_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSettingsColor_@Model.Id">
+								<div class="panel-body form-horizontal">
+									@Html.EditorFor(m => imageSettings.color)
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" data-toggle="collapse" data-parent="#collapseSettings_@Model.Id" data-target="#collapseSettingsFilters_@Model.Id">
+								<h4 class="panel-title">@Html.DisplayNameFor(m => imageSettings.filters)</h4>
+							</div>
+							<div id="collapseSettingsFilters_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSettingsFilters_@Model.Id">
+								<div class="panel-body form-horizontal">
+									@Html.EditorFor(m => imageSettings.filters)
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" data-toggle="collapse" data-parent="#collapseSettings_@Model.Id" data-target="#collapseSettingsTransform_@Model.Id">
+								<h4 class="panel-title">@Html.DisplayNameFor(m => imageSettings.transform)</h4>
+							</div>
+							<div id="collapseSettingsTransform_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSettingsTransform_@Model.Id">
+								<div class="panel-body form-horizontal">
+									@Html.EditorFor(m => imageSettings.transform)
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" data-toggle="collapse" data-parent="#collapseSettings_@Model.Id" data-target="#collapseSettingsWatermark_@Model.Id">
+								<h4 class="panel-title">@Html.DisplayNameFor(m => imageSettings.watermark)</h4>
+							</div>
+							<div id="collapseSettingsWatermark_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSettingsWatermark_@Model.Id">
+								<div class="panel-body form-horizontal">
+									@Html.EditorFor(m => imageSettings.watermark)
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			@Html.ImgTag(url,"").WithDensities(2, 3).WithSize(100, 40)
-
-			@Html.TextAreaFor(m => m.Text)
+				@Html.TextAreaFor(m => m.Text)
 		</div>
 	</div>
 }
@@ -83,15 +159,18 @@
 <script>
 	(function () {
 		function loadDropZone() {
-			$('#collapseImage_@Model.Id .dropzone').dropzone(
+			var panel = $('#collapseImage_@Model.Id');
+			panel.find('.dropzone').dropzone(
 				{
-					url: '/File/SaveFile',
+					url: '/File/SaveImage',
 					maxFilesize: @ConfigClass.Settings.controllers.files.image.maxFileSize,
 					maxFiles: 1,
 					acceptedFiles: 'image/*',
 					dictDefaultMessage: '@Html.Raw(Translate.FileUploadEmpty)'
 				}
 			);
+				
+			panel.find('.slider').bootstrapSlider();
 		}
 		if (window.jQuery !== undefined) {
 			loadDropZone();

@@ -1,0 +1,17 @@
+﻿@using System.Resources
+@using Library.Classes
+@using Library.Resources
+@model ImageSettings.Color
+@{
+    Layout = null;
+	
+	// Get all translations so that we can get the ones for the visibility buttons
+	var manager = new ResourceManager(typeof(Translate));
+}
+
+<div class="row">
+	<div class="col-md-12">
+		@Html.Label(manager.GetString(Model.name))
+		@Html.TextBoxFor(m => m.value, new { @class = "slider", @data_slider_min = -1, @data_slider_max = 1, @data_slider_step = 0.1, @data_slider_value = @Model.value })
+	</div>
+</div>

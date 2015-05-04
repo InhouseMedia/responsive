@@ -1,0 +1,48 @@
+﻿{
+	"image": {
+		"imageId": "",
+		"url": "",
+		"title": "",
+		"alt": "",
+		"enlarge": false,
+		"linkTo": "",
+		"size": "",
+		"placement": [
+			{ "name": "left", "value": false },
+			{ "name": "center", "value": false },
+			{ "name": "right", "value": false }
+		]
+	},
+	"color": [
+		{ "name": "s_brightness", "value": 0 },
+		{ "name": "s_contrast", "value": 0 },
+		{ "name": "s_saturation", "value": 0 }
+	],
+	"filters": {
+		"s_grayscale": [ 
+			{ "name": "false", "value": false },
+			{ "name": "true", "value": false },
+			{ "name": "flat", "value": false },
+			{ "name": "sepia", "value": false }
+		]
+	},
+	"transform": {
+		"sflip": [
+			{ "name": "", "value": false },
+			{ "name": "x", "value": false },
+			{ "name": "y", "value": false },
+			{ "name": "xy", "value": false }
+		]
+	},
+	"watermark": {
+		"overlay": [
+			{ "name": "gradientTop", "value": false },
+			{ "name": "gradientBottom", "value": false },
+			{ "name": "logo", "value": false }
+		],
+		"title": {
+			"active": false,
+			"title": ""
+		}
+	}
+}

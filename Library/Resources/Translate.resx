@@ -318,4 +318,106 @@
   <data name="FileUploadEmpty" xml:space="preserve">
     <value>Drag an image on this box to upload. Or &lt;u&gt;click here&lt;/u&gt; to browse an image.</value>
   </data>
+  <data name="ImageSettingsFlip" xml:space="preserve">
+    <value>Flip</value>
+  </data>
+  <data name="s_brightness" xml:space="preserve">
+    <value>Brightness</value>
+  </data>
+  <data name="s_contrast" xml:space="preserve">
+    <value>Contrast</value>
+  </data>
+  <data name="s_saturation" xml:space="preserve">
+    <value>Saturation</value>
+  </data>
+  <data name="sflip_x" xml:space="preserve">
+    <value>Horizontal</value>
+  </data>
+  <data name="sflip_xy" xml:space="preserve">
+    <value>Both</value>
+  </data>
+  <data name="sflip_y" xml:space="preserve">
+    <value>Vertical</value>
+  </data>
+  <data name="sflip_" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="center" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="right" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="ImageSettingsWatermark" xml:space="preserve">
+    <value>Watermark</value>
+  </data>
+  <data name="ImageSettingsFilters" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="gradientBottom" xml:space="preserve">
+    <value>Gradient bottom</value>
+  </data>
+  <data name="gradientTop" xml:space="preserve">
+    <value>Gradient top</value>
+  </data>
+  <data name="ImageTitle" xml:space="preserve">
+    <value>Image title</value>
+  </data>
+  <data name="logo" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="grayscale_false" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="grayscale_flat" xml:space="preserve">
+    <value>Flat</value>
+  </data>
+  <data name="grayscale_sepia" xml:space="preserve">
+    <value>Sepia</value>
+  </data>
+  <data name="grayscale_true" xml:space="preserve">
+    <value>Greyscale</value>
+  </data>
+  <data name="ImageSettingsEnlarge" xml:space="preserve">
+    <value>Enlarge (when clicked)</value>
+  </data>
+  <data name="ImageSettingsLinkTo" xml:space="preserve">
+    <value>Link to</value>
+  </data>
+  <data name="ImageSettingsPlacement" xml:space="preserve">
+    <value>Placement</value>
+  </data>
+  <data name="ImageSettingsSize" xml:space="preserve">
+    <value>Image size</value>
+  </data>
+  <data name="ImageSettingsTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="ImageSettingsTransform" xml:space="preserve">
+    <value>Transform</value>
+  </data>
+  <data name="imagesize_large" xml:space="preserve">
+    <value>Large</value>
+  </data>
+  <data name="imagesize_medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="imagesize_small" xml:space="preserve">
+    <value>Small</value>
+  </data>
+  <data name="imagesize_thumbnail" xml:space="preserve">
+    <value>Thumbnail</value>
+  </data>
+  <data name="ImageSettingsColor" xml:space="preserve">
+    <value>Color adjustments</value>
+  </data>
+  <data name="ImageSettingsImage" xml:space="preserve">
+    <value>Image settings</value>
+  </data>
+  <data name="ImageSettingsOverlay" xml:space="preserve">
+    <value>Overlay</value>
+  </data>
 </root>

@@ -22,3 +22,4 @@
 /// <reference path="site/common.js" />
 /// <reference path="dropzone/dropzone-amd-module.min.js" />
 /// <reference path="dropzone/dropzone.js" />
+/// <reference path="bootstrap-slider.min.js" />

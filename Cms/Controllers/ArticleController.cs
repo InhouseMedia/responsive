@@ -3,12 +3,16 @@
 	using Microsoft.AspNet.Identity;
 	using Microsoft.AspNet.Identity.EntityFramework;
 	using Microsoft.AspNet.Identity.Owin;
+	using Newtonsoft.Json.Linq;
 	using System;
+	using System.IO;
 	using System.Linq;
 	using System.Collections.Generic;
 	using System.Data.Entity;
+	using System.Resources;
 	using System.Web;
 	using System.Web.Helpers;
+	using System.Web.Hosting;
 	using System.Web.Mvc;
 	using System.Threading.Tasks;
 
@@ -249,6 +253,11 @@
 		// GET: Article - Image
 		public ActionResult Image(int? Article_Id)
 		{
+			const string JsonConfigFile = "Library\\Config\\ImageSettings.json";
+			string path = Path.Combine(new DirectoryInfo(HostingEnvironment.MapPath("~/")).Parent.FullName, @JsonConfigFile);
+
+			string jsonString = System.IO.File.ReadAllText(path);
+
 			Article_Content newItem = new Article_Content()
 			{
 				Article_Id = Article_Id, //Convert.ToInt32(this.Request.QueryString["id"]),
@@ -257,7 +266,8 @@
 				Active = 1,
 				Level = 0,
 				Controller = "Article",
-				Action = "Image"
+				Action = "Image",
+				Text = jsonString
 			};
 
 			return View("~/Views/Shared/EditorTemplates/Article_Content_Image.cshtml", newItem);

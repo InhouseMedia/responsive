@@ -77,3 +77,5 @@ C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Plugins.Di
 C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Plugins.SimpleFilters.xml
 C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Plugins.PrettyGifs.dll
 C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Plugins.PrettyGifs.xml
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Plugins.Watermark.dll
+C:\Users\rklank65\Documents\Solutions\Responsive\Cms\bin\ImageResizer.Plugins.Watermark.xml

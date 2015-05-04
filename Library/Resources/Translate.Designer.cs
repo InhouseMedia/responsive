@@ -88,6 +88,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Center.
+        /// </summary>
+        public static string center {
+            get {
+                return ResourceManager.GetString("center", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change the {0}.
         /// </summary>
         public static string ChangeButton {
@@ -241,11 +250,227 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gradient bottom.
+        /// </summary>
+        public static string gradientBottom {
+            get {
+                return ResourceManager.GetString("gradientBottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gradient top.
+        /// </summary>
+        public static string gradientTop {
+            get {
+                return ResourceManager.GetString("gradientTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        public static string grayscale_false {
+            get {
+                return ResourceManager.GetString("grayscale_false", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flat.
+        /// </summary>
+        public static string grayscale_flat {
+            get {
+                return ResourceManager.GetString("grayscale_flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sepia.
+        /// </summary>
+        public static string grayscale_sepia {
+            get {
+                return ResourceManager.GetString("grayscale_sepia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Greyscale.
+        /// </summary>
+        public static string grayscale_true {
+            get {
+                return ResourceManager.GetString("grayscale_true", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello.
         /// </summary>
         public static string Hello {
             get {
                 return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color adjustments.
+        /// </summary>
+        public static string ImageSettingsColor {
+            get {
+                return ResourceManager.GetString("ImageSettingsColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enlarge (when clicked).
+        /// </summary>
+        public static string ImageSettingsEnlarge {
+            get {
+                return ResourceManager.GetString("ImageSettingsEnlarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filters.
+        /// </summary>
+        public static string ImageSettingsFilters {
+            get {
+                return ResourceManager.GetString("ImageSettingsFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip.
+        /// </summary>
+        public static string ImageSettingsFlip {
+            get {
+                return ResourceManager.GetString("ImageSettingsFlip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image settings.
+        /// </summary>
+        public static string ImageSettingsImage {
+            get {
+                return ResourceManager.GetString("ImageSettingsImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link to.
+        /// </summary>
+        public static string ImageSettingsLinkTo {
+            get {
+                return ResourceManager.GetString("ImageSettingsLinkTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overlay.
+        /// </summary>
+        public static string ImageSettingsOverlay {
+            get {
+                return ResourceManager.GetString("ImageSettingsOverlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Placement.
+        /// </summary>
+        public static string ImageSettingsPlacement {
+            get {
+                return ResourceManager.GetString("ImageSettingsPlacement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image size.
+        /// </summary>
+        public static string ImageSettingsSize {
+            get {
+                return ResourceManager.GetString("ImageSettingsSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string ImageSettingsTitle {
+            get {
+                return ResourceManager.GetString("ImageSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transform.
+        /// </summary>
+        public static string ImageSettingsTransform {
+            get {
+                return ResourceManager.GetString("ImageSettingsTransform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Watermark.
+        /// </summary>
+        public static string ImageSettingsWatermark {
+            get {
+                return ResourceManager.GetString("ImageSettingsWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Large.
+        /// </summary>
+        public static string imagesize_large {
+            get {
+                return ResourceManager.GetString("imagesize_large", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medium.
+        /// </summary>
+        public static string imagesize_medium {
+            get {
+                return ResourceManager.GetString("imagesize_medium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Small.
+        /// </summary>
+        public static string imagesize_small {
+            get {
+                return ResourceManager.GetString("imagesize_small", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thumbnail.
+        /// </summary>
+        public static string imagesize_thumbnail {
+            get {
+                return ResourceManager.GetString("imagesize_thumbnail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image title.
+        /// </summary>
+        public static string ImageTitle {
+            get {
+                return ResourceManager.GetString("ImageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        public static string left {
+            get {
+                return ResourceManager.GetString("left", resourceCulture);
             }
         }
         
@@ -282,6 +507,15 @@ namespace Library.Resources {
         public static string LoginInfo {
             get {
                 return ResourceManager.GetString("LoginInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logo.
+        /// </summary>
+        public static string logo {
+            get {
+                return ResourceManager.GetString("logo", resourceCulture);
             }
         }
         
@@ -439,6 +673,42 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        public static string right {
+            get {
+                return ResourceManager.GetString("right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brightness.
+        /// </summary>
+        public static string s_brightness {
+            get {
+                return ResourceManager.GetString("s_brightness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contrast.
+        /// </summary>
+        public static string s_contrast {
+            get {
+                return ResourceManager.GetString("s_contrast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saturation.
+        /// </summary>
+        public static string s_saturation {
+            get {
+                return ResourceManager.GetString("s_saturation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -471,6 +741,42 @@ namespace Library.Resources {
         public static string SelectTemplate {
             get {
                 return ResourceManager.GetString("SelectTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string sflip_ {
+            get {
+                return ResourceManager.GetString("sflip_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horizontal.
+        /// </summary>
+        public static string sflip_x {
+            get {
+                return ResourceManager.GetString("sflip_x", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Both.
+        /// </summary>
+        public static string sflip_xy {
+            get {
+                return ResourceManager.GetString("sflip_xy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertical.
+        /// </summary>
+        public static string sflip_y {
+            get {
+                return ResourceManager.GetString("sflip_y", resourceCulture);
             }
         }
         

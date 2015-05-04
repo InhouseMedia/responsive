@@ -1,0 +1,27 @@
+﻿@using Library.Classes
+@using Library.Resources
+@model ImageSettings.Watermark
+@{
+    Layout = null;
+}
+
+<div class="row">
+	<div class="col-md-12">
+		@Html.LabelFor(m => m.overlay)
+		<div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+			@Html.EditorFor(m => m.overlay)
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		@Html.LabelFor(m => m.title)
+		<div class="input-group">
+			<span class="input-group-addon">
+				@Html.CheckBoxFor(m => m.title.active, new { @aria_label = "...", @checked = true })
+			</span>
+			@Html.TextBoxFor(m => m.title.title, new { @class = "form-control", @placeholder = Translate.ImageTitle })
+		</div>
+	</div>
+</div>

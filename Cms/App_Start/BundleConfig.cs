@@ -66,6 +66,7 @@
 					  "~/Scripts/moment.js",
 					  "~/Scripts/Locale/*.js",
 					  "~/Scripts/bootstrap-datetimepicker.js",
+					  "~/Scripts/bootstrap-slider.js",
 					  "~/Scripts/Site/common.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/article").Include(
@@ -83,9 +84,10 @@
 			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
 						"~/Scripts/modernizr-*"));
 			
-			bundles.Add(new LessBundle("~/bundles/css")
-					//.Include("~/Content/bootstrap/bootstrap.less")
-					.Include("~/Content/Index.less")
+			bundles.Add(new LessBundle("~/bundles/css").Include(
+					"~/Content/bootstrap-datetimepicker/bootstrap-datetimepicker.less",
+					"~/Content/bootstrap-slider/bootstrap-slider.less",
+					"~/Content/Index.less")
 					);
 			
 		}
