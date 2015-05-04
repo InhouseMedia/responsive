@@ -3,19 +3,11 @@
 @{
     Layout = null;
 }
-<!--
-<div class="row">
-	<div class="col-md-12">
-		@*Html.LabelFor(m => m.title)*@
-		@*Html.TextBoxFor(m => m.title, new { @class = "form-control" })*@
-	</div>
-</div>
--->
 <div class="row">
 	<div class="col-md-12">
 		@Html.LabelFor(m => m.size)
 		<div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
-			@Html.EditorFor(m => ConfigClass.Settings.controllers.files.image.sizes)
+			@Html.EditorFor(m => ConfigClass.Settings.controllers.files.image.sizes, new { xsize = Model.size })
 		</div>
 	</div>
 </div>
