@@ -7,6 +7,19 @@
 
 	public class ImageSettings
 	{
+		public int width { get; set; }
+		public int s_brightness { get; set; }
+		public int s_contrast { get; set; }
+		public int s_saturation { get; set; }
+		public string s_grayscale { get; set; }
+		public bool s_sepia { get; set; }
+		public string sflip { get; set; }
+		public string watermark { get; set; }
+		public string title { get; set; }
+	}
+
+	public class ImageConfig
+	{
 
 		public class ImageObject
 		{

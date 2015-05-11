@@ -36,6 +36,7 @@
         <AssociationConnector Association="LibraryModel.NavigationAspNetUsers" />
         <AssociationConnector Association="LibraryModel.Navigation_ChangeLogsAspNetUsers" />
         <AssociationConnector Association="LibraryModel.Navigation_PublishLogsAspNetUsers" />
+        <EntityTypeShape EntityType="LibraryModel.Documents_Settings" Width="1.5" PointX="6.625" PointY="6.75" FillColor="Black" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,6 +12,7 @@
     <Property Name="is_directory" Type="Boolean" Nullable="false" />
     <Property Name="unc_path" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
     <Property Name="file_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="settings" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityContainer Name="DocumentEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="DocumentsView" EntityType="Self.DocumentsView" />

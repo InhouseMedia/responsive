@@ -4,6 +4,7 @@
     <EntitySetMapping Name="DocumentsView">
       <EntityTypeMapping TypeName="LibraryDocumentsModel.DocumentsView">
         <MappingFragment StoreEntitySet="DocumentsView">
+          <ScalarProperty Name="settings" ColumnName="settings" />
           <ScalarProperty Name="file_path" ColumnName="file_path" />
           <ScalarProperty Name="stream_id" ColumnName="stream_id" />
           <ScalarProperty Name="file_stream" ColumnName="file_stream" />

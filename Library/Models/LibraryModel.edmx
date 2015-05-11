@@ -848,6 +848,7 @@
             <End Role="Navigation_PublishLogs" EntitySet="Navigation_PublishLogs" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Documents_SettingsSet" EntityType="LibraryModel.Documents_Settings" />
         </EntityContainer>
         <Association Name="AspNetUsersArticle_PublishLogs">
           <End Type="LibraryModel.Article_PublishLogs" Role="Article_PublishLogs" Multiplicity="*" />
@@ -933,6 +934,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Documents_Settings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stream_id" Type="String" Nullable="false" />
+          <Property Name="settings" Type="String" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

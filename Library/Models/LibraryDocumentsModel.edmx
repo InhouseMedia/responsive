@@ -19,6 +19,7 @@ warning 6002: The table/view 'Library.dbo.DocumentsView' does not have a primary
           <Property Name="is_directory" Type="bit" Nullable="false" />
           <Property Name="unc_path" Type="nvarchar" MaxLength="4000" />
           <Property Name="file_path" Type="nvarchar(max)" />
+          <Property Name="settings" Type="varchar" MaxLength="50" />
         </EntityType>
         <Function Name="Documents_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="filename" Type="nvarchar" Mode="In" />
@@ -38,7 +39,8 @@ warning 6002: The table/view 'Library.dbo.DocumentsView' does not have a primary
     [DocumentsView].[name] AS [name], 
     [DocumentsView].[is_directory] AS [is_directory], 
     [DocumentsView].[unc_path] AS [unc_path], 
-    [DocumentsView].[file_path] AS [file_path]
+    [DocumentsView].[file_path] AS [file_path], 
+    [DocumentsView].[settings] AS [settings]
     FROM [dbo].[DocumentsView] AS [DocumentsView]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
@@ -58,6 +60,7 @@ warning 6002: The table/view 'Library.dbo.DocumentsView' does not have a primary
           <Property Name="is_directory" Type="Boolean" Nullable="false" />
           <Property Name="unc_path" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="file_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="settings" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="DocumentEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="DocumentsView" EntityType="Self.DocumentsView" />
@@ -93,6 +96,7 @@ warning 6002: The table/view 'Library.dbo.DocumentsView' does not have a primary
           <EntitySetMapping Name="DocumentsView">
             <EntityTypeMapping TypeName="LibraryDocumentsModel.DocumentsView">
               <MappingFragment StoreEntitySet="DocumentsView">
+                <ScalarProperty Name="settings" ColumnName="settings" />
                 <ScalarProperty Name="file_path" ColumnName="file_path" />
                 <ScalarProperty Name="stream_id" ColumnName="stream_id" />
                 <ScalarProperty Name="file_stream" ColumnName="file_stream" />

@@ -323,6 +323,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Config\Config.json" />
+    <None Include="Config\imageConfig.json" />
     <None Include="Config\imageSettings.json" />
     <None Include="Config\sitemap.xsd" />
     <EntityDeploy Include="Models\LibraryModel.edmx">

@@ -12,14 +12,10 @@ namespace Library.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DocumentsView
+    public partial class Documents_Settings
     {
-        public System.Guid stream_id { get; set; }
-        public byte[] file_stream { get; set; }
-        public string name { get; set; }
-        public bool is_directory { get; set; }
-        public string unc_path { get; set; }
-        public string file_path { get; set; }
+        public int Id { get; set; }
+        public string stream_id { get; set; }
         public string settings { get; set; }
     }
 }

@@ -14,6 +14,7 @@ warning 6002: The table/view 'Library.dbo.DocumentsView' does not have a primary
     <Property Name="is_directory" Type="bit" Nullable="false" />
     <Property Name="unc_path" Type="nvarchar" MaxLength="4000" />
     <Property Name="file_path" Type="nvarchar(max)" />
+    <Property Name="settings" Type="varchar" MaxLength="50" />
   </EntityType>
   <Function Name="Documents_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="filename" Type="nvarchar" Mode="In" />
@@ -33,7 +34,8 @@ warning 6002: The table/view 'Library.dbo.DocumentsView' does not have a primary
     [DocumentsView].[name] AS [name], 
     [DocumentsView].[is_directory] AS [is_directory], 
     [DocumentsView].[unc_path] AS [unc_path], 
-    [DocumentsView].[file_path] AS [file_path]
+    [DocumentsView].[file_path] AS [file_path], 
+    [DocumentsView].[settings] AS [settings]
     FROM [dbo].[DocumentsView] AS [DocumentsView]</DefiningQuery>
     </EntitySet>
   </EntityContainer>

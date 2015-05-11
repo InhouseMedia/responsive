@@ -19,7 +19,7 @@
 	string jsonString = File.ReadAllText(path);
 	JObject jsonSettings = JObject.Parse(jsonString);
 	*/
-	ImageSettings.ImageObject imageSettings = jsonSettings.ToObject<ImageSettings.ImageObject>();
+	ImageConfig.ImageObject imageConfig = jsonSettings.ToObject<ImageConfig.ImageObject>();
 
 	// Get all translations so that we can get the ones for the visibility buttons
 	var manager = new ResourceManager(typeof(Translate));
@@ -43,7 +43,7 @@
 	@Html.HiddenFor(m => m.Created_By)
 	@Html.HiddenFor(m => m.Active)
 	@Html.HiddenFor(m => m.Level)
-	//Html.HiddenFor(m => m.Text)
+	@Html.HiddenFor(m => m.Text)
 	
 	<div class="panel-heading collapsed" role="tab" id="headingImage_@Model.Id" data-toggle="collapse" data-target="#collapseImage_@Model.Id">
 		<div class="dragHandle">:::</div>
@@ -83,73 +83,80 @@
 			<div class="row no-gutter">
 
 				<div class="col-xs-6 col-md-5">
-					<div class="highlight empty dropzone">
-						<div class="fallback">
-							@Html.TextBox("test", "", new { Type = "file" })
+					@if (imageConfig.image.url != "")
+					{
+						<img src="~/@imageConfig.image.url" style="width:100%" />
+					}
+					else
+					{
+						<div class="highlight empty dropzone">
+							<div class="fallback">
+								@Html.TextBox("test", "", new { Type = "file" })
+							</div>
 						</div>
-					</div>
+					}
 				</div>
 				<div class="col-xs-6 col-md-7">
 
 					<div class="panel-group" id="collapseSettings_@Model.Id" role="tablist" aria-multiselectable="true">
 						<div class="panel panel-default">
 							<div class="panel-heading" role="tab" data-toggle="collapse" data-parent="#somethingelse_@Model.Id" data-target="#collapseSettingsImage_@Model.Id">
-								<h4 class="panel-title">@Html.DisplayNameFor(m => imageSettings.image)</h4>
+								<h4 class="panel-title">@Html.DisplayNameFor(m => imageConfig.image)</h4>
 							</div>
 							<div id="collapseSettingsImage_@Model.Id" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSettingsImage_@Model.Id">
 								<div class="panel-body form-horizontal">
-									@Html.EditorFor(m => imageSettings.image)
+									@Html.EditorFor(m => imageConfig.image)
 								</div>
 							</div>
 						</div>
 
 						<div class="panel panel-default">
 							<div class="panel-heading" role="tab" data-toggle="collapse" data-parent="#collapseSettings_@Model.Id" data-target="#collapseSettingsColor_@Model.Id">
-								<h4 class="panel-title">@Html.DisplayNameFor(m => imageSettings.color)</h4>
+								<h4 class="panel-title">@Html.DisplayNameFor(m => imageConfig.color)</h4>
 							</div>
 							<div id="collapseSettingsColor_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSettingsColor_@Model.Id">
 								<div class="panel-body form-horizontal">
-									@Html.EditorFor(m => imageSettings.color)
+									@Html.EditorFor(m => imageConfig.color)
 								</div>
 							</div>
 						</div>
 
 						<div class="panel panel-default">
 							<div class="panel-heading" role="tab" data-toggle="collapse" data-parent="#collapseSettings_@Model.Id" data-target="#collapseSettingsFilters_@Model.Id">
-								<h4 class="panel-title">@Html.DisplayNameFor(m => imageSettings.filters)</h4>
+								<h4 class="panel-title">@Html.DisplayNameFor(m => imageConfig.filters)</h4>
 							</div>
 							<div id="collapseSettingsFilters_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSettingsFilters_@Model.Id">
 								<div class="panel-body form-horizontal">
-									@Html.EditorFor(m => imageSettings.filters)
+									@Html.EditorFor(m => imageConfig.filters)
 								</div>
 							</div>
 						</div>
 
 						<div class="panel panel-default">
 							<div class="panel-heading" role="tab" data-toggle="collapse" data-parent="#collapseSettings_@Model.Id" data-target="#collapseSettingsTransform_@Model.Id">
-								<h4 class="panel-title">@Html.DisplayNameFor(m => imageSettings.transform)</h4>
+								<h4 class="panel-title">@Html.DisplayNameFor(m => imageConfig.transform)</h4>
 							</div>
 							<div id="collapseSettingsTransform_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSettingsTransform_@Model.Id">
 								<div class="panel-body form-horizontal">
-									@Html.EditorFor(m => imageSettings.transform)
+									@Html.EditorFor(m => imageConfig.transform)
 								</div>
 							</div>
 						</div>
 
 						<div class="panel panel-default">
 							<div class="panel-heading" role="tab" data-toggle="collapse" data-parent="#collapseSettings_@Model.Id" data-target="#collapseSettingsWatermark_@Model.Id">
-								<h4 class="panel-title">@Html.DisplayNameFor(m => imageSettings.watermark)</h4>
+								<h4 class="panel-title">@Html.DisplayNameFor(m => imageConfig.watermark)</h4>
 							</div>
 							<div id="collapseSettingsWatermark_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSettingsWatermark_@Model.Id">
 								<div class="panel-body form-horizontal">
-									@Html.EditorFor(m => imageSettings.watermark)
+									@Html.EditorFor(m => imageConfig.watermark)
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-				@Html.TextAreaFor(m => m.Text)
+				@*Html.TextAreaFor(m => m.Text)*@
 		</div>
 	</div>
 }
