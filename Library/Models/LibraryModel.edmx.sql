@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/23/2015 19:04:23
+-- Date Created: 05/11/2015 22:28:23
 -- Generated from EDMX file: C:\Users\rklank65\Documents\Solutions\Responsive\Library\Models\LibraryModel.edmx
 -- --------------------------------------------------
 
@@ -268,6 +268,14 @@ CREATE TABLE [dbo].[Navigation_PublishLogs] (
 );
 GO
 
+-- Creating table 'Documents_Settings'
+CREATE TABLE [dbo].[Documents_Settings] (
+    [Id] int IDENTITY(1,1) NOT NULL  ,
+    [stream_id] nvarchar(max)  NOT NULL  ,
+    [settings] nvarchar(max)  NOT NULL  
+);
+GO
+
 -- Creating table 'AspNetUserRoles'
 CREATE TABLE [dbo].[AspNetUserRoles] (
     [RoleId] nvarchar(128)  NOT NULL  ,
@@ -360,6 +368,12 @@ GO
 -- Creating primary key on [Id] in table 'Navigation_PublishLogs'
 ALTER TABLE [dbo].[Navigation_PublishLogs]
 ADD CONSTRAINT [PK_Navigation_PublishLogs]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Documents_Settings'
+ALTER TABLE [dbo].[Documents_Settings]
+ADD CONSTRAINT [PK_Documents_Settings]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 

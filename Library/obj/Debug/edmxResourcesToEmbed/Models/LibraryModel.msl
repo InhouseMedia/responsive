@@ -157,6 +157,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Documents_Settings">
+      <EntityTypeMapping TypeName="IsTypeOf(LibraryModel.Documents_Settings)">
+        <MappingFragment StoreEntitySet="Documents_Settings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="stream_id" ColumnName="stream_id" />
+          <ScalarProperty Name="settings" ColumnName="settings" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="LibraryModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
         <ScalarProperty Name="Id" ColumnName="AspNetRoles_Id" />

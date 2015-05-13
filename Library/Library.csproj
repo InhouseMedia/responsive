@@ -242,6 +242,9 @@
     <Compile Include="Models\Documents_Add_Result.cs">
       <DependentUpon>LibraryDocumentsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Documents_Settings.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Documents_View_Result.cs">
       <DependentUpon>LibraryDocumentsModel.tt</DependentUpon>
     </Compile>

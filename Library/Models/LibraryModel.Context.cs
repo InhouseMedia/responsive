@@ -39,6 +39,6 @@ namespace Library.Models
         public virtual DbSet<Navigation_ChangeLogs> Navigation_ChangeLogs { get; set; }
         public virtual DbSet<Navigation_Content> Navigation_Content { get; set; }
         public virtual DbSet<Navigation_PublishLogs> Navigation_PublishLogs { get; set; }
-        public virtual DbSet<Documents_Settings> Documents_SettingsSet { get; set; }
+        public virtual DbSet<Documents_Settings> Documents_Settings { get; set; }
     }
 }

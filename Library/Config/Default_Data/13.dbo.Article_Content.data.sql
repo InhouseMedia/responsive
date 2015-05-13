@@ -36,5 +36,53 @@ INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Level
 INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Level], [Controller], [Action], [Active], [Created_By], [Creation_Date]) VALUES (8, 110, N'een omschrijving van vanalles', N'<p>
 hier een kleine omschrijving wat alles kan omvatten
 </p>', 1, N'Article', N'Text', 1, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-18 23:35:08')
-INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Level], [Controller], [Action], [Active], [Created_By], [Creation_Date]) VALUES (11, 110, N'new', N'test', 3, N'Article', N'Text', 1, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-23 08:41:12')
+INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Level], [Controller], [Action], [Active], [Created_By], [Creation_Date]) VALUES (11, 110, N'new', N'test', 2, N'Article', N'Text', 1, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-23 08:41:12')
+INSERT INTO [dbo].[Article_Content] ([Id], [Article_Id], [Title], [Text], [Level], [Controller], [Action], [Active], [Created_By], [Creation_Date]) VALUES (14, 110, NULL, N'{
+	"image": {
+		"imageId": "361E1B49-56E0-4CCA-9682-3F9419B4A2A2",
+		"url": "Files/Images/IMG_1421.JPG",
+		"title": "",
+		"alt": "",
+		"enlarge": false,
+		"linkTo": "",
+		"size": "medium",
+		"placement": [
+			{ "name": "left", "value": false },
+			{ "name": "center", "value": true },
+			{ "name": "right", "value": false }
+		]
+	},
+	"color": [
+		{ "name": "s_brightness", "value": -0.2 },
+		{ "name": "s_contrast", "value": 0.5 },
+		{ "name": "s_saturation", "value": 0.8 }
+	],
+	"filters": {
+		"s_grayscale": [ 
+			{ "name": "false", "value": false },
+			{ "name": "true", "value": true },
+			{ "name": "flat", "value": false },
+			{ "name": "sepia", "value": false }
+		]
+	},
+	"transform": {
+		"sflip": [
+			{ "name": "", "value": false },
+			{ "name": "x", "value": true },
+			{ "name": "y", "value": false },
+			{ "name": "xy", "value": false }
+		]
+	},
+	"watermark": {
+		"overlay": [
+			{ "name": "gradientTop", "value": true },
+			{ "name": "gradientBottom", "value": false },
+			{ "name": "logo", "value": true }
+		],
+		"title": {
+			"active": true,
+			"title": "Roos Klanke"
+		}
+	}
+}', 3, N'Article', N'Image', 1, N'ecec2056-053c-438e-8307-f2b8d73ec2dc', N'2015-03-25 21:24:02')
 SET IDENTITY_INSERT [dbo].[Article_Content] OFF

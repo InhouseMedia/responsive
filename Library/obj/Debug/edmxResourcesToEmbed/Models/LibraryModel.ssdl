@@ -15,6 +15,7 @@
     <EntitySet Name="Navigation_ChangeLogs" EntityType="LibraryModel.Store.Navigation_ChangeLogs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Navigation_Content" EntityType="LibraryModel.Store.Navigation_Content" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Navigation_PublishLogs" EntityType="LibraryModel.Store.Navigation_PublishLogs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Documents_Settings" EntityType="LibraryModel.Store.Documents_Settings" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AspNetUserRoles" EntityType="LibraryModel.Store.AspNetUserRoles" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Article_ChangeLogs" Association="LibraryModel.Store.FK_Article_ChangeLogs">
       <End Role="Article" EntitySet="Article" />
@@ -232,6 +233,14 @@
     <Property Name="Navigation_Id" Type="int" Nullable="true" />
     <Property Name="Published_By" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="Published_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Documents_Settings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="stream_id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="settings" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetUserRoles">
     <Key>
