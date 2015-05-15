@@ -3,7 +3,7 @@
 	"s.brightness": 0,
 	"s.contrast": 0,
 	"s.saturation": 0,
-	"s.grayscale": "",
+	"s.grayscale": "false",
 	"s.sepia": false,
 	"sflip": "",
 	"watermark": "",

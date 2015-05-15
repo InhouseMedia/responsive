@@ -46,9 +46,7 @@
 			}
 		}
 
-		// GET: getImage
-		[HttpGet]
-		public ActionResult GetImage(string fileType, string fileName)
+		public static DocumentsView GetImageSettings(string fileType, string fileName)
 		{
 			string filePath = Path.Combine("\\", "Documents", fileType, fileName);
 
@@ -57,17 +55,21 @@
 
 			var data = ctx.DocumentsView.Local;
 
-			var stream = data.FirstOrDefault(m => m.file_path == filePath);
+			return data.FirstOrDefault(m => m.file_path == filePath);
+		}
+
+		public ActionResult GetImageFile(DocumentsView stream) {
 
 			// When the image isn't found in the database we return a 404 image
 			if (stream == null)
 			{
-				string errorImage = "/Content/img/404.jpg";
+				string errorImage = "/Content/img/404.jpg";	
 				Response.StatusCode = 404;
 				Response.TrySkipIisCustomErrors = true;
 				return File(errorImage, MimeMapping.GetMimeMapping(errorImage));
 			}
 
+			string fileName = stream.name;
 
 			Stream target = new MemoryStream();
 
@@ -79,9 +81,9 @@
 
 			var settings = String.Join("&",
 				jObj.Children().Cast<JProperty>().Select(
-					jp => jp.Name + "=" + 
+					jp => jp.Name + "=" +
 						HttpUtility.UrlEncode(
-							(float.TryParse(jp.Value.ToString(), out output))?jp.Value.ToString().Replace(",","."): jp.Value.ToString()
+							(float.TryParse(jp.Value.ToString(), out output)) ? jp.Value.ToString().Replace(",", ".") : jp.Value.ToString()
 						)
 				)
 			);
@@ -95,8 +97,16 @@
 			new ImageJob(stream.file_stream, target, imageSettings).Build();
 
 			target.Seek(0, SeekOrigin.Begin);
-
+			
 			return File(target, MimeMapping.GetMimeMapping(fileName));
+		}
+
+		// GET: getImage
+		[HttpGet]
+		public ActionResult GetImage(string fileType, string fileName)
+		{
+			DocumentsView settings = GetImageSettings(fileType, fileName);
+			return GetImageFile(settings);
 		}
 
 
@@ -187,7 +197,7 @@
 		}
 
 		[OutputCache(Duration = 3600, VaryByParam = "none")]
-		public int getConnectionTypeQuality()
+		public static int getConnectionTypeQuality()
 		{
 
 			NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();

@@ -1,6 +1,7 @@
 ﻿@using Newtonsoft.Json.Linq
 @using System.Resources
 
+@using Cms.Controllers
 @using Library.Classes
 @using Library.Helpers
 @using Library.Models
@@ -10,24 +11,30 @@
 @model Article_Content
 @{
 	Layout = null;
-		
-	JObject jsonSettings = JObject.Parse(Model.Text);
-	/*
-	const string JsonConfigFile = "Library\\Config\\ImageSettings.json";
-	string path = Path.Combine(new DirectoryInfo(HostingEnvironment.MapPath("~/")).Parent.FullName, @JsonConfigFile);
+	
+	//Get image Options	
+	string jsonOptionString = (Model.Text != null) ? Model.Text : "{'size': 'medium'}";
+	JObject jsonImageOptions = JObject.Parse(jsonOptionString);
+	ImageConfig.Image imageOptions = jsonImageOptions.ToObject<ImageConfig.Image>();
+	
+	//Get Image Settings
+	const string JsonSettingsFile = "Library\\Config\\ImageSettings.json";
+	string settingsPath = Path.Combine(new DirectoryInfo(HostingEnvironment.MapPath("~/")).Parent.FullName, @JsonSettingsFile);
 
-	string jsonString = File.ReadAllText(path);
+	//When options are empty, set standard config settings
+	string urlString = (imageOptions.url != null) ? imageOptions.url.Split('/').Last() : "";
+	string jsonImageSettingsString = (urlString != "") ? FileController.GetImageSettings("Images", urlString).settings : File.ReadAllText(settingsPath);
+	JObject jsonImageSettings = JObject.Parse(jsonImageSettingsString.Replace("s.", "s_"));
+	ImageSettings imageSettings = jsonImageSettings.ToObject<ImageSettings>();
+	
+	//Get Image Config
+	const string JsonConfigFile = "Library\\Config\\ImageConfig.json";
+	string configPath = Path.Combine(new DirectoryInfo(HostingEnvironment.MapPath("~/")).Parent.FullName, @JsonConfigFile);
+
+	string jsonString = File.ReadAllText(configPath);
 	JObject jsonSettings = JObject.Parse(jsonString);
-	*/
-	ImageConfig.ImageObject imageConfig = jsonSettings.ToObject<ImageConfig.ImageObject>();
-
-	// Get all translations so that we can get the ones for the visibility buttons
-	var manager = new ResourceManager(typeof(Translate));
 	
-	//Guid imageId = new Guid(imageSettings.GetValue("imageId").ToString());
-	
-	//var item = ctx.DocumentsView.Where(m => m.stream_id == imageId).FirstOrDefault();
-		
+	ImageConfig.ImageObject imageConfig = jsonSettings.ToObject<ImageConfig.ImageObject>();		
  }
 
 
@@ -83,14 +90,14 @@
 			<div class="row no-gutter">
 
 				<div class="col-xs-6 col-md-5">
-					@if (imageConfig.image.url != "")
-					{
-						<img src="~/@imageConfig.image.url" style="width:100%" />
+					@if (imageOptions.url != "") { 
+					
+						<img src="~/@imageOptions.url" style="width:100%" />
 					}
 					else
 					{
 						<div class="highlight empty dropzone">
-							<div class="fallback">
+							<div class="fallback">	
 								@Html.TextBox("test", "", new { Type = "file" })
 							</div>
 						</div>
@@ -105,7 +112,7 @@
 							</div>
 							<div id="collapseSettingsImage_@Model.Id" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSettingsImage_@Model.Id">
 								<div class="panel-body form-horizontal">
-									@Html.EditorFor(m => imageConfig.image)
+									@Html.EditorFor(m => imageConfig.image, imageOptions)
 								</div>
 							</div>
 						</div>
@@ -116,7 +123,7 @@
 							</div>
 							<div id="collapseSettingsColor_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSettingsColor_@Model.Id">
 								<div class="panel-body form-horizontal">
-									@Html.EditorFor(m => imageConfig.color)
+									@Html.EditorFor(m => imageConfig.color, imageSettings)
 								</div>
 							</div>
 						</div>
@@ -127,7 +134,7 @@
 							</div>
 							<div id="collapseSettingsFilters_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSettingsFilters_@Model.Id">
 								<div class="panel-body form-horizontal">
-									@Html.EditorFor(m => imageConfig.filters)
+									@Html.EditorFor(m => imageConfig.filters, imageSettings)
 								</div>
 							</div>
 						</div>
@@ -138,7 +145,7 @@
 							</div>
 							<div id="collapseSettingsTransform_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSettingsTransform_@Model.Id">
 								<div class="panel-body form-horizontal">
-									@Html.EditorFor(m => imageConfig.transform)
+									@Html.EditorFor(m => imageConfig.transform, imageSettings)
 								</div>
 							</div>
 						</div>
@@ -149,7 +156,7 @@
 							</div>
 							<div id="collapseSettingsWatermark_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSettingsWatermark_@Model.Id">
 								<div class="panel-body form-horizontal">
-									@Html.EditorFor(m => imageConfig.watermark)
+									@Html.EditorFor(m => imageConfig.watermark, imageSettings)
 								</div>
 							</div>
 						</div>

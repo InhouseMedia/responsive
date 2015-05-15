@@ -6,9 +6,9 @@
 		"alt": "",
 		"enlarge": false,
 		"linkTo": "",
-		"size": "",
+		"size": "medium",
 		"placement": [
-			{ "name": "left", "value": false },
+			{ "name": "left", "value": true },
 			{ "name": "center", "value": false },
 			{ "name": "right", "value": false }
 		]
@@ -20,7 +20,7 @@
 	],
 	"filters": {
 		"s_grayscale": [ 
-			{ "name": "false", "value": false },
+			{ "name": "false", "value": true },
 			{ "name": "true", "value": false },
 			{ "name": "flat", "value": false },
 			{ "name": "sepia", "value": false }
@@ -28,7 +28,7 @@
 	},
 	"transform": {
 		"sflip": [
-			{ "name": "", "value": false },
+			{ "name": "", "value": true },
 			{ "name": "x", "value": false },
 			{ "name": "y", "value": false },
 			{ "name": "xy", "value": false }

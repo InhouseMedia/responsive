@@ -2,6 +2,7 @@
 @model ImageConfig.Image
 @{
     Layout = null;
+	Model.size = ViewData["size"].ToString();
 }
 <div class="row">
 	<div class="col-md-12">
@@ -16,7 +17,7 @@
 	<div class="col-md-12">
 		@Html.LabelFor(m => m.placement)
 		<div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
-			@Html.EditorFor(m => m.placement)
+			@Html.EditorFor(m => ViewData["placement"])
 		</div>
 	</div>
 </div>

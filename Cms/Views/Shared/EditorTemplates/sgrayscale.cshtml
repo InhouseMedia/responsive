@@ -7,7 +7,8 @@
 	// Get all translations so that we can get the ones for the visibility buttons
 	var manager = new ResourceManager(typeof(Translate));
 
-	string isActive = (Model.value.Equals(true)) ? "active" : "";
+	string isActive = ((ViewData["s_grayscale"].ToString().IndexOf(Model.name) > -1 && !(bool) ViewData["s_sepia"]) || (Model.name == "sepia" && (bool) ViewData["s_sepia"])) ? "active" : "";
+	
 }
 
 <label class="btn btn-default @isActive">

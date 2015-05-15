@@ -7,7 +7,7 @@
 	// Get all translations so that we can get the ones for the visibility buttons
 	var manager = new ResourceManager(typeof(Translate));
 
-	string isActive = (Model.value.Equals(true)) ? "active" : "";
+	string isActive = (ViewData["watermark"].ToString().IndexOf(Model.name) > -1) ? "active" : "";
 }
 
 <label class="btn btn-default @isActive">

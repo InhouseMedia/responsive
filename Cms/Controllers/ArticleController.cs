@@ -253,10 +253,12 @@
 		// GET: Article - Image
 		public ActionResult Image(int? Article_Id)
 		{
-			const string JsonConfigFile = "Library\\Config\\ImageSettings.json";
+			const string JsonConfigFile = "Library\\Config\\ImageConfig.json";
 			string path = Path.Combine(new DirectoryInfo(HostingEnvironment.MapPath("~/")).Parent.FullName, @JsonConfigFile);
 
 			string jsonString = System.IO.File.ReadAllText(path);
+			JObject jsonObject = JObject.Parse(jsonString);
+			string jsonImageString = jsonObject.GetValue("image").ToString();
 
 			Article_Content newItem = new Article_Content()
 			{
@@ -267,7 +269,7 @@
 				Level = 0,
 				Controller = "Article",
 				Action = "Image",
-				Text = jsonString
+				Text = jsonImageString
 			};
 
 			return View("~/Views/Shared/EditorTemplates/Article_Content_Image.cshtml", newItem);
