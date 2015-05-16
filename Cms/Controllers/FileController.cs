@@ -78,7 +78,13 @@
 			//string json = "{s.sepia:true,sflip:xy}";
 			JObject jObj = JObject.Parse(stream.settings);
 			float output;
+			
+			//Set actual width
+			string imageSize = jObj.GetValue("size").ToString();
+			int imageWidth = ConfigClass.Settings.controllers.files.image.sizes.FirstOrDefault(s => s.name == imageSize).value;
 
+			jObj["width"] = imageWidth;
+			
 			var settings = String.Join("&",
 				jObj.Children().Cast<JProperty>().Select(
 					jp => jp.Name + "=" +

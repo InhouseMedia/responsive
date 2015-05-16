@@ -7,6 +7,7 @@
 
 	public class ImageSettings
 	{
+		public string size { get; set; }
 		public int width { get; set; }
 		public float s_brightness { get; set; }
 		public float s_contrast { get; set; }

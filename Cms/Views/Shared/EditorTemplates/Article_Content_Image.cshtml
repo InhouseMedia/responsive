@@ -26,6 +26,8 @@
 	string jsonImageSettingsString = (urlString != "") ? FileController.GetImageSettings("Images", urlString).settings : File.ReadAllText(settingsPath);
 	JObject jsonImageSettings = JObject.Parse(jsonImageSettingsString.Replace("s.", "s_"));
 	ImageSettings imageSettings = jsonImageSettings.ToObject<ImageSettings>();
+
+	imageOptions.size = (imageSettings.size != null) ? imageSettings.size : imageOptions.size;
 	
 	//Get Image Config
 	const string JsonConfigFile = "Library\\Config\\ImageConfig.json";

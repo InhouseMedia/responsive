@@ -1,4 +1,5 @@
 ﻿{
+	"size":  "medium", //Custom value for defining the width inside CMS config
 	"width": 0,
 	"s.brightness": 0,
 	"s.contrast": 0,
