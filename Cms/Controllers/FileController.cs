@@ -1,19 +1,16 @@
 ﻿namespace Cms.Controllers
 {
 	using System;
-	using System.Collections.Generic;
+	using System.Collections.Specialized;
 	using System.Data.Entity;
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
 	using System.Drawing.Imaging;
 	using System.IO;
-	using System.Reflection;
 
 	using System.Linq;
 	using System.Web;
-	using System.Web.Helpers;
 	using System.Web.Mvc;
-	using System.Web.Script.Serialization;
 
 	using System.Net.NetworkInformation;
 
@@ -22,7 +19,7 @@
 
 	using Library.Classes;
 	using Library.Models;
-
+	
 	public class FileController : Controller
 	{
 		// GET: file
@@ -70,32 +67,32 @@
 			}
 
 			string fileName = stream.name;
-
+			
 			Stream target = new MemoryStream();
+
+			//Check if the url querystring has a custom image setting. then use that setting
+			var customSettings = Request.QueryString;
 
 			// Check the type of internet connection and determen the image quality/filesize that's going to be presented
 			// This will prevent that you are using 3mb images on a mobile device that's using a 3G internet connection.
-			//string json = "{s.sepia:true,sflip:xy}";
 			JObject jObj = JObject.Parse(stream.settings);
-			float output;
 			
 			//Set actual width
 			string imageSize = jObj.GetValue("size").ToString();
 			int imageWidth = ConfigClass.Settings.controllers.files.image.sizes.FirstOrDefault(s => s.name == imageSize).value;
 
 			jObj["width"] = imageWidth;
-			
-			var settings = String.Join("&",
-				jObj.Children().Cast<JProperty>().Select(
-					jp => jp.Name + "=" +
-						HttpUtility.UrlEncode(
-							(float.TryParse(jp.Value.ToString(), out output)) ? jp.Value.ToString().Replace(",", ".") : jp.Value.ToString()
-						)
-				)
-			);
+
+			NameValueCollection standardSettings = new NameValueCollection();
+
+			foreach(var x in jObj){
+				standardSettings.Add(x.Key, (string) x.Value);
+			}
 
 			//Instructions imageSettings = new Instructions(Request.QueryString);
-			Instructions imageSettings = new Instructions(settings);
+			var selectSettings = (customSettings["custom"] != null && customSettings["custom"].Equals("true")) ? customSettings : standardSettings;
+
+			Instructions imageSettings = new Instructions(selectSettings);
 			imageSettings.OutputFormat = OutputFormat.Jpeg;
 			imageSettings.JpegQuality = getConnectionTypeQuality();
 			imageSettings.Mode = FitMode.Crop;
