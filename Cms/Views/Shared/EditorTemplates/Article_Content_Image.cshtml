@@ -174,8 +174,15 @@
 
 <script>
 	(function () {
-		function loadDropZone() {
+		function onLoad(){
 			var panel = $('#collapseImage_@Model.Id');
+			loadDropZone(panel);
+			bootstrapSlider(panel);
+			triggerImageChange(panel);
+		}
+
+		function loadDropZone(panel) {
+
 			panel.find('.dropzone').dropzone(
 				{
 					url: '/File/SaveImage',
@@ -185,13 +192,20 @@
 					dictDefaultMessage: '@Html.Raw(Translate.FileUploadEmpty)'
 				}
 			);
-				
+			}
+
+		function bootstrapSlider(panel){
 			panel.find('.slider').bootstrapSlider();
 		}
+
+		function triggerImageChange(panel){
+			panel.find("input[name*=imageConfig]").on('change', function(item){console.log(item)});
+		}
+
 		if (window.jQuery !== undefined) {
-			loadDropZone();
+			onLoad();
 		} else {
-			window.onload = loadDropZone;
+			window.onload = onLoad;
 		}
 	}
 	)();
