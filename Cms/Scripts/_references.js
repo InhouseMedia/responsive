@@ -26,3 +26,4 @@
 /// <reference path="js2form.js" />
 /// <reference path="jquery.toobject.js" />
 /// <reference path="form2js.js" />
+/// <reference path="components/RequireJS/text.js" />

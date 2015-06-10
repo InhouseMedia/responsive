@@ -83,7 +83,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="collapseImage_@Model.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingImage_@Model.Id">
+	<div id="collapseImage_@Model.Id" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingImage_@Model.Id">
 		<div class="panel-body form-horizontal">
 			
 			@*Html.ImgTag(url,"").WithDensities(2, 3).WithSize(100, 40)*@
@@ -173,6 +173,62 @@
 
 
 <script>
+	/*(function (){
+		var articleContentImage = Class.create({
+			init: function(options){
+				// Variables
+				this.timeout = null;
+				this.maxFiles = options.maxFiles || 1;
+				this.maxFileSize = options.maxFilesize || 3;
+				this.message = options.message || '';
+
+				// Elements
+				this.panel = $(options.panel) || null;
+
+				// Bindings
+				this.triggerTimeout = this.triggerTimeout.bind(this);
+				this.triggerImageChange = this.triggerImageChange.bind(this);
+
+				// Functions
+				this.setEvents();
+				this.setDropZone();
+			},
+			setEvents: function(){
+				this.panel.on('change', "input[name*=imageConfig]", this.triggerTimeout);
+			},
+			setDropZone: function(){
+				this.panel.find('.dropzone').dropzone(
+					{
+						url: '/File/SaveImage',
+						maxFilesize: this.maxFileSize,
+						maxFiles: this.maxFiles,
+						acceptedFiles: 'image/*',
+						dictDefaultMessage: this.message
+					}
+				);
+			},
+			triggerTimeout: function(){
+				clearTimeout(this.timeout);
+				this.timeout = setTimeout(this.triggerImageChange, 3000);
+			},
+			triggerImageChange: function(e){
+				console.info("BOEM!!");
+			}
+		});
+
+
+		// Onload
+		new new articleContentImage(
+			{
+				panel : '#collapseImage_//AT//Model.Id',
+				maxFileSize : //AT//ConfigClass.Settings.controllers.files.image.maxFileSize,
+				message: '//AT//Html.Raw(Translate.FileUploadEmpty)'
+			}
+		);
+
+	})();
+	*/
+
 	(function () {
 		function onLoad(){
 			var panel = $('#collapseImage_@Model.Id');

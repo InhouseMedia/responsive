@@ -112,6 +112,9 @@
     <Reference Include="Portable.Licensing">
       <HintPath>..\packages\Portable.Licensing.1.1.0\lib\portable-net40+sl4+wp7+win8\Portable.Licensing.dll</HintPath>
     </Reference>
+    <Reference Include="RequireJsNet">
+      <HintPath>..\packages\RequireJsNet.2.1.44.0\lib\net40\RequireJsNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
