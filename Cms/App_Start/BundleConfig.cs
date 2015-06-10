@@ -63,6 +63,7 @@
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
 					  "~/Scripts/bootstrap.js",
 					  "~/Scripts/respond.js",
+					  "~/Scripts/form2js.js",
 					  "~/Scripts/moment.js",
 					  "~/Scripts/Locale/*.js",
 					  "~/Scripts/bootstrap-datetimepicker.js",

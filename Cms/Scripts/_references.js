@@ -23,3 +23,6 @@
 /// <reference path="dropzone/dropzone-amd-module.min.js" />
 /// <reference path="dropzone/dropzone.js" />
 /// <reference path="bootstrap-slider.min.js" />
+/// <reference path="js2form.js" />
+/// <reference path="jquery.toobject.js" />
+/// <reference path="form2js.js" />
