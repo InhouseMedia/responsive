@@ -12,6 +12,6 @@
 <div class="row">
 	<div class="col-md-12">
 		@Html.Label(manager.GetString(Model.name))
-		@Html.TextBoxFor(m => m.value, new { @class = "slider", @data_slider_min = -1, @data_slider_max = 1, @data_slider_step = 0.1, @data_slider_value = @ViewData[Model.name] })
+		@Html.TextBoxFor(m => m.value, new { @Name="imageConfig." + Model.name, @class = "slider", @data_slider_min = -1, @data_slider_max = 1, @data_slider_step = 0.1, @data_slider_value = @ViewData[Model.name] })
 	</div>
 </div>

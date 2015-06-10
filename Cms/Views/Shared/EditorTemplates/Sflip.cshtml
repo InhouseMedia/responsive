@@ -11,5 +11,5 @@
 }
 
 <label class="btn btn-default @isActive">
-	@Html.RadioButtonFor(m => m.value, Model.value) @manager.GetString("sflip_" + Model.name)
+	@Html.RadioButtonFor(m => m.value, Model.name, new { @Name = "imageConfig.sflip"}) @manager.GetString("sflip_" + Model.name)
 </label>

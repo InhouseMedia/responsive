@@ -11,5 +11,5 @@
 }
 
 <label class="btn btn-default @isActive">
-	@Html.CheckBoxFor(m => m.value, Model.value) @manager.GetString(Model.name)
+	@Html.CheckBoxFor(m => m.value, new { @Name = "imageConfig.wattermark", @Value = Model.value }) @manager.GetString(Model.name)
 </label>
