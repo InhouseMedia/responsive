@@ -52,6 +52,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\dotless.1.4.1.0\lib\dotless.Core.dll</HintPath>
     </Reference>
+    <Reference Include="EcmaScript.NET">
+      <HintPath>..\packages\EcmaScript.Net.1.0.1.0\lib\net20\EcmaScript.NET.dll</HintPath>
+    </Reference>
     <Reference Include="ExtensionMethods">
       <HintPath>..\packages\ExtensionMethods.1.0.1\lib\net40\ExtensionMethods.dll</HintPath>
     </Reference>
@@ -75,6 +78,9 @@
     </Reference>
     <Reference Include="JavaScriptEngineSwitcher.Core">
       <HintPath>..\packages\JavaScriptEngineSwitcher.Core.1.2.0\lib\net40\JavaScriptEngineSwitcher.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Jint">
+      <HintPath>..\packages\Jint.2.4.0\lib\portable-net40+sl50+win+wpa81+wp80\Jint.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -114,6 +120,9 @@
     </Reference>
     <Reference Include="RequireJsNet">
       <HintPath>..\packages\RequireJsNet.2.1.44.0\lib\net40\RequireJsNet.dll</HintPath>
+    </Reference>
+    <Reference Include="RequireJsNet.Compressor">
+      <HintPath>..\packages\RequireJsNet.Compressor.2.1.33.0\lib\net40\RequireJsNet.Compressor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -189,6 +198,9 @@
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Yahoo.Yui.Compressor">
+      <HintPath>..\packages\YUICompressor.NET.2.7.0.0\lib\NET20\Yahoo.Yui.Compressor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -349,6 +361,7 @@
     <Content Include="Content\bootstrap-slider\bootstrap-slider.less" />
     <Content Include="Content\bootstrap-slider\variables.less" />
     <Content Include="Content\bootstrap-slider\rules.less" />
+    <Content Include="RequireJS.json" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -356,6 +369,19 @@
     <Content Include="Scripts\bootstrap-slider.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Components\RequireJS\i18n.js" />
+    <Content Include="Scripts\Components\RequireJS\require.js" />
+    <Content Include="Scripts\Components\RequireJS\text.js" />
+    <Content Include="Scripts\Controllers\Root\Article\Change.js" />
+    <Content Include="Scripts\Controllers\Root\Article\Create.js" />
+    <Content Include="Scripts\Controllers\Root\Article\List.js" />
+    <Content Include="Scripts\Helpers\DragElement.js" />
+    <Content Include="Scripts\Helpers\String.js" />
+    <Content Include="Scripts\Controllers\Root\moment.js" />
+    <Content Include="Scripts\Controllers\Root\Shared\EditorTemplates\Article_Actions.js" />
+    <Content Include="Scripts\Controllers\Root\Shared\EditorTemplates\Article_Content_Image.js" />
+    <Content Include="Scripts\Controllers\Root\Shared\EditorTemplates\Article_PublishLogs.js" />
+    <Content Include="Scripts\Controllers\Root\Shared\_Layout.js" />
     <Content Include="Scripts\dropzone\basic.css" />
     <Content Include="Scripts\dropzone\basic.min.css" />
     <Content Include="Scripts\dropzone\dropzone-amd-module.js" />

@@ -1,6 +1,8 @@
 ﻿@using Library.Classes
 @using Library.Resources
 @using Library.Helpers
+
+@using RequireJsNet
 @{
 	var Locale = ConfigClass.Settings.language.locale.First();
 	var Language = Locale.Split('-').First();}<!DOCTYPE html>
@@ -29,9 +31,21 @@
 
 		<script type="text/javascript">var Locale = '@Locale';</script>
 		<script src="~/bundles/resources" type="text/javascript"></script>
-		@Scripts.Render("~/bundles/modernizr")
+		@*Scripts.Render("~/bundles/modernizr")*@
 		@Styles.Render("~/bundles/css")
 		@RenderSection("styles", required: false)
+
+		@Html.RenderRequireJsSetup(
+			new RequireRendererConfiguration
+			{
+				RequireJsUrl = Url.Content("~/Scripts/Components/RequireJS/require.js"),
+				BaseUrl = Url.Content("~/Scripts/")
+			})
+
+		<script type="text/javascript">
+			define("locale", [], function () { return '@Locale' });
+			//define(["moment"], function (moment) { debugger; moment().format(); });
+		</script>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -72,10 +86,11 @@
 			</footer>
 		</div>
 
-		@Scripts.Render("~/bundles/jquery")
-		@Scripts.Render("~/bundles/jqueryui")
-		@Scripts.Render("~/bundles/bootstrap")
+		@*Scripts.Render("~/bundles/jquery")*@
+		@*Scripts.Render("~/bundles/jqueryui")*@
+		@*Scripts.Render("~/bundles/bootstrap")*@
 		@RenderSection("scripts", required: false)
-		@Html.PageScripts()
+		@*Html.PageScripts()*@
+
 	</body>
 </html>

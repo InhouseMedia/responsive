@@ -60,13 +60,15 @@
 				}
 			</div>
 		</div>
+		
 	</div>
 }
 
-@section Scripts {
-	@Scripts.Render("~/bundles/jqueryval")
-	@Scripts.Render("~/bundles/article")
+@section Scripts{
+<script>require(['create'], function (create) { create.init(); });</script>	
 }
+
 @section Styles{
 	@Styles.Render("~/bundles/articlecss")
+
 }

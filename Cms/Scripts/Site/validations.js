@@ -77,7 +77,7 @@ function documentReady () {
 		$(this).offsetParent().find('form').submit();
 	});
 
-	console.log("ready");
+	//console.log("ready");
 }
 
 function windowLoad() {
@@ -123,5 +123,5 @@ function windowLoad() {
 
 	});
 	 
-	console.log("load");
+	//console.log("load");
 }
