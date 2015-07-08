@@ -23,7 +23,7 @@
 		@Html.LabelFor(m => m.title)
 		<div class="input-group">
 			<span class="input-group-addon">
-				@Html.CheckBoxFor(m => m.title.active, new {  @aria_label = "..." })
+				@Html.CheckBoxFor(m => m.title.active, new {  @aria_label = "...", @Name = "imageConfig.watermark[]", @value = "title" })
 			</span>
 			@Html.TextBoxFor(m => m.title.title, new { @Name = "imageConfig.title", @class = "form-control", @placeholder = Translate.ImageTitle })
 		</div>

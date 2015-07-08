@@ -6,13 +6,14 @@
 	},
 	"paths": {
 		"jquery": "jquery-2.1.1",
-		"jquery-ui":  "jquery-ui-1.11.2",
+		"jquery-ui": "jquery-ui-1.11.2",
 		"jquery-validate": "jquery.validate",
 		"jquery-validate-unobtrusive": "jquery.validate.unobtrusive",
+		"jquery-serializeJSON": "jquery.serializejson",
 		"bootstrap": "bootstrap",
 		"bootstrap-slider": "bootstrap-slider",
 		"datetimepicker": "bootstrap-datetimepicker",
-		"dropzone":  "dropzone/dropzone-amd-module",
+		"dropzone": "dropzone/dropzone-amd-module",
 		"moment": "moment-with-locales",
 		//"respond": "respond",
 		"i18n": "Components/RequireJS/i18n",
@@ -22,10 +23,13 @@
 		"create": "Controllers/Root/Article/Create",
 		"article-content-image": "Controllers/Root/Shared/EditorTemplates/Article_Content_Image",
 		"article-publishlogs": "Controllers/Root/Shared/EditorTemplates/Article_PublishLogs",
-		"article-actions": "Controllers/Root/Shared/EditorTemplates/Article_Actions",
-		"form2js": "form2js"
+		"article-actions": "Controllers/Root/Shared/EditorTemplates/Article_Actions" 
 	},
 	"shim": {
+		"jquery-serializeJSON": {
+			"deps": [ "jquery" ],
+			"exports":  "$.fn.serializeJSON"
+		},
 		"jquery-validate": {
 			"deps": [ "jquery" ]
 		},

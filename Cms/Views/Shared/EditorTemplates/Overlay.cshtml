@@ -10,13 +10,14 @@
 	string isActive = (ViewData["watermark"].ToString().IndexOf(Model.name) > -1) ? "active" : "";
 }
 
-<label class="btn btn-default @isActive">
+<label class="btn btn-default @isActive" for="imageconfig_watermark_@Model.name">
 	@*Html.CheckBoxFor(m => m.value, new { @Name = "imageConfig.watermark", @Value = Model.name, @checked = isChecked}) @manager.GetString(Model.name)*@
 
 	@{
 		var checkboxAttributes = isActive == "active" ?
-			(object)new { @Name = "imageConfig.watermark", @Value = Model.name, @checked = "checked" } :
-			(object)new { @Name = "imageConfig.watermark", @Value = Model.name };
+			(object)new { @id = "imageconfig_watermark_" + Model.name, @Name = "imageConfig.watermark[]", @Value = Model.name, @checked = "checked" } :
+			(object)new { @id = "imageconfig_watermark_" + Model.name, @Name = "imageConfig.watermark[]", @Value = Model.name };
 	}
 	@Html.CheckBox("imageConfig.watermark", checkboxAttributes) @manager.GetString(Model.name)
+
 </label>

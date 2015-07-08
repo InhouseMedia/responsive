@@ -1,4 +1,4 @@
-﻿define(['jquery', 'bootstrap', 'bootstrap-slider', 'form2js'], function ($) {
+﻿define(['jquery', 'bootstrap', 'bootstrap-slider', 'jquery-serializeJSON'], function ($) {
 	"use strict";
 	var imageChangeTimeout = 0;
 	var panel;
@@ -6,7 +6,6 @@
 	var dictDefaultMessage;
 	
 	function _loadDropZone() {
-
 		panel.find('.dropzone').dropzone(
 			{
 				url: '/File/SaveImage',
@@ -32,23 +31,25 @@
 	}
 
 	function _executeImageChange(e){
-		var test = form2js(
-			{
-				rootNode: this.get(0),
-				skipEmpty: true,
-				useIdIfEmptyName: false
-			}
-		);
+		var imageOptions = {};
 
-		test.imageConfig.custom = true;
+		var jsonOptions = $(this).find('input[type!=hidden][name^=imageConfig]').serializeJSON();
+			jsonOptions['imageConfig.custom'] = true;
 
-		var repl = new RegExp('\\_', 'gm');
-		var urlQuery = $.param(test.imageConfig).replace(repl, '.');
+		var mapping = $.each(jsonOptions, function (key, item) {
+			key = (item === 'sepia') ? 's_sepia' : key;
+			item = (item === 'sepia') ? true : item;
+			imageOptions[key] = (Array.isArray(item)) ? item.join(',') : item;
+		});
 
-		console.info(urlQuery); 
+		var patternDot = new RegExp('\\_', 'gm');
+		var patternName = new RegExp('imageConfig\.', 'gmi');
+		var patternArray = new RegExp('\[\]', 'gm');
+
+		var urlQuery = $.param(imageOptions).replace(patternName, '').replace(patternDot, '.').replace(patternArray, '');
 
 		var img = this.find('img').get(0);
-			img.src = img.src.split("?")[0] +"?"+ urlQuery;
+			img.src = img.src.split("?")[0] + "?" + urlQuery;
 	}
 
 	return {
