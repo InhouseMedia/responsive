@@ -7,9 +7,14 @@
 	// Get all translations so that we can get the ones for the visibility buttons
 	var manager = new ResourceManager(typeof(Translate));
 
-	string isActive = ((ViewData["s_grayscale"].ToString().IndexOf(Model.name) > -1 && !(bool) ViewData["s_sepia"]) || (Model.name == "sepia" && (bool) ViewData["s_sepia"])) ? "active" : "";	
-}
+	string isActive = ((ViewData["s_grayscale"].ToString().IndexOf(Model.name) > -1 && !(bool) ViewData["s_sepia"]) || (Model.name == "sepia" && (bool) ViewData["s_sepia"])) ? "active" : "";
+	
+	var checkboxAttributes = isActive == "active" ?
+			(object)new { @Name = "imageConfig.s_grayscale", @checked = "checked" } :
+			(object)new { @Name = "imageConfig.s_grayscale" };
+
+	}
 
 <label class="btn btn-default @isActive">
-	@Html.RadioButtonFor(m => m.value, Model.name, new { @Name = "imageConfig.s_grayscale", @checked = (isActive == "active")}) @manager.GetString("grayscale_" + Model.name)
+	@Html.RadioButtonFor(m => m.value, Model.name, checkboxAttributes) @manager.GetString("grayscale_" + Model.name)
 </label>

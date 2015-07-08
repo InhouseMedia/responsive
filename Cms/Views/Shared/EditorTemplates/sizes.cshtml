@@ -7,8 +7,12 @@
 	// Get all translations so that we can get the ones for the visibility buttons
 	var manager = new ResourceManager(typeof(Translate));
 	string isActive = (Model.name.Equals(ViewData["xsize"].ToString())) ? "active" : "";
+
+	var checkboxAttributes = isActive == "active" ?
+			(object)new { @Name = "imageConfig.size", @checked = "checked" } :
+			(object)new { @Name = "imageConfig.size" };
 }
 
 <label class="btn btn-default @isActive">
-	@Html.RadioButtonFor(m => m.name, Model.name, new { @Name = "imageConfig.size", @checked = (isActive == "active")}) @manager.GetString("imagesize_" + Model.name)
+	@Html.RadioButtonFor(m => m.name, Model.name, checkboxAttributes) @manager.GetString("imagesize_" + Model.name)
 </label>

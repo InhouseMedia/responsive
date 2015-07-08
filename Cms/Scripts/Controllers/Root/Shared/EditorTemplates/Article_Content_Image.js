@@ -48,6 +48,8 @@
 
 		var urlQuery = $.param(imageOptions).replace(patternName, '').replace(patternDot, '.').replace(patternArray, '');
 
+		console.log(imageOptions, urlQuery);
+
 		var img = this.find('img').get(0);
 			img.src = img.src.split("?")[0] + "?" + urlQuery;
 	}

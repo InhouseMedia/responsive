@@ -8,8 +8,12 @@
 	var manager = new ResourceManager(typeof(Translate));
 
 	string isActive = (Model.name == ViewData["sflip"].ToString()) ? "active" : "";
+	
+	var checkboxAttributes = isActive == "active" ?
+			(object)new { @Name = "imageConfig.sflip", @checked = "checked" } :
+			(object)new { @Name = "imageConfig.sflip" };
 }
 
 <label class="btn btn-default @isActive">
-	@Html.RadioButtonFor(m => m.value, Model.name, new { @Name = "imageConfig.sflip", @checked = (isActive == "active")}) @manager.GetString("sflip_" + Model.name)
+	@Html.RadioButtonFor(m => m.value, Model.name, checkboxAttributes) @manager.GetString("sflip_" + Model.name)
 </label>
