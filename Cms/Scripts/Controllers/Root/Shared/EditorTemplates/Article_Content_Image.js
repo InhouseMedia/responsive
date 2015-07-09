@@ -34,7 +34,7 @@
 		var imageOptions = {};
 		var img = this.find('img').get(0);
 
-		if (img == null) return;
+		if (img == null) return;	
 
 		var jsonOptions = $(this).find('input[type!=hidden][name^=imageConfig]').serializeJSON();
 			jsonOptions['imageConfig.custom'] = true;
@@ -56,11 +56,56 @@
 		img.src = img.src.split("?")[0] + "?" + urlQuery;
 	}
 
+	function _removePanel() { 
+		$('#content').on('click', 'button.glyphicon-trash',
+			function (e) {
+				var panel = $(this).closest('.panel');
+				// When an contentbox is deleted before it is saved, it should be removed otherwise
+				// it should be marked as deleted so that the database can remove it.
+				if (panel.find('input[name$=Id]').val() == 0) {
+					panel.remove();
+				} else {
+					panel.addClass('deleted');
+					panel.find('input[name$=Active]').val(4); // is used when an item should be deleted
+				}
+
+				var content = $("#content");
+
+				if (content.find(".panel:not(.deleted)").length == 0) {
+					content.addClass('highlight empty');
+				}
+
+				e.stopPropagation();
+				return false;
+			}
+		)
+	}
+
+
+	function _inputfieldPanel() {
+		$('#content').on('click', '.panel-heading .form-control',
+			function (e) {
+				var header = $(this).closest('.panel-heading.collapsed');
+
+				if (header.length > 0) {
+					e.preventDefault();
+					this.blur();
+				} else {
+					this.focus();
+					e.stopPropagation();
+					return false;
+				}
+			}
+		);
+	}
+
 	return {
 		start: function () {
 			_loadDropZone();
 			_bootstrapSlider();
 			_triggerImageChange();
+			_removePanel();
+			_inputfieldPanel();
 		},
 		model: function (modelId) { panel = $('#collapseImage_' + modelId); },
 		message: function (text) { dictDefaultMessage = text; },
