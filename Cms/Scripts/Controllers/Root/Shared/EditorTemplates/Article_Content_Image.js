@@ -32,6 +32,9 @@
 
 	function _executeImageChange(e){
 		var imageOptions = {};
+		var img = this.find('img').get(0);
+
+		if (img == null) return;
 
 		var jsonOptions = $(this).find('input[type!=hidden][name^=imageConfig]').serializeJSON();
 			jsonOptions['imageConfig.custom'] = true;
@@ -50,8 +53,7 @@
 
 		console.log(imageOptions, urlQuery);
 
-		var img = this.find('img').get(0);
-			img.src = img.src.split("?")[0] + "?" + urlQuery;
+		img.src = img.src.split("?")[0] + "?" + urlQuery;
 	}
 
 	return {
