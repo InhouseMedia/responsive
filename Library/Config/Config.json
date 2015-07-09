@@ -59,7 +59,7 @@
 				"maxFileSize": 3,
 				"sizes": [
 					{ "name": "thumbnail", "value": 120},
-					{ "name": "small", "vlue": 240 },
+					{ "name": "small", "value": 240 },
 					{ "name": "medium", "value": 480 },
 					{ "name": "large", "value": 960}
 				]

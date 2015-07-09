@@ -28,7 +28,6 @@
 			return View();
 		}
 
-
 		// GET: getFile
 		[HttpGet]
 		public ActionResult GetFile(string fileType, string fileName)
@@ -71,26 +70,34 @@
 			Stream target = new MemoryStream();
 
 			//Check if the url querystring has a custom image setting. then use that setting
-			var customSettings = Request.QueryString;
+			//var customSettings = Request.QueryString;
+
+			NameValueCollection customSettings = HttpUtility.ParseQueryString(Request.QueryString.ToString());
+
+
+			//JObject jCustom = JObject.
+			//var jCustom = JObject.Parse(customSettings.ToString());
 
 			// Check the type of internet connection and determen the image quality/filesize that's going to be presented
 			// This will prevent that you are using 3mb images on a mobile device that's using a 3G internet connection.
-			JObject jObj = JObject.Parse(stream.settings);
-			
-			//Set actual width
-			string imageSize = jObj.GetValue("size").ToString();
-			int imageWidth = ConfigClass.Settings.controllers.files.image.sizes.FirstOrDefault(s => s.name == imageSize).value;
-
-			jObj["width"] = imageWidth;
+			JObject jObj = JObject.Parse(stream.settings);	
 
 			NameValueCollection standardSettings = new NameValueCollection();
 
 			foreach(var x in jObj){
 				standardSettings.Add(x.Key, (string) x.Value);
 			}
-
+			
 			//Instructions imageSettings = new Instructions(Request.QueryString);
-			var selectSettings = (customSettings["custom"] != null && customSettings["custom"].Equals("true")) ? customSettings : standardSettings;
+			var selectSettings = (customSettings.Get("custom") != null && customSettings.Get("custom").Equals("true")) ? customSettings : standardSettings;
+
+			//Set actual width
+			string imageSize = selectSettings.Get("size");
+			string imageWidth = ConfigClass.Settings.controllers.files.image.sizes.FirstOrDefault(s => s.name == imageSize).value.ToString();
+
+			selectSettings.Set("width",imageWidth);
+
+
 
 			Instructions imageSettings = new Instructions(selectSettings);
 			imageSettings.OutputFormat = OutputFormat.Jpeg;
