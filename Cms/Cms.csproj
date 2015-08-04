@@ -417,8 +417,6 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\Site\article.js" />
-    <Content Include="Scripts\Site\common.js" />
     <Content Include="Scripts\Site\roles.js" />
     <Content Include="Scripts\Site\validations.js" />
     <Content Include="Scripts\_references.js" />

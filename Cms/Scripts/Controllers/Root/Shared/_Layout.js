@@ -1,21 +1,5 @@
 ﻿define(['jquery', 'bootstrap'], function ($) {
-
-	/*
-
-	var layoutModule = function () {
-		//constructor logic
-	};
-
-	layoutModule.prototype.init = function () {
-		//login init logic
-		console.log('MY FIRST REQUIRE THINGY');
-	};
-
-	layoutModule.prototype.validate = function () {
-		//validation logic
-	};
-
-	return layoutModule;*/
+	"use strict";
 
 	// Show Model (lightbox)
 	function _showModal() {
@@ -52,7 +36,6 @@
 			}
 		);
 	}
-	
 
 	return {
 		init: function () {

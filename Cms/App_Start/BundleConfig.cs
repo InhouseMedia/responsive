@@ -65,14 +65,7 @@
 					  "~/Scripts/respond.js",
 					  "~/Scripts/form2js.js",
 					  "~/Scripts/moment.js",
-					  "~/Scripts/Locale/*.js",
-					  "~/Scripts/bootstrap-datetimepicker.js",
-					  "~/Scripts/bootstrap-slider.js",
-					  "~/Scripts/Site/common.js"));
-
-			bundles.Add(new ScriptBundle("~/bundles/article").Include(
-					"~/Scripts/Site/article.js",
-					"~/Scripts/dropzone/dropzone.js"));
+					  "~/Scripts/bootstrap-slider.js"));
 
 			bundles.Add(new StyleBundle("~/bundles/articlecss").Include(
 					"~/Scripts/dropzone/css/basic.css",
@@ -88,9 +81,7 @@
 			bundles.Add(new LessBundle("~/bundles/css").Include(
 					"~/Content/bootstrap-datetimepicker/bootstrap-datetimepicker.less",
 					"~/Content/bootstrap-slider/bootstrap-slider.less",
-					"~/Content/Index.less")
-					);
-			
+					"~/Content/Index.less"));
 		}
 	}
 }

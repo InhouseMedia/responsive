@@ -1,8 +1,5 @@
 ﻿define(['jquery', 'Helpers/DragElement', 'jquery-ui', 'bootstrap'], function ($, DragElement) {
 	"use strict";
-	//console.log("article/create loaded");
-
-
 
 	function _setSortable() {
 		$("#content").sortable(

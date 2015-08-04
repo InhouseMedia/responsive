@@ -1,5 +1,6 @@
 ﻿define(['jquery', 'bootstrap', 'bootstrap-slider', 'jquery-serializeJSON'], function ($) {
 	"use strict";
+
 	var imageChangeTimeout = 0;
 	var panel;
 	var maxFilesize;
@@ -38,7 +39,6 @@
 
 		// Add loading bar to the image
 		img.next('.progress').find('.progress-bar').removeClass('loaded').addClass('loading');
-
 
 		var jsonOptions = $(this).find('input[type!=hidden][name^=imageConfig]').serializeJSON();
 			jsonOptions['imageConfig.custom'] = true;
@@ -121,7 +121,6 @@
 		},
 		model: function (modelId) { panel = $('#collapseImage_' + modelId); },
 		message: function (text) { dictDefaultMessage = text; },
-		maxfilesize: function (size) { maxFilesize = size; }
-		
+		maxfilesize: function (size) { maxFilesize = size; }	
 	}
 });

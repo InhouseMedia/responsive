@@ -1,8 +1,5 @@
 ﻿define(["jquery", "dropzone", "Helpers/DragElement", "jquery-ui", "bootstrap", "Helpers/String"], function ($, Dropzone, DragElement) {
-	
-
-	
-
+	"use strict";
 
 	function _setDragging() {
 		Dropzone.autoDiscover = false;
@@ -23,7 +20,6 @@
 
 					// Get render action that's been dragged into the content holder
 					$.get('/Article/' + ui.helper.text() + '?Article_Id=' + $('[name=Article_Id]').val(), function (item) {
-
 
 						this.helper.after($(item));
 						this.helper.remove();
@@ -54,5 +50,4 @@
 			_setDragging();
 		}
 	};
-
 });
