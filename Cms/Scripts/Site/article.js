@@ -1,6 +1,7 @@
 ﻿$(document).ready(articleReady);
 
 function articleReady() {
+	/*
 	Dropzone.autoDiscover = false;
 
 	var draggable = $("table.table-drag tbody tr").draggable(
@@ -42,7 +43,8 @@ function articleReady() {
 	draggable.dblclick(function(e){
 			widget.trigger('mousedown');
 		}
-	);
+	);*/
+	/*
 
 	$("#content").sortable(
 		{
@@ -91,7 +93,8 @@ function articleReady() {
 			activeClass: 'highlight'
 		}
 	).disableSelection();
-
+	*/
+	/*
 	$('#content').on('click', '.panel-heading .form-control',
 		function (e) {
 			var header = $(this).closest('.panel-heading.collapsed');
@@ -106,7 +109,8 @@ function articleReady() {
 			}
 		}
 	);
-	
+	*/
+	/*
 	$('#content').on('click', 'button.glyphicon-trash',
 		function (e) {
 			var panel = $(this).closest('.panel');
@@ -128,15 +132,16 @@ function articleReady() {
 			e.stopPropagation();
 			return false;
 		}
-	);
+	);*/
 }
-
+/*
 function getHelper(text) {
 	var head = $('<h4>', { 'class': 'panel-title' }).append(text);
 	var header = $('<div>', { 'class': 'panel-heading' }).append(head);
 	var panel = $('<div>', { 'class': 'panel panel-default ui-sortable-helper tempCollapse' }).append(header);
 	return panel;
 }
+*/
 
 
 

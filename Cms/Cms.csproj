@@ -15,7 +15,7 @@
     <AssemblyName>Cms</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort>44300</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -375,6 +375,7 @@
     <Content Include="Scripts\Controllers\Root\Article\Change.js" />
     <Content Include="Scripts\Controllers\Root\Article\Create.js" />
     <Content Include="Scripts\Controllers\Root\Article\List.js" />
+    <Content Include="Scripts\Controllers\Root\Shared\_Modal.js" />
     <Content Include="Scripts\Helpers\DragElement.js" />
     <Content Include="Scripts\Helpers\String.js" />
     <Content Include="Scripts\Controllers\Root\moment.js" />
@@ -534,7 +535,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64740</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44300/</IISUrl>
+          <IISUrl>http://localhost</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

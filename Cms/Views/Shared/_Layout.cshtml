@@ -29,7 +29,6 @@
 
 		<link rel="canonical" href="@ViewBag.NavigationUrl" />
 
-		<script type="text/javascript">var Locale = '@Locale';</script>
 		<script src="~/bundles/resources" type="text/javascript"></script>
 		@*Scripts.Render("~/bundles/modernizr")*@
 		@Styles.Render("~/bundles/css")
@@ -44,7 +43,7 @@
 
 		<script type="text/javascript">
 			define("locale", [], function () { return '@Locale' });
-			//define(["moment"], function (moment) { debugger; moment().format(); });
+			require(['layout'], function (layout) { layout.init(); });
 		</script>
 	</head>
 	<body>

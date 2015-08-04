@@ -209,17 +209,21 @@ table.table-drag tbody tr{cursor: move;}
 
 .navbar{
 	border-bottom:0px;
+}
 
-	.progress{
-		height:3px;
-		.border-radius(0px);
-		margin-bottom:0px;
-	}
-
+.progress{
+	height:3px;
+	margin-bottom:0px;
+	.border-radius(0px);
+	
 	.progress-bar{
 		opacity:0;
 		width:100%;
 		.transition(~"width 0s linear, opacity 1s ease-in 0.5s");
+		
+		&.empty{
+			width:0%;
+		}
 
 		&.countDown{
 			opacity:1;
@@ -229,14 +233,14 @@ table.table-drag tbody tr{cursor: move;}
 		
 		&.loading{
 			opacity:1;
-			width:75%;
-			.transition(~"width 5s ease-in");
+			width:60%;
+			.transition(~"width 1s ease-in");
 		}
 		
 		&.loaded{
 			opacity:1;
 			width:100%;
-			.transition(~"width 0.5s ease-in");
+			.transition(~"width 0.2s ease-in");
 		}
 	}
 }

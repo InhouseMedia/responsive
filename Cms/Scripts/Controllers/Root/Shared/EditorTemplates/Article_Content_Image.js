@@ -32,9 +32,13 @@
 
 	function _executeImageChange(e){
 		var imageOptions = {};
-		var img = this.find('img').get(0);
+		var img = this.find('img').first();
 
-		if (img == null) return;	
+		if (img.length == 0) return;
+
+		// Add loading bar to the image
+		img.next('.progress').find('.progress-bar').removeClass('loaded').addClass('loading');
+
 
 		var jsonOptions = $(this).find('input[type!=hidden][name^=imageConfig]').serializeJSON();
 			jsonOptions['imageConfig.custom'] = true;
@@ -53,7 +57,16 @@
 
 		console.log(imageOptions, urlQuery);
 
-		img.src = img.src.split("?")[0] + "?" + urlQuery;
+		// Add custom image url with querystring to the image.
+		var src = img.attr('src').split("?")[0] + "?" + urlQuery;
+		img.attr('src', src);
+	
+		// Remove loading bar when adjusted image is shown/loaded
+		img.load(function () {
+			var progressBar = $(this).next('.progress').find('.progress-bar');
+				progressBar.removeClass('loading').addClass('loaded');
+				setTimeout(function () { progressBar.removeClass('loaded')}, 800);
+		});
 	}
 
 	function _removePanel() { 
@@ -80,7 +93,6 @@
 			}
 		)
 	}
-
 
 	function _inputfieldPanel() {
 		$('#content').on('click', '.panel-heading .form-control',

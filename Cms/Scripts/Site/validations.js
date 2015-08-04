@@ -81,7 +81,7 @@ function documentReady () {
 }
 
 function windowLoad() {
-
+	/*
 	// Show Model (lightbox)
 	$('[data-toggle=modal]').click(function (e) {
 		e.preventDefault();
@@ -113,7 +113,7 @@ function windowLoad() {
 			'delay': {'show':500, 'hide': 1000}
 		}
 	);
-
+	*/
 	// Setup datetime picker
 	var newDate = new Date().getTime() - 3600000;
 	$('.input-group.date').datetimepicker({

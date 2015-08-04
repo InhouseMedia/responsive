@@ -35,7 +35,7 @@
 
 	string jsonString = File.ReadAllText(configPath);
 	JObject jsonSettings = JObject.Parse(jsonString);
-	
+
 	ImageConfig.ImageObject imageConfig = jsonSettings.ToObject<ImageConfig.ImageObject>();		
  }
 
@@ -95,6 +95,10 @@
 					@if (imageOptions.url != "") { 
 					
 						<img src="~/@imageOptions.url" style="width:100%" />
+						
+						<div class="progress" data-toggle="tooltip" data-placement="bottom" title="test">
+							<div class="progress-bar empty" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
 					}
 					else
 					{
