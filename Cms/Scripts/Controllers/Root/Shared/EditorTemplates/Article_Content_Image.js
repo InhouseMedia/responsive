@@ -2,12 +2,12 @@
 	"use strict";
 
 	var imageChangeTimeout = 0;
-	var panel;
+	var setupPanel;
 	var maxFilesize;
 	var dictDefaultMessage;
 	
 	function _loadDropZone() {
-		panel.find('.dropzone').dropzone(
+		setupPanel.find('.dropzone').dropzone(
 			{
 				url: '/File/SaveImage',
 				maxFilesize: maxFilesize,
@@ -19,28 +19,29 @@
 	}
 
 	function _bootstrapSlider() {
-		panel.find('.slider').bootstrapSlider();
+		setupPanel.find('.slider').bootstrapSlider();
 	}
 
 	function _triggerImageChange(){
-		panel.on('change', 'input[name*=imageConfig]', _executeImageChangeTimeout);
+		setupPanel.on('change', 'input[name*=imageConfig]', _executeImageChangeTimeout);
 	}
 
-	function _executeImageChangeTimeout() {
+	function _executeImageChangeTimeout(e) {
 		window.clearTimeout(imageChangeTimeout);
-		imageChangeTimeout = window.setTimeout(_executeImageChange.bind(panel), 350);
+		imageChangeTimeout = window.setTimeout(_executeImageChange.bind(this,e), 350);
 	}
 
-	function _executeImageChange(e){
+	function _executeImageChange(e) {
+		var panel = $(this).closest('[id^=collapseImage]');
 		var imageOptions = {};
-		var img = this.find('img').first();
+		var img = panel.find('img').first();
 
 		if (img.length == 0) return;
 
 		// Add loading bar to the image
 		img.next('.progress').find('.progress-bar').removeClass('loaded').addClass('loading');
 
-		var jsonOptions = $(this).find('input[type!=hidden][name^=imageConfig]').serializeJSON();
+		var jsonOptions = panel.find('input[type!=hidden][name^=imageConfig]').serializeJSON();
 			jsonOptions['imageConfig.custom'] = true;
 
 		var mapping = $.each(jsonOptions, function (key, item) {
@@ -119,7 +120,7 @@
 			_removePanel();
 			_inputfieldPanel();
 		},
-		model: function (modelId) { panel = $('#collapseImage_' + modelId); },
+		model: function (modelId) { setupPanel = $('#collapseImage_' + modelId); },
 		message: function (text) { dictDefaultMessage = text; },
 		maxfilesize: function (size) { maxFilesize = size; }	
 	}
