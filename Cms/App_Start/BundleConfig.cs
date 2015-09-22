@@ -79,9 +79,10 @@
 						"~/Scripts/modernizr-*"));
 			
 			bundles.Add(new LessBundle("~/bundles/css").Include(
+					"~/Content/Index.less",
 					"~/Content/bootstrap-datetimepicker/bootstrap-datetimepicker.less",
-					"~/Content/bootstrap-slider/bootstrap-slider.less",
-					"~/Content/Index.less"));
+					"~/Content/bootstrap-slider/bootstrap-slider.less"
+					));
 		}
 	}
 }

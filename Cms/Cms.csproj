@@ -359,7 +359,6 @@
     <Content Include="Content\bootstrap-datetimepicker\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\bootstrap-datetimepicker\bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-slider\bootstrap-slider.less" />
-    <Content Include="Content\bootstrap-slider\variables.less" />
     <Content Include="Content\bootstrap-slider\rules.less" />
     <Content Include="RequireJS.json" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
