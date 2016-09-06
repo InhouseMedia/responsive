@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Web
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Website\Website.csproj", "{09CFEFA7-ABC0-4EB5-A15F-994BB5A751D4}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cms", "Cms\Cms.csproj", "{3A64ECCA-369F-465B-9C6C-68924021FDB6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7AED8C7D-D852-43BE-872E-85874A55D7AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{0E151E4D-9C36-4314-8037-1AE55086331A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{3A64ECCA-369F-465B-9C6C-68924021FDB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A64ECCA-369F-465B-9C6C-68924021FDB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A64ECCA-369F-465B-9C6C-68924021FDB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E151E4D-9C36-4314-8037-1AE55086331A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E151E4D-9C36-4314-8037-1AE55086331A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E151E4D-9C36-4314-8037-1AE55086331A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E151E4D-9C36-4314-8037-1AE55086331A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -126,7 +126,9 @@
 		[EmailAddress(ErrorMessageResourceName = "EmailError", ErrorMessageResourceType = typeof(Translate), ErrorMessage = null)]
 		public string Email { get; set; }
     }
-	/*
+    
+
+    /*
 	public class RoleViewModel
 	{
 		[Required]

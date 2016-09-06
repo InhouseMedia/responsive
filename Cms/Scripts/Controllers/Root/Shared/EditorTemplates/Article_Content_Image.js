@@ -22,7 +22,7 @@
 		setupPanel.find('.slider').bootstrapSlider();
 	}
 
-	function _triggerImageChange(){
+	function _triggerImageChange() {
 		setupPanel.on('change', 'input[name*=imageConfig]', _executeImageChangeTimeout);
 	}
 
@@ -41,7 +41,7 @@
 		// Add loading bar to the image
 		img.next('.progress').find('.progress-bar').removeClass('loaded').addClass('loading');
 
-		var jsonOptions = panel.find('input[type!=hidden][name^=imageConfig]').serializeJSON();
+		var jsonOptions = panel.find('input[type!=hidden][name*=imageConfig]').serializeJSON();
 			jsonOptions['imageConfig.custom'] = true;
 
 		var mapping = $.each(jsonOptions, function (key, item) {

@@ -10,8 +10,8 @@
 	string isActive = ((ViewData["s_grayscale"].ToString().IndexOf(Model.name) > -1 && !(bool) ViewData["s_sepia"]) || (Model.name == "sepia" && (bool) ViewData["s_sepia"])) ? "active" : "";
 	
 	var checkboxAttributes = isActive == "active" ?
-			(object)new { @Name = "imageConfig.s_grayscale", @checked = "checked" } :
-			(object)new { @Name = "imageConfig.s_grayscale" };
+			(object)new {  @checked = "checked" } :
+			(object)new {  };
 
 	}
 
